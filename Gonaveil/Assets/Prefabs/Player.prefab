@@ -164,11 +164,16 @@ MonoBehaviour:
     enableTransparentPostpass: 1
     enableDistortion: 1
     enablePostprocess: 1
-    enableAsyncCompute: 1
     enableOpaqueObjects: 1
     enableTransparentObjects: 1
     enableRealtimePlanarReflection: 1
     enableMSAA: 0
+    enableAsyncCompute: 1
+    runLightListAsync: 1
+    runSSRAsync: 1
+    runSSAOAsync: 1
+    runContactShadowsAsync: 1
+    runVolumeVoxelizationAsync: 1
     lightLoopSettings:
       overrides: 0
       enableTileAndCluster: 1
@@ -405,6 +410,10 @@ PrefabInstance:
       propertyPath: m_RootBone
       value: 
       objectReference: {fileID: 4231637784307996404}
+    - target: {fileID: 9500000, guid: b7b5aa37639231e479603c81ed00443a, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 8255bc294f83978488c794a53f01061c, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7b5aa37639231e479603c81ed00443a, type: 3}
 --- !u!4 &4231637784307996386 stripped
