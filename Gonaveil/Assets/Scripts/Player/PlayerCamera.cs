@@ -2,18 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCamera : MonoBehaviour
-{
+public class PlayerCamera : MonoBehaviour {
 
     public float sensitivity = 1f;
+
+    float mouseY;
 
     void Start () {
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    void Update()
-    {
+    void Update() {
         transform.parent.Rotate(new Vector3(0,Input.GetAxis("Mouse X"),0));
-        transform.Rotate(new Vector3(-Input.GetAxis("Mouse Y"), 0, 0), Space.Self);
+        mouseY -= Input.GetAxis("Mouse Y");
+        mouseY = Mathf.Clamp(mouseY, -90, 90);
+
+        //transform.Rotate(new Vector3(-Input.GetAxis("Mouse Y"), 0, 0), Space.Self);
+        print(transform.localEulerAngles);
+        transform.localEulerAngles = new Vector3(mouseY, 0, 0);
     }
 }
