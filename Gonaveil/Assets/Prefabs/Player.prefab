@@ -270,7 +270,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxVelocity: 10
   acceleration: 50
-  airAccelaration: 10
+  airAccelaration: 25
   airDrag: 0.5
   jumpHeight: 1.5
   fallMultiplierFloat: 2
