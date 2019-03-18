@@ -5,9 +5,12 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour {
     public float maxVelocity = 5f;
     public float acceleration = 50f;
+
     public float airAccelaration = 25f;
     public float airDrag = 0.25f;
+
     public float jumpHeight = 1f;
+    public float fallMultiplierFloat = 1.5f;
 
     public bool isOnWalkableGround;
     public bool isGrounded;
@@ -50,6 +53,10 @@ public class PlayerMovement : MonoBehaviour {
                 var planeDown = Vector3.ProjectOnPlane(Vector3.down, groundedNormal);
 
                 velocity += planeDown * Time.deltaTime * -Physics.gravity.y * Vector3.Dot(planeDown, Vector3.down);
+            } else {
+                if (rb.velocity.y < 0) {
+                    rb.velocity += Vector3.up * Physics.gravity.y * (fallMultiplierFloat - 1) * Time.deltaTime;
+                }
             }
         }
 

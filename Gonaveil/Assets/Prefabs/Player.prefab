@@ -272,7 +272,8 @@ MonoBehaviour:
   acceleration: 50
   airAccelaration: 10
   airDrag: 0.5
-  jumpHeight: 1
+  jumpHeight: 1.5
+  fallMultiplierFloat: 2
   isOnWalkableGround: 0
   isGrounded: 0
   maxGroundInclination: 0.75
