@@ -25,10 +25,12 @@ public class PlayerMovement : MonoBehaviour {
     private Rigidbody rb;
     private Collider collider;
     private bool wasGrounded;
+    private Animator anim;
 
     void Start() {
         rb = GetComponent<Rigidbody>();
         collider = GetComponent<Collider>();
+        anim = GetComponentInChildren<Animator>();
     }
 
     void Update() {
@@ -101,6 +103,7 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     void FixedUpdate() {
+        anim.SetFloat("WalkSpeed", velocity.sqrMagnitude / 100);
         rb.velocity = velocity + Vector3.up * rb.velocity.y;
     }
 }
