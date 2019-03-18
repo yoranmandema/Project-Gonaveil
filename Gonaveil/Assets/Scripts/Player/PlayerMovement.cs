@@ -90,12 +90,7 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     void OnGrounded () {
-        Debug.DrawLine(transform.position, transform.position + velocity, Color.blue, 60f);
-        var planeDown = Vector3.ProjectOnPlane(Vector3.down, groundedNormal);
-
         velocity = Vector3.ProjectOnPlane(velocity, groundedNormal) * Mathf.Pow(Vector3.Dot(groundedNormal, Vector3.up),3);
-
-        Debug.DrawLine(transform.position, transform.position + velocity, Color.red, 60f);
     }
 
     void FixedUpdate() {
