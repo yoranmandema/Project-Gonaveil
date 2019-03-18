@@ -239,8 +239,8 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 80
+  m_Interpolate: 2
+  m_Constraints: 112
   m_CollisionDetection: 1
 --- !u!136 &4231637786013889392
 CapsuleCollider:
@@ -249,7 +249,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4231637786013889399}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: ef903e2d0aefe69418caf1c755075659, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
@@ -268,9 +268,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ab3b73f181c3de4e81bc8fb21520cad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxVelocity: 20
+  maxVelocity: 10
   acceleration: 50
   decceleration: 25
+  isGrounded: 0
 --- !u!1001 &4231637784307862642
 PrefabInstance:
   m_ObjectHideFlags: 0

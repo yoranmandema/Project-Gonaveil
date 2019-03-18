@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.067397416, g: 0.08884703, b: 0.1318765, a: 1}
+  m_IndirectSpecularColor: {r: 0.06744362, g: 0.0889105, b: 0.13196887, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -682,6 +682,42 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4231637786013889393, guid: 96ab6853cd5b6d64981e65f4535ad4f6,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4231637786013889393, guid: 96ab6853cd5b6d64981e65f4535ad4f6,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4231637786013889393, guid: 96ab6853cd5b6d64981e65f4535ad4f6,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
+    - target: {fileID: 4231637786013889393, guid: 96ab6853cd5b6d64981e65f4535ad4f6,
+        type: 3}
+      propertyPath: m_Interpolate
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4231637786013889392, guid: 96ab6853cd5b6d64981e65f4535ad4f6,
+        type: 3}
+      propertyPath: m_Direction
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4231637786013889392, guid: 96ab6853cd5b6d64981e65f4535ad4f6,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: ef903e2d0aefe69418caf1c755075659,
+        type: 2}
+    - target: {fileID: 4231637786013889395, guid: 96ab6853cd5b6d64981e65f4535ad4f6,
+        type: 3}
+      propertyPath: maxVelocity
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96ab6853cd5b6d64981e65f4535ad4f6, type: 3}

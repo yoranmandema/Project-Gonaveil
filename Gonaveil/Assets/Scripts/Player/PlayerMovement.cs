@@ -8,32 +8,31 @@ public class PlayerMovement : MonoBehaviour
     public float acceleration = 50f;
     public float decceleration = 50f;
 
+    public bool isGrounded;
+
     private Vector3 velocity;
     private Rigidbody rb;
+    private Collider collider;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        collider = GetComponent<Collider>();
     }
 
-    void Update()
-    {
+    void Update () {
+        var desiredVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) * maxVelocity;
+        var transformedVelocity = transform.TransformDirection(desiredVelocity);
+
+        velocity += Vector3.ClampMagnitude(transformedVelocity - velocity, acceleration * Time.deltaTime);
+    }
+
+    void FixedUpdate()
+    {    
+        isGrounded = Physics.CheckCapsule(collider.bounds.center, new Vector3(collider.bounds.center.x, collider.bounds.min.y - 0.1f, collider.bounds.center.z), 0.18f);
+
         var velocityY = rb.velocity.y;
-        var localVel = transform.InverseTransformDirection(rb.velocity);
 
-        var forwardAcceleration = -localVel.z * decceleration;
-        var sideAcceleration = -localVel.x * decceleration;
-
-        if (Input.GetAxis("Vertical") != 0) forwardAcceleration = Input.GetAxis("Vertical") * acceleration;
-        if (Input.GetAxis("Horizontal") != 0) sideAcceleration = Input.GetAxis("Horizontal") * acceleration;
-
-        rb.velocity = 
-            rb.velocity + 
-            (transform.forward * forwardAcceleration + 
-            transform.right * sideAcceleration) * Time.deltaTime;
-
-
-
-        rb.velocity = Vector3.ClampMagnitude(Vector3.Scale(rb.velocity,new Vector3(1, 0, 1)), maxVelocity).SetY(velocityY);
+        rb.velocity = velocity.SetY(velocityY);
     }
 }
