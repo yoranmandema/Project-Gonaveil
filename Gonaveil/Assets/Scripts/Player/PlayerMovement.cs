@@ -19,8 +19,9 @@ public class PlayerMovement : MonoBehaviour {
     public float fallSpeedMultiplier = 1.5f;
     public float fallMaxSpeedUp = 10f;
 
-    public bool isOnWalkableGround;
     public bool isGrounded;
+    public bool isInAir;
+    public bool isSurfing;
 
     private CharacterController characterController;
     private Vector3 groundNormal;
@@ -34,6 +35,8 @@ public class PlayerMovement : MonoBehaviour {
     private bool canJump = true;
     private bool canJumpCooldown = true;
     private bool wasGrounded;
+    private bool wasSurfing;
+    private bool wasInAir;
 
     private Vector3 TransformedMovement => transform.TransformDirection(desiredMovement);
     private Vector3 ProjectedMovement => Vector3.ProjectOnPlane(TransformedMovement, groundNormal).normalized;
@@ -64,9 +67,12 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     private void GroundCheck () {
+        wasSurfing = isSurfing;
         wasGrounded = isGrounded;
+        wasInAir = isInAir;
 
         isGrounded = characterController.isGrounded;
+        isSurfing = false;
 
         var groundHits = Physics.SphereCastAll(
             transform.position + transform.up * characterController.radius,
@@ -102,6 +108,12 @@ public class PlayerMovement : MonoBehaviour {
                 isGrounded = true;
             }        
         }
+
+        if (GroundSlope > characterController.slopeLimit) {
+            isSurfing = true;
+        }
+
+        isInAir = !isGrounded && !isSurfing;
     }
 
     void Update() {
@@ -111,9 +123,10 @@ public class PlayerMovement : MonoBehaviour {
 
         desiredMovement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
-        if (isGrounded) {
-            if (!wasGrounded) canJump = true;
-
+        if (isSurfing) {
+            SurfMovement();
+        }
+        else if (isGrounded) {
             GroundMovement();
         }
         else {
@@ -137,12 +150,12 @@ public class PlayerMovement : MonoBehaviour {
             }
 
             velocity = jumpVelocity + lateralVelocity;
-
-            lateralJumpVelocity = Vector3.Scale(velocity, new Vector3(1, 0, 1)).magnitude;
         }
     }
 
     private void GroundMovement () {
+        if (!wasGrounded) canJump = true;
+
         desiredMovement.Normalize();
 
         var moveVector = TransformedMovement;
@@ -157,7 +170,20 @@ public class PlayerMovement : MonoBehaviour {
         JumpMovement();
     }
 
+    private void SurfMovement () {
+        if (!wasSurfing) velocity = Vector3.ProjectOnPlane(velocity, groundNormal);
+
+        var downVector = Vector3.ProjectOnPlane(Vector3.down, groundNormal);
+
+        Debug.DrawLine(groundPoint, groundPoint + downVector, Color.green);
+
+        velocity += downVector * Time.deltaTime;
+
+        //velocity = velocity.SetY(characterController.velocity.y);
+    }
+
     private void AirMovement () {
+        if (!wasInAir) lateralJumpVelocity = Vector3.Scale(velocity, new Vector3(1, 0, 1)).magnitude;
 
         // Faster fall velocity.
         if (Vector3.Scale(velocity, new Vector3(1, 0, 1)).magnitude < lateralJumpVelocity) {
