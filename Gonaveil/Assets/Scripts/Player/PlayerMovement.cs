@@ -45,32 +45,14 @@ public class PlayerMovement : MonoBehaviour {
         }
     }
 
-    private void CheckIfGrounded() {
+    private void CheckIfGrounded () {
         wasGrounded = isGrounded;
 
-        //isGrounded = Physics.CheckSphere(transform.position + Vector3.up * 0.25f, 0.35f, groundedLayerMask, QueryTriggerInteraction.Ignore);
-
-        isGrounded = characterController.isGrounded;
-    }
-
-    Vector3 GetStrafeAcceleration() {
-        float forward = Input.GetAxis("Vertical");
-        float left = Input.GetAxis("Horizontal");
-        float yaw = transform.eulerAngles.y * Mathf.Deg2Rad;
-
-        Vector3 normalizedVelocity = velocity.normalized;
-
-        Vector3 rightOfVelocity = new Vector3(velocity.z, 0, -velocity.x);
-
-        Vector3 control = new Vector3(forward * Mathf.Sin(yaw) + left * Mathf.Cos(yaw), 0, forward * Mathf.Cos(yaw) + left * Mathf.Sin(yaw));
-
-        return rightOfVelocity * Vector3.Dot(rightOfVelocity, control);
+        isGrounded = Physics.CheckSphere(transform.position + Vector3.up * (characterController.radius - 0.2f), characterController.radius - 0.1f, groundedLayerMask, QueryTriggerInteraction.Ignore);
     }
 
     void Update() {
         CheckIfGrounded();
-
-        characterController.Move(velocity * Time.deltaTime);
 
         desiredMovement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
@@ -82,6 +64,8 @@ public class PlayerMovement : MonoBehaviour {
         else {
             AirMovement();
         }
+
+        characterController.Move(velocity * Time.deltaTime);
     }
 
     private void GroundMovement () {
@@ -102,19 +86,17 @@ public class PlayerMovement : MonoBehaviour {
 
     private void AirMovement () {
 
-        // Lateral air acceleration.
+        // Faster fall velocity.
         if (Vector3.Scale(velocity, new Vector3(1, 0, 1)).magnitude < lateralJumpVelocity) {
             var transformedMovement = transform.TransformDirection(desiredMovement);
 
             velocity += transformedMovement * airAccelaration * Time.deltaTime;
         }
 
-        //velocity += GetStrafeAcceleration();
-
         // Air drag.
         velocity -= velocity * airDrag * Time.deltaTime;
 
-        // Faster fall velocity.
+        // Lateral air acceleration.
         if (velocity.y < 0 && velocity.y > -fallMaxSpeedUp) {
             velocity += Vector3.up * Physics.gravity.y * (fallSpeedMultiplier - 1) * Time.deltaTime;
         }
