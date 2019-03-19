@@ -14,6 +14,8 @@ public class PlayerMovement : MonoBehaviour {
     public float jumpHeight = 1f;
     public float jumpCooldown = 0.25f;
     public float jumpLateralSpeedMultiplier = 1.1f;
+    public float upHillJumpBoost = 5f;
+
     public float fallSpeedMultiplier = 1.5f;
     public float fallMaxSpeedUp = 10f;
 
@@ -30,10 +32,12 @@ public class PlayerMovement : MonoBehaviour {
     private LayerMask groundMask;
     private float lateralJumpVelocity;
 
-    private bool wantsJump;
     private bool canJump = true;
     private bool canJumpCooldown = true;
     private bool wasGrounded;
+
+    private Vector3 TransformedMovement => transform.TransformDirection(desiredMovement);
+    private Vector3 ProjectedMovement => Vector3.ProjectOnPlane(TransformedMovement, groundNormal).normalized;
 
     private void Start() {
         rb = GetComponent<Rigidbody>();
@@ -92,6 +96,12 @@ public class PlayerMovement : MonoBehaviour {
 
         groundNormal = normal;
         groundPoint = hitPoint;
+
+        if (!isGrounded && groundHits.Length > 0) {
+            if ((Mathf.Acos(Vector3.Dot(groundNormal, Vector3.up)) * Mathf.Rad2Deg) <= characterController.slopeLimit) {
+                isGrounded = true;
+            }        
+        }
     }
 
     void Update() {
@@ -117,7 +127,16 @@ public class PlayerMovement : MonoBehaviour {
 
             StartCoroutine(JumpCooldown());
 
-            velocity = Vector3.up * Mathf.Sqrt(jumpHeight * 2f * Physics.gravity.magnitude) + Vector3.Scale(velocity, new Vector3(jumpLateralSpeedMultiplier, 0, jumpLateralSpeedMultiplier));
+            var lateralVelocity = Vector3.Scale(velocity, new Vector3(1, 0, 1)) * jumpLateralSpeedMultiplier;
+            var jumpVelocity =
+                Vector3.up * Mathf.Sqrt(jumpHeight * 2f * Physics.gravity.magnitude);
+
+            // Boost the jump when going uphill.
+            if (ProjectedMovement.y > 0) {
+                jumpVelocity += groundNormal * lateralVelocity.magnitude * upHillJumpBoost * (1 - Vector3.Dot(groundNormal, Vector3.up));
+            }
+
+            velocity = jumpVelocity + lateralVelocity;
 
             lateralJumpVelocity = Vector3.Scale(velocity, new Vector3(1, 0, 1)).magnitude;
         }
@@ -126,16 +145,14 @@ public class PlayerMovement : MonoBehaviour {
     private void GroundMovement () {
         desiredMovement.Normalize();
 
-        var transformedMovement = transform.TransformDirection(desiredMovement);
+        var moveVector = TransformedMovement;
 
-        var projectedMovement = Vector3.ProjectOnPlane(transformedMovement, groundNormal);
-
-        // Project movement input when moving down a sloped surface to prevent bouncing.
-        if (projectedMovement.y > 0) {
-            projectedMovement = transformedMovement;
+        // Use projected movement input when moving down a sloped surface to prevent bouncing.
+        if (ProjectedMovement.y < 0) {
+            moveVector = ProjectedMovement;
         }
 
-        velocity += Vector3.ClampMagnitude(projectedMovement * maxVelocity - velocity, acceleration * Time.deltaTime);
+        velocity += Vector3.ClampMagnitude(moveVector * maxVelocity - velocity, acceleration * Time.deltaTime);
 
         JumpMovement();
     }
