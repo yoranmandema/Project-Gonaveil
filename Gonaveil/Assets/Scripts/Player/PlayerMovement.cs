@@ -20,9 +20,8 @@ public class PlayerMovement : MonoBehaviour {
     public bool isGrounded;
     public float maxGroundInclination = 0.75f;
 
-    public LayerMask groundedLayerMask;
-
     private CharacterController characterController;
+    private Vector3 groundNormal;
     private Vector3 velocity;
     private Vector3 desiredMovement;
     private Rigidbody rb;
@@ -45,16 +44,16 @@ public class PlayerMovement : MonoBehaviour {
         }
     }
 
-    private void CheckIfGrounded () {
+    private void GroundCheck () {
         wasGrounded = isGrounded;
 
-        //isGrounded = Physics.CheckSphere(transform.position + Vector3.up * (characterController.radius - 0.2f), characterController.radius - 0.1f, groundedLayerMask, QueryTriggerInteraction.Ignore);
-
         isGrounded = characterController.isGrounded;
+
+        
     }
 
     void Update() {
-        CheckIfGrounded();
+        GroundCheck();
 
         characterController.Move(velocity * Time.deltaTime);
 
@@ -74,6 +73,8 @@ public class PlayerMovement : MonoBehaviour {
         desiredMovement.Normalize();
 
         var transformedMovement = transform.TransformDirection(desiredMovement);
+
+        var projectedMovement = Vector3.ProjectOnPlane(transformedMovement, characterController.norm);
 
         velocity += Vector3.ClampMagnitude(transformedMovement * maxVelocity - velocity, acceleration * Time.deltaTime);
 
