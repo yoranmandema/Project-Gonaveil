@@ -10,7 +10,9 @@ public class PlayerMovement : MonoBehaviour {
     public float airAccelaration = 25f;
     public float airDrag = 0.25f;
 
+    public bool autoJump;
     public float jumpHeight = 1f;
+    public float jumpLateralSpeedMultiplier = 1.1f;
     public float fallMultiplierFloat = 1.5f;
     public float fallMaxSpeedUp = 10f;
 
@@ -26,10 +28,22 @@ public class PlayerMovement : MonoBehaviour {
     private CharacterController characterController;
     private Vector3 velocity;
     private Rigidbody rb;
+    private float lateralJumpVelocity;
+
+    private bool wantsJump;
+    private bool canJump = true;
 
     void Start() {
         rb = GetComponent<Rigidbody>();
         characterController = GetComponent<CharacterController>();
+    }
+
+    private bool WantsJumpInput () {
+        if (autoJump) {
+            return Input.GetButton("Jump");
+        } else {
+            return Input.GetButtonDown("Jump");
+        }
     }
 
     void Update() {
@@ -41,14 +55,23 @@ public class PlayerMovement : MonoBehaviour {
         var transformedVelocity = transform.TransformDirection(desiredVelocity);
 
         if (isGrounded) {
+            if (canJump) canJump = false;
+
             desiredVelocity.Normalize();
 
             velocity += Vector3.ClampMagnitude(transformedVelocity * maxVelocity - velocity, acceleration * Time.deltaTime);
 
-            if (Input.GetButtonDown("Jump")) velocity += Vector3.up * Mathf.Sqrt(jumpHeight * 2f * Physics.gravity.magnitude);
+            if (WantsJumpInput() && canJump) {
+                velocity = Vector3.up * Mathf.Sqrt(jumpHeight * 2f * Physics.gravity.magnitude) + Vector3.Scale(velocity, new Vector3(jumpLateralSpeedMultiplier, 0, jumpLateralSpeedMultiplier));
+
+                lateralJumpVelocity = Vector3.Scale(velocity, new Vector3(1,0,1)).magnitude;
+            }
         }
         else {
-            velocity += transformedVelocity * airAccelaration * Time.deltaTime;
+            if (Vector3.Scale(velocity, new Vector3(1, 0, 1)).magnitude < lateralJumpVelocity) {
+                velocity += transformedVelocity * airAccelaration * Time.deltaTime;
+            }
+
             velocity -= velocity * airDrag * Time.deltaTime;
 
             if (velocity.y < 0 && velocity.y > -fallMaxSpeedUp) {
