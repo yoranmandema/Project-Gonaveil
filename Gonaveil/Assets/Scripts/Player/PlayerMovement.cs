@@ -175,13 +175,17 @@ public class PlayerMovement : MonoBehaviour {
 
         var downVector = Vector3.ProjectOnPlane(Vector3.down, groundNormal);
 
+        if (Vector3.Scale(velocity, new Vector3(1, 0, 1)).magnitude < lateralJumpVelocity) {
+            velocity += TransformedMovement * airAccelaration * Time.deltaTime;
+        }
+
         velocity += downVector * Time.deltaTime;
     }
 
     private void AirMovement () {
         if (!wasInAir) lateralJumpVelocity = Vector3.Scale(velocity, new Vector3(1, 0, 1)).magnitude;
 
-        // Faster fall velocity.
+        // Lateral air acceleration.
         if (Vector3.Scale(velocity, new Vector3(1, 0, 1)).magnitude < lateralJumpVelocity) {
             velocity += TransformedMovement * airAccelaration * Time.deltaTime;
         }
@@ -189,7 +193,7 @@ public class PlayerMovement : MonoBehaviour {
         // Air drag.
         velocity -= velocity * airDrag * Time.deltaTime;
 
-        // Lateral air acceleration.
+        // Faster fall velocity.
         if (velocity.y < 0 && velocity.y > -fallMaxSpeedUp) {
             velocity += Vector3.up * Physics.gravity.y * (fallSpeedMultiplier - 1) * Time.deltaTime;
         }
