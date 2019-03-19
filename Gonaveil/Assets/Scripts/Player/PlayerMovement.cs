@@ -48,11 +48,15 @@ public class PlayerMovement : MonoBehaviour {
     private void CheckIfGrounded () {
         wasGrounded = isGrounded;
 
-        isGrounded = Physics.CheckSphere(transform.position + Vector3.up * (characterController.radius - 0.2f), characterController.radius - 0.1f, groundedLayerMask, QueryTriggerInteraction.Ignore);
+        //isGrounded = Physics.CheckSphere(transform.position + Vector3.up * (characterController.radius - 0.2f), characterController.radius - 0.1f, groundedLayerMask, QueryTriggerInteraction.Ignore);
+
+        isGrounded = characterController.isGrounded;
     }
 
     void Update() {
         CheckIfGrounded();
+
+        characterController.Move(velocity * Time.deltaTime);
 
         desiredMovement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
@@ -64,8 +68,6 @@ public class PlayerMovement : MonoBehaviour {
         else {
             AirMovement();
         }
-
-        characterController.Move(velocity * Time.deltaTime);
     }
 
     private void GroundMovement () {
