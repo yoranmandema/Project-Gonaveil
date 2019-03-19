@@ -112,7 +112,12 @@ ModelImporter:
     4300036: Walther_Body.001
     4300038: Walther_Slide
     4300040: Walther_Body
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WaltherP99
+    second: {fileID: 2100000, guid: 1dd48245129e2af449686c101b43545e, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
