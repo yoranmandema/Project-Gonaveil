@@ -37,6 +37,7 @@ public class PlayerMovement : MonoBehaviour {
 
     private Vector3 TransformedMovement => transform.TransformDirection(desiredMovement);
     private Vector3 ProjectedMovement => Vector3.ProjectOnPlane(TransformedMovement, groundNormal).normalized;
+    private float GroundSlope => Mathf.Acos(Vector3.Dot(groundNormal, Vector3.up)) * Mathf.Rad2Deg;
 
     private void Start() {
         rb = GetComponent<Rigidbody>();
@@ -97,7 +98,7 @@ public class PlayerMovement : MonoBehaviour {
         groundPoint = hitPoint;
 
         if (!isGrounded && groundHits.Length > 0) {
-            if ((Mathf.Acos(Vector3.Dot(groundNormal, Vector3.up)) * Mathf.Rad2Deg) <= characterController.slopeLimit) {
+            if (GroundSlope <= characterController.slopeLimit) {
                 isGrounded = true;
             }        
         }
