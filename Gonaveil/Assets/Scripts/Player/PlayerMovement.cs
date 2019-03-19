@@ -175,11 +175,7 @@ public class PlayerMovement : MonoBehaviour {
 
         var downVector = Vector3.ProjectOnPlane(Vector3.down, groundNormal);
 
-        Debug.DrawLine(groundPoint, groundPoint + downVector, Color.green);
-
         velocity += downVector * Time.deltaTime;
-
-        //velocity = velocity.SetY(characterController.velocity.y);
     }
 
     private void AirMovement () {
@@ -187,9 +183,7 @@ public class PlayerMovement : MonoBehaviour {
 
         // Faster fall velocity.
         if (Vector3.Scale(velocity, new Vector3(1, 0, 1)).magnitude < lateralJumpVelocity) {
-            var transformedMovement = transform.TransformDirection(desiredMovement);
-
-            velocity += transformedMovement * airAccelaration * Time.deltaTime;
+            velocity += TransformedMovement * airAccelaration * Time.deltaTime;
         }
 
         // Air drag.
