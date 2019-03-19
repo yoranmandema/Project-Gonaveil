@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour {
 
     public float jumpHeight = 1f;
     public float fallMultiplierFloat = 1.5f;
+    public float fallMaxSpeedUp = 10f;
 
     public bool isOnWalkableGround;
     public bool isGrounded;
@@ -50,9 +51,9 @@ public class PlayerMovement : MonoBehaviour {
             velocity += transformedVelocity * airAccelaration * Time.deltaTime;
             velocity -= velocity * airDrag * Time.deltaTime;
 
-            //if (rb.velocity.y < 0) {
-            //    rb.velocity += Vector3.up * Physics.gravity.y * (fallMultiplierFloat - 1) * Time.deltaTime;
-            //}
+            if (velocity.y < 0 && velocity.y > -fallMaxSpeedUp) {
+                velocity += Vector3.up * Physics.gravity.y * (fallMultiplierFloat - 1) * Time.deltaTime;
+            }
 
             velocity += Physics.gravity * Time.deltaTime;
         }
