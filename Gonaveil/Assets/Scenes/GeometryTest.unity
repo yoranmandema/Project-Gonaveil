@@ -14253,6 +14253,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 706502966}
     m_Modifications:
+    - target: {fileID: 100002, guid: 2561409df03e3824493b40c35fb3177f, type: 3}
+      propertyPath: m_Name
+      value: P99
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 2561409df03e3824493b40c35fb3177f, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 2561409df03e3824493b40c35fb3177f, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100016, guid: 2561409df03e3824493b40c35fb3177f, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100028, guid: 2561409df03e3824493b40c35fb3177f, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100036, guid: 2561409df03e3824493b40c35fb3177f, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 2561409df03e3824493b40c35fb3177f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -14296,30 +14320,6 @@ PrefabInstance:
     - target: {fileID: 400002, guid: 2561409df03e3824493b40c35fb3177f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: 2561409df03e3824493b40c35fb3177f, type: 3}
-      propertyPath: m_Name
-      value: P99
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: 2561409df03e3824493b40c35fb3177f, type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 100006, guid: 2561409df03e3824493b40c35fb3177f, type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 100016, guid: 2561409df03e3824493b40c35fb3177f, type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 100028, guid: 2561409df03e3824493b40c35fb3177f, type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 100036, guid: 2561409df03e3824493b40c35fb3177f, type: 3}
-      propertyPath: m_Layer
-      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 2300004, guid: 2561409df03e3824493b40c35fb3177f, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -19411,6 +19411,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1877312675}
     m_Modifications:
+    - target: {fileID: 100002, guid: 2561409df03e3824493b40c35fb3177f, type: 3}
+      propertyPath: m_Name
+      value: P99
+      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 2561409df03e3824493b40c35fb3177f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.184587
@@ -19454,10 +19458,6 @@ PrefabInstance:
     - target: {fileID: 400002, guid: 2561409df03e3824493b40c35fb3177f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: 2561409df03e3824493b40c35fb3177f, type: 3}
-      propertyPath: m_Name
-      value: P99
       objectReference: {fileID: 0}
     - target: {fileID: 2300004, guid: 2561409df03e3824493b40c35fb3177f, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -27682,21 +27682,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ab3b73f181c3de4e81bc8fb21520cad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxVelocity: 5
+  maxVelocity: 8
   acceleration: 50
   airAccelaration: 40
   airDrag: 0.5
   autoJump: 1
   jumpHeight: 1
+  jumpCooldown: 0.25
   jumpLateralSpeedMultiplier: 1.25
   fallSpeedMultiplier: 1.5
   fallMaxSpeedUp: 10
   isOnWalkableGround: 0
   isGrounded: 0
   maxGroundInclination: 0.75
-  groundedLayerMask:
-    serializedVersion: 2
-    m_Bits: 1
 --- !u!4 &4231637784447841765
 Transform:
   m_ObjectHideFlags: 0

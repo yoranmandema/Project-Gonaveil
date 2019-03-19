@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour {
 
     public bool autoJump;
     public float jumpHeight = 1f;
+    public float jumpCooldown = 0.25f;
     public float jumpLateralSpeedMultiplier = 1.1f;
     public float fallSpeedMultiplier = 1.5f;
     public float fallMaxSpeedUp = 10f;
@@ -31,6 +32,7 @@ public class PlayerMovement : MonoBehaviour {
 
     private bool wantsJump;
     private bool canJump = true;
+    private bool canJumpCooldown = true;
     private bool wasGrounded;
 
     private void Start() {
@@ -47,6 +49,14 @@ public class PlayerMovement : MonoBehaviour {
         } else {
             return Input.GetButtonDown("Jump");
         }
+    }
+
+    private IEnumerator JumpCooldown () {
+        canJumpCooldown = false;
+
+        yield return new WaitForSeconds(jumpCooldown);
+
+        canJumpCooldown = true;
     }
 
     private void GroundCheck () {
@@ -101,6 +111,18 @@ public class PlayerMovement : MonoBehaviour {
         }
     }
 
+    private void JumpMovement () {
+        if (WantsJumpInput() && canJump && canJumpCooldown) {
+            canJump = false;
+
+            StartCoroutine(JumpCooldown());
+
+            velocity = Vector3.up * Mathf.Sqrt(jumpHeight * 2f * Physics.gravity.magnitude) + Vector3.Scale(velocity, new Vector3(jumpLateralSpeedMultiplier, 0, jumpLateralSpeedMultiplier));
+
+            lateralJumpVelocity = Vector3.Scale(velocity, new Vector3(1, 0, 1)).magnitude;
+        }
+    }
+
     private void GroundMovement () {
         desiredMovement.Normalize();
 
@@ -115,13 +137,7 @@ public class PlayerMovement : MonoBehaviour {
 
         velocity += Vector3.ClampMagnitude(projectedMovement * maxVelocity - velocity, acceleration * Time.deltaTime);
 
-        if (WantsJumpInput() && canJump) {
-            canJump = false;
-
-            velocity = Vector3.up * Mathf.Sqrt(jumpHeight * 2f * Physics.gravity.magnitude) + Vector3.Scale(velocity, new Vector3(jumpLateralSpeedMultiplier, 0, jumpLateralSpeedMultiplier));
-
-            lateralJumpVelocity = Vector3.Scale(velocity, new Vector3(1, 0, 1)).magnitude;
-        }
+        JumpMovement();
     }
 
     private void AirMovement () {
