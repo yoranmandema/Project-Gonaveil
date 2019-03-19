@@ -21,7 +21,6 @@ public class PlayerMovement : MonoBehaviour {
 
     public bool isOnWalkableGround;
     public bool isGrounded;
-    public float maxGroundInclination = 0.75f;
 
     private CharacterController characterController;
     private Vector3 groundNormal;
