@@ -22,9 +22,11 @@ public class PlayerMovement : MonoBehaviour {
 
     private CharacterController characterController;
     private Vector3 groundNormal;
+    private Vector3 groundPoint;
     private Vector3 velocity;
     private Vector3 desiredMovement;
     private Rigidbody rb;
+    private LayerMask groundMask;
     private float lateralJumpVelocity;
 
     private bool wantsJump;
@@ -34,6 +36,9 @@ public class PlayerMovement : MonoBehaviour {
     private void Start() {
         rb = GetComponent<Rigidbody>();
         characterController = GetComponent<CharacterController>();
+
+        groundMask = ((LayerMask)gameObject.layer).GetReverseLayerMask();
+        groundMask ^= 1 << gameObject.layer;
     }
 
     private bool WantsJumpInput () {
@@ -49,7 +54,34 @@ public class PlayerMovement : MonoBehaviour {
 
         isGrounded = characterController.isGrounded;
 
-        
+        var groundHits = Physics.SphereCastAll(
+            transform.position + transform.up * characterController.radius,
+            characterController.radius,
+            -transform.up,
+            0.1f,
+            groundMask
+            );
+
+        var normal = Vector3.zero;
+        var hitPoint = Vector3.zero;
+
+        foreach (var hit in groundHits) {
+            normal += hit.normal;
+
+            hitPoint += hit.point;
+        }
+
+        if (groundHits.Length > 0) {
+            normal /= (groundHits.Length);
+            normal = normal.normalized;
+        } else {
+            normal = Vector3.up;
+        }
+
+        hitPoint /= (groundHits.Length);
+
+        groundNormal = normal;
+        groundPoint = hitPoint;
     }
 
     void Update() {
@@ -74,9 +106,14 @@ public class PlayerMovement : MonoBehaviour {
 
         var transformedMovement = transform.TransformDirection(desiredMovement);
 
-        var projectedMovement = Vector3.ProjectOnPlane(transformedMovement, characterController.norm);
+        var projectedMovement = Vector3.ProjectOnPlane(transformedMovement, groundNormal);
 
-        velocity += Vector3.ClampMagnitude(transformedMovement * maxVelocity - velocity, acceleration * Time.deltaTime);
+        // Project movement input when moving down a sloped surface to prevent bouncing.
+        if (projectedMovement.y > 0) {
+            projectedMovement = transformedMovement;
+        }
+
+        velocity += Vector3.ClampMagnitude(projectedMovement * maxVelocity - velocity, acceleration * Time.deltaTime);
 
         if (WantsJumpInput() && canJump) {
             canJump = false;
