@@ -27690,6 +27690,7 @@ MonoBehaviour:
   jumpHeight: 1
   jumpCooldown: 0.25
   jumpLateralSpeedMultiplier: 1.25
+  upHillJumpBoost: 4
   fallSpeedMultiplier: 1.5
   fallMaxSpeedUp: 10
   isOnWalkableGround: 0

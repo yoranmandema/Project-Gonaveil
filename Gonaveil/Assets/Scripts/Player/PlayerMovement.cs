@@ -133,7 +133,7 @@ public class PlayerMovement : MonoBehaviour {
 
             // Boost the jump when going uphill.
             if (ProjectedMovement.y > 0) {
-                jumpVelocity += groundNormal * lateralVelocity.magnitude * upHillJumpBoost * (1 - Vector3.Dot(groundNormal, Vector3.up));
+                jumpVelocity += Vector3.up * lateralVelocity.magnitude * upHillJumpBoost * (1 - Vector3.Dot(groundNormal, Vector3.up));
             }
 
             velocity = jumpVelocity + lateralVelocity;
