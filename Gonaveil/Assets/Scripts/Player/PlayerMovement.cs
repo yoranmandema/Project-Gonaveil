@@ -16,6 +16,8 @@ public class PlayerMovement : MonoBehaviour {
     public float jumpLateralSpeedMultiplier = 1.1f;
     public float upHillJumpBoost = 5f;
 
+    public float surfSlope = 45f;
+
     public float fallSpeedMultiplier = 1.5f;
     public float fallMaxSpeedUp = 10f;
 
@@ -31,6 +33,7 @@ public class PlayerMovement : MonoBehaviour {
     private Rigidbody rb;
     private LayerMask groundMask;
     private float lateralJumpVelocity;
+    private float lateralSurfVelocity;
 
     private bool canJump = true;
     private bool canJumpCooldown = true;
@@ -41,6 +44,7 @@ public class PlayerMovement : MonoBehaviour {
     private Vector3 TransformedMovement => transform.TransformDirection(desiredMovement);
     private Vector3 ProjectedMovement => Vector3.ProjectOnPlane(TransformedMovement, groundNormal).normalized;
     private float GroundSlope => Mathf.Acos(Vector3.Dot(groundNormal, Vector3.up)) * Mathf.Rad2Deg;
+    private float VelocityDotDirection => Mathf.Max(0, Vector3.Dot(transform.forward, Vector3.Scale(velocity.normalized, new Vector3(1, 0, 1))));
 
     private void Start() {
         rb = GetComponent<Rigidbody>();
@@ -89,6 +93,8 @@ public class PlayerMovement : MonoBehaviour {
             normal += hit.normal;
 
             hitPoint += hit.point;
+
+            Debug.DrawLine(hit.point, hit.point + normal, Color.red);
         }
 
         if (groundHits.Length > 0) {
@@ -104,13 +110,14 @@ public class PlayerMovement : MonoBehaviour {
         groundPoint = hitPoint;
 
         if (!isGrounded && groundHits.Length > 0) {
-            if (GroundSlope <= characterController.slopeLimit) {
+            if (GroundSlope <= surfSlope) {
                 isGrounded = true;
             }        
         }
 
-        if (GroundSlope > characterController.slopeLimit) {
+        if (GroundSlope > surfSlope) {
             isSurfing = true;
+            isGrounded = false;
         }
 
         isInAir = !isGrounded && !isSurfing;
@@ -120,6 +127,10 @@ public class PlayerMovement : MonoBehaviour {
         GroundCheck();
 
         characterController.Move(velocity * Time.deltaTime);
+
+        if (velocity.magnitude > characterController.velocity.magnitude) {
+            velocity = characterController.velocity;
+        }
 
         desiredMovement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
@@ -135,7 +146,7 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     private void JumpMovement () {
-        if (WantsJumpInput() && canJump && canJumpCooldown) {
+        if (WantsJumpInput() && canJumpCooldown) {
             canJump = false;
 
             StartCoroutine(JumpCooldown());
@@ -154,7 +165,7 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     private void GroundMovement () {
-        if (!wasGrounded) canJump = true;
+        //if (!wasGrounded) canJump = true;
 
         desiredMovement.Normalize();
 
@@ -171,23 +182,44 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     private void SurfMovement () {
-        if (!wasSurfing) velocity = Vector3.ProjectOnPlane(velocity, groundNormal);
-
-        var downVector = Vector3.ProjectOnPlane(Vector3.down, groundNormal);
-
-        if (Vector3.Scale(velocity, new Vector3(1, 0, 1)).magnitude < lateralJumpVelocity) {
-            velocity += TransformedMovement * airAccelaration * Time.deltaTime;
+        if (!wasSurfing) {
+            lateralSurfVelocity = Vector3.Scale(velocity, new Vector3(1, 0, 1)).magnitude;
+            velocity = Vector3.ProjectOnPlane(velocity, groundNormal);
         }
 
-        velocity += downVector * Time.deltaTime;
+        desiredMovement.Normalize();
+
+        var upwards = Vector3.Dot(groundNormal, Vector3.up);
+        var downVector = Vector3.ProjectOnPlane(Vector3.down, groundNormal); // Vector going down the ramp.
+        var moveVector = TransformedMovement;
+
+        //// Use projected movement input when moving down a sloped surface to prevent bouncing.
+        //if (ProjectedMovement.y < 0) {
+        //    moveVector = ProjectedMovement;
+        //}
+
+        // Acceleration based on input
+        var velocityDelta = moveVector * airAccelaration * upwards * VelocityDotDirection * Time.deltaTime;
+
+        // Only add acceleration if we are below the velocity that we started at.
+        if (Vector3.Scale(velocity + velocityDelta, new Vector3(1, 0, 1)).magnitude < lateralSurfVelocity) {
+            velocity += velocityDelta;
+        }
+
+        velocity += downVector * -Physics.gravity.y * upwards * Time.deltaTime;
+
+        // Air drag / friction.
+        velocity -= velocity * airDrag * Time.deltaTime;
     }
 
     private void AirMovement () {
         if (!wasInAir) lateralJumpVelocity = Vector3.Scale(velocity, new Vector3(1, 0, 1)).magnitude;
 
+        var velocityDelta = TransformedMovement * airAccelaration * VelocityDotDirection * Time.deltaTime;
+
         // Lateral air acceleration.
-        if (Vector3.Scale(velocity, new Vector3(1, 0, 1)).magnitude < lateralJumpVelocity) {
-            velocity += TransformedMovement * airAccelaration * Time.deltaTime;
+        if (Vector3.Scale(velocity + velocityDelta, new Vector3(1, 0, 1)).magnitude < lateralJumpVelocity) {
+            velocity += velocityDelta;
         }
 
         // Air drag.

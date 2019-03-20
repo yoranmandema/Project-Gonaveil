@@ -28208,7 +28208,7 @@ CharacterController:
   serializedVersion: 2
   m_Height: 2
   m_Radius: 0.5
-  m_SlopeLimit: 45
+  m_SlopeLimit: 90
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
@@ -28228,12 +28228,13 @@ MonoBehaviour:
   maxVelocity: 8
   acceleration: 50
   airAccelaration: 40
-  airDrag: 0.5
+  airDrag: 0.1
   autoJump: 1
   jumpHeight: 1
   jumpCooldown: 0.25
   jumpLateralSpeedMultiplier: 1.25
   upHillJumpBoost: 4
+  surfSlope: 45
   fallSpeedMultiplier: 1.5
   fallMaxSpeedUp: 10
   isGrounded: 0
