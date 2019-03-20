@@ -20,7 +20,10 @@ public class Weapon : MonoBehaviour {
     public void PrimaryFire() {
         if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out RaycastHit hit)) {
             Instantiate(impact, hit.point, new Quaternion(0, 0, 0, 0), hit.transform);
-            hit.transform.GetComponent<Rigidbody>().AddForceAtPosition(-hit.normal * 100f, hit.point);
+            if (hit.transform.GetComponent<Rigidbody>() != null)
+            {
+                hit.transform.GetComponent<Rigidbody>().AddForceAtPosition(-hit.normal * 100f, hit.point);
+            }
         }
     }
 
