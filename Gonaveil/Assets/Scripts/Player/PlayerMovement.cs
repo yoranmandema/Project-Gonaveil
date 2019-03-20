@@ -168,7 +168,7 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     private void GroundMovement () {
-        //if (!wasGrounded) canJump = true;
+        if (!wasGrounded) characterController.slopeLimit = surfSlope;
 
         desiredMovement.Normalize();
 
@@ -188,21 +188,20 @@ public class PlayerMovement : MonoBehaviour {
         if (!wasSurfing) {
             lateralSurfVelocity = Vector3.Scale(velocity, new Vector3(1, 0, 1)).magnitude;
             velocity = Vector3.ProjectOnPlane(velocity, groundNormal);
+            characterController.slopeLimit = 90f;
         }
 
         desiredMovement.Normalize();
 
+        // Limit acceleration when going forward
+        var moveVector = desiredMovement.SetZ(desiredMovement.z - VelocityDotDirection * desiredMovement.z);
+        var newTransformedMovement = transform.TransformDirection(moveVector);
+
         var upwards = Vector3.Dot(groundNormal, Vector3.up);
         var downVector = Vector3.ProjectOnPlane(Vector3.down, groundNormal); // Vector going down the ramp.
-        var moveVector = TransformedMovement;
-
-        //// Use projected movement input when moving down a sloped surface to prevent bouncing.
-        //if (ProjectedMovement.y < 0) {
-        //    moveVector = ProjectedMovement;
-        //}
 
         // Acceleration based on input
-        var velocityDelta = moveVector * airAccelaration * upwards * VelocityDotDirection * Time.deltaTime;
+        var velocityDelta = newTransformedMovement * airAccelaration * upwards * VelocityDotDirection * Time.deltaTime;
 
         if (limitAirVelocity) {
             // Only add acceleration if we are below the velocity that we started at.
@@ -213,6 +212,7 @@ public class PlayerMovement : MonoBehaviour {
             velocity += velocityDelta;
         }
 
+        // Gravity.
         velocity += downVector * -Physics.gravity.y * upwards * Time.deltaTime;
 
         // Air drag / friction.
@@ -220,7 +220,10 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     private void AirMovement () {
-        if (!wasInAir) lateralJumpVelocity = Vector3.Scale(velocity, new Vector3(1, 0, 1)).magnitude;
+        if (!wasInAir) {
+            lateralJumpVelocity = Vector3.Scale(velocity, new Vector3(1, 0, 1)).magnitude;
+            characterController.slopeLimit = 90f;
+        }
 
         desiredMovement.Normalize();
 
