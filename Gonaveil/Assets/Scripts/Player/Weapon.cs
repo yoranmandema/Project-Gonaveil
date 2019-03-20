@@ -11,7 +11,7 @@ public class Weapon : MonoBehaviour {
 
     private Camera mainCamera;
 
-    public enum WeaponType { Pistol, Rifle, Throwable, Melee }
+    public enum WeaponType { None, Pistol, Rifle, Throwable, Melee }
 
     private void Start() {
         mainCamera = Camera.main;

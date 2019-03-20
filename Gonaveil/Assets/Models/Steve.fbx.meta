@@ -12,6 +12,11 @@ ModelImporter:
     100012: Leg_R
     100014: Steve
     100016: //RootNode
+    100018: Arm_L_end
+    100020: Arm_R_end
+    100022: Head_end
+    100024: Leg_L_end
+    100026: Leg_R_end
     400000: Arm_L
     400002: Arm_R
     400004: Armature
@@ -21,13 +26,21 @@ ModelImporter:
     400012: Leg_R
     400014: Steve
     400016: //RootNode
+    400018: Arm_L_end
+    400020: Arm_R_end
+    400022: Head_end
+    400024: Leg_L_end
+    400026: Leg_R_end
     2100000: Steve
     4300000: Steve
     7400000: Default Take
     7400002: Idle
     7400004: Walking
+    7400006: Pistol_Idle
+    7400008: Rifle_Idle
     9500000: //RootNode
     13700000: Steve
+    2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -57,17 +70,17 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Default Take
-      takeName: Default Take
-      firstFrame: -1
-      lastFrame: 39
+      name: Pistol_Idle
+      takeName: Armature|Stance_Pistol_Idle
+      firstFrame: 0
+      lastFrame: 1
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -140,10 +153,38 @@ ModelImporter:
       maskType: 3
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Rifle_Idle
+      takeName: Armature|Stance_Rifle_Idle
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 100
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -164,7 +205,7 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 1
+    previousCalculatedGlobalScale: 0.01
     hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
