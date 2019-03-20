@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿#if UNITY_EDITOR
+using UnityEngine;
 using UnityEditor;
 
 [CustomEditor(typeof(PlayerMovement))]
@@ -102,3 +103,4 @@ public class PlayerMovementEditor : Editor {
         serializedObject.ApplyModifiedProperties();
     }
 }
+#endif

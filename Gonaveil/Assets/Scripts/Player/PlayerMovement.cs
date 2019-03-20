@@ -30,6 +30,9 @@ public class PlayerMovement : MonoBehaviour {
     public float crouchVelocity = 8f;
     public float crouchCameraHeight = 0.9f;
 
+    public float slideBoost = 1.25f;
+    public float slideVelocityThreshold = 10f;
+
     public bool isGrounded;
     public bool isInAir;
     public bool isSurfing;
@@ -68,7 +71,7 @@ public class PlayerMovement : MonoBehaviour {
         groundMask ^= 1 << gameObject.layer;
     }
 
-    private bool WantsJumpInput () {
+    private bool WantsJumpInput() {
         if (autoJump) {
             return Input.GetButton("Jump");
         } else {
@@ -76,7 +79,7 @@ public class PlayerMovement : MonoBehaviour {
         }
     }
 
-    private IEnumerator JumpCooldown () {
+    private IEnumerator JumpCooldown() {
         canJumpCooldown = false;
 
         yield return new WaitForSeconds(jumpCooldown);
@@ -84,7 +87,7 @@ public class PlayerMovement : MonoBehaviour {
         canJumpCooldown = true;
     }
 
-    private void GroundCheck () {
+    private void GroundCheck() {
         wasSurfing = isSurfing;
         wasGrounded = isGrounded;
         wasInAir = isInAir;
@@ -126,7 +129,7 @@ public class PlayerMovement : MonoBehaviour {
         if (!isGrounded && groundHits.Length > 0) {
             if (GroundSlope <= surfSlope) {
                 isGrounded = true;
-            }        
+            }
         }
 
         if (GroundSlope > surfSlope) {
@@ -162,6 +165,10 @@ public class PlayerMovement : MonoBehaviour {
         else {
             AirMovement();
         }
+    }
+
+    private void SlideMovement() {
+
     }
 
     private void CrouchMovement () {
