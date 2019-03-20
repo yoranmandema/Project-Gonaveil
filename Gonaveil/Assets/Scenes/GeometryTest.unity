@@ -28228,7 +28228,7 @@ MonoBehaviour:
   maxVelocity: 8
   acceleration: 50
   airAccelaration: 40
-  airDrag: 0.1
+  airDrag: 0.05
   autoJump: 1
   jumpHeight: 1
   jumpCooldown: 0.25
