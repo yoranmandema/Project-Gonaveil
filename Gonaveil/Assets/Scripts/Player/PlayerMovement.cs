@@ -220,7 +220,7 @@ public class PlayerMovement : MonoBehaviour {
 
             var lateralVelocity = Vector3.Scale(velocity, new Vector3(1, 0, 1)) * jumpLateralSpeedMultiplier;
             var jumpVelocity =
-                Vector3.up * Mathf.Sqrt(jumpHeight * 2f * Physics.gravity.magnitude);
+                Vector3.up * Mathf.Sqrt(jumpHeight * 2f * Physics.gravity.magnitude * (fallSpeedMultiplier - 1));
 
             // Boost the jump when going uphill.
             if (ProjectedMovement.y > 0) {
@@ -313,7 +313,7 @@ public class PlayerMovement : MonoBehaviour {
         velocity -= velocity * airDrag * Time.deltaTime;
 
         // Faster fall velocity.
-        if (velocity.y < 0 && velocity.y > -fallMaxSpeedUp) {
+        if (velocity.y > -fallMaxSpeedUp) {
             velocity += Vector3.up * Physics.gravity.y * (fallSpeedMultiplier - 1) * Time.deltaTime;
         }
 

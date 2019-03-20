@@ -70,9 +70,9 @@ MonoBehaviour:
   airAccelaration: 150
   airDrag: 0.05
   limitAirVelocity: 1
-  fallSpeedMultiplier: 1.5
+  fallSpeedMultiplier: 3
   fallMaxSpeedUp: 10
-  jumpHeight: 2
+  jumpHeight: 3
   jumpLateralSpeedMultiplier: 1.1
   autoJump: 1
   jumpCooldown: 0.25
@@ -82,10 +82,13 @@ MonoBehaviour:
   crouchTime: 0.1
   crouchVelocity: 8
   crouchCameraHeight: 0.9
+  slideBoost: 1.25
+  slideVelocityThreshold: 10
   isGrounded: 0
   isInAir: 0
   isSurfing: 0
   isCrouching: 0
+  isSliding: 0
   velocity: {x: 0, y: 0, z: 0}
   crouchLerp: 1
   desiredCrouchLerp: 1
@@ -642,30 +645,6 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: b7b5aa37639231e479603c81ed00443a, type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: b7b5aa37639231e479603c81ed00443a, type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 100006, guid: b7b5aa37639231e479603c81ed00443a, type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 100008, guid: b7b5aa37639231e479603c81ed00443a, type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 100010, guid: b7b5aa37639231e479603c81ed00443a, type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 100012, guid: b7b5aa37639231e479603c81ed00443a, type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 400016, guid: b7b5aa37639231e479603c81ed00443a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -718,7 +697,35 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 3b5dca754b2e776498b67e899d3774ec, type: 2}
-    - target: {fileID: 100018, guid: b7b5aa37639231e479603c81ed00443a, type: 3}
+    - target: {fileID: 100006, guid: b7b5aa37639231e479603c81ed00443a, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 100012, guid: b7b5aa37639231e479603c81ed00443a, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: b7b5aa37639231e479603c81ed00443a, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 100010, guid: b7b5aa37639231e479603c81ed00443a, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: b7b5aa37639231e479603c81ed00443a, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: b7b5aa37639231e479603c81ed00443a, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 100024, guid: b7b5aa37639231e479603c81ed00443a, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 100026, guid: b7b5aa37639231e479603c81ed00443a, type: 3}
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
@@ -730,11 +737,7 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 100024, guid: b7b5aa37639231e479603c81ed00443a, type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 100026, guid: b7b5aa37639231e479603c81ed00443a, type: 3}
+    - target: {fileID: 100018, guid: b7b5aa37639231e479603c81ed00443a, type: 3}
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
