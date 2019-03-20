@@ -51111,7 +51111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ab3b73f181c3de4e81bc8fb21520cad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxVelocity: 8
+  maxVelocity: 12
   acceleration: 100
   airAccelaration: 150
   airDrag: 0.05
