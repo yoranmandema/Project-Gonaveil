@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour {
 
     public float surfSlope = 45f;
 
+    public bool limitAirVelocity = false;
     public float fallSpeedMultiplier = 1.5f;
     public float fallMaxSpeedUp = 10f;
 
@@ -128,6 +129,8 @@ public class PlayerMovement : MonoBehaviour {
 
         characterController.Move(velocity * Time.deltaTime);
 
+        // Prevent the input velocity from getting bigger than what the real velocity is.
+        // This prevents the player from shooting off in a certain direction when losing contact.
         if (velocity.magnitude > characterController.velocity.magnitude) {
             velocity = characterController.velocity;
         }
@@ -201,8 +204,12 @@ public class PlayerMovement : MonoBehaviour {
         // Acceleration based on input
         var velocityDelta = moveVector * airAccelaration * upwards * VelocityDotDirection * Time.deltaTime;
 
-        // Only add acceleration if we are below the velocity that we started at.
-        if (Vector3.Scale(velocity + velocityDelta, new Vector3(1, 0, 1)).magnitude < lateralSurfVelocity) {
+        if (limitAirVelocity) {
+            // Only add acceleration if we are below the velocity that we started at.
+            if (Vector3.Scale(velocity + velocityDelta, new Vector3(1, 0, 1)).magnitude < lateralSurfVelocity) {
+                velocity += velocityDelta;
+            }
+        } else {
             velocity += velocityDelta;
         }
 
@@ -215,10 +222,20 @@ public class PlayerMovement : MonoBehaviour {
     private void AirMovement () {
         if (!wasInAir) lateralJumpVelocity = Vector3.Scale(velocity, new Vector3(1, 0, 1)).magnitude;
 
-        var velocityDelta = TransformedMovement * airAccelaration * VelocityDotDirection * Time.deltaTime;
+        desiredMovement.Normalize();
 
-        // Lateral air acceleration.
-        if (Vector3.Scale(velocity + velocityDelta, new Vector3(1, 0, 1)).magnitude < lateralJumpVelocity) {
+        // Limit acceleration when going forward
+        var moveVector = desiredMovement.SetZ(desiredMovement.z - VelocityDotDirection * desiredMovement.z);
+        var newTransformedMovement = transform.TransformDirection(moveVector);
+        var velocityDelta = newTransformedMovement * airAccelaration * VelocityDotDirection * Time.deltaTime;
+
+        if (limitAirVelocity) {
+            // Only add acceleration if we are below the velocity that we started at.
+            if (Vector3.Scale(velocity + velocityDelta, new Vector3(1, 0, 1)).magnitude < lateralJumpVelocity) {
+                velocity += velocityDelta;
+            }
+        }
+        else {
             velocity += velocityDelta;
         }
 
