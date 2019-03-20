@@ -4,11 +4,14 @@ using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour {
-    public float maxVelocity = 5f;
-    public float acceleration = 50f;
+    public Transform cameraTransform;
+    public float cameraHeight = 1.8f;
 
-    public float airAccelaration = 25f;
-    public float airDrag = 0.25f;
+    public float maxVelocity = 12f;
+    public float acceleration = 200;
+
+    public float airAccelaration = 150;
+    public float airDrag = 0.05f;
 
     public bool limitAirVelocity = false;
     public float fallSpeedMultiplier = 1.5f;
@@ -22,9 +25,15 @@ public class PlayerMovement : MonoBehaviour {
 
     public float surfSlope = 45f;
 
+    public float crouchHeight = 1f;
+    public float crouchTime = 0.5f;
+    public float crouchVelocity = 8f;
+    public float crouchCameraHeight = 0.9f;
+
     public bool isGrounded;
     public bool isInAir;
     public bool isSurfing;
+    public bool isCrouching;
 
     public Vector3 velocity;
 
@@ -36,6 +45,9 @@ public class PlayerMovement : MonoBehaviour {
     private LayerMask groundMask;
     private float lateralJumpVelocity;
     private float lateralSurfVelocity;
+    private float appliedCrouchHeight = 2f;
+    public float crouchLerp = 1f;
+    public float desiredCrouchLerp = 1f;
 
     private bool canJump = true;
     private bool canJumpCooldown = true;
@@ -129,6 +141,7 @@ public class PlayerMovement : MonoBehaviour {
 
     void Update() {
         GroundCheck();
+        CrouchMovement();
 
         characterController.Move(velocity * Time.deltaTime);
 
@@ -148,6 +161,26 @@ public class PlayerMovement : MonoBehaviour {
         }
         else {
             AirMovement();
+        }
+    }
+
+    private void CrouchMovement () {
+        isCrouching = Input.GetButton("Crouch");
+
+        desiredCrouchLerp = isCrouching ? 0 : 1f;
+
+        crouchLerp = Mathf.Max(Mathf.Min(crouchLerp + (desiredCrouchLerp * 2 - 1) * Time.deltaTime / crouchTime, 1f), 0);
+
+        appliedCrouchHeight = 2f * crouchLerp + crouchHeight * (1 - crouchLerp);
+
+        characterController.height = appliedCrouchHeight;
+        characterController.center = Vector3.up * (appliedCrouchHeight / 2f);
+
+        cameraTransform.localPosition = Vector3.up * (cameraHeight * crouchLerp + crouchCameraHeight * (1 - crouchLerp));
+
+        // Sort of enables crouch jumping.
+        if (isInAir) {
+            characterController.Move(Vector3.up * -(desiredCrouchLerp - crouchLerp) * Time.deltaTime / crouchTime * 2f);
         }
     }
 
@@ -182,7 +215,9 @@ public class PlayerMovement : MonoBehaviour {
             moveVector = ProjectedMovement;
         }
 
-        velocity += Vector3.ClampMagnitude(moveVector * maxVelocity - velocity, acceleration * Time.deltaTime);
+        var maxVel = isCrouching ? crouchVelocity : maxVelocity;
+
+        velocity += Vector3.ClampMagnitude(moveVector * maxVel - velocity, acceleration * Time.deltaTime);
 
         JumpMovement();
     }

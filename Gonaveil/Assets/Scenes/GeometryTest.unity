@@ -9822,7 +9822,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh18572
+  m_Name: pb_Mesh55930
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -13497,78 +13497,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 350089598}
   m_Mesh: {fileID: 234368731}
---- !u!1 &381157131 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2917357310790119124, guid: 908a70b9af8bb4e4bb3951e11a6b614a,
-    type: 3}
-  m_PrefabInstance: {fileID: 2917357309458625765}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &381157132 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2917357310790119125, guid: 908a70b9af8bb4e4bb3951e11a6b614a,
-    type: 3}
-  m_PrefabInstance: {fileID: 2917357309458625765}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &381157137
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 381157131}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  volumeTrigger: {fileID: 381157132}
-  volumeLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  stopNaNPropagation: 1
-  finalBlitToCameraTarget: 1
-  antialiasingMode: 0
-  temporalAntialiasing:
-    jitterSpread: 0.75
-    sharpness: 0.25
-    stationaryBlending: 0.95
-    motionBlending: 0.85
-  subpixelMorphologicalAntialiasing:
-    quality: 2
-  fastApproximateAntialiasing:
-    fastMode: 0
-    keepAlpha: 0
-  fog:
-    enabled: 1
-    excludeSkybox: 1
-  debugLayer:
-    lightMeter:
-      width: 512
-      height: 256
-      showCurves: 1
-    histogram:
-      width: 512
-      height: 256
-      channel: 3
-    waveform:
-      exposure: 0.12
-      height: 256
-    vectorscope:
-      size: 256
-      exposure: 0.12
-    overlaySettings:
-      linearDepth: 0
-      motionColorIntensity: 4
-      motionGridSize: 64
-      colorBlindnessType: 0
-      colorBlindnessStrength: 1
-  m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
-  m_ShowToolkit: 0
-  m_ShowCustomSorter: 0
-  breakBeforeColorGrading: 0
-  m_BeforeTransparentBundles: []
-  m_BeforeStackBundles: []
-  m_AfterStackBundles: []
 --- !u!43 &403369469
 Mesh:
   m_ObjectHideFlags: 0
@@ -14252,7 +14180,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh17974
+  m_Name: pb_Mesh55332
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -42013,7 +41941,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh18154
+  m_Name: pb_Mesh55512
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -51531,78 +51459,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!1 &1534258963 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1352563272540711737, guid: 908a70b9af8bb4e4bb3951e11a6b614a,
-    type: 3}
-  m_PrefabInstance: {fileID: 2917357309458625765}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1534258964 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1352563272540711684, guid: 908a70b9af8bb4e4bb3951e11a6b614a,
-    type: 3}
-  m_PrefabInstance: {fileID: 2917357309458625765}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1534258969
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1534258963}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  volumeTrigger: {fileID: 1534258964}
-  volumeLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  stopNaNPropagation: 1
-  finalBlitToCameraTarget: 1
-  antialiasingMode: 0
-  temporalAntialiasing:
-    jitterSpread: 0.75
-    sharpness: 0.25
-    stationaryBlending: 0.95
-    motionBlending: 0.85
-  subpixelMorphologicalAntialiasing:
-    quality: 2
-  fastApproximateAntialiasing:
-    fastMode: 0
-    keepAlpha: 0
-  fog:
-    enabled: 1
-    excludeSkybox: 1
-  debugLayer:
-    lightMeter:
-      width: 512
-      height: 256
-      showCurves: 1
-    histogram:
-      width: 512
-      height: 256
-      channel: 3
-    waveform:
-      exposure: 0.12
-      height: 256
-    vectorscope:
-      size: 256
-      exposure: 0.12
-    overlaySettings:
-      linearDepth: 0
-      motionColorIntensity: 4
-      motionGridSize: 64
-      colorBlindnessType: 0
-      colorBlindnessStrength: 1
-  m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
-  m_ShowToolkit: 0
-  m_ShowCustomSorter: 0
-  breakBeforeColorGrading: 0
-  m_BeforeTransparentBundles: []
-  m_BeforeStackBundles: []
-  m_AfterStackBundles: []
 --- !u!43 &1541566790
 Mesh:
   m_ObjectHideFlags: 0
@@ -78885,16 +78741,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2917357310385081774, guid: 908a70b9af8bb4e4bb3951e11a6b614a,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.094
-      objectReference: {fileID: 0}
-    - target: {fileID: 2917357310385081774, guid: 908a70b9af8bb4e4bb3951e11a6b614a,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.065
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 908a70b9af8bb4e4bb3951e11a6b614a, type: 3}
