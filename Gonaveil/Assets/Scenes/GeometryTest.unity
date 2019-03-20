@@ -28471,8 +28471,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxVelocity: 8
-  acceleration: 50
-  airAccelaration: 40
+  acceleration: 100
+  airAccelaration: 75
   airDrag: 0.05
   autoJump: 1
   jumpHeight: 1
