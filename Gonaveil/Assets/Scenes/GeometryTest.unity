@@ -51113,14 +51113,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxVelocity: 8
   acceleration: 100
-  airAccelaration: 75
+  airAccelaration: 150
   airDrag: 0.05
   autoJump: 1
-  jumpHeight: 1
+  jumpHeight: 2
   jumpCooldown: 0.25
   jumpLateralSpeedMultiplier: 1.1
   upHillJumpBoost: 4
   surfSlope: 45
+  limitAirVelocity: 1
   fallSpeedMultiplier: 1.5
   fallMaxSpeedUp: 10
   isGrounded: 0
