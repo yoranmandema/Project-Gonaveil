@@ -37,6 +37,7 @@ public class PlayerMovement : MonoBehaviour {
     public bool isInAir;
     public bool isSurfing;
     public bool isCrouching;
+    public bool isSliding;
 
     public Vector3 velocity;
 
@@ -144,7 +145,16 @@ public class PlayerMovement : MonoBehaviour {
 
     void Update() {
         GroundCheck();
-        CrouchMovement();
+
+        if (Input.GetButtonDown("Crouch") && velocity.magnitude > slideVelocityThreshold) {
+            isSliding = true;
+
+            if (isGrounded) {
+                velocity *= 1;
+            }
+        } else if (Input.GetButtonUp("Crouch") && isSliding) {
+            isSliding = false;
+        }
 
         characterController.Move(velocity * Time.deltaTime);
 
@@ -156,7 +166,10 @@ public class PlayerMovement : MonoBehaviour {
 
         desiredMovement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
-        if (isSurfing) {
+        if (isSliding && !isInAir) {
+            SlideMovement();
+        }
+        else if (isSurfing) {
             SurfMovement();
         }
         else if (isGrounded) {
@@ -165,10 +178,18 @@ public class PlayerMovement : MonoBehaviour {
         else {
             AirMovement();
         }
+
+        CrouchMovement();
     }
 
     private void SlideMovement() {
+        var upwards = Vector3.Dot(groundNormal, Vector3.up);
+        var downVector = Vector3.ProjectOnPlane(Vector3.down, groundNormal); // Vector going down the ramp.
 
+        // Gravity.
+        velocity += downVector * -Physics.gravity.y * upwards * Time.deltaTime;
+
+        JumpMovement();
     }
 
     private void CrouchMovement () {
@@ -199,7 +220,7 @@ public class PlayerMovement : MonoBehaviour {
 
             var lateralVelocity = Vector3.Scale(velocity, new Vector3(1, 0, 1)) * jumpLateralSpeedMultiplier;
             var jumpVelocity =
-                Vector3.up * Mathf.Sqrt(jumpHeight * 2f * Physics.gravity.magnitude);
+                Vector3.up * Mathf.Sqrt(jumpHeight * 2f * Physics.gravity.magnitude * (fallSpeedMultiplier - 1));
 
             // Boost the jump when going uphill.
             if (ProjectedMovement.y > 0) {
@@ -222,7 +243,7 @@ public class PlayerMovement : MonoBehaviour {
             moveVector = ProjectedMovement;
         }
 
-        var maxVel = isCrouching ? crouchVelocity : maxVelocity;
+        var maxVel = isCrouching && !isSliding ? crouchVelocity : maxVelocity;
 
         velocity += Vector3.ClampMagnitude(moveVector * maxVel - velocity, acceleration * Time.deltaTime);
 
@@ -292,7 +313,7 @@ public class PlayerMovement : MonoBehaviour {
         velocity -= velocity * airDrag * Time.deltaTime;
 
         // Faster fall velocity.
-        if (velocity.y < 0 && velocity.y > -fallMaxSpeedUp) {
+        if (velocity.y > -fallMaxSpeedUp) {
             velocity += Vector3.up * Physics.gravity.y * (fallSpeedMultiplier - 1) * Time.deltaTime;
         }
 
