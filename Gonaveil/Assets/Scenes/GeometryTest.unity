@@ -27226,10 +27226,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1877312675}
     m_Modifications:
-    - target: {fileID: 100004, guid: 2c41dcd4b4753f2429daa5397a34d0c8, type: 3}
-      propertyPath: m_Name
-      value: PlasmaAcc
-      objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 2c41dcd4b4753f2429daa5397a34d0c8, type: 3}
       propertyPath: m_Name
       value: plasmaacc (1)
@@ -27286,6 +27282,14 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 32
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 2c41dcd4b4753f2429daa5397a34d0c8, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a4eea1414783c9042816d1af2239eeba, type: 2}
+    - target: {fileID: 100004, guid: 2c41dcd4b4753f2429daa5397a34d0c8, type: 3}
+      propertyPath: m_Name
+      value: PlasmaAcc
+      objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 2c41dcd4b4753f2429daa5397a34d0c8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.006
@@ -27342,10 +27346,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 2300000, guid: 2c41dcd4b4753f2429daa5397a34d0c8, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: a4eea1414783c9042816d1af2239eeba, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c41dcd4b4753f2429daa5397a34d0c8, type: 3}
 --- !u!1001 &2034885579
@@ -27355,9 +27355,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 706502966}
     m_Modifications:
-    - target: {fileID: 100004, guid: 2c41dcd4b4753f2429daa5397a34d0c8, type: 3}
-      propertyPath: m_Name
-      value: PlasmaAcc
+    - target: {fileID: 100000, guid: 2c41dcd4b4753f2429daa5397a34d0c8, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2c41dcd4b4753f2429daa5397a34d0c8, type: 3}
       propertyPath: m_LocalRotation.y
@@ -27407,6 +27407,14 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 2c41dcd4b4753f2429daa5397a34d0c8, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a4eea1414783c9042816d1af2239eeba, type: 2}
+    - target: {fileID: 100004, guid: 2c41dcd4b4753f2429daa5397a34d0c8, type: 3}
+      propertyPath: m_Name
+      value: PlasmaAcc
+      objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 2c41dcd4b4753f2429daa5397a34d0c8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.006
@@ -27463,10 +27471,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 2300000, guid: 2c41dcd4b4753f2429daa5397a34d0c8, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: a4eea1414783c9042816d1af2239eeba, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c41dcd4b4753f2429daa5397a34d0c8, type: 3}
 --- !u!1 &2092591211
@@ -28494,7 +28498,7 @@ Transform:
   m_Children:
   - {fileID: 4231637786143023073}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &4231637784447841766
 Rigidbody:
