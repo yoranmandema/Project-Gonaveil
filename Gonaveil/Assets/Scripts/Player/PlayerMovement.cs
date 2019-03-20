@@ -165,7 +165,9 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     private void CrouchMovement () {
-        desiredCrouchLerp = Input.GetButton("Crouch") ? 0 : 1f;
+        isCrouching = Input.GetButton("Crouch");
+
+        desiredCrouchLerp = isCrouching ? 0 : 1f;
 
         crouchLerp = Mathf.Max(Mathf.Min(crouchLerp + (desiredCrouchLerp * 2 - 1) * Time.deltaTime / crouchTime, 1f), 0);
 
@@ -213,7 +215,9 @@ public class PlayerMovement : MonoBehaviour {
             moveVector = ProjectedMovement;
         }
 
-        velocity += Vector3.ClampMagnitude(moveVector * maxVelocity - velocity, acceleration * Time.deltaTime);
+        var maxVel = isCrouching ? crouchVelocity : maxVelocity;
+
+        velocity += Vector3.ClampMagnitude(moveVector * maxVel - velocity, acceleration * Time.deltaTime);
 
         JumpMovement();
     }
