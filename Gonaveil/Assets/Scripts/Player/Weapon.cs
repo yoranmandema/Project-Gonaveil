@@ -17,9 +17,13 @@ public class Weapon : MonoBehaviour {
     public enum WeaponType { None, Pistol, Rifle, Throwable, Melee }
 
     private void Start() {
-        if (bulletsPerShot == 0)
+        if (bulletsPerShot <= 0)
         {
             bulletsPerShot = 1;
+        }
+        if(fireRate <= 0)
+        {
+            fireRate = 1;
         }
         mainCamera = Camera.main;
     }
@@ -50,9 +54,21 @@ public class Weapon : MonoBehaviour {
         }
     }
 
+    float LoadTime = 0;
     private void Update() {
-        if (Input.GetButtonDown("Fire1")) {
-            PrimaryFire();
+        float TrueFireRate = 1 / fireRate;
+        if (LoadTime <= 0)
+        {
+            if (Input.GetButton("Fire1"))
+            {
+                LoadTime = TrueFireRate;
+                PrimaryFire();
+            }
         }
+        else
+        {
+            LoadTime -= Time.deltaTime;
+        }
+
     }
 }
