@@ -123,6 +123,8 @@ public class PlayerMovement : MonoBehaviour {
         }
 
         isInAir = !isGrounded && !isSurfing;
+
+        if (wasSurfing) StartCoroutine(JumpCooldown());
     }
 
     void Update() {
