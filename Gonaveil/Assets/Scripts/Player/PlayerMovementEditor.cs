@@ -45,25 +45,31 @@ public class PlayerMovementEditor : Editor {
     public override void OnInspectorGUI() {
         serializedObject.Update();
 
-        EditorGUILayout.PrefixLabel("Grounded Movement");
+        EditorGUILayout.LabelField("Grounded Movement", EditorStyles.boldLabel);
         EditorGUILayout.PropertyField(maxVelocity);
         EditorGUILayout.PropertyField(acceleration);
 
-        EditorGUILayout.PrefixLabel("Air Movement");
+        EditorGUILayout.Space();
+
+        EditorGUILayout.LabelField("Air Movement", EditorStyles.boldLabel);
         EditorGUILayout.PropertyField(airAccelaration);
         EditorGUILayout.PropertyField(airDrag);
         EditorGUILayout.PropertyField(limitAirVelocity);
         EditorGUILayout.PropertyField(fallSpeedMultiplier);
         EditorGUILayout.PropertyField(fallMaxSpeedUp);
 
-        EditorGUILayout.PrefixLabel("Jump Movement");
+        EditorGUILayout.Space();
+
+        EditorGUILayout.LabelField("Jump Movement", EditorStyles.boldLabel);
         EditorGUILayout.PropertyField(jumpHeight);
         EditorGUILayout.PropertyField(jumpLateralSpeedMultiplier);
         EditorGUILayout.PropertyField(autoJump);
         EditorGUILayout.PropertyField(jumpCooldown);
         EditorGUILayout.PropertyField(upHillJumpBoost);
 
-        EditorGUILayout.PrefixLabel("Surf Movement");
+        EditorGUILayout.Space();
+
+        EditorGUILayout.LabelField("Surf Movement", EditorStyles.boldLabel);
         EditorGUILayout.PropertyField(surfSlope);
 
         serializedObject.ApplyModifiedProperties();
