@@ -10,23 +10,23 @@ public class PlayerMovement : MonoBehaviour {
     public float airAccelaration = 25f;
     public float airDrag = 0.25f;
 
-    public bool autoJump;
-    public float jumpHeight = 1f;
-    public float jumpCooldown = 0.25f;
-    public float jumpLateralSpeedMultiplier = 1.1f;
-    public float upHillJumpBoost = 5f;
-
-    public float surfSlope = 45f;
-
     public bool limitAirVelocity = false;
     public float fallSpeedMultiplier = 1.5f;
     public float fallMaxSpeedUp = 10f;
+
+    public float jumpHeight = 1f;
+    public float jumpLateralSpeedMultiplier = 1.1f;
+    public bool autoJump;
+    public float jumpCooldown = 0.25f;
+    public float upHillJumpBoost = 5f;
+
+    public float surfSlope = 45f;
 
     public bool isGrounded;
     public bool isInAir;
     public bool isSurfing;
 
-    [HideInInspector] public Vector3 velocity;
+    public Vector3 velocity;
 
     private CharacterController characterController;
     private Vector3 groundNormal;
