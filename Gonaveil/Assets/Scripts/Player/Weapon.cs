@@ -26,7 +26,7 @@ public class Weapon : MonoBehaviour {
         Vector3 SpreadVector = new Vector3();
         SpreadVector += mainCamera.transform.right.normalized * Random.Range(-weaponSpread, weaponSpread);
         SpreadVector += mainCamera.transform.up.normalized * Random.Range(-weaponSpread, weaponSpread);
-        if (Physics.Raycast(mainCamera.transform.position + SpreadVector, mainCamera.transform.forward, out RaycastHit hit)) {
+        if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward + SpreadVector, out RaycastHit hit)) {
             HitPosition = hit.point;
             HitParent = hit.transform;
             HitObjectRigid = hit.transform.GetComponent<Rigidbody>();
