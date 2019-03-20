@@ -26,10 +26,11 @@ public class PlayerMovement : MonoBehaviour {
     public bool isInAir;
     public bool isSurfing;
 
+    [HideInInspector] public Vector3 velocity;
+
     private CharacterController characterController;
     private Vector3 groundNormal;
     private Vector3 groundPoint;
-    private Vector3 velocity;
     private Vector3 desiredMovement;
     private Rigidbody rb;
     private LayerMask groundMask;
