@@ -28232,7 +28232,7 @@ MonoBehaviour:
   autoJump: 1
   jumpHeight: 1
   jumpCooldown: 0.25
-  jumpLateralSpeedMultiplier: 1.25
+  jumpLateralSpeedMultiplier: 1.1
   upHillJumpBoost: 4
   surfSlope: 45
   fallSpeedMultiplier: 1.5
