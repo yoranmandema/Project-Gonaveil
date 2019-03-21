@@ -176,7 +176,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 311
+    m_Bits: 4407
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -432,7 +432,7 @@ MonoBehaviour:
   viewModel: {fileID: 100000, guid: 2c41dcd4b4753f2429daa5397a34d0c8, type: 3}
   raycastMask:
     serializedVersion: 2
-    m_Bits: 6967
+    m_Bits: 2871
   impact: {fileID: 3377271070747912948, guid: 5b634f2c54a76ad49840f1e67d6c980d, type: 3}
 --- !u!1 &2917357310790119124
 GameObject:
