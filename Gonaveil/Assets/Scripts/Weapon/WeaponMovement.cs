@@ -23,13 +23,13 @@ public class WeaponMovement : MonoBehaviour
 
     public float jumpAmount = 0.25f;
 
+    [HideInInspector] public Vector3 offset;
+
     private float bobbingLerp = 1f;
     private float bobbingStep = 0f;
     private float crouchingLerp = 0f;
     private float crouchingSmoothedLerp = 0f;
     private float lookDownLerp = 0f;
-
-    private Vector3 standardPosition;
 
     private float yaw;
     private float pitch;
@@ -39,7 +39,7 @@ public class WeaponMovement : MonoBehaviour
 
     void Start()
     {
-        standardPosition = transform.localPosition;
+        offset = transform.localPosition;
     }
 
     void Update()
@@ -66,7 +66,7 @@ public class WeaponMovement : MonoBehaviour
 
         forwardComponent += Vector3.forward * lookDownLerp * lookDownRetraction;
 
-        transform.localPosition = standardPosition + (
+        transform.localPosition = offset + (
             sideComponent +     
             forwardComponent +
             upComponent
