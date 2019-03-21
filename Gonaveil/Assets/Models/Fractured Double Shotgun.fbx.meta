@@ -43,7 +43,37 @@ ModelImporter:
     4300006: Cylinder.001
     4300008: Cylinder.002
     4300010: Text
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Brass
+    second: {fileID: 2100000, guid: 7a61c4c59049ebe4f9d6bff147c27601, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hammer1
+    second: {fileID: 2100000, guid: fce40d4e73c13164bb3739995d484f5d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hammer2
+    second: {fileID: 2100000, guid: c64f74d6acab07f49801c4909e253d41, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hammer3
+    second: {fileID: 2100000, guid: 486b3b80c1edaba439d4a6e812bf6404, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: 01ea983ae81d11743931243f340cb31a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shell
+    second: {fileID: 2100000, guid: 7dae2c10183827649aee7b02987c09d0, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
