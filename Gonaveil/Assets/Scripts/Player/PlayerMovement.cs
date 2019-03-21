@@ -325,4 +325,8 @@ public class PlayerMovement : MonoBehaviour {
         // Gravity.
         velocity += Physics.gravity * Time.deltaTime;
     }
+
+    public void AddForce (Vector3 force) {
+        velocity += force * Time.deltaTime;
+    }
 }
