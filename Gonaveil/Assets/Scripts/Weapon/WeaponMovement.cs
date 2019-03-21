@@ -6,6 +6,8 @@ public class WeaponMovement : MonoBehaviour
 {
     public PlayerMovement playerMovement;
 
+    public float rotationSpeed = 0.5f;
+    public float rotationAmount = 2.5f;
     public float velocityMultiplier = 0.05f;
     public float bobbingAmount = 1f;
     public float bobbingEngageTime = 0.25f;
@@ -13,6 +15,9 @@ public class WeaponMovement : MonoBehaviour
     private float bobbingLerp = 1f;
     private float bobbingStep = 0f;
     private Vector3 standardPosition;
+
+    private float yaw;
+    private float pitch;
 
     void Start()
     {
@@ -41,5 +46,10 @@ public class WeaponMovement : MonoBehaviour
             forwardComponent +
             upComponent
             ) * bobbingAmount;
+
+        yaw += (Input.GetAxis("Mouse X") - yaw) * Time.deltaTime * rotationSpeed;
+        pitch += (-Input.GetAxis("Mouse Y") - pitch) * Time.deltaTime * rotationSpeed;
+
+        transform.localRotation = Quaternion.Euler(pitch * rotationAmount, yaw * rotationAmount, 0);
     }
 }
