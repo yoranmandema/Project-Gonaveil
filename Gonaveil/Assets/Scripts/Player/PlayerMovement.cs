@@ -75,7 +75,8 @@ public class PlayerMovement : MonoBehaviour {
     private bool WantsJumpInput() {
         if (autoJump) {
             return Input.GetButton("Jump");
-        } else {
+        }
+        else {
             return Input.GetButtonDown("Jump");
         }
     }
@@ -118,7 +119,8 @@ public class PlayerMovement : MonoBehaviour {
         if (groundHits.Length > 0) {
             normal /= (groundHits.Length);
             normal = normal.normalized;
-        } else {
+        }
+        else {
             normal = Vector3.up;
         }
 
@@ -152,7 +154,8 @@ public class PlayerMovement : MonoBehaviour {
             if (isGrounded) {
                 velocity *= 1;
             }
-        } else if (Input.GetButtonUp("Crouch") && isSliding) {
+        }
+        else if (Input.GetButtonUp("Crouch") && isSliding) {
             isSliding = false;
         }
 
@@ -193,7 +196,7 @@ public class PlayerMovement : MonoBehaviour {
         JumpMovement();
     }
 
-    private void CrouchMovement () {
+    private void CrouchMovement() {
         isCrouching = Input.GetButton("Crouch");
 
         desiredCrouchLerp = isCrouching ? 0 : 1f;
@@ -213,7 +216,7 @@ public class PlayerMovement : MonoBehaviour {
         }
     }
 
-    private void JumpMovement () {
+    private void JumpMovement() {
         if (WantsJumpInput() && canJumpCooldown) {
             canJump = false;
 
@@ -232,7 +235,7 @@ public class PlayerMovement : MonoBehaviour {
         }
     }
 
-    private void GroundMovement () {
+    private void GroundMovement() {
         if (!wasGrounded) characterController.slopeLimit = surfSlope;
 
         desiredMovement.Normalize();
@@ -251,7 +254,7 @@ public class PlayerMovement : MonoBehaviour {
         JumpMovement();
     }
 
-    private void SurfMovement () {
+    private void SurfMovement() {
         if (!wasSurfing) {
             lateralSurfVelocity = Vector3.Scale(velocity, new Vector3(1, 0, 1)).magnitude;
             velocity = Vector3.ProjectOnPlane(velocity, groundNormal);
@@ -276,7 +279,8 @@ public class PlayerMovement : MonoBehaviour {
             if (Vector3.Scale(velocity + velocityDelta, new Vector3(1, 0, 1)).magnitude < lateralSurfVelocity) {
                 velocity += velocityDelta;
             }
-        } else {
+        }
+        else {
             velocity += velocityDelta;
         }
 
@@ -287,7 +291,7 @@ public class PlayerMovement : MonoBehaviour {
         velocity -= velocity * airDrag * Time.deltaTime;
     }
 
-    private void AirMovement () {
+    private void AirMovement() {
         if (!wasInAir) {
             lateralJumpVelocity = Vector3.Scale(velocity, new Vector3(1, 0, 1)).magnitude;
             characterController.slopeLimit = 90f;
@@ -320,5 +324,9 @@ public class PlayerMovement : MonoBehaviour {
 
         // Gravity.
         velocity += Physics.gravity * Time.deltaTime;
+    }
+
+    public void AddForce (Vector3 force) {
+        velocity += force * Time.deltaTime;
     }
 }
