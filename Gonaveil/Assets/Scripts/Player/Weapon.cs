@@ -12,8 +12,10 @@ public class Weapon : MonoBehaviour {
         public float bulletsPerShot;
         public float bulletsPerBurst;
         public float burstTime;
+        public float chargeRate;
         public GameObject Projectile;
         public Transform Barrel;
+        public UnityEngine.UI.Image chargeCircle;
     }
 
     public WeaponValues weaponValues;
@@ -21,9 +23,9 @@ public class Weapon : MonoBehaviour {
     public WeaponType weaponType;
     public WeaponClass weaponClass;
     public ProjectileType projectileType;
+    public LayerMask raycastMask;
     public GameObject worldModel;
     public GameObject viewModel;
-    public LayerMask raycastMask;
     public GameObject impact;
     public Animator animator;
 
@@ -99,10 +101,27 @@ public class Weapon : MonoBehaviour {
         }
     }
 
+    void ChargeWeapon()
+    {
+        if(chargeProgress < 100)
+        {
+            chargeProgress += Time.deltaTime * weaponValues.chargeRate;
+        }
+    }
+
+    void FireGun(float trueFireRate)
+    {
+        burstCount = 0;
+        loadTimer = trueFireRate;
+        fireStage = FireStage.Firing;
+    }
+
     float loadTimer = 0;
     float burstTimer = 0;
+    public float chargeProgress = 0;
     float burstCount = 0;
-    bool Firing;
+    public enum FireStage { Idle, Firing, Charging}
+    FireStage fireStage;
     private void Update() {
         weaponValues.bulletsPerShot = Mathf.Clamp(weaponValues.bulletsPerShot, 1, 934157136952);
         weaponValues.fireRate = Mathf.Clamp(weaponValues.fireRate, 1, 934157136952);
@@ -114,21 +133,30 @@ public class Weapon : MonoBehaviour {
             {
                 if (Input.GetButton("Fire1"))
                 {
-                    burstCount = 0;
-                    loadTimer = trueFireRate;
-                    Firing = true;
+                    FireGun(trueFireRate);
                 }
             }else if(weaponType == WeaponType.Charge)
             {
-
+                if (Input.GetButton("Fire1"))
+                {
+                    ChargeWeapon();
+                    fireStage = FireStage.Charging;
+                }
+                if(fireStage == FireStage.Charging)
+                {
+                    if (Input.GetButtonUp("Fire1"))
+                    {
+                        FireGun(trueFireRate);
+                        chargeProgress = 0;
+                    }
+                    weaponValues.chargeCircle.fillAmount = chargeProgress / 100;
+                }
             }
             else
             {
                 if (Input.GetButtonDown("Fire1"))
                 {
-                    burstCount = 0;
-                    loadTimer = trueFireRate;
-                    Firing = true;
+                    FireGun(trueFireRate);
                 }
             }
         }
@@ -136,7 +164,7 @@ public class Weapon : MonoBehaviour {
         {
             loadTimer -= Time.deltaTime;
         }
-        if (Firing)
+        if (fireStage == FireStage.Firing)
         {
             if (burstCount < weaponValues.bulletsPerBurst)
             {
@@ -153,8 +181,7 @@ public class Weapon : MonoBehaviour {
             }
             else
             {
-                
-                Firing = false;
+                fireStage = FireStage.Idle;
             }
         }
     }
