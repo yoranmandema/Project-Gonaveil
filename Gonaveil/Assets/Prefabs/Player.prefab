@@ -427,6 +427,7 @@ MonoBehaviour:
     Barrel: {fileID: 6577997738014966219}
   Name: Plasma Rifle
   weaponType: 1
+  weaponClass: 2
   projectileType: 0
   worldModel: {fileID: 100000, guid: 2c41dcd4b4753f2429daa5397a34d0c8, type: 3}
   viewModel: {fileID: 100000, guid: 2c41dcd4b4753f2429daa5397a34d0c8, type: 3}
@@ -434,6 +435,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2871
   impact: {fileID: 3377271070747912948, guid: 5b634f2c54a76ad49840f1e67d6c980d, type: 3}
+  animator: {fileID: 1263876997933826223}
 --- !u!1 &2917357310790119124
 GameObject:
   m_ObjectHideFlags: 0
@@ -1093,11 +1095,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: 90e6630f938cd684abfbc05182523e50, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 425aaeae6d44feb44a8d7f3cc24a3ca5, type: 2}
+    - target: {fileID: 9500000, guid: 90e6630f938cd684abfbc05182523e50, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90e6630f938cd684abfbc05182523e50, type: 3}
 --- !u!4 &1263876997926678263 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400184, guid: 90e6630f938cd684abfbc05182523e50,
+    type: 3}
+  m_PrefabInstance: {fileID: 1263876997926548943}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1263876997933826223 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9500000, guid: 90e6630f938cd684abfbc05182523e50,
     type: 3}
   m_PrefabInstance: {fileID: 1263876997926548943}
   m_PrefabAsset: {fileID: 0}
