@@ -83,8 +83,8 @@ public class Weapon : MonoBehaviour {
         Transform hitParent = null;
         Rigidbody hitObjectRigid = null; //Rigidbody of object if it has one.
         Vector3 spreadVector = new Vector3();
-        spreadVector += mainCamera.transform.right.normalized * Random.Range(-weaponValues.weaponSpread, weaponValues.weaponSpread);
-        spreadVector += mainCamera.transform.up.normalized * Random.Range(-weaponValues.weaponSpread, weaponValues.weaponSpread);
+        spreadVector += mainCamera.transform.right.normalized * (Random.Range(-weaponValues.weaponSpread, weaponValues.weaponSpread) / 100);
+        spreadVector += mainCamera.transform.up.normalized * (Random.Range(-weaponValues.weaponSpread, weaponValues.weaponSpread) / 100);
         if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward + spreadVector, out RaycastHit hit, 10000, raycastMask))
         {
             hitPosition = hit.point;
