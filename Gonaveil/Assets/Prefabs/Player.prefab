@@ -432,7 +432,7 @@ MonoBehaviour:
   viewModel: {fileID: 100000, guid: 2c41dcd4b4753f2429daa5397a34d0c8, type: 3}
   raycastMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 6967
   impact: {fileID: 3377271070747912948, guid: 5b634f2c54a76ad49840f1e67d6c980d, type: 3}
 --- !u!1 &2917357310790119124
 GameObject:
