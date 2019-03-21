@@ -36,7 +36,7 @@ public class Weapon : MonoBehaviour {
 
     public void StandardFire() {
         Vector3 hitPosition = new Vector3(); //Used to check if the player is actually looking somewhere.
-        for (int i =0; i < weaponValues.bulletsPerBurst;i++)
+        for (int i =0; i < weaponValues.bulletsPerShot;i++)
         {
             if(projectileType == ProjectileType.Hitscan)
             {
@@ -66,7 +66,7 @@ public class Weapon : MonoBehaviour {
         GameObject bulletObject = Instantiate(weaponValues.Projectile, weaponValues.Barrel.position, weaponValues.Barrel.rotation) as GameObject;
         float SpreadX = Random.Range(-weaponValues.weaponSpread, weaponValues.weaponSpread);
         float SpreadY = Random.Range(-weaponValues.weaponSpread, weaponValues.weaponSpread);
-        bulletObject.transform.Rotate(0, SpreadX, SpreadY);
+        bulletObject.transform.Rotate(SpreadX, SpreadY, 0);
     }
 
     void HitScan(Vector3 hitPosition)
