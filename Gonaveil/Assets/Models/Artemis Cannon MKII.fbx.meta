@@ -16,6 +16,8 @@ ModelImporter:
     100020: Right Grip Brace
     100022: Right Grip Brace Adjust Rail
     100024: Shoulder Rest
+    100026: Artemis Cannon
+    100028: Text
     400000: //RootNode
     400002: Barrel
     400004: Last Bolt
@@ -29,6 +31,8 @@ ModelImporter:
     400020: Right Grip Brace
     400022: Right Grip Brace Adjust Rail
     400024: Shoulder Rest
+    400026: Artemis Cannon
+    400028: Text
     2100000: Artemis Cannon Main
     2100002: Artemis Cannon Second
     2100004: Artemis Cannon Trim
@@ -36,6 +40,7 @@ ModelImporter:
     2100008: Artemis Core
     2100010: Material.001
     2100012: Artemis Cannon Rubber
+    2100014: No Name
     2300000: //RootNode
     2300002: Barrel
     2300004: Last Bolt
@@ -49,6 +54,8 @@ ModelImporter:
     2300020: Right Grip Brace
     2300022: Right Grip Brace Adjust Rail
     2300024: Shoulder Rest
+    2300026: Artemis Cannon
+    2300028: Text
     3300000: //RootNode
     3300002: Barrel
     3300004: Last Bolt
@@ -62,6 +69,8 @@ ModelImporter:
     3300020: Right Grip Brace
     3300022: Right Grip Brace Adjust Rail
     3300024: Shoulder Rest
+    3300026: Artemis Cannon
+    3300028: Text
     4300000: Artemis Cannon
     4300002: Barrel
     4300004: Left Grip
@@ -75,6 +84,7 @@ ModelImporter:
     4300020: Right Grip
     4300022: Right Grip Brace Adjust Rail
     4300024: Shoulder Rest
+    4300026: Text
     2186277476908879412: ImportLogs
   externalObjects: {}
   materials:

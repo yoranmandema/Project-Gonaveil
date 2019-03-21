@@ -10,6 +10,8 @@ ModelImporter:
     100008: Cube.005
     100010: Cube.006
     100012: Cylinder
+    100014: Cube
+    100016: Text
     400000: //RootNode
     400002: Cube.002
     400004: Cube.003
@@ -17,11 +19,14 @@ ModelImporter:
     400008: Cube.005
     400010: Cube.006
     400012: Cylinder
+    400014: Cube
+    400016: Text
     2100000: Material.001
     2100002: Material.008
     2100004: Material.005
     2100006: Material.007
     2100008: Material.006
+    2100010: No Name
     2300000: //RootNode
     2300002: Cube.002
     2300004: Cube.003
@@ -29,6 +34,8 @@ ModelImporter:
     2300008: Cube.005
     2300010: Cube.006
     2300012: Cylinder
+    2300014: Cube
+    2300016: Text
     3300000: //RootNode
     3300002: Cube.002
     3300004: Cube.003
@@ -36,6 +43,8 @@ ModelImporter:
     3300008: Cube.005
     3300010: Cube.006
     3300012: Cylinder
+    3300014: Cube
+    3300016: Text
     4300000: Cube
     4300002: Cylinder
     4300004: Cube.002
@@ -43,6 +52,7 @@ ModelImporter:
     4300008: Cube.004
     4300010: Cube.005
     4300012: Cube.006
+    4300014: Text
   externalObjects: {}
   materials:
     importMaterials: 1
