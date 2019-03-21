@@ -96,12 +96,15 @@ public class Connection : MonoBehaviour
 
     void Update()
     {
-        UpdateNetworkMessage();
+        while(UpdateNetworkMessage())
+        {
+
+        }
     }
 
-    void UpdateNetworkMessage()
+    bool UpdateNetworkMessage()
     {
-        if (!isRunning) return;
+        if (!isRunning) return false;
 
 
         byte[] buffer = new byte[byteSize];
@@ -111,7 +114,7 @@ public class Connection : MonoBehaviour
         switch (eventType)
         {
             case NetworkEventType.Nothing:
-                break;
+                return false;
 
             case NetworkEventType.ConnectEvent:
                 Debug.Log(string.Format("Client connected. ID {0}", clientConnectionID));
@@ -135,6 +138,7 @@ public class Connection : MonoBehaviour
                 HandleMessage(connectionID, channelID, hostID, message);
                 break;
         }
+        return true;
     }
 
     public void Shutdown()
@@ -197,7 +201,7 @@ public class Connection : MonoBehaviour
         Quaternion rot = new Quaternion(data.Rot[0], data.Rot[1], data.Rot[2], data.Rot[3]);
         Vector3 vel = new Vector3(data.Vel[0], data.Vel[1], data.Vel[2]);
         //CharacterController charController = players[clientID].GetComponent<CharacterController>();
-        Debug.Log("X: " + data.Pos[0] + " Y: " + data.Pos[1] + " Z: " + data.Pos[2]);
+        //Debug.Log("X: " + data.Pos[0] + " Y: " + data.Pos[1] + " Z: " + data.Pos[2]);
         players[clientID].transform.SetPositionAndRotation(pos, rot);
         players[clientID].GetComponent<Rigidbody>().velocity = vel;
     }

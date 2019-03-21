@@ -33,11 +33,11 @@ public class PlayerNetworkManager : MonoBehaviour
 
             if (connection.isHost)
             {
-                connection.Broadcast(connection.ReliableChannelID(), message);
+                connection.Broadcast(connection.UnreliableChannelID(), message);
             }
             else
             {
-                connection.Send(connection.ConnectionID(), connection.ReliableChannelID(), message);
+                connection.Send(connection.ConnectionID(), connection.UnreliableChannelID(), message);
             }
         }
     }
