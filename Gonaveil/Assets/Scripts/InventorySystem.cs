@@ -9,36 +9,36 @@ public class InventorySystem : MonoBehaviour
     public WeaponParameters[] allWeapons;
     public Weapon weaponMaster;
     public int selectedWeaponID;
-    // Start is called before the first frame update
+
+    private int lastSelectedWeaponID = -1;
+
     void Start()
     {
         allWeapons = FindObjectsOfType<WeaponParameters>();
-        allWeapons[primaryWeaponID].weaponStats.modelObject.SetActive(true);
-        weaponMaster.weaponValues = allWeapons[primaryWeaponID].weaponStats;
+
+        SetWeapon();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(selectedWeaponID == 1)
-        {
-            allWeapons[secondaryWeaponID].weaponStats.modelObject.SetActive(false);
-            allWeapons[primaryWeaponID].weaponStats.modelObject.SetActive(true);
-            weaponMaster.weaponValues = allWeapons[primaryWeaponID].weaponStats;
-        }else if(selectedWeaponID == 2)
-        {
-            allWeapons[primaryWeaponID].weaponStats.modelObject.SetActive(false);
-            allWeapons[secondaryWeaponID].weaponStats.modelObject.SetActive(true);
-            weaponMaster.weaponValues = allWeapons[secondaryWeaponID].weaponStats;
+        if (Input.GetAxis("Mouse ScrollWheel") > 0) {
+            if (++selectedWeaponID > 1) selectedWeaponID = 0;
+
+            SetWeapon();
         }
-        selectedWeaponID += (int)Input.GetAxis("Mouse ScrollWheel");
-        if (selectedWeaponID > 2)
-        {
-            selectedWeaponID = 1;
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0) {
+            if (--selectedWeaponID < 0) selectedWeaponID = 1;
+
+            SetWeapon();
         }
-        else if (selectedWeaponID < 1)
-        {
-            selectedWeaponID = 2;
-        }
+    }
+
+    void SetWeapon() {
+        if (lastSelectedWeaponID > -1) allWeapons[lastSelectedWeaponID].weaponStats.modelObject.SetActive(false);
+
+        allWeapons[selectedWeaponID].weaponStats.modelObject.SetActive(true);
+        weaponMaster.weaponValues = allWeapons[selectedWeaponID].weaponStats;
+
+        lastSelectedWeaponID = selectedWeaponID;
     }
 }
