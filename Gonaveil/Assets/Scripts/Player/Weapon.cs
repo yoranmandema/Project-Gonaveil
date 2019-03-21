@@ -73,7 +73,7 @@ public class Weapon : MonoBehaviour {
                 if (Input.GetButton("Fire1"))
                 {
                     burstCount = 0;
-                    loadTimer = trueFireRate;ut
+                    loadTimer = trueFireRate;
                     Firing = true;
                 }
             }else if(weaponType == WeaponType.Charge)
