@@ -106,7 +106,7 @@ CharacterController:
   m_Height: 2
   m_Radius: 0.5
   m_SlopeLimit: 90
-  m_StepOffset: 0.3
+  m_StepOffset: 0.5
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1, z: 0}
@@ -422,20 +422,23 @@ MonoBehaviour:
     bulletsPerShot: 1
     bulletsPerBurst: 3
     burstTime: 0.05
+    chargeRate: 0
     Projectile: {fileID: 4846615784228082546, guid: e7cf5f436ac463144989ba4cb199fe24,
       type: 3}
     Barrel: {fileID: 6577997738014966219}
+    chargeCircle: {fileID: 0}
   Name: Plasma Rifle
   weaponType: 1
   weaponClass: 2
   projectileType: 0
-  worldModel: {fileID: 100000, guid: 2c41dcd4b4753f2429daa5397a34d0c8, type: 3}
-  viewModel: {fileID: 100000, guid: 2c41dcd4b4753f2429daa5397a34d0c8, type: 3}
   raycastMask:
     serializedVersion: 2
     m_Bits: 2871
+  worldModel: {fileID: 100000, guid: 2c41dcd4b4753f2429daa5397a34d0c8, type: 3}
+  viewModel: {fileID: 100000, guid: 2c41dcd4b4753f2429daa5397a34d0c8, type: 3}
   impact: {fileID: 3377271070747912948, guid: 5b634f2c54a76ad49840f1e67d6c980d, type: 3}
   animator: {fileID: 1263876997933826223}
+  chargeProgress: 0
 --- !u!1 &2917357310790119124
 GameObject:
   m_ObjectHideFlags: 0
