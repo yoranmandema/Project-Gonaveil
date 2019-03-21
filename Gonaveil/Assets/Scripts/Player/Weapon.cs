@@ -1,68 +1,118 @@
 ﻿using UnityEngine;
 
 public class Weapon : MonoBehaviour {
+
+    [System.Serializable]
+    public class WeaponValues
+    {
+        public int magazineCapacity;
+        public float reloadTime;
+        public float fireRate;
+        public float weaponSpread;
+        public float bulletsPerShot;
+        public float bulletsPerBurst;
+        public float burstTime;
+    }
+
+    public WeaponValues weaponValues;
     public string Name;
     public WeaponType weaponType;
     public GameObject worldModel;
     public GameObject viewModel;
-    public int magazineCapacity;
-    public float reloadTime;
-    public float fireRate;
-    public float weaponSpread;
-    public float bulletsPerShot;
+
     public GameObject impact;
 
     private Camera mainCamera;
 
-    public enum WeaponType { None, Pistol, Rifle, Throwable, Melee }
+    public enum WeaponType { FullAuto, SemiAuto, Charge}
 
     private void Start() {
-        bulletsPerShot=Mathf.Clamp(bulletsPerShot,1,934157136952);
-        fireRate=Mathf.Clamp(fireRate,1,934157136952);
         mainCamera = Camera.main;
     }
 
-    public void PrimaryFire() {
-        for (int i = 0; i < bulletsPerShot; i++)
+    public void StandardFire() {
+        
+        for(int i =0; i < weaponValues.bulletsPerBurst;i++)
         {
-            Vector3 HitPosition = new Vector3(); //Used to check if the player is actually looking somewhere.
-            Transform HitParent = null;
-            Rigidbody HitObjectRigid = null; //Rigidbody of object if it has one.
-            Vector3 SpreadVector = new Vector3();
-            SpreadVector += mainCamera.transform.right.normalized * Random.Range(-weaponSpread, weaponSpread);
-            SpreadVector += mainCamera.transform.up.normalized * Random.Range(-weaponSpread, weaponSpread);
-            if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward + SpreadVector, out RaycastHit hit))
-            {
-                HitPosition = hit.point;
-                HitParent = hit.transform;
-                HitObjectRigid = hit.transform.GetComponent<Rigidbody>();
-            }
-            if (HitPosition != Vector3.zero)
-            {
-                Instantiate(impact, HitPosition, new Quaternion(0, 0, 0, 0), HitParent);
-                if (HitObjectRigid != null)
+                Vector3 hitPosition = new Vector3(); //Used to check if the player is actually looking somewhere.
+                Transform hitParent = null;
+                Rigidbody hitObjectRigid = null; //Rigidbody of object if it has one.
+                Vector3 spreadVector = new Vector3();
+                spreadVector += mainCamera.transform.right.normalized * Random.Range(-weaponValues.weaponSpread, weaponValues.weaponSpread);
+                spreadVector += mainCamera.transform.up.normalized * Random.Range(-weaponValues.weaponSpread, weaponValues.weaponSpread);
+                if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward + spreadVector, out RaycastHit hit))
                 {
-                    HitObjectRigid.AddForceAtPosition((HitPosition - transform.position).normalized * 100f, HitPosition);
+                    hitPosition = hit.point;
+                    hitParent = hit.transform;
+                    hitObjectRigid = hit.transform.GetComponent<Rigidbody>();
                 }
-            }
+                if (hitPosition != Vector3.zero)
+                {
+                    Instantiate(impact, hitPosition, new Quaternion(0, 0, 0, 0), hitParent);
+                    if (hitObjectRigid != null)
+                    {
+                        hitObjectRigid.AddForceAtPosition((hitPosition - transform.position).normalized * 100f, hitPosition);
+                    }
+                }
         }
     }
 
-    float LoadTime = 0;
+    float loadTimer = 0;
+    public float burstTimer = 0;
+    public float burstCount = 0;
+    bool Firing;
     private void Update() {
-        float TrueFireRate = 1 / fireRate;
-        if (LoadTime <= 0)
+        weaponValues.bulletsPerShot = Mathf.Clamp(weaponValues.bulletsPerShot, 1, 934157136952);
+        weaponValues.fireRate = Mathf.Clamp(weaponValues.fireRate, 1, 934157136952);
+        float trueFireRate = (1 / weaponValues.fireRate) + (weaponValues.burstTime * weaponValues.bulletsPerBurst);
+        if (loadTimer <= 0)
         {
-            if (Input.GetButton("Fire1"))
+            if (weaponType == WeaponType.FullAuto)
             {
-                LoadTime = TrueFireRate;
-                PrimaryFire();
+                if (Input.GetButton("Fire1"))
+                {
+                    burstCount = 0;
+                    loadTimer = trueFireRate;
+                    Firing = true;
+                }
+            }else if(weaponType == WeaponType.Charge)
+            {
+
+            }
+            else
+            {
+                if (Input.GetButtonDown("Fire1"))
+                {
+                    burstCount = 0;
+                    loadTimer = trueFireRate;
+                    Firing = true;
+                }
             }
         }
         else
         {
-            LoadTime -= Time.deltaTime;
+            loadTimer -= Time.deltaTime;
         }
-
+        if (Firing)
+        {
+            if (burstCount < weaponValues.bulletsPerBurst)
+            {
+                if (burstTimer <= 0)
+                {
+                    burstCount += 1;
+                    burstTimer = weaponValues.burstTime;
+                    StandardFire();
+                }
+                else
+                {
+                    burstTimer -= Time.deltaTime;
+                }
+            }
+            else
+            {
+                
+                Firing = false;
+            }
+        }
     }
 }

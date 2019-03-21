@@ -384,16 +384,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0586b8095bc2f346834eabdd9c1d074, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponValues:
+    magazineCapacity: 29
+    reloadTime: 3
+    fireRate: 10
+    weaponSpread: 0.01
+    bulletsPerShot: 1
+    bulletsPerBurst: 3
+    burstTime: 0.05
   Name: Plasma Rifle
-  weaponType: 2
+  weaponType: 1
   worldModel: {fileID: 100000, guid: 2c41dcd4b4753f2429daa5397a34d0c8, type: 3}
   viewModel: {fileID: 100000, guid: 2c41dcd4b4753f2429daa5397a34d0c8, type: 3}
-  magazineCapacity: 26
-  reloadTime: 2
-  fireRate: 0
-  weaponSpread: 0.01
-  bulletsPerShot: 1
   impact: {fileID: 3377271070747912948, guid: 5b634f2c54a76ad49840f1e67d6c980d, type: 3}
+  burstTimer: 0
+  burstCount: 0
 --- !u!1 &2917357310790119124
 GameObject:
   m_ObjectHideFlags: 0
