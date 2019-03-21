@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.15078828, g: 0.11164418, b: 0.0847704, a: 1}
+  m_IndirectSpecularColor: {r: 0.15539424, g: 0.115522705, b: 0.08822349, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -9823,14 +9823,10 @@ Mesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
-<<<<<<< HEAD
   m_Name: pb_Mesh37714
 =======
   m_Name: pb_Mesh96356
 >>>>>>> ae49a13dadb4de4f1e302d392bfc06105f7024b0
-=======
-  m_Name: pb_Mesh81496
->>>>>>> parent of 3ecb8bd... made some basic animations and shit for tom cruise
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -14189,14 +14185,10 @@ Mesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
-<<<<<<< HEAD
   m_Name: pb_Mesh37114
 =======
   m_Name: pb_Mesh95754
 >>>>>>> ae49a13dadb4de4f1e302d392bfc06105f7024b0
-=======
-  m_Name: pb_Mesh80898
->>>>>>> parent of 3ecb8bd... made some basic animations and shit for tom cruise
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -42025,14 +42017,10 @@ Mesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
-<<<<<<< HEAD
   m_Name: pb_Mesh37296
 =======
   m_Name: pb_Mesh95938
 >>>>>>> ae49a13dadb4de4f1e302d392bfc06105f7024b0
-=======
-  m_Name: pb_Mesh81078
->>>>>>> parent of 3ecb8bd... made some basic animations and shit for tom cruise
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -63688,7 +63676,7 @@ Transform:
   - {fileID: 1174329714}
   - {fileID: 1783263061}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &1878596165
 Mesh:
@@ -78919,7 +78907,6 @@ PrefabInstance:
       value: 0.1
       objectReference: {fileID: 0}
 <<<<<<< HEAD
-<<<<<<< HEAD
     - target: {fileID: 1263876997933826223, guid: 908a70b9af8bb4e4bb3951e11a6b614a,
         type: 3}
       propertyPath: m_Controller
@@ -78937,7 +78924,5 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
 >>>>>>> ae49a13dadb4de4f1e302d392bfc06105f7024b0
-=======
->>>>>>> parent of 3ecb8bd... made some basic animations and shit for tom cruise
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 908a70b9af8bb4e4bb3951e11a6b614a, type: 3}
