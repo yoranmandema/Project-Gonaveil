@@ -86,7 +86,47 @@ ModelImporter:
     4300024: Shoulder Rest
     4300026: Text
     2186277476908879412: ImportLogs
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Artemis Cannon Extra
+    second: {fileID: 2100000, guid: 6614c19e8645c3c4f91b3afc598057dc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Artemis Cannon Main
+    second: {fileID: 2100000, guid: 0d5bfc1fc77f9514d98b54d3c0c1e8d9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Artemis Cannon Rubber
+    second: {fileID: 2100000, guid: 1b836d59291f3c7468fffe7244ac5705, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Artemis Cannon Second
+    second: {fileID: 2100000, guid: 6741d7eceb4d9c7498f93fea9f8842bf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Artemis Cannon Trim
+    second: {fileID: 2100000, guid: de067a3b9642e0a43a0f7e280c59d4a3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Artemis Core
+    second: {fileID: 2100000, guid: 3401ef035451de147b9ec87db072730e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.001
+    second: {fileID: 2100000, guid: 2702b252a8894a8449912d32607b0260, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: fa133491f39d6fd42a833a67d07df74d, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
