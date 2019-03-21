@@ -13663,7 +13663,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh30842
+  m_Name: pb_Mesh43346
   serializedVersion: 9
   m_SubMeshes: []
   m_Shapes:
@@ -63999,11 +63999,14 @@ MonoBehaviour:
   m_Script: {fileID: 1227815207, guid: 0472bdc8d6d15384d98f22ee34302f9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  points: []
+  points:
+  - {x: 0, y: 0, z: 0}
+  - {x: -0.1221962, y: 0, z: -0.16956902}
+  - {x: -0.08934784, y: 0, z: 0.030568123}
   extrude: 0
-  polyEditMode: 1
+  polyEditMode: 0
   flipNormals: 0
-  isOnGrid: 1
+  isOnGrid: 0
 --- !u!4 &1904793205
 Transform:
   m_ObjectHideFlags: 0
@@ -64011,8 +64014,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1904793198}
-  m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: 25.184586, y: -12.611537, z: -21.033247}
+  m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
+  m_LocalPosition: {x: 16.184587, y: -12.960643, z: -23.653204}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1877312675}
