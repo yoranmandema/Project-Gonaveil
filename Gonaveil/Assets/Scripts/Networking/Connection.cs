@@ -126,7 +126,7 @@ public class Connection : MonoBehaviour
                 break;
 
             case NetworkEventType.DataEvent:
-                Debug.Log(string.Format("Received data from client {0}", clientConnectionID));
+                //Debug.Log(string.Format("Received data from client {0}", clientConnectionID));
 
                 BinaryFormatter formater = new BinaryFormatter();
                 MemoryStream memoryStream = new MemoryStream(buffer);
@@ -222,7 +222,7 @@ public class Connection : MonoBehaviour
                 Debug.Log(info.Msg);
                 break;
             case (byte)NetMessageType.UpdatePlayerPostionAndState:
-                //Debug.Log("New position data");
+                Debug.Log("New position data");
                 UpdatePlayerPositionAndState(receivingConnectionID, (UpdatePlayerPositionAndState)message);
                 break;
             case (byte)NetMessageType.UpdatePlayerData:
