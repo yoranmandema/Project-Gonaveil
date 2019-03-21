@@ -3,6 +3,20 @@ using UnityEngine.Networking;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 
+enum MessageType
+{
+    UpdatePlayerPostionAndState,
+    UpdatePlayerData,
+    UpdatePropPostionAndState,
+    BulletHit,
+    WeaponUsed,
+    WeaponPickUp,
+    WeaponDrop,
+    ChatMessage,
+    LevelInfo,
+    LevelChange,
+}
+#pragma warning disable CS0618 // Type or member is obsolete
 public class Connection : MonoBehaviour
 {
     public bool hostServer = true;
@@ -11,8 +25,9 @@ public class Connection : MonoBehaviour
 
     private readonly int byteSize = 256;
 
-    public bool connectToServer = false;
+    public bool connectToServer;
     public string serverAddress = "127.0.0.1";
+    private int connectionID;
 
     public GameObject networkPlayerPrefab;
 
@@ -21,7 +36,7 @@ public class Connection : MonoBehaviour
     private int hostID;
     private byte error;
 
-    private bool isRunning = false;
+    private bool isRunning;
 
     void Start()
     {
@@ -42,15 +57,15 @@ public class Connection : MonoBehaviour
         if (hostServer)
         {
             hostID = NetworkTransport.AddHost(topology, socketPort, null);
-            Debug.Log("Hosting server on port " + socketPort);
+            Debug.Log(string.Format("Hosting server on port {0}", socketPort));
 
             isRunning = true;
         }
         else if (connectToServer)
         {
             hostID = NetworkTransport.AddHost(topology, 0);
-            NetworkTransport.Connect(hostID, serverAddress, socketPort, 0, out error);
-            Debug.Log("Connecting to " + serverAddress + " on port " + socketPort);
+            connectionID = NetworkTransport.Connect(hostID, serverAddress, socketPort, 0, out error);
+            Debug.Log(string.Format("Connecting to {0} on port {1}", serverAddress, socketPort));
 
             isRunning = true;
         }
@@ -65,30 +80,26 @@ public class Connection : MonoBehaviour
     {
         if (!isRunning) return;
 
-        int receivingHostID;
-        int connectionID;
-        int channelID;
 
         byte[] buffer = new byte[byteSize];
-        int dataSize;
 
-        NetworkEventType eventType = NetworkTransport.Receive(out receivingHostID, out connectionID, out channelID, buffer, buffer.Length, out dataSize, out error);
+        NetworkEventType eventType = NetworkTransport.Receive(out int receivingHostID, out int clientConnectionID, out int channelID, buffer, buffer.Length, out int dataSize, out error);
 
-        switch(eventType)
+        switch (eventType)
         {
             case NetworkEventType.Nothing:
                 break;
 
             case NetworkEventType.ConnectEvent:
-                Debug.Log("Client connected. ID " + connectionID);
+                Debug.Log(string.Format("Client connected. ID {0}", clientConnectionID));
                 break;
 
             case NetworkEventType.DisconnectEvent:
-                Debug.Log("Client disconnected. ID" + connectionID);
+                Debug.Log(string.Format("Client disconnected. ID{0}", clientConnectionID));
                 break;
 
             case NetworkEventType.DataEvent:
-                Debug.Log("Received data from client " + connectionID + ". Data: " + buffer);
+                Debug.Log(string.Format("Received data from client {0}. Data: {1}", clientConnectionID, buffer));
                 break;
         }
     }
@@ -97,5 +108,17 @@ public class Connection : MonoBehaviour
     {
         isRunning = false;
         NetworkTransport.Shutdown();
+
+    }
+
+    public void SendServer()
+    {
+
+    }
+
+    public void SendClient()
+    {
+
     }
 }
+#pragma warning restore CS0618 // Type or member is obsolete
