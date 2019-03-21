@@ -417,9 +417,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerMovement: {fileID: 1352563271953662209}
-  velocityMultiplier: 0.05
-  bobbingAmount: 1
-  bobbingEngageTime: 0.25
+  velocityMultiplier: 0.01
+  rotationSpeed: 5
+  rotationAmount: 2
+  bobbingAmount: 0.5
+  bobbingEngageTime: 1
+  crouchAngle: 70
+  crouchEngageTime: 0.1
+  crouchEngageSmoothing: 0.05
+  jumpAmount: 0.25
 --- !u!114 &2917357310786231673
 MonoBehaviour:
   m_ObjectHideFlags: 0
