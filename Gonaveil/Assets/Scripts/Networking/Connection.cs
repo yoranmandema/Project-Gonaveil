@@ -19,29 +19,39 @@ enum MessageType
 #pragma warning disable CS0618 // Type or member is obsolete
 public class Connection : MonoBehaviour
 {
-    public bool hostServer = true;
+    //Constants
+    private readonly int byteSize = 256;
+
+    public bool autoInit;
+
+    //Server related
+    public bool isHosting = true;
     private readonly int maxConnections = 32;
     private readonly int socketPort = 22222;
 
-    private readonly int byteSize = 256;
-
-    public bool connectToServer;
+    //Client related
     public string serverAddress = "127.0.0.1";
     private int connectionID;
 
+    //Prefab configuration
     public GameObject networkPlayerPrefab;
 
+    //State variables
     private byte unreliableChannelID;
     private byte reliableChannelID;
     private int hostID;
     private byte error;
-
     private bool isRunning;
+
+    public bool IsRunning()
+    {
+        return isRunning;
+    }
 
     void Start()
     {
         DontDestroyOnLoad(gameObject);
-        Init();
+        if (autoInit) Init();
     }
 
     public void Init()
@@ -54,14 +64,14 @@ public class Connection : MonoBehaviour
 
         HostTopology topology = new HostTopology(config, maxConnections);
 
-        if (hostServer)
+        if (isHosting)
         {
             hostID = NetworkTransport.AddHost(topology, socketPort, null);
             Debug.Log(string.Format("Hosting server on port {0}", socketPort));
 
             isRunning = true;
         }
-        else if (connectToServer)
+        else
         {
             hostID = NetworkTransport.AddHost(topology, 0);
             connectionID = NetworkTransport.Connect(hostID, serverAddress, socketPort, 0, out error);
@@ -108,9 +118,10 @@ public class Connection : MonoBehaviour
     {
         isRunning = false;
         NetworkTransport.Shutdown();
-
+        Debug.Log("Network stopped");
     }
 
+    //Relevant
     public void SendServer()
     {
 
