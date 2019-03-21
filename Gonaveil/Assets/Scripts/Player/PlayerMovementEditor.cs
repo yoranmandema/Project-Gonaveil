@@ -18,6 +18,7 @@ public class PlayerMovementEditor : Editor {
     SerializedProperty limitAirVelocity;
     SerializedProperty fallSpeedMultiplier;
     SerializedProperty fallMaxSpeedUp;
+    SerializedProperty flipTime;
 
     SerializedProperty jumpHeight;
     SerializedProperty jumpLateralSpeedMultiplier;
@@ -45,6 +46,7 @@ public class PlayerMovementEditor : Editor {
         limitAirVelocity = serializedObject.FindProperty("limitAirVelocity");
         fallSpeedMultiplier = serializedObject.FindProperty("fallSpeedMultiplier");
         fallMaxSpeedUp = serializedObject.FindProperty("fallMaxSpeedUp");
+        flipTime = serializedObject.FindProperty("flipTime");
 
         jumpHeight = serializedObject.FindProperty("jumpHeight");
         jumpLateralSpeedMultiplier = serializedObject.FindProperty("jumpLateralSpeedMultiplier");
@@ -74,12 +76,21 @@ public class PlayerMovementEditor : Editor {
 
         EditorGUILayout.Space();
 
+        EditorGUILayout.LabelField("Crouch Movement", EditorStyles.boldLabel);
+        EditorGUILayout.PropertyField(crouchHeight);
+        EditorGUILayout.PropertyField(crouchTime);
+        EditorGUILayout.PropertyField(crouchVelocity);
+        EditorGUILayout.PropertyField(crouchCameraHeight);
+
+        EditorGUILayout.Space();
+
         EditorGUILayout.LabelField("Air Movement", EditorStyles.boldLabel);
         EditorGUILayout.PropertyField(airAccelaration);
         EditorGUILayout.PropertyField(airDrag);
         EditorGUILayout.PropertyField(limitAirVelocity);
         EditorGUILayout.PropertyField(fallSpeedMultiplier);
         EditorGUILayout.PropertyField(fallMaxSpeedUp);
+        EditorGUILayout.PropertyField(flipTime);
 
         EditorGUILayout.Space();
 
@@ -95,13 +106,6 @@ public class PlayerMovementEditor : Editor {
         EditorGUILayout.LabelField("Surf Movement", EditorStyles.boldLabel);
         EditorGUILayout.PropertyField(surfSlope);
 
-        EditorGUILayout.Space();
-
-        EditorGUILayout.LabelField("Crouch Movement", EditorStyles.boldLabel);
-        EditorGUILayout.PropertyField(crouchHeight);
-        EditorGUILayout.PropertyField(crouchTime);
-        EditorGUILayout.PropertyField(crouchVelocity);
-        EditorGUILayout.PropertyField(crouchCameraHeight);
 
         serializedObject.ApplyModifiedProperties();
     }

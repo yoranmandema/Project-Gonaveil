@@ -34,6 +34,9 @@ public class PlayerMovement : MonoBehaviour {
     public float slideBoost = 1.25f;
     public float slideVelocityThreshold = 10f;
 
+    public float flipTime = 0.25f;
+
+    public bool isFlipped;
     public bool isGrounded;
     public bool isInAir;
     public bool isSurfing;
@@ -46,20 +49,25 @@ public class PlayerMovement : MonoBehaviour {
     private Vector3 groundNormal;
     private Vector3 groundPoint;
     private Vector3 desiredMovement;
+    private Vector3 flipAxis;
     private Rigidbody rb;
     private LayerMask groundMask;
     private Animator anim;
     private float lateralJumpVelocity;
     private float lateralSurfVelocity;
     private float appliedCrouchHeight = 2f;
-    public float crouchLerp = 1f;
-    public float desiredCrouchLerp = 1f;
+    private float crouchLerp = 1f;
+    private float desiredCrouchLerp = 1f;
+
+    private float flipAngle = 0;
 
     private bool canJump = true;
     private bool canJumpCooldown = true;
     private bool wasGrounded;
     private bool wasSurfing;
     private bool wasInAir;
+
+    private bool isEndingFlip;
 
     private Vector3 TransformedMovement => transform.TransformDirection(desiredMovement);
     private Vector3 ProjectedMovement => Vector3.ProjectOnPlane(TransformedMovement, groundNormal).normalized;
@@ -92,7 +100,55 @@ public class PlayerMovement : MonoBehaviour {
         canJumpCooldown = true;
     }
 
+    private IEnumerator FlipStart () {
+        isFlipped = true;
+
+        flipAxis = transform.right;
+        var flipStep = 0f;
+
+        while (flipStep < 1) {
+            flipStep += Time.deltaTime / flipTime;
+
+            transform.RotateAround(transform.TransformPoint(characterController.center), flipAxis, 180 * Time.deltaTime / flipTime);
+
+            yield return new WaitForEndOfFrame();
+        }
+
+        var forwardRelativeToSurfaceNormal = Vector3.Cross(transform.right, -Vector3.up);
+        var targetRotation = Quaternion.LookRotation(forwardRelativeToSurfaceNormal, -Vector3.up);
+
+        transform.rotation = targetRotation;
+    }
+
+    private IEnumerator FlipEnd() {
+        if (!isFlipped) yield break;
+        if (isEndingFlip) yield break;
+
+        isEndingFlip = true;
+        var flipStep = 0f;
+
+        while (flipStep < 1) {
+            flipStep += Time.deltaTime / flipTime;
+
+            transform.RotateAround(transform.TransformPoint(characterController.center), flipAxis, 180 * Time.deltaTime / flipTime);
+
+            yield return new WaitForEndOfFrame();
+        }
+
+        var forwardRelativeToSurfaceNormal = Vector3.Cross(transform.right, Vector3.up);
+        var targetRotation = Quaternion.LookRotation(forwardRelativeToSurfaceNormal, Vector3.up);
+
+        transform.rotation = targetRotation;
+
+        isFlipped = false;
+        isEndingFlip = false;
+    }
+
     private void GroundCheck() {
+        if (wasInAir && !isInAir) {
+            StartCoroutine(FlipEnd());
+        }
+
         wasSurfing = isSurfing;
         wasGrounded = isGrounded;
         wasInAir = isInAir;
@@ -100,10 +156,20 @@ public class PlayerMovement : MonoBehaviour {
         isGrounded = characterController.isGrounded;
         isSurfing = false;
 
+        var castPosition = transform.position + transform.up * characterController.radius;
+        var castDirection = -transform.up;
+
+        if (transform.up.y < 0) {
+            castPosition = transform.position + transform.up * (characterController.height - characterController.radius);
+            castDirection = transform.up;
+        }
+
+        Debug.DrawLine(castPosition, transform.TransformPoint(characterController.center), Color.green);
+
         var groundHits = Physics.SphereCastAll(
-            transform.position + transform.up * characterController.radius,
+            castPosition,
             characterController.radius,
-            -transform.up,
+            castDirection,
             0.1f,
             groundMask
             );
@@ -251,7 +317,9 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     private void GroundMovement() {
-        if (!wasGrounded) characterController.slopeLimit = surfSlope;
+        if (!wasGrounded) {
+            characterController.slopeLimit = surfSlope;
+        }
 
         desiredMovement.Normalize();
 
@@ -339,6 +407,9 @@ public class PlayerMovement : MonoBehaviour {
 
         // Gravity.
         velocity += Physics.gravity * Time.deltaTime;
+
+        if (Input.GetButtonDown("Flip")) StartCoroutine(FlipStart());
+        if (Input.GetButtonUp("Flip") && isFlipped) StartCoroutine(FlipEnd());
     }
 
     public void AddForce (Vector3 force) {
