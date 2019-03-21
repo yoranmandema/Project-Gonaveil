@@ -29,7 +29,52 @@ ModelImporter:
     4300000: Cylinder.001
     4300002: Cube.000
     4300004: Text
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.000
+    second: {fileID: 2100000, guid: 61bc7e49fed194949bca11fbbf299744, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.004
+    second: {fileID: 2100000, guid: 3dc423a4b75e113418b61a1e5a1a6300, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.006
+    second: {fileID: 2100000, guid: ee5fd88ff0527a04f94d4a4f3202e6ae, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.007
+    second: {fileID: 2100000, guid: 2658ead507b828a468f05fa2281f82da, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.010
+    second: {fileID: 2100000, guid: 6ce3118e3a154a24d888d15eed051fdd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.011
+    second: {fileID: 2100000, guid: 8ec4a41709fda6d44b20112bbfbd0fcf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.013
+    second: {fileID: 2100000, guid: 20e357588b207454ea171a1193c45594, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.014
+    second: {fileID: 2100000, guid: f210839b707a828458756bf9d85d7600, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: 6a4ddbf68afef17419d79197ce0ca38f, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

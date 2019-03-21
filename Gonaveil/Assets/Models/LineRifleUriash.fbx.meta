@@ -74,7 +74,42 @@ ModelImporter:
     7400038: Text|Vent CoverAction
     9500000: //RootNode
     2186277476908879412: ImportLogs
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: bbc055a380a2b6c45a3b1d791856f4fe, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Plasma Glow
+    second: {fileID: 2100000, guid: e97e19d547c237349995ebb36318e8e3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Plasma Prime
+    second: {fileID: 2100000, guid: 66d766e4ff818194e8253dc357072120, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Plasma Rubber
+    second: {fileID: 2100000, guid: 9513defc698fc6f4ebda8c491d7be676, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Plasma Second
+    second: {fileID: 2100000, guid: de7ceff7fcd99094dacc6ffc0d7ec382, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Plasma Tri,
+    second: {fileID: 2100000, guid: e6dbe87a875c73443b1be2d0b240abb2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Sights
+    second: {fileID: 2100000, guid: 28c7a92656b6a3c4fb105ff252d92821, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

@@ -9,7 +9,7 @@ using Networking;
 public class Connection : MonoBehaviour
 {
     //Constants
-    private readonly int byteSize = 256;
+    private readonly int byteSize = 1024;
 
     public bool autoInit;
 
@@ -19,7 +19,7 @@ public class Connection : MonoBehaviour
     private readonly int socketPort = 22222;
 
     //Client related
-    public string serverAddress = "127.0.0.1";
+    public string serverAddress = "localhost";
     private int connectionID;
 
     //Prefab configuration
@@ -33,6 +33,24 @@ public class Connection : MonoBehaviour
     private byte error;
     private bool isRunning;
 
+    private bool[] userConnected;
+    private GameObject[] players;
+
+    public byte ReliableChannelID()
+    {
+        return reliableChannelID;
+    }
+
+    public byte UnreliableChannelID()
+    {
+        return unreliableChannelID;
+    }
+
+    public int ConnectionID()
+    {
+        return connectionID;
+    }
+
     public bool IsRunning()
     {
         return isRunning;
@@ -41,6 +59,8 @@ public class Connection : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(gameObject);
+        userConnected = new bool[maxConnections];
+        players = new GameObject[maxConnections];
         if (autoInit) Init();
     }
 
@@ -76,12 +96,15 @@ public class Connection : MonoBehaviour
 
     void Update()
     {
-        UpdateNetworkMessage();
+        while(UpdateNetworkMessage())
+        {
+
+        }
     }
 
-    void UpdateNetworkMessage()
+    bool UpdateNetworkMessage()
     {
-        if (!isRunning) return;
+        if (!isRunning) return false;
 
 
         byte[] buffer = new byte[byteSize];
@@ -91,18 +114,22 @@ public class Connection : MonoBehaviour
         switch (eventType)
         {
             case NetworkEventType.Nothing:
-                break;
+                return false;
 
             case NetworkEventType.ConnectEvent:
                 Debug.Log(string.Format("Client connected. ID {0}", clientConnectionID));
+                userConnected[clientConnectionID] = true;
+                AddPlayer(clientConnectionID);
                 break;
 
             case NetworkEventType.DisconnectEvent:
                 Debug.Log(string.Format("Client disconnected. ID{0}", clientConnectionID));
+                userConnected[clientConnectionID] = false;
+                RemovePlayer(clientConnectionID);
                 break;
 
             case NetworkEventType.DataEvent:
-                Debug.Log(string.Format("Received data from client {0}", clientConnectionID));
+                //Debug.Log(string.Format("Received data from client {0}", clientConnectionID));
 
                 BinaryFormatter formater = new BinaryFormatter();
                 MemoryStream memoryStream = new MemoryStream(buffer);
@@ -111,17 +138,20 @@ public class Connection : MonoBehaviour
                 HandleMessage(connectionID, channelID, hostID, message);
                 break;
         }
+        return true;
     }
 
     public void Shutdown()
     {
         isRunning = false;
         isHosting = false;
+
+        NetworkTransport.Disconnect(hostID, connectionID, out error);
         NetworkTransport.Shutdown();
         Debug.Log("Network stopped");
     }
 
-    public void SendServer(Message message)
+    public void Send(int userID, int channelID, Message message)
     {
         byte[] buffer = new byte[byteSize];
 
@@ -129,31 +159,65 @@ public class Connection : MonoBehaviour
         MemoryStream memoryStream = new MemoryStream(buffer);
         formater.Serialize(memoryStream, message);
 
-        NetworkTransport.Send(hostID, connectionID, reliableChannelID, buffer, buffer.Length, out error);
+        NetworkTransport.Send(hostID, userID, reliableChannelID, buffer, buffer.Length, out error);
     }
 
-    public void SendClient(Message message)
+    void RelayMessage(int receivingConnectionID, int receivingChannelID, int receivingHostID, Message message)
     {
-        byte[] buffer = new byte[byteSize];
+        for (int i = 0; i < maxConnections; i++)
+        {
+            if (i != receivingConnectionID && userConnected[i])
+            {
+                Send(i, receivingChannelID, message);
+            }
+        }
+    }
 
-        BinaryFormatter formater = new BinaryFormatter();
-        MemoryStream memoryStream = new MemoryStream(buffer);
-        formater.Serialize(memoryStream, message);
+    public void Broadcast(int channel, Message message)
+    {
+        for (int i = 0; i < maxConnections; i++)
+        {
+            if (userConnected[i])
+            {
+                Send(i, channel, message);
+            }
+        }
+    }
 
-        NetworkTransport.Send(hostID, connectionID, reliableChannelID, buffer, buffer.Length, out error);
+    void AddPlayer(int userID)
+    {
+        players[userID] = Instantiate(networkPlayerPrefab);
+        players[userID].transform.SetParent(gameObject.transform);
+    }
+
+    void RemovePlayer(int userID)
+    {
+        Destroy(players[userID].gameObject);
+    }
+
+    void UpdatePlayerPositionAndState(int clientID, UpdatePlayerPositionAndState data)
+    {
+        Vector3 pos = new Vector3(data.Pos[0], data.Pos[1], data.Pos[2]);
+        Quaternion rot = new Quaternion(data.Rot[0], data.Rot[1], data.Rot[2], data.Rot[3]);
+        Vector3 vel = new Vector3(data.Vel[0], data.Vel[1], data.Vel[2]);
+        //CharacterController charController = players[clientID].GetComponent<CharacterController>();
+        //Debug.Log("X: " + data.Pos[0] + " Y: " + data.Pos[1] + " Z: " + data.Pos[2]);
+        players[clientID].transform.SetPositionAndRotation(pos, rot);
+        players[clientID].GetComponent<Rigidbody>().velocity = vel;
     }
 
     #region HandleMessage
     void HandleMessage(int receivingConnectionID, int receivingChannelID, int receivingHostID, Message message)
     {
-        switch(message.MessageType)
+        switch (message.MessageType)
         {
             case (byte)NetMessageType.ConnectionInfo:
                 ConnectionInfo info = (ConnectionInfo)message;
                 Debug.Log(info.Msg);
                 break;
             case (byte)NetMessageType.UpdatePlayerPostionAndState:
-
+                //Debug.Log("New position data");
+                UpdatePlayerPositionAndState(receivingConnectionID, (UpdatePlayerPositionAndState)message);
                 break;
             case (byte)NetMessageType.UpdatePlayerData:
 

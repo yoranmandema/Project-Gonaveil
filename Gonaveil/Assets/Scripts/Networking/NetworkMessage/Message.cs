@@ -47,9 +47,10 @@
             MessageType = (byte)NetMessageType.UpdatePlayerPostionAndState;
             Pos = new float[3];
             Vel = new float[3];
-            Rot = new float[3];
+            Rot = new float[4];
         }
 
+        public byte PlayerID { set; get; }
         public float[] Pos { set; get; }
         public float[] Vel { set; get; }
         public float[] Rot { set; get; }

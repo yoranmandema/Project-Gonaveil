@@ -16,10 +16,6 @@ public class ConnectionInspector : Editor
         {
             if(GUILayout.Button("Disconnect/Shutdown")) connection.Shutdown();
             GUILayout.Label("Networking running");
-            if(GUILayout.Button("Send Message"))
-            {
-                connection.SendServer(new ConnectionInfo((byte)NetMessageType.ConnectionInfo, "Hello, World"));
-            }
         }
         else
         {
