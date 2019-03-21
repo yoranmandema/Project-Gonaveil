@@ -37,7 +37,7 @@ public class PlayerNetworkManager : MonoBehaviour
             }
             else
             {
-                connection.SendServer(connection.ReliableChannelID(), message);
+                connection.Send(connection.ConnectionID(), connection.ReliableChannelID(), message);
             }
         }
     }

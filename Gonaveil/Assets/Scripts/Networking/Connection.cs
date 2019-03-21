@@ -147,7 +147,7 @@ public class Connection : MonoBehaviour
         Debug.Log("Network stopped");
     }
 
-    public void SendServer(int channelID, Message message)
+    public void Send(int userID, int channelID, Message message)
     {
         byte[] buffer = new byte[byteSize];
 
@@ -155,18 +155,7 @@ public class Connection : MonoBehaviour
         MemoryStream memoryStream = new MemoryStream(buffer);
         formater.Serialize(memoryStream, message);
 
-        NetworkTransport.Send(hostID, connectionID, reliableChannelID, buffer, buffer.Length, out error);
-    }
-
-    public void SendClient(int targetUserID, int channelID, Message message)
-    {
-        byte[] buffer = new byte[byteSize];
-
-        BinaryFormatter formater = new BinaryFormatter();
-        MemoryStream memoryStream = new MemoryStream(buffer);
-        formater.Serialize(memoryStream, message);
-
-        NetworkTransport.Send(hostID, targetUserID, channelID, buffer, buffer.Length, out error);
+        NetworkTransport.Send(hostID, userID, reliableChannelID, buffer, buffer.Length, out error);
     }
 
     void RelayMessage(int receivingConnectionID, int receivingChannelID, int receivingHostID, Message message)
@@ -175,7 +164,7 @@ public class Connection : MonoBehaviour
         {
             if (i != receivingConnectionID && userConnected[i])
             {
-                SendClient(i, receivingChannelID, message);
+                Send(i, receivingChannelID, message);
             }
         }
     }
@@ -186,7 +175,7 @@ public class Connection : MonoBehaviour
         {
             if (userConnected[i])
             {
-                SendClient(i, channel, message);
+                Send(i, channel, message);
             }
         }
     }
