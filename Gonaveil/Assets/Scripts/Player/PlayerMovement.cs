@@ -166,11 +166,12 @@ public class PlayerMovement : MonoBehaviour {
 
         desiredMovement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
-        if (isSliding && !isInAir) {
-            SlideMovement();
-        }
-        else if (isSurfing) {
+
+        if (isSurfing) {
             SurfMovement();
+        }
+        else if (isSliding && !isInAir) {
+            SlideMovement();
         }
         else if (isGrounded) {
             GroundMovement();
