@@ -19,7 +19,7 @@ public class Connection : MonoBehaviour
     private readonly int socketPort = 22222;
 
     //Client related
-    public string serverAddress = "127.0.0.1";
+    public string serverAddress = "localhost";
     private int connectionID;
 
     //Prefab configuration

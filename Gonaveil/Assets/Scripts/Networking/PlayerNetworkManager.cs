@@ -3,13 +3,13 @@ using Networking;
 
 public class PlayerNetworkManager : MonoBehaviour
 {
-    private Connection connection;
-    private Rigidbody rb;
+    Connection connection;
+    CharacterController charController;
 
     void Start()
     {
         connection = GameObject.Find("NetworkingController").GetComponent<Connection>();
-        rb = GetComponent<Rigidbody>();
+        charController = GetComponent<CharacterController>();
     }
 
     void Update()
@@ -20,16 +20,16 @@ public class PlayerNetworkManager : MonoBehaviour
             message.PlayerID = (byte)connection.ConnectionID();
             message.Sliding = false;
             message.Grounded = true;
-            message.Pos[0] = transform.position.x;
-            message.Pos[1] = transform.position.y;
-            message.Pos[2] = transform.position.z;
-            message.Rot[0] = transform.rotation.w;
-            message.Rot[1] = transform.rotation.x;
-            message.Rot[2] = transform.rotation.y;
-            message.Rot[3] = transform.rotation.z;
-            message.Vel[0] = rb.velocity.x;
-            message.Vel[1] = rb.velocity.y;
-            message.Vel[2] = rb.velocity.z;
+            message.Pos[0] = gameObject.transform.position.x;
+            message.Pos[1] = gameObject.transform.position.y;
+            message.Pos[2] = gameObject.transform.position.z;
+            message.Rot[0] = gameObject.transform.rotation.w;
+            message.Rot[1] = gameObject.transform.rotation.x;
+            message.Rot[2] = gameObject.transform.rotation.y;
+            message.Rot[3] = gameObject.transform.rotation.z;
+            message.Vel[0] = charController.velocity.x;
+            message.Vel[1] = charController.velocity.x;
+            message.Vel[2] = charController.velocity.x;
 
             if (connection.isHost)
             {
