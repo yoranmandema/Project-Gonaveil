@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.15539424, g: 0.115522705, b: 0.08822349, a: 1}
+  m_IndirectSpecularColor: {r: 0.15068333, g: 0.11156067, b: 0.08471096, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -9822,7 +9822,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh37714
+  m_Name: pb_Mesh32426
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -14180,7 +14180,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh37114
+  m_Name: pb_Mesh31826
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -26202,6 +26202,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7596791082710259383, guid: c3c01db4fb3812841a548b5b47ef229c,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3c01db4fb3812841a548b5b47ef229c, type: 3}
@@ -42002,7 +42007,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh37296
+  m_Name: pb_Mesh32008
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -44086,6 +44091,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1439488591}
   - component: {fileID: 1439488590}
+  - component: {fileID: 1439488592}
   m_Layer: 0
   m_Name: NetworkingController
   m_TagString: Untagged
@@ -44106,9 +44112,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoInit: 0
-  isHosting: 1
+  isHost: 1
   serverAddress: 127.0.0.1
-  networkPlayerPrefab: {fileID: 0}
+  networkPlayerPrefab: {fileID: 159255039991812395, guid: ed316c18539594fc09b82a747c48c8f7,
+    type: 3}
 --- !u!4 &1439488591
 Transform:
   m_ObjectHideFlags: 0
@@ -44123,6 +44130,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1439488592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439488589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5de0b200f4a64e14ba4d05e8589464e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  autoInit: 0
+  isHost: 0
+  serverAddress: 127.0.0.1
+  networkPlayerPrefab: {fileID: 0}
 --- !u!1 &1441891463
 GameObject:
   m_ObjectHideFlags: 0
@@ -75594,6 +75617,24 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &2063224894 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1352563271953662213, guid: 908a70b9af8bb4e4bb3951e11a6b614a,
+    type: 3}
+  m_PrefabInstance: {fileID: 2917357309458625765}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2063224899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063224894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c7fd40b2d7644f3e8afbeef0ea935df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2076651987
 GameObject:
   m_ObjectHideFlags: 0
