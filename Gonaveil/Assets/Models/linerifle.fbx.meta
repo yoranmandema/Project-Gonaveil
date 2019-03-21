@@ -1,61 +1,27 @@
 fileFormatVersion: 2
-guid: 04dc64273844d754aa3adf3fc93912fe
+guid: 66ebe6770459df9429410019914e341c
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: Battery
-    100002: Cylinder.001
-    100004: //RootNode
-    100006: Reactor
-    100008: Rivets
-    100010: Vent Cover
-    100012: Vents
-    400000: Battery
-    400002: Cylinder.001
-    400004: //RootNode
-    400006: Reactor
-    400008: Rivets
-    400010: Vent Cover
-    400012: Vents
-    2100000: Plasma Prime
-    2100002: Plasma Tri,
-    2100004: Plasma Second
-    2100006: Plasma Glow
-    2100008: Plasma Rubber
-    2100010: Sights
-    2300000: Battery
-    2300002: Cylinder.001
-    2300004: //RootNode
-    2300006: Reactor
-    2300008: Rivets
-    2300010: Vent Cover
-    2300012: Vents
-    3300000: Battery
-    3300002: Cylinder.001
-    3300004: //RootNode
-    3300006: Reactor
-    3300008: Rivets
-    3300010: Vent Cover
-    3300012: Vents
-    4300000: Gun
-    4300002: Vent Cover
-    4300004: Battery
-    4300006: Vents
-    4300008: Reactor
-    4300010: Rivets
-    4300012: Cylinder.001
-    7400000: Vent Cover|BatteryAction
-    7400002: Vent Cover|Cylinder.001Action
-    7400004: Vent Cover|Vent CoverAction
-    7400006: Battery|BatteryAction
-    7400008: Battery|Cylinder.001Action
-    7400010: Battery|Vent CoverAction
-    7400012: Reactor|BatteryAction
-    7400014: Reactor|Cylinder.001Action
-    7400016: Reactor|Vent CoverAction
-    7400018: Cylinder.001|BatteryAction
-    7400020: Cylinder.001|Cylinder.001Action
-    7400022: Cylinder.001|Vent CoverAction
+    100000: //RootNode
+    400000: //RootNode
+    2100000: No Name
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Reactor
+    7400000: Reactor|Battery|Battery|BatteryAction|Battery|BatteryAction
+    7400002: Reactor|Battery|Battery|Cylinder.001Action|Battery|Cylinder.001Action
+    7400004: Reactor|Battery|Battery|Vent CoverAction|Battery|Vent CoverAction
+    7400006: Reactor|Cylinder.001|Cylinder.001|BatteryAction|Cylinder.001|BatteryAct
+    7400008: Reactor|Cylinder.001|Cylinder.001|Cylinder.001Action|Cylinder.001|Cylin
+    7400010: Reactor|Cylinder.001|Cylinder.001|Vent CoverAction|Cylinder.001|Vent
+      Co
+    7400012: Reactor|Reactor|Reactor|BatteryAction|Reactor|BatteryAction
+    7400014: Reactor|Reactor|Reactor|Cylinder.001Action|Reactor|Cylinder.001Action
+    7400016: Reactor|Reactor|Reactor|Vent CoverAction|Reactor|Vent CoverAction
+    7400018: Reactor|Vent Cover|Vent Cover|BatteryAction|Vent Cover|BatteryAction
+    7400020: Reactor|Vent Cover|Vent Cover|Cylinder.001Action|Vent Cover|Cylinder.00
+    7400022: Reactor|Vent Cover|Vent Cover|Vent CoverAction|Vent Cover|Vent CoverAct
     9500000: //RootNode
     2186277476908879412: ImportLogs
   externalObjects: {}
