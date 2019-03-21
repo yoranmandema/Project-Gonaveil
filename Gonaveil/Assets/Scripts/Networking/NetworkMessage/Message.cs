@@ -45,10 +45,14 @@
         public UpdatePlayerPositionAndState(byte messageType) : base(messageType)
         {
             MessageType = (byte)NetMessageType.UpdatePlayerPostionAndState;
+            Pos = new float[3];
+            Vel = new float[3];
+            Rot = new float[3];
         }
 
         public float[] Pos { set; get; }
         public float[] Vel { set; get; }
+        public float[] Rot { set; get; }
         public bool Grounded { set; get; }
         public bool Sliding { set; get; }
     }
