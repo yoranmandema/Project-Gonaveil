@@ -18,7 +18,7 @@ public class ConnectionInspector : Editor
             GUILayout.Label("Networking running");
             if(GUILayout.Button("Send Message"))
             {
-                connection.SendServer(new ConnectionInfo((byte)NetMessageType.ConnectionInfo, "Hello, World"));
+                connection.SendServer(connection.ReliableChannelID(), new ConnectionInfo((byte)NetMessageType.ConnectionInfo, "Hello, World"));
             }
         }
         else

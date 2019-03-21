@@ -34,6 +34,22 @@ public class Connection : MonoBehaviour
     private bool isRunning;
 
     private bool[] userConnected;
+    private GameObject[] players;
+
+    public byte ReliableChannelID()
+    {
+        return reliableChannelID;
+    }
+
+    public byte UnreliableChannelID()
+    {
+        return unreliableChannelID;
+    }
+
+    public int ConnectionID()
+    {
+        return connectionID;
+    }
 
     public bool IsRunning()
     {
@@ -44,6 +60,7 @@ public class Connection : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
         userConnected = new bool[maxConnections];
+        players = new GameObject[maxConnections];
         if (autoInit) Init();
     }
 
@@ -124,11 +141,13 @@ public class Connection : MonoBehaviour
     {
         isRunning = false;
         isHosting = false;
+
+        NetworkTransport.Disconnect(hostID, connectionID, out error);
         NetworkTransport.Shutdown();
         Debug.Log("Network stopped");
     }
 
-    public void SendServer(Message message)
+    public void SendServer(int channelID, Message message)
     {
         byte[] buffer = new byte[byteSize];
 
@@ -161,14 +180,36 @@ public class Connection : MonoBehaviour
         }
     }
 
+    public void Broadcast(int channel, Message message)
+    {
+        for (int i = 0; i < maxConnections; i++)
+        {
+            if (userConnected[i])
+            {
+                SendClient(i, channel, message);
+            }
+        }
+    }
+
     void AddPlayer(int userID)
     {
-
+        players[userID] = Instantiate(networkPlayerPrefab);
+        players[userID].transform.SetParent(gameObject.transform);
     }
 
     void RemovePlayer(int userID)
     {
+        Destroy(players[userID].gameObject);
+    }
 
+    void UpdatePlayerPositionAndState(int clientID, UpdatePlayerPositionAndState data)
+    {
+        Vector3 pos = new Vector3(data.Pos[0], data.Pos[1], data.Pos[2]);
+        Quaternion rot = new Quaternion(data.Rot[0], data.Rot[1], data.Rot[2], data.Rot[3]);
+        Vector3 vel = new Vector3(data.Vel[0], data.Vel[1], data.Vel[2]);
+
+        players[clientID].transform.SetPositionAndRotation(pos, rot);
+        players[clientID].GetComponent<Rigidbody>().velocity = vel;
     }
 
     #region HandleMessage
@@ -181,7 +222,8 @@ public class Connection : MonoBehaviour
                 Debug.Log(info.Msg);
                 break;
             case (byte)NetMessageType.UpdatePlayerPostionAndState:
-
+                //Debug.Log("New position data");
+                UpdatePlayerPositionAndState(receivingConnectionID, (UpdatePlayerPositionAndState)message);
                 break;
             case (byte)NetMessageType.UpdatePlayerData:
 
