@@ -28,8 +28,6 @@ public class GamePlayPhysics
         var colliders = Physics.OverlapSphere(position, radius, (1 << 0) | (1 << layerMask));
         
         foreach (Collider hit in colliders) {
-            Debug.Log(hit.gameObject);
-
             // Should the explosion affect players?
             if ((explosionType & ExplosionType.Players) != 0) {
                 var playerMovement = hit.GetComponent<PlayerMovement>();
