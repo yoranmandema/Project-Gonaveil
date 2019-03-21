@@ -50,6 +50,7 @@
             Rot = new float[3];
         }
 
+        public byte PlayerID { set; get; }
         public float[] Pos { set; get; }
         public float[] Vel { set; get; }
         public float[] Rot { set; get; }

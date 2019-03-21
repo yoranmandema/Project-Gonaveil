@@ -9,7 +9,7 @@ using Networking;
 public class Connection : MonoBehaviour
 {
     //Constants
-    private readonly int byteSize = 256;
+    private readonly int byteSize = 1024;
 
     public bool autoInit;
 
@@ -33,6 +33,8 @@ public class Connection : MonoBehaviour
     private byte error;
     private bool isRunning;
 
+    private bool[] userConnected;
+
     public bool IsRunning()
     {
         return isRunning;
@@ -41,6 +43,7 @@ public class Connection : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(gameObject);
+        userConnected = new bool[maxConnections];
         if (autoInit) Init();
     }
 
@@ -95,10 +98,14 @@ public class Connection : MonoBehaviour
 
             case NetworkEventType.ConnectEvent:
                 Debug.Log(string.Format("Client connected. ID {0}", clientConnectionID));
+                userConnected[clientConnectionID] = true;
+                AddPlayer(clientConnectionID);
                 break;
 
             case NetworkEventType.DisconnectEvent:
                 Debug.Log(string.Format("Client disconnected. ID{0}", clientConnectionID));
+                userConnected[clientConnectionID] = false;
+                RemovePlayer(clientConnectionID);
                 break;
 
             case NetworkEventType.DataEvent:
@@ -132,7 +139,7 @@ public class Connection : MonoBehaviour
         NetworkTransport.Send(hostID, connectionID, reliableChannelID, buffer, buffer.Length, out error);
     }
 
-    public void SendClient(Message message)
+    public void SendClient(int targetUserID, int channelID, Message message)
     {
         byte[] buffer = new byte[byteSize];
 
@@ -140,13 +147,34 @@ public class Connection : MonoBehaviour
         MemoryStream memoryStream = new MemoryStream(buffer);
         formater.Serialize(memoryStream, message);
 
-        NetworkTransport.Send(hostID, connectionID, reliableChannelID, buffer, buffer.Length, out error);
+        NetworkTransport.Send(hostID, targetUserID, channelID, buffer, buffer.Length, out error);
+    }
+
+    void RelayMessage(int receivingConnectionID, int receivingChannelID, int receivingHostID, Message message)
+    {
+        for (int i = 0; i < maxConnections; i++)
+        {
+            if (i != receivingConnectionID && userConnected[i])
+            {
+                SendClient(i, receivingChannelID, message);
+            }
+        }
+    }
+
+    void AddPlayer(int userID)
+    {
+
+    }
+
+    void RemovePlayer(int userID)
+    {
+
     }
 
     #region HandleMessage
     void HandleMessage(int receivingConnectionID, int receivingChannelID, int receivingHostID, Message message)
     {
-        switch(message.MessageType)
+        switch (message.MessageType)
         {
             case (byte)NetMessageType.ConnectionInfo:
                 ConnectionInfo info = (ConnectionInfo)message;
