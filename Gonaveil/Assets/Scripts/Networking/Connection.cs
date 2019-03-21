@@ -155,7 +155,7 @@ public class Connection : MonoBehaviour
         MemoryStream memoryStream = new MemoryStream(buffer);
         formater.Serialize(memoryStream, message);
 
-        NetworkTransport.Send(hostID, connectionID, reliableChannelID, buffer, buffer.Length, out error);
+        NetworkTransport.Send(connectionID, hostID, reliableChannelID, buffer, buffer.Length, out error);
     }
 
     public void SendClient(int targetUserID, int channelID, Message message)

@@ -44111,8 +44111,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoInit: 0
-  isHost: 1
-  serverAddress: 127.0.0.1
+  isHost: 0
+  serverAddress: 192.168.0.94
   networkPlayerPrefab: {fileID: 159255039991812395, guid: ed316c18539594fc09b82a747c48c8f7,
     type: 3}
 --- !u!4 &1439488591
