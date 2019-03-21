@@ -67,7 +67,7 @@ MonoBehaviour:
   cameraHeight: 1.8
   maxVelocity: 12
   acceleration: 100
-  stepSlope: 80
+  stepSlope: 85
   airAccelaration: 150
   airDrag: 0.05
   limitAirVelocity: 1
