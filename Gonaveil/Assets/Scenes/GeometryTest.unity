@@ -36926,7 +36926,8 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8845508605468379241, guid: 43ce03c60306e3b4b9718485720f10fc, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 43ce03c60306e3b4b9718485720f10fc, type: 3}
 --- !u!1 &1174329708
 GameObject:
@@ -78892,6 +78893,11 @@ PrefabInstance:
         type: 3}
       propertyPath: fireRate
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917357310786231673, guid: 908a70b9af8bb4e4bb3951e11a6b614a,
+        type: 3}
+      propertyPath: weaponType
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 908a70b9af8bb4e4bb3951e11a6b614a, type: 3}
