@@ -8,9 +8,10 @@ public class PlayerMovement : MonoBehaviour {
     public float cameraHeight = 1.8f;
 
     public float maxVelocity = 12f;
-    public float acceleration = 200;
+    public float acceleration = 200f;
+    public float stepSlope = 85f;
 
-    public float airAccelaration = 150;
+    public float airAccelaration = 150f;
     public float airDrag = 0.05f;
 
     public bool limitAirVelocity = false;
@@ -111,11 +112,17 @@ public class PlayerMovement : MonoBehaviour {
         var hitPoint = Vector3.zero;
 
         foreach (var hit in groundHits) {
-            normal += hit.normal;
+            var rayCast = Physics.Raycast(hit.point + hit.normal * 0.01f, -hit.normal, out RaycastHit rayCastHit, 0.02f, groundMask);
+
+            var useUpwards = (rayCastHit.normal != hit.normal) && (Mathf.Acos(rayCastHit.normal.y) * Mathf.Rad2Deg > stepSlope);
+
+            if (useUpwards) {
+                normal += Vector3.up;
+            } else {
+                normal += hit.normal;
+            }
 
             hitPoint += hit.point;
-
-            Debug.DrawLine(hit.point, hit.point + normal, Color.red);
         }
 
         if (groundHits.Length > 0) {

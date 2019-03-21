@@ -10,6 +10,7 @@ public class PlayerMovementEditor : Editor {
 
     SerializedProperty maxVelocity;
     SerializedProperty acceleration;
+    SerializedProperty stepSlope;
 
     SerializedProperty airAccelaration;
     SerializedProperty airDrag;
@@ -37,6 +38,7 @@ public class PlayerMovementEditor : Editor {
 
         maxVelocity = serializedObject.FindProperty("maxVelocity");
         acceleration = serializedObject.FindProperty("acceleration");
+        stepSlope = serializedObject.FindProperty("stepSlope");
 
         airAccelaration = serializedObject.FindProperty("airAccelaration");
         airDrag = serializedObject.FindProperty("airDrag");
@@ -68,6 +70,7 @@ public class PlayerMovementEditor : Editor {
         EditorGUILayout.LabelField("Grounded Movement", EditorStyles.boldLabel);
         EditorGUILayout.PropertyField(maxVelocity);
         EditorGUILayout.PropertyField(acceleration);
+        EditorGUILayout.PropertyField(stepSlope);
 
         EditorGUILayout.Space();
 
