@@ -78897,7 +78897,12 @@ PrefabInstance:
     - target: {fileID: 2917357310786231673, guid: 908a70b9af8bb4e4bb3951e11a6b614a,
         type: 3}
       propertyPath: weaponType
-      value: 2
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917357310786231673, guid: 908a70b9af8bb4e4bb3951e11a6b614a,
+        type: 3}
+      propertyPath: weaponValues.weaponSpread
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 908a70b9af8bb4e4bb3951e11a6b614a, type: 3}
