@@ -5,6 +5,8 @@ public class Weapon : MonoBehaviour {
     [System.Serializable]
     public class WeaponValues
     {
+        public string Name;
+        public GameObject modelObject;
         public int magazineCapacity;
         public float reloadTime;
         public float fireRate;
@@ -15,20 +17,16 @@ public class Weapon : MonoBehaviour {
         public float chargeRate;
         public GameObject Projectile;
         public Transform Barrel;
-        public UnityEngine.UI.Image chargeCircle;
+        public WeaponType weaponType;
+        public WeaponClass weaponClass;
+        public ProjectileType projectileType;
     }
 
+    public UnityEngine.UI.Image chargeCircle;
     public WeaponValues weaponValues;
-    public string Name;
-    public WeaponType weaponType;
-    public WeaponClass weaponClass;
-    public ProjectileType projectileType;
     public LayerMask raycastMask;
-    public GameObject worldModel;
-    public GameObject viewModel;
     public GameObject impact;
     public Animator animator;
-
     private Camera mainCamera;
 
     public enum WeaponType { FullAuto, SemiAuto, Charge }
@@ -40,14 +38,14 @@ public class Weapon : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        animator.SetInteger("WeaponType", (int)weaponClass);
+        animator.SetInteger("WeaponType", (int)weaponValues.weaponClass);
     }
 
     public void StandardFire() {
         Vector3 hitPosition = new Vector3(); //Used to check if the player is actually looking somewhere.
         for (int i =0; i < weaponValues.bulletsPerShot;i++)
         {
-            if(projectileType == ProjectileType.Hitscan)
+            if(weaponValues.projectileType == ProjectileType.Hitscan)
             {
                 HitScan(hitPosition);
             }
@@ -129,13 +127,13 @@ public class Weapon : MonoBehaviour {
         float trueFireRate = (1 / weaponValues.fireRate) + (weaponValues.burstTime * weaponValues.bulletsPerBurst);
         if (loadTimer <= 0)
         {
-            if (weaponType == WeaponType.FullAuto)
+            if (weaponValues.weaponType == WeaponType.FullAuto)
             {
                 if (Input.GetButton("Fire1"))
                 {
                     FireGun(trueFireRate);
                 }
-            }else if(weaponType == WeaponType.Charge)
+            }else if(weaponValues.weaponType == WeaponType.Charge)
             {
                 if (Input.GetButton("Fire1"))
                 {
@@ -149,7 +147,7 @@ public class Weapon : MonoBehaviour {
                         FireGun(trueFireRate);
                         chargeProgress = 0;
                     }
-                    weaponValues.chargeCircle.fillAmount = chargeProgress / 100;
+                    chargeCircle.fillAmount = chargeProgress / 100;
                 }
             }
             else
