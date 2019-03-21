@@ -19,26 +19,19 @@ public class Weapon : MonoBehaviour {
     public WeaponValues weaponValues;
     public string Name;
     public WeaponType weaponType;
-    public WeaponClass weaponClass;
     public ProjectileType projectileType;
     public GameObject worldModel;
     public GameObject viewModel;
     public LayerMask raycastMask;
     public GameObject impact;
-    public Animator animator;
 
     private Camera mainCamera;
 
-    public enum WeaponType { FullAuto, SemiAuto, Charge }
-    public enum WeaponClass { None, Pistol, Rifle }
+    public enum WeaponType { FullAuto, SemiAuto, Charge}
     public enum ProjectileType { Projectile, Hitscan}
 
     private void Start() {
         mainCamera = Camera.main;
-    }
-
-    private void FixedUpdate() {
-        animator.SetInteger("WeaponType", (int)weaponClass);
     }
 
     public void StandardFire() {
