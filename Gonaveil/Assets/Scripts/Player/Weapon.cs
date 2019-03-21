@@ -17,14 +17,8 @@ public class Weapon : MonoBehaviour {
     public enum WeaponType { None, Pistol, Rifle, Throwable, Melee }
 
     private void Start() {
-        if (bulletsPerShot <= 0)
-        {
-            bulletsPerShot = 1;
-        }
-        if(fireRate <= 0)
-        {
-            fireRate = 1;
-        }
+        bulletsPerShot=Mathf.Clamp(bulletsPerShot,1,934157136952);
+        fireRate=Mathf.Clamp(fireRate,1,934157136952);
         mainCamera = Camera.main;
     }
 
