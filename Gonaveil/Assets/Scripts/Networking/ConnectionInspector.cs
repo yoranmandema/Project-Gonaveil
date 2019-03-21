@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEditor;
+using Networking;
 
 [CustomEditor(typeof(Connection))]
 public class ConnectionInspector : Editor
@@ -15,6 +16,10 @@ public class ConnectionInspector : Editor
         {
             if(GUILayout.Button("Disconnect/Shutdown")) connection.Shutdown();
             GUILayout.Label("Networking running");
+            if(GUILayout.Button("Send Message"))
+            {
+                connection.SendServer(new ConnectionInfo((byte)NetMessageType.ConnectionInfo, "Hello, World"));
+            }
         }
         else
         {

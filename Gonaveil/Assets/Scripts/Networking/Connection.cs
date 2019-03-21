@@ -3,19 +3,8 @@ using UnityEngine.Networking;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 
-enum MessageType
-{
-    UpdatePlayerPostionAndState,
-    UpdatePlayerData,
-    UpdatePropPostionAndState,
-    BulletHit,
-    WeaponUsed,
-    WeaponPickUp,
-    WeaponDrop,
-    ChatMessage,
-    LevelInfo,
-    LevelChange,
-}
+using Networking;
+
 #pragma warning disable CS0618 // Type or member is obsolete
 public class Connection : MonoBehaviour
 {
@@ -25,7 +14,7 @@ public class Connection : MonoBehaviour
     public bool autoInit;
 
     //Server related
-    public bool isHosting = true;
+    public bool isHost = true;
     private readonly int maxConnections = 32;
     private readonly int socketPort = 22222;
 
@@ -37,6 +26,7 @@ public class Connection : MonoBehaviour
     public GameObject networkPlayerPrefab;
 
     //State variables
+    private bool isHosting;
     private byte unreliableChannelID;
     private byte reliableChannelID;
     private int hostID;
@@ -56,6 +46,7 @@ public class Connection : MonoBehaviour
 
     public void Init()
     {
+
         NetworkTransport.Init();
 
         ConnectionConfig config = new ConnectionConfig();
@@ -64,12 +55,13 @@ public class Connection : MonoBehaviour
 
         HostTopology topology = new HostTopology(config, maxConnections);
 
-        if (isHosting)
+        if (isHost)
         {
             hostID = NetworkTransport.AddHost(topology, socketPort, null);
             Debug.Log(string.Format("Hosting server on port {0}", socketPort));
 
             isRunning = true;
+            isHosting = true;
         }
         else
         {
@@ -78,6 +70,7 @@ public class Connection : MonoBehaviour
             Debug.Log(string.Format("Connecting to {0} on port {1}", serverAddress, socketPort));
 
             isRunning = true;
+            isHosting = false;
         }
     }
 
@@ -86,7 +79,7 @@ public class Connection : MonoBehaviour
         UpdateNetworkMessage();
     }
 
-    public void UpdateNetworkMessage()
+    void UpdateNetworkMessage()
     {
         if (!isRunning) return;
 
@@ -109,7 +102,13 @@ public class Connection : MonoBehaviour
                 break;
 
             case NetworkEventType.DataEvent:
-                Debug.Log(string.Format("Received data from client {0}. Data: {1}", clientConnectionID, buffer));
+                Debug.Log(string.Format("Received data from client {0}", clientConnectionID));
+
+                BinaryFormatter formater = new BinaryFormatter();
+                MemoryStream memoryStream = new MemoryStream(buffer);
+                Message message = (Message)formater.Deserialize(memoryStream);
+
+                HandleMessage(connectionID, channelID, hostID, message);
                 break;
         }
     }
@@ -117,19 +116,74 @@ public class Connection : MonoBehaviour
     public void Shutdown()
     {
         isRunning = false;
+        isHosting = false;
         NetworkTransport.Shutdown();
         Debug.Log("Network stopped");
     }
 
-    //Relevant
-    public void SendServer()
+    public void SendServer(Message message)
     {
+        byte[] buffer = new byte[byteSize];
 
+        BinaryFormatter formater = new BinaryFormatter();
+        MemoryStream memoryStream = new MemoryStream(buffer);
+        formater.Serialize(memoryStream, message);
+
+        NetworkTransport.Send(hostID, connectionID, reliableChannelID, buffer, buffer.Length, out error);
     }
 
-    public void SendClient()
+    public void SendClient(Message message)
     {
+        byte[] buffer = new byte[byteSize];
 
+        BinaryFormatter formater = new BinaryFormatter();
+        MemoryStream memoryStream = new MemoryStream(buffer);
+        formater.Serialize(memoryStream, message);
+
+        NetworkTransport.Send(hostID, connectionID, reliableChannelID, buffer, buffer.Length, out error);
     }
+
+    #region HandleMessage
+    void HandleMessage(int receivingConnectionID, int receivingChannelID, int receivingHostID, Message message)
+    {
+        switch(message.MessageType)
+        {
+            case (byte)NetMessageType.ConnectionInfo:
+                ConnectionInfo info = (ConnectionInfo)message;
+                Debug.Log(info.Msg);
+                break;
+            case (byte)NetMessageType.UpdatePlayerPostionAndState:
+
+                break;
+            case (byte)NetMessageType.UpdatePlayerData:
+
+                break;
+            case (byte)NetMessageType.UpdatePropPostionAndState:
+
+                break;
+            case (byte)NetMessageType.BulletHit:
+
+                break;
+            case (byte)NetMessageType.WeaponUsed:
+
+                break;
+            case (byte)NetMessageType.WeaponPickUp:
+
+                break;
+            case (byte)NetMessageType.WeaponDrop:
+
+                break;
+            case (byte)NetMessageType.ChatMessage:
+
+                break;
+            case (byte)NetMessageType.LevelInfo:
+
+                break;
+            case (byte)NetMessageType.LevelChange:
+
+                break;
+        }
+    }
+    #endregion
 }
 #pragma warning restore CS0618 // Type or member is obsolete
