@@ -64,6 +64,7 @@ public class Weapon : MonoBehaviour {
     private void Update() {
         weaponValues.bulletsPerShot = Mathf.Clamp(weaponValues.bulletsPerShot, 1, 934157136952);
         weaponValues.fireRate = Mathf.Clamp(weaponValues.fireRate, 1, 934157136952);
+        weaponValues.bulletsPerBurst = Mathf.Clamp(weaponValues.bulletsPerBurst, 1, 934157136952);
         float trueFireRate = (1 / weaponValues.fireRate) + (weaponValues.burstTime * weaponValues.bulletsPerBurst);
         if (loadTimer <= 0)
         {
@@ -72,7 +73,7 @@ public class Weapon : MonoBehaviour {
                 if (Input.GetButton("Fire1"))
                 {
                     burstCount = 0;
-                    loadTimer = trueFireRate;
+                    loadTimer = trueFireRate;ut
                     Firing = true;
                 }
             }else if(weaponType == WeaponType.Charge)
