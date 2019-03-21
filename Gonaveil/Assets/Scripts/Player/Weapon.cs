@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 public class Weapon : MonoBehaviour {
-
+    //this already looks like hell NOW TO ADD PROJECTILES
     [System.Serializable]
     public class WeaponValues
     {
@@ -12,54 +12,89 @@ public class Weapon : MonoBehaviour {
         public float bulletsPerShot;
         public float bulletsPerBurst;
         public float burstTime;
+        public GameObject Projectile;
+        public Transform Barrel;
     }
 
     public WeaponValues weaponValues;
     public string Name;
     public WeaponType weaponType;
+    public ProjectileType projectileType;
     public GameObject worldModel;
     public GameObject viewModel;
-
+    public LayerMask raycastMask;
     public GameObject impact;
 
     private Camera mainCamera;
 
     public enum WeaponType { FullAuto, SemiAuto, Charge}
+    public enum ProjectileType { Projectile, Hitscan}
 
     private void Start() {
         mainCamera = Camera.main;
     }
 
     public void StandardFire() {
-        
-        for(int i =0; i < weaponValues.bulletsPerBurst;i++)
+        Vector3 hitPosition = new Vector3(); //Used to check if the player is actually looking somewhere.
+        for (int i =0; i < weaponValues.bulletsPerBurst;i++)
         {
-                Vector3 hitPosition = new Vector3(); //Used to check if the player is actually looking somewhere.
-                Transform hitParent = null;
-                Rigidbody hitObjectRigid = null; //Rigidbody of object if it has one.
-                Vector3 spreadVector = new Vector3();
-                spreadVector += mainCamera.transform.right.normalized * Random.Range(-weaponValues.weaponSpread, weaponValues.weaponSpread);
-                spreadVector += mainCamera.transform.up.normalized * Random.Range(-weaponValues.weaponSpread, weaponValues.weaponSpread);
-                if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward + spreadVector, out RaycastHit hit))
-                {
-                    hitPosition = hit.point;
-                    hitParent = hit.transform;
-                    hitObjectRigid = hit.transform.GetComponent<Rigidbody>();
-                }
-                if (hitPosition != Vector3.zero)
-                {
-                    Instantiate(impact, hitPosition, new Quaternion(0, 0, 0, 0), hitParent);
-                    if (hitObjectRigid != null)
-                    {
-                        hitObjectRigid.AddForceAtPosition((hitPosition - transform.position).normalized * 100f, hitPosition);
-                    }
-                }
+            if(projectileType == ProjectileType.Hitscan)
+            {
+                HitScan(hitPosition);
+            }
+            else
+            {
+                Projectile(hitPosition);
+            }
+        }
+    }
+
+    void Projectile(Vector3 hitPosition)
+    {
+        if (weaponValues.Barrel != null)
+        {
+            if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out RaycastHit hit, 10000, raycastMask))
+            {
+                hitPosition = hit.point;
+            }
+            if (hitPosition == Vector3.zero)
+            {
+                hitPosition = mainCamera.transform.position + mainCamera.transform.forward * 1000;
+            }
+        }
+        weaponValues.Barrel.LookAt(hitPosition);
+        GameObject bulletObject = Instantiate(weaponValues.Projectile, weaponValues.Barrel.position, weaponValues.Barrel.rotation) as GameObject;
+        float SpreadX = Random.Range(-weaponValues.weaponSpread, weaponValues.weaponSpread);
+        float SpreadY = Random.Range(-weaponValues.weaponSpread, weaponValues.weaponSpread);
+        bulletObject.transform.Rotate(0, SpreadX, SpreadY);
+    }
+
+    void HitScan(Vector3 hitPosition)
+    {
+        Transform hitParent = null;
+        Rigidbody hitObjectRigid = null; //Rigidbody of object if it has one.
+        Vector3 spreadVector = new Vector3();
+        spreadVector += mainCamera.transform.right.normalized * Random.Range(-weaponValues.weaponSpread, weaponValues.weaponSpread);
+        spreadVector += mainCamera.transform.up.normalized * Random.Range(-weaponValues.weaponSpread, weaponValues.weaponSpread);
+        if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward + spreadVector, out RaycastHit hit, 10000, raycastMask))
+        {
+            hitPosition = hit.point;
+            hitParent = hit.transform;
+            hitObjectRigid = hit.transform.GetComponent<Rigidbody>();
+        }
+        if (hitPosition != Vector3.zero)
+        {
+            Instantiate(impact, hitPosition, new Quaternion(0, 0, 0, 0), hitParent);
+            if (hitObjectRigid != null)
+            {
+                hitObjectRigid.AddForceAtPosition((hitPosition - transform.position).normalized * 100f, hitPosition);
+            }
         }
     }
 
     float loadTimer = 0;
-    public float burstTimer = 0;
-    public float burstCount = 0;
+    float burstTimer = 0;
+    float burstCount = 0;
     bool Firing;
     private void Update() {
         weaponValues.bulletsPerShot = Mathf.Clamp(weaponValues.bulletsPerShot, 1, 934157136952);
