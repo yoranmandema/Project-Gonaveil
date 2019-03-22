@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3480068461319889999}
   - component: {fileID: 1142881532275543218}
   - component: {fileID: 1286243124286693447}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Line Rifle Drop
   m_TagString: ItemWeapon
   m_Icon: {fileID: 0}
@@ -107,15 +107,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100006, guid: a1d3f731849683e4fb86b48201135c73, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: a1d3f731849683e4fb86b48201135c73, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 100012, guid: a1d3f731849683e4fb86b48201135c73, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: a1d3f731849683e4fb86b48201135c73, type: 3}
       propertyPath: m_LocalScale.x
@@ -251,27 +251,27 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: b14230a6560eaf24b8f0481f4389aca6, type: 2}
     - target: {fileID: 100000, guid: a1d3f731849683e4fb86b48201135c73, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: a1d3f731849683e4fb86b48201135c73, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 100008, guid: a1d3f731849683e4fb86b48201135c73, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 100010, guid: a1d3f731849683e4fb86b48201135c73, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 100014, guid: a1d3f731849683e4fb86b48201135c73, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 100016, guid: a1d3f731849683e4fb86b48201135c73, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9500000, guid: a1d3f731849683e4fb86b48201135c73, type: 3}
