@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GunController : MonoBehaviour
+public class PlayerInputController : MonoBehaviour
 {
 
-    public enum TriggerStates { Idle, Primary, Secondary}
+    public enum TriggerStates { Idle, Primary, Secondary }
     public TriggerStates triggerState;
 
     // Start is called before the first frame update
