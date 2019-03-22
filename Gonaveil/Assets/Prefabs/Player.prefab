@@ -84,7 +84,7 @@ MonoBehaviour:
   maxVelocity: 12
   acceleration: 100
   stepSlope: 85
-  airAccelaration: 500
+  airAccelaration: 275
   airDrag: 0.05
   limitAirVelocity: 1
   fallSpeedMultiplier: 3
@@ -443,7 +443,7 @@ MonoBehaviour:
     m_Bits: 2871
   impact: {fileID: 3377271070747912948, guid: 5b634f2c54a76ad49840f1e67d6c980d, type: 3}
   animator: {fileID: 1263876997933826223}
-  handBone: {fileID: 0}
+  handBone: {fileID: 1263876997926678335}
   chargeProgress: 0
   viewModel: {fileID: 0}
   worldModel: {fileID: 0}
@@ -1204,6 +1204,12 @@ Transform:
 --- !u!95 &1263876997933826223 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 9500000, guid: 90e6630f938cd684abfbc05182523e50,
+    type: 3}
+  m_PrefabInstance: {fileID: 1263876997926548943}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1263876997926678335 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400112, guid: 90e6630f938cd684abfbc05182523e50,
     type: 3}
   m_PrefabInstance: {fileID: 1263876997926548943}
   m_PrefabAsset: {fileID: 0}

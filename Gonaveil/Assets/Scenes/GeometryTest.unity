@@ -9993,7 +9993,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh17608
+  m_Name: pb_Mesh73176
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -14430,7 +14430,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh17016
+  m_Name: pb_Mesh72576
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -42084,7 +42084,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh17188
+  m_Name: pb_Mesh72752
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -67777,12 +67777,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!4 &1813734607 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1263876997926678335, guid: 908a70b9af8bb4e4bb3951e11a6b614a,
-    type: 3}
-  m_PrefabInstance: {fileID: 2917357309458625765}
-  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1845551870
 Mesh:
   m_ObjectHideFlags: 0
@@ -83878,48 +83872,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6447403044381061190, guid: 908a70b9af8bb4e4bb3951e11a6b614a,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4501231547599861634, guid: 908a70b9af8bb4e4bb3951e11a6b614a,
-        type: 3}
-      propertyPath: handBone
-      value: 
-      objectReference: {fileID: 1813734607}
-    - target: {fileID: 2267398718312708731, guid: 908a70b9af8bb4e4bb3951e11a6b614a,
-        type: 3}
-      propertyPath: allWeapons.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2267398718312708731, guid: 908a70b9af8bb4e4bb3951e11a6b614a,
-        type: 3}
-      propertyPath: allWeapons.Array.data[2]
-      value: 
-      objectReference: {fileID: 11400000, guid: 45d410edca6984b42ae41cc6a9443d93,
-        type: 2}
-    - target: {fileID: 2267398718312708731, guid: 908a70b9af8bb4e4bb3951e11a6b614a,
-        type: 3}
-      propertyPath: allWeapons.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: 45d410edca6984b42ae41cc6a9443d93,
-        type: 2}
-    - target: {fileID: 3500205305367817446, guid: 908a70b9af8bb4e4bb3951e11a6b614a,
-        type: 3}
-      propertyPath: handBone
-      value: 
-      objectReference: {fileID: 1813734607}
-    - target: {fileID: 7221569541358873938, guid: 908a70b9af8bb4e4bb3951e11a6b614a,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1352563271953662209, guid: 908a70b9af8bb4e4bb3951e11a6b614a,
-        type: 3}
-      propertyPath: airAccelaration
-      value: 275
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 908a70b9af8bb4e4bb3951e11a6b614a, type: 3}
