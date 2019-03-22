@@ -10060,7 +10060,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh193256
+  m_Name: pb_Mesh19288
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -14491,7 +14491,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh192674
+  m_Name: pb_Mesh18698
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -42034,7 +42034,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh192846
+  m_Name: pb_Mesh18870
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -83646,6 +83646,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1352563271953662209, guid: 908a70b9af8bb4e4bb3951e11a6b614a,
+        type: 3}
+      propertyPath: airAccelaration
+      value: 275
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 908a70b9af8bb4e4bb3951e11a6b614a, type: 3}
