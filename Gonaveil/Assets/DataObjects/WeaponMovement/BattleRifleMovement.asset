@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: BattleRifleMovement
   m_EditorClassIdentifier: 
   velocityMultiplier: 0.01
-  rotationSpeed: 5
+  rotationSpeed: 7.5
   rotationAmount: 2
-  bobbingSpeed: 75
-  bobbingAmount: 0.5
+  bobbingSpeed: 80
+  bobbingAmount: 0.3
   bobbingEngageTime: 1
   crouchAngle: 70
   crouchEngageTime: 0.1
