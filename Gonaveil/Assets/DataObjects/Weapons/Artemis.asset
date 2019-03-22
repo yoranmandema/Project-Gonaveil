@@ -10,25 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0b891a8b7dd44db4e908db08b7187760, type: 3}
-  m_Name: PlasmaGun
+  m_Name: Artemis
   m_EditorClassIdentifier: 
   weaponStats:
-    Name: Plasma Gun
+    Name: 
     magazineCapacity: 0
     reloadTime: 0
-    fireRate: 20
-    weaponSpread: 1
+    fireRate: 1
+    weaponSpread: 0
     bulletsPerShot: 1
     bulletsPerBurst: 1
     burstTime: 0
-    chargeRate: 0
+    chargeRate: 1
     Projectile: {fileID: 4846615784228082546, guid: e7cf5f436ac463144989ba4cb199fe24,
       type: 3}
-    weaponType: 0
+    weaponType: 2
     weaponClass: 2
     projectileType: 0
-  weaponMovementProfile: {fileID: 11400000, guid: 9324222546368a646ac353a6efa02015,
+  weaponMovementProfile: {fileID: 11400000, guid: d6aa95c883e9c5f4585dd63261a62f3b,
     type: 2}
-  viewModel: {fileID: 5824473437233262744, guid: e722a9a58ed88eb49be9eb223cce1c5c,
+  viewModel: {fileID: 7617160756214790565, guid: b1f3520f77158fd4c901cfe2ccacc9bb,
     type: 3}
-  offset: {x: 0.2, y: -0.25, z: 0.35}
+  offset: {x: 0.3, y: -0.3, z: 0.4}

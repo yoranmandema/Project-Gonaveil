@@ -28,7 +28,7 @@ public class Weapon : MonoBehaviour {
 
         if (viewModel != null) Destroy(viewModel);
 
-        viewModel = Instantiate(weaponParameters.viewModel, Vector3.zero, Quaternion.identity, transform);
+        viewModel = Instantiate(weaponParameters.viewModel, transform, false);
 
         modelData = viewModel.GetComponent<WeaponModelData>();
         barrel = modelData.barrel;

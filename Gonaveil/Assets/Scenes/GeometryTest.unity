@@ -1936,6 +1936,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fractured Double Shotgun
       objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: 33e803482c05c75409b2ac98d08a312d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 33e803482c05c75409b2ac98d08a312d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.42
@@ -6115,6 +6119,10 @@ PrefabInstance:
     - target: {fileID: 100004, guid: b20586c1be229074c86b891e80b0b503, type: 3}
       propertyPath: m_Name
       value: Dominion Blade_Short (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: b20586c1be229074c86b891e80b0b503, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: b20586c1be229074c86b891e80b0b503, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13646,6 +13654,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dominion Blade_Short
       objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: b20586c1be229074c86b891e80b0b503, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: b20586c1be229074c86b891e80b0b503, type: 3}
       propertyPath: m_LocalPosition.x
       value: -14.23
@@ -19264,6 +19276,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: d47fa717f850eef4392b3a1013465fb2, type: 3}
       propertyPath: m_Name
       value: BattleRifle
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d47fa717f850eef4392b3a1013465fb2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d47fa717f850eef4392b3a1013465fb2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -26281,6 +26297,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5279861541297789372, guid: c3c01db4fb3812841a548b5b47ef229c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1533825742299666485, guid: c3c01db4fb3812841a548b5b47ef229c,
         type: 3}
       propertyPath: m_Name
@@ -72067,6 +72088,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Artemis Cannon MKII
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 54310eff6c8d78d459620cc3a91f01de, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 54310eff6c8d78d459620cc3a91f01de, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.406
@@ -72799,6 +72824,10 @@ PrefabInstance:
     - target: {fileID: 100006, guid: a1d3f731849683e4fb86b48201135c73, type: 3}
       propertyPath: m_Name
       value: LineRifleUriash
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: a1d3f731849683e4fb86b48201135c73, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: a1d3f731849683e4fb86b48201135c73, type: 3}
       propertyPath: m_LocalScale.x
@@ -78856,6 +78885,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1352563271953662213, guid: 908a70b9af8bb4e4bb3951e11a6b614a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1352563271953662208, guid: 908a70b9af8bb4e4bb3951e11a6b614a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -78916,23 +78950,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4501231547599861634, guid: 908a70b9af8bb4e4bb3951e11a6b614a,
-        type: 3}
-      propertyPath: weaponParameters
-      value: 
-      objectReference: {fileID: 11400000, guid: a6286d37e8039ed4cb77c9613c6a6bf7,
-        type: 2}
-    - target: {fileID: 2267398718312708731, guid: 908a70b9af8bb4e4bb3951e11a6b614a,
-        type: 3}
-      propertyPath: allWeapons.Array.size
-      value: 1
+    - target: {fileID: 296051193, guid: 908a70b9af8bb4e4bb3951e11a6b614a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2267398718312708731, guid: 908a70b9af8bb4e4bb3951e11a6b614a,
-        type: 3}
-      propertyPath: allWeapons.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: a6286d37e8039ed4cb77c9613c6a6bf7,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 908a70b9af8bb4e4bb3951e11a6b614a, type: 3}
 --- !u!1001 &6684725674574483430

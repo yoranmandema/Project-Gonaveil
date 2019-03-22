@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class PlayerAnim : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    public PlayerMovement playerMovement;
+
+    private Animator animator;
+
+    void Start () {
+        animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        animator.SetBool("IsCrouching", playerMovement.isCrouching);
+        animator.SetFloat("MoveSpeed", playerMovement.velocity.sqrMagnitude);
+        if (playerMovement.isSliding) {
+            animator.SetTrigger("Slide");
+        }
     }
 }

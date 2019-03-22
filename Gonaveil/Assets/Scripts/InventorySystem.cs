@@ -12,6 +12,7 @@ public class InventorySystem : MonoBehaviour
 
     private WeaponMovement weaponMovement;
     private int lastSelectedWeaponID = -1;
+    private WeaponParameters current;
 
     void Start()
     {
@@ -39,11 +40,11 @@ public class InventorySystem : MonoBehaviour
     void SetWeapon() {
         //if (lastSelectedWeaponID > -1) allWeapons[lastSelectedWeaponID].weaponStats.modelObject.SetActive(false);
 
-        var current = allWeapons[selectedWeaponID];
+        current = allWeapons[selectedWeaponID];
 
         weaponMaster.SetParameters(current);
-        weaponMovement.offset = current.offset;
         weaponMovement.Profile = current.weaponMovementProfile;
+        weaponMovement.offset = current.offset;
 
         lastSelectedWeaponID = selectedWeaponID;
     }
