@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
 
 public class Weapon : MonoBehaviour {
+    public GunController controller;
     public UnityEngine.UI.Image chargeCircle;
     public WeaponParameters weaponParameters;
     public LayerMask raycastMask;
     public GameObject impact;
     public Animator animator;
 
-    public enum FireStage { Idle, Firing, Charging }
+    public enum FireStage { Idle, Firing, Charging, Cycled}
     public float chargeProgress;
     public GameObject viewModel;
 
@@ -42,7 +43,7 @@ public class Weapon : MonoBehaviour {
         animator.SetInteger("WeaponType", (int)Stats.weaponClass);
     }
 
-    public void StandardFire() {
+    public void WeaponFire() {
 
         var hitPosition = Vector3.zero; //Used to check if the player is actually looking somewhere.
 
@@ -70,21 +71,25 @@ public class Weapon : MonoBehaviour {
         barrel.LookAt(hitPosition);
 
         var bulletObject = Instantiate(Stats.Projectile, barrel.position, barrel.rotation) as GameObject;
-
-        var SpreadX = Random.Range(-Stats.weaponSpread, Stats.weaponSpread);
-        var SpreadY = Random.Range(-Stats.weaponSpread, Stats.weaponSpread);
+        var angle = Random.Range(0, 2 * Mathf.PI);
+        var offset = Random.Range(0, Stats.weaponSpread);
+        var SpreadX = Mathf.Cos(angle) * offset;
+        var SpreadY = Mathf.Sin(angle) * offset;
 
         bulletObject.transform.Rotate(SpreadX, SpreadY, 0);
     }
 
     void HitScan(Vector3 hitPosition) {
-
         Transform hitParent = null;
         Rigidbody hitObjectRigid = null; //Rigidbody of object if it has one.
 
         var spreadVector = Vector3.zero;
-        spreadVector += mainCamera.transform.right.normalized * (Random.Range(-Stats.weaponSpread, Stats.weaponSpread) / 100);
-        spreadVector += mainCamera.transform.up.normalized * (Random.Range(-Stats.weaponSpread, Stats.weaponSpread) / 100);
+
+        var angle = Random.Range(0, 2 * Mathf.PI);
+        var offset = Random.Range(0, Stats.weaponSpread);
+        spreadVector += mainCamera.transform.right.normalized * Mathf.Cos(angle) * offset;
+        spreadVector += mainCamera.transform.up.normalized * Mathf.Sin(angle) * offset;
+        spreadVector += mainCamera.transform.forward * 75;
 
         if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward + spreadVector, out RaycastHit hit, 10000, raycastMask)) {
             hitPosition = hit.point;
@@ -122,27 +127,38 @@ public class Weapon : MonoBehaviour {
         float trueFireRate = (1 / (Stats.fireRate / 60)) + (Stats.burstTime * Stats.bulletsPerBurst);
 
         if (loadTimer <= 0) {
-            if (Stats.weaponType == WeaponType.FullAuto) {
-                if (Input.GetButton("Fire1")) {
+            if (controller.triggerState == GunController.TriggerStates.Primary)
+            {
+                if (Stats.weaponType == WeaponType.FullAuto)
+                {
                     FireGun(trueFireRate);
                 }
-            }
-            else if (Stats.weaponType == WeaponType.Charge) {
-                if (Input.GetButton("Fire1")) {
+                else if (Stats.weaponType == WeaponType.Charge)
+                {
                     ChargeWeapon();
                     fireStage = FireStage.Charging;
                 }
-                if (fireStage == FireStage.Charging) {
-                    if (Input.GetButtonUp("Fire1") || (Stats.fireWhenCharged && chargeProgress == 1)) {
+                else
+                {
+                    if (fireStage != FireStage.Cycled)
+                    {
                         FireGun(trueFireRate);
-                        chargeProgress = 0;
                     }
-                    chargeCircle.fillAmount = chargeProgress;
                 }
             }
-            else {
-                if (Input.GetButtonDown("Fire1")) {
+            if (fireStage == FireStage.Charging)
+            {
+                if (controller.triggerState == GunController.TriggerStates.Idle || (Stats.fireWhenCharged && chargeProgress == 1))
+                {
                     FireGun(trueFireRate);
+                    chargeProgress = 0;
+                }
+                chargeCircle.fillAmount = chargeProgress;
+            }else if (fireStage == FireStage.Cycled)
+            {
+                if (controller.triggerState == GunController.TriggerStates.Idle)
+                {
+                    fireStage = FireStage.Idle;
                 }
             }
         }
@@ -150,19 +166,31 @@ public class Weapon : MonoBehaviour {
             loadTimer -= Time.deltaTime;
         }
 
-        if (fireStage == FireStage.Firing) {
-            if (burstCount < Stats.bulletsPerBurst) {
-                if (burstTimer <= 0) {
+        if (fireStage == FireStage.Firing)
+        {
+            if (burstCount < Stats.bulletsPerBurst)
+            {
+                if (burstTimer <= 0)
+                {
                     burstCount += 1;
                     burstTimer = Stats.burstTime;
-                    StandardFire();
+                    WeaponFire();
                 }
-                else {
+                else
+                {
                     burstTimer -= Time.deltaTime;
                 }
             }
-            else {
-                fireStage = FireStage.Idle;
+            else
+            {
+                if (Stats.weaponType == WeaponType.SemiAuto)
+                {
+                    fireStage = FireStage.Cycled;
+                }
+                else
+                {
+                    fireStage = FireStage.Idle;
+                }
             }
         }
     }
