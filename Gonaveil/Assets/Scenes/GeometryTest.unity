@@ -38665,7 +38665,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh43372
+  m_Name: pb_Mesh319822
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -78777,6 +78777,11 @@ PrefabInstance:
       propertyPath: handBone
       value: 
       objectReference: {fileID: 1813734607}
+    - target: {fileID: 7221569541358873938, guid: 908a70b9af8bb4e4bb3951e11a6b614a,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 908a70b9af8bb4e4bb3951e11a6b614a, type: 3}
 --- !u!1001 &5458122776786480681

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8905692613215173166}
   - component: {fileID: 1158271442912552969}
   - component: {fileID: 3665242007269636526}
+  - component: {fileID: 3885453189341082102}
   m_Layer: 0
   m_Name: Plasma Rifle Drop
   m_TagString: ItemWeapon
@@ -62,19 +63,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponParameters: {fileID: 11400000, guid: a6286d37e8039ed4cb77c9613c6a6bf7, type: 2}
---- !u!65 &6859323895470079624
+--- !u!65 &3885453189341082102
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7244108414575221684}
+  m_GameObject: {fileID: 6342696842891776904}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.0007026208, y: 0.01095289, z: 0.0028526336}
-  m_Center: {x: 0, y: -0.00039419363, z: 0.00014160652}
+  m_Size: {x: 0.1, y: 0.3174616, z: 1.1085854}
+  m_Center: {x: 0, y: 0.010272205, z: -0.05429268}
 --- !u!1001 &7244108414575254800
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -175,12 +176,6 @@ PrefabInstance:
 --- !u!4 &7244108414575118230 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400006, guid: ba3b78a6d22a75d4480e59219fca3a4d,
-    type: 3}
-  m_PrefabInstance: {fileID: 7244108414575254800}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &7244108414575221684 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100004, guid: ba3b78a6d22a75d4480e59219fca3a4d,
     type: 3}
   m_PrefabInstance: {fileID: 7244108414575254800}
   m_PrefabAsset: {fileID: 0}

@@ -1,18 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!65 &8023720964123226473
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2871921316552615262}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.0020213586, y: 0.016845126, z: 0.004620618}
-  m_Center: {x: 0, y: -0.003712937, z: 0.0004083167}
 --- !u!1 &9176300260718665028
 GameObject:
   m_ObjectHideFlags: 0
@@ -24,6 +11,7 @@ GameObject:
   - component: {fileID: 6686276903910323426}
   - component: {fileID: 2614437568017451907}
   - component: {fileID: 921379137775421216}
+  - component: {fileID: 857529580642658715}
   m_Layer: 0
   m_Name: ArtCannonDrop
   m_TagString: ItemWeapon
@@ -75,6 +63,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponParameters: {fileID: 11400000, guid: e781dbeaf61a63c4fb186ff594857493, type: 2}
+--- !u!65 &857529580642658715
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9176300260718665028}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.2, y: 0.4, z: 1.7403107}
+  m_Center: {x: 0, y: -0.019999996, z: 0.14011383}
 --- !u!1001 &2871921316552516580
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -85,6 +86,14 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 54310eff6c8d78d459620cc3a91f01de, type: 3}
       propertyPath: m_Name
       value: Artemis Cannon MKII
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 54310eff6c8d78d459620cc3a91f01de, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 100026, guid: 54310eff6c8d78d459620cc3a91f01de, type: 3}
+      propertyPath: m_TagString
+      value: ItemWeapon
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 54310eff6c8d78d459620cc3a91f01de, type: 3}
       propertyPath: m_LocalPosition.x
@@ -135,12 +144,6 @@ PrefabInstance:
 --- !u!4 &2871921316552391012 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 54310eff6c8d78d459620cc3a91f01de,
-    type: 3}
-  m_PrefabInstance: {fileID: 2871921316552516580}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &2871921316552615262 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100026, guid: 54310eff6c8d78d459620cc3a91f01de,
     type: 3}
   m_PrefabInstance: {fileID: 2871921316552516580}
   m_PrefabAsset: {fileID: 0}

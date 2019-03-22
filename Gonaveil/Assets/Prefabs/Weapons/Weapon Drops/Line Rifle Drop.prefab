@@ -1,18 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!65 &4794420199750028527
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2449499642251641372}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.01187263, y: 0.26100123, z: 0.0475439}
-  m_Center: {x: 0, y: 0.032656625, z: 0.0023600783}
 --- !u!1 &8597316631990123773
 GameObject:
   m_ObjectHideFlags: 0
@@ -25,6 +12,7 @@ GameObject:
   - component: {fileID: 3990368175454503403}
   - component: {fileID: 3480068461319889999}
   - component: {fileID: 1142881532275543218}
+  - component: {fileID: 1286243124286693447}
   m_Layer: 0
   m_Name: Line Rifle Drop
   m_TagString: ItemWeapon
@@ -41,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 8597316631990123773}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 6, y: 0.06, z: 0.06}
+  m_LocalScale: {x: 6, y: 6, z: 6}
   m_Children:
   - {fileID: 2449499642251746878}
   m_Father: {fileID: 0}
@@ -89,6 +77,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponParameters: {fileID: 11400000, guid: f70d6f8404af581448155e7834d8ad32, type: 2}
+--- !u!65 &1286243124286693447
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8597316631990123773}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.015, y: 0.050716214, z: 0.2676777}
+  m_Center: {x: 0, y: 0.002426083, z: -0.033711642}
 --- !u!1001 &2449499642251609272
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -170,11 +171,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: a1d3f731849683e4fb86b48201135c73, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: a1d3f731849683e4fb86b48201135c73, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: a1d3f731849683e4fb86b48201135c73, type: 3}
       propertyPath: m_Materials.Array.data[3]
@@ -272,17 +273,12 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9500000, guid: a1d3f731849683e4fb86b48201135c73, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a1d3f731849683e4fb86b48201135c73, type: 3}
 --- !u!4 &2449499642251746878 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400006, guid: a1d3f731849683e4fb86b48201135c73,
-    type: 3}
-  m_PrefabInstance: {fileID: 2449499642251609272}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &2449499642251641372 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100004, guid: a1d3f731849683e4fb86b48201135c73,
     type: 3}
   m_PrefabInstance: {fileID: 2449499642251609272}
   m_PrefabAsset: {fileID: 0}

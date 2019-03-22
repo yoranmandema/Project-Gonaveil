@@ -402,7 +402,6 @@ GameObject:
   - component: {fileID: 5228108675203357533}
   - component: {fileID: 5228108675202554749}
   - component: {fileID: 5228108675201587645}
-  - component: {fileID: 6660137116185974439}
   m_Layer: 0
   m_Name: Cube.001
   m_TagString: Untagged
@@ -473,19 +472,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &6660137116185974439
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5228108675203581821}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.053440325, y: 0.5302266, z: 0.10378757}
-  m_Center: {x: 0, y: -0.044853963, z: -0.007169263}
 --- !u!1 &5228108675203581823
 GameObject:
   m_ObjectHideFlags: 0
@@ -497,6 +483,7 @@ GameObject:
   - component: {fileID: 5228108675203357535}
   - component: {fileID: 1714021498615020141}
   - component: {fileID: 4170327034663973672}
+  - component: {fileID: 2585152098198357990}
   m_Layer: 0
   m_Name: Double Shotgun Drop
   m_TagString: ItemWeapon
@@ -549,3 +536,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponParameters: {fileID: 11400000, guid: dad1930dfeb8c2d4b9ac2f20a716b89b, type: 2}
+--- !u!65 &2585152098198357990
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5228108675203581823}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2.1993184, z: 9.956563}
+  m_Center: {x: 0, y: -0.10546485, z: 0.47373453}

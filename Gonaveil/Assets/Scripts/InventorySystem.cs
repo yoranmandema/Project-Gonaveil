@@ -81,12 +81,12 @@ public class InventorySystem : MonoBehaviour
         dropItem.GetComponent<Rigidbody>().AddForce(throwVector * 100);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
-        Debug.Log("TOUCH");
-        if (collision.transform.tag == "ItemWeapon")
+        Debug.Log(collision.tag);
+        if (collision.tag == "ItemWeapon")
         {
-            WeaponParameters current = collision.transform.GetComponentInChildren<DroppedWeaponData>().weaponParameters;
+            WeaponParameters current = collision.GetComponentInChildren<DroppedWeaponData>().weaponParameters;
             if (allWeapons[0] == null)
             {
                 allWeapons[0] = current;
