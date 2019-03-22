@@ -104,7 +104,7 @@ public class Weapon : MonoBehaviour {
 
     void ChargeWeapon() {
         if (chargeProgress < 1) {
-            chargeProgress += Time.deltaTime / Stats.chargeTime;
+            chargeProgress = Mathf.Min(1, chargeProgress + Time.deltaTime / Stats.chargeTime);
         }
     }
 
@@ -133,7 +133,7 @@ public class Weapon : MonoBehaviour {
                     fireStage = FireStage.Charging;
                 }
                 if (fireStage == FireStage.Charging) {
-                    if (Input.GetButtonUp("Fire1")) {
+                    if (Input.GetButtonUp("Fire1") || (Stats.fireWhenCharged && chargeProgress == 1)) {
                         FireGun(trueFireRate);
                         chargeProgress = 0;
                     }

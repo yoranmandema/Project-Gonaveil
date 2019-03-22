@@ -16,19 +16,19 @@ MonoBehaviour:
     Name: 
     magazineCapacity: 0
     reloadTime: 0
-    fireRate: 1
+    fireRate: 120
     weaponSpread: 0
     bulletsPerShot: 1
     bulletsPerBurst: 1
     burstTime: 0
-    chargeTime: 1
+    chargeTime: 0.5
     Projectile: {fileID: 4846615784228082546, guid: e7cf5f436ac463144989ba4cb199fe24,
       type: 3}
     weaponType: 2
     weaponClass: 2
-    projectileType: 0
+    projectileType: 1
   weaponMovementProfile: {fileID: 11400000, guid: d6aa95c883e9c5f4585dd63261a62f3b,
     type: 2}
   viewModel: {fileID: 7617160756214790565, guid: b1f3520f77158fd4c901cfe2ccacc9bb,
     type: 3}
-  offset: {x: 0.25, y: -0.2, z: 0.1}
+  offset: {x: 0.25, y: -0.2, z: 0}

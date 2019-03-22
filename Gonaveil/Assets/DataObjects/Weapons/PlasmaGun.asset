@@ -16,12 +16,12 @@ MonoBehaviour:
     Name: Plasma Gun
     magazineCapacity: 0
     reloadTime: 0
-    fireRate: 20
+    fireRate: 300
     weaponSpread: 1
     bulletsPerShot: 1
     bulletsPerBurst: 1
     burstTime: 0
-    chargeRate: 0
+    chargeTime: 0
     Projectile: {fileID: 4846615784228082546, guid: e7cf5f436ac463144989ba4cb199fe24,
       type: 3}
     weaponType: 0
@@ -31,4 +31,4 @@ MonoBehaviour:
     type: 2}
   viewModel: {fileID: 5824473437233262744, guid: e722a9a58ed88eb49be9eb223cce1c5c,
     type: 3}
-  offset: {x: 0.2, y: -0.25, z: 0.35}
+  offset: {x: 0.2, y: -0.21, z: 0.35}
