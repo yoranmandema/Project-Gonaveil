@@ -225,7 +225,7 @@ public class PlayerMovement : MonoBehaviour {
             isSliding = true;
 
             if (isGrounded) {
-                velocity *= 1;
+                velocity *= slideBoost;
             }
         }
         else if (Input.GetButtonUp("Crouch") && isSliding) {
