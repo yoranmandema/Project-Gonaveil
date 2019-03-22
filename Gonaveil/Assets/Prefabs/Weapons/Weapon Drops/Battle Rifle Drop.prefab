@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1563817043220624141}
   - component: {fileID: 42796370633592736}
   - component: {fileID: 6326261071901473469}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Battle Rifle Drop
   m_TagString: ItemWeapon
   m_Icon: {fileID: 0}
@@ -89,11 +89,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: d47fa717f850eef4392b3a1013465fb2, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 100014, guid: d47fa717f850eef4392b3a1013465fb2, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 100014, guid: d47fa717f850eef4392b3a1013465fb2, type: 3}
       propertyPath: m_TagString
@@ -101,7 +101,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100016, guid: d47fa717f850eef4392b3a1013465fb2, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d47fa717f850eef4392b3a1013465fb2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -153,27 +153,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: d47fa717f850eef4392b3a1013465fb2, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: d47fa717f850eef4392b3a1013465fb2, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 100006, guid: d47fa717f850eef4392b3a1013465fb2, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 100008, guid: d47fa717f850eef4392b3a1013465fb2, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 100010, guid: d47fa717f850eef4392b3a1013465fb2, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 100012, guid: d47fa717f850eef4392b3a1013465fb2, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d47fa717f850eef4392b3a1013465fb2, type: 3}
