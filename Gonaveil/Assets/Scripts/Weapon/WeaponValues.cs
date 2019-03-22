@@ -16,7 +16,7 @@ public class WeaponValues {
     public float bulletsPerShot;
     public float bulletsPerBurst;
     public float burstTime;
-    public float chargeRate;
+    public float chargeTime;
     public GameObject Projectile;
     //public Transform Barrel;
     public WeaponType weaponType;

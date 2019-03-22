@@ -8,7 +8,7 @@ public class Weapon : MonoBehaviour {
     public Animator animator;
 
     public enum FireStage { Idle, Firing, Charging }
-    [HideInInspector] public float chargeProgress;
+    public float chargeProgress;
     public GameObject viewModel;
 
     private Camera mainCamera;
@@ -23,8 +23,6 @@ public class Weapon : MonoBehaviour {
 
     public void SetParameters (WeaponParameters parameters) {
         weaponParameters = parameters;
-
-        print(viewModel);
 
         if (viewModel != null) Destroy(viewModel);
 
@@ -105,8 +103,8 @@ public class Weapon : MonoBehaviour {
     }
 
     void ChargeWeapon() {
-        if (chargeProgress < 100) {
-            chargeProgress += Time.deltaTime * Stats.chargeRate;
+        if (chargeProgress < 1) {
+            chargeProgress += Time.deltaTime / Stats.chargeTime;
         }
     }
 
@@ -121,7 +119,7 @@ public class Weapon : MonoBehaviour {
         Stats.fireRate = Mathf.Clamp(Stats.fireRate, 1, int.MaxValue);
         Stats.bulletsPerBurst = Mathf.Clamp(Stats.bulletsPerBurst, 1, int.MaxValue);
 
-        float trueFireRate = (1 / Stats.fireRate) + (Stats.burstTime * Stats.bulletsPerBurst);
+        float trueFireRate = (1 / (Stats.fireRate / 60)) + (Stats.burstTime * Stats.bulletsPerBurst);
 
         if (loadTimer <= 0) {
             if (Stats.weaponType == WeaponType.FullAuto) {
@@ -139,7 +137,7 @@ public class Weapon : MonoBehaviour {
                         FireGun(trueFireRate);
                         chargeProgress = 0;
                     }
-                    chargeCircle.fillAmount = chargeProgress / 100;
+                    chargeCircle.fillAmount = chargeProgress;
                 }
             }
             else {

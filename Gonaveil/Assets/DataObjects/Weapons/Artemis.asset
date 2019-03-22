@@ -21,7 +21,7 @@ MonoBehaviour:
     bulletsPerShot: 1
     bulletsPerBurst: 1
     burstTime: 0
-    chargeRate: 1
+    chargeTime: 1
     Projectile: {fileID: 4846615784228082546, guid: e7cf5f436ac463144989ba4cb199fe24,
       type: 3}
     weaponType: 2
@@ -31,4 +31,4 @@ MonoBehaviour:
     type: 2}
   viewModel: {fileID: 7617160756214790565, guid: b1f3520f77158fd4c901cfe2ccacc9bb,
     type: 3}
-  offset: {x: 0.3, y: -0.3, z: 0.4}
+  offset: {x: 0.25, y: -0.2, z: 0.1}

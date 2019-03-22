@@ -78954,6 +78954,17 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2267398718312708731, guid: 908a70b9af8bb4e4bb3951e11a6b614a,
+        type: 3}
+      propertyPath: allWeapons.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2267398718312708731, guid: 908a70b9af8bb4e4bb3951e11a6b614a,
+        type: 3}
+      propertyPath: allWeapons.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: e781dbeaf61a63c4fb186ff594857493,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 908a70b9af8bb4e4bb3951e11a6b614a, type: 3}
 --- !u!1001 &6684725674574483430
@@ -79025,3 +79036,72 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e722a9a58ed88eb49be9eb223cce1c5c, type: 3}
+--- !u!1001 &7610755059413667644
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7617160756214790565, guid: b1f3520f77158fd4c901cfe2ccacc9bb,
+        type: 3}
+      propertyPath: m_Name
+      value: Artemis Cannon MKII
+      objectReference: {fileID: 0}
+    - target: {fileID: 5343307972866379779, guid: b1f3520f77158fd4c901cfe2ccacc9bb,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.86
+      objectReference: {fileID: 0}
+    - target: {fileID: 5343307972866379779, guid: b1f3520f77158fd4c901cfe2ccacc9bb,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5343307972866379779, guid: b1f3520f77158fd4c901cfe2ccacc9bb,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -31
+      objectReference: {fileID: 0}
+    - target: {fileID: 5343307972866379779, guid: b1f3520f77158fd4c901cfe2ccacc9bb,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5343307972866379779, guid: b1f3520f77158fd4c901cfe2ccacc9bb,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5343307972866379779, guid: b1f3520f77158fd4c901cfe2ccacc9bb,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5343307972866379779, guid: b1f3520f77158fd4c901cfe2ccacc9bb,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5343307972866379779, guid: b1f3520f77158fd4c901cfe2ccacc9bb,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 5343307972866379779, guid: b1f3520f77158fd4c901cfe2ccacc9bb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5343307972866379779, guid: b1f3520f77158fd4c901cfe2ccacc9bb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5343307972866379779, guid: b1f3520f77158fd4c901cfe2ccacc9bb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b1f3520f77158fd4c901cfe2ccacc9bb, type: 3}
