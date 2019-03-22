@@ -50,7 +50,7 @@ public class InventorySystem : MonoBehaviour
         {
             SetWeapon();
         }
-        if (Input.GetButtonDown("Drop Weapon"))
+        if (Input.GetButtonDown("Drop Weapon") && !disabled)
         {
             DropWeapon();
         }
@@ -81,7 +81,7 @@ public class InventorySystem : MonoBehaviour
         dropItem.GetComponent<Rigidbody>().AddForce(throwVector * 100);
     }
 
-    private void OnTriggerEnter(Collider collision)
+    private void OnTriggerStay(Collider collision)
     {
         Debug.Log(collision.tag);
         if (collision.tag == "ItemWeapon")
@@ -89,15 +89,21 @@ public class InventorySystem : MonoBehaviour
             WeaponParameters current = collision.GetComponentInChildren<DroppedWeaponData>().weaponParameters;
             if (allWeapons[0] == null)
             {
-                allWeapons[0] = current;
-                lastSelectedWeaponID = -1;
-                Destroy(collision.gameObject);
+                if (allWeapons[1].name != current.name)
+                {
+                    allWeapons[0] = current;
+                    lastSelectedWeaponID = -1;
+                    Destroy(collision.gameObject);
+                }
             }
             else if (allWeapons[1] == null)
             {
-                allWeapons[1] = current;
-                lastSelectedWeaponID = -1;
-                Destroy(collision.gameObject);
+                if (allWeapons[0].name != current.name)
+                {
+                    allWeapons[1] = current;
+                    lastSelectedWeaponID = -1;
+                    Destroy(collision.gameObject);
+                }
             }
         }
     }
