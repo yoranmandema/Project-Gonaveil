@@ -82,22 +82,22 @@ MonoBehaviour:
   maxVelocity: 12
   acceleration: 100
   stepSlope: 85
-  airAccelaration: 150
+  airAccelaration: 500
   airDrag: 0.05
   limitAirVelocity: 1
   fallSpeedMultiplier: 3
   fallMaxSpeedUp: 10
   jumpHeight: 3
-  jumpLateralSpeedMultiplier: 1.1
+  jumpLateralSpeedMultiplier: 1.15
   autoJump: 1
   jumpCooldown: 0.25
-  upHillJumpBoost: 3
+  upHillJumpBoost: 1.5
   surfSlope: 45
   crouchHeight: 1
   crouchTime: 0.1
   crouchVelocity: 8
   crouchCameraHeight: 0.9
-  slideBoost: 1.25
+  slideBoost: 1.2
   slideVelocityThreshold: 10
   flipTime: 0.25
   isFlipped: 0
@@ -440,6 +440,7 @@ MonoBehaviour:
   secondaryWeaponID: 1
   allWeapons:
   - {fileID: 11400000, guid: a6286d37e8039ed4cb77c9613c6a6bf7, type: 2}
+  - {fileID: 11400000, guid: e781dbeaf61a63c4fb186ff594857493, type: 2}
   weaponMaster: {fileID: 4501231547599861634}
   selectedWeaponID: 0
 --- !u!114 &5067086843879541993
@@ -618,7 +619,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2917357310790119124}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 575d8208da70a9045a41626fce67b0ab, type: 3}
   m_Name: 
