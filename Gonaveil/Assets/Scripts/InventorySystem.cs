@@ -85,11 +85,13 @@ public class InventorySystem : MonoBehaviour
             if (allWeapons[0] == null)
             {
                 allWeapons[0] = current;
+                lastSelectedWeaponID = -1;
                 Destroy(collision.gameObject);
             }
             else if (allWeapons[1] == null)
             {
                 allWeapons[1] = current;
+                lastSelectedWeaponID = -1;
                 Destroy(collision.gameObject);
             }
         }
