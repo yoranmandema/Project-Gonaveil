@@ -36,7 +36,7 @@ public class WeaponMovement : MonoBehaviour
         crouchingSmoothedLerp += (crouchingLerp - crouchingSmoothedLerp) * Time.deltaTime / Profile.crouchEngageSmoothing;
         lookDownLerp += (Mathf.Clamp(transform.forward.y, -1, 0) - lookDownLerp) * Time.deltaTime / Profile.lookDownSmoothing;
 
-        if (isGrounded) bobbingStep += velocityLerp + Time.deltaTime;
+        if (isGrounded) bobbingStep += velocityLerp * Profile.bobbingSpeed * Time.deltaTime;
 
         var sideComponent = Vector3.zero;
         var forwardComponent = Vector3.zero;

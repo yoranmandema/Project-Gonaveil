@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 79df09061a1986545921459efbe94f3b, type: 3}
-  m_Name: PlasmaGunMovement
+  m_Name: BattleRifleMovement
   m_EditorClassIdentifier: 
   velocityMultiplier: 0.01
   rotationSpeed: 5
@@ -22,5 +22,5 @@ MonoBehaviour:
   crouchEngageTime: 0.1
   crouchEngageSmoothing: 0.05
   lookDownRetraction: 0.25
-  lookDownSmoothing: 1
+  lookDownSmoothing: 2
   jumpAmount: 0.25

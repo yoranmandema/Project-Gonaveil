@@ -15,11 +15,12 @@ MonoBehaviour:
   velocityMultiplier: 0.01
   rotationSpeed: 3
   rotationAmount: 2
+  bobbingSpeed: 75
   bobbingAmount: 0.25
   bobbingEngageTime: 1
   crouchAngle: 45
   crouchEngageTime: 0.2
   crouchEngageSmoothing: 0.05
   lookDownRetraction: 0.25
-  lookDownSmoothing: 2
+  lookDownSmoothing: 1
   jumpAmount: 0.25

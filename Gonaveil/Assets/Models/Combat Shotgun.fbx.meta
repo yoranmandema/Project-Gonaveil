@@ -1,89 +1,51 @@
 fileFormatVersion: 2
-guid: d47fa717f850eef4392b3a1013465fb2
+guid: 36913fe18ff4b5d43b05142d4df69750
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
-    100002: Cube.002
-    100004: Cube.003
-    100006: Cube.004
-    100008: Cube.005
-    100010: Cube.006
-    100012: Cylinder
-    100014: Cube
-    100016: Text
+    100002: Cube
+    100004: Cube.001
+    100006: Cube.002
+    100008: Cylinder
+    100010: Cylinder.001
+    100012: Cylinder.002
+    100014: Cylinder.003
     400000: //RootNode
-    400002: Cube.002
-    400004: Cube.003
-    400006: Cube.004
-    400008: Cube.005
-    400010: Cube.006
-    400012: Cylinder
-    400014: Cube
-    400016: Text
-    2100000: Material.001
+    400002: Cube
+    400004: Cube.001
+    400006: Cube.002
+    400008: Cylinder
+    400010: Cylinder.001
+    400012: Cylinder.002
+    400014: Cylinder.003
+    2100000: Material.006
     2100002: Material.008
     2100004: Material.005
     2100006: Material.007
-    2100008: Material.006
-    2100010: No Name
-    2300000: //RootNode
-    2300002: Cube.002
-    2300004: Cube.003
-    2300006: Cube.004
-    2300008: Cube.005
-    2300010: Cube.006
-    2300012: Cylinder
-    2300014: Cube
-    2300016: Text
-    3300000: //RootNode
-    3300002: Cube.002
-    3300004: Cube.003
-    3300006: Cube.004
-    3300008: Cube.005
-    3300010: Cube.006
-    3300012: Cylinder
-    3300014: Cube
-    3300016: Text
+    2300000: Cube
+    2300002: Cube.001
+    2300004: Cube.002
+    2300006: Cylinder
+    2300008: Cylinder.001
+    2300010: Cylinder.002
+    2300012: Cylinder.003
+    3300000: Cube
+    3300002: Cube.001
+    3300004: Cube.002
+    3300006: Cylinder
+    3300008: Cylinder.001
+    3300010: Cylinder.002
+    3300012: Cylinder.003
     4300000: Cube
-    4300002: Cylinder
-    4300004: Cube.002
-    4300006: Cube.003
-    4300008: Cube.004
-    4300010: Cube.005
-    4300012: Cube.006
-    4300014: Text
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.001
-    second: {fileID: 2100000, guid: ed1233945d68f2046b5ad70fe6aa1f5f, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.005
-    second: {fileID: 2100000, guid: eb59c3056c35e574caac9b7d4c9d6ec1, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.006
-    second: {fileID: 2100000, guid: 4bca5d3cfc3741241bed6fa4aac71c07, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.007
-    second: {fileID: 2100000, guid: c824fcf6a20fe2b488f6ab4ca74dd02f, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.008
-    second: {fileID: 2100000, guid: bd1f078e998d21a40b22ee2a545bb421, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: No Name
-    second: {fileID: 2100000, guid: 37ed40e79e1373e4a9b9988ad932984d, type: 2}
+    4300002: Cylinder.003
+    4300004: Cube.001
+    4300006: Cylinder
+    4300008: Cube.002
+    4300010: Cylinder.001
+    4300012: Cylinder.002
+    2186277476908879412: ImportLogs
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
@@ -114,7 +76,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.12
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1

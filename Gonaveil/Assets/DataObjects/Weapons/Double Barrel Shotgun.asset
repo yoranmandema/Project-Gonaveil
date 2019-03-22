@@ -10,26 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0b891a8b7dd44db4e908db08b7187760, type: 3}
-  m_Name: Artemis
+  m_Name: Double Barrel Shotgun
   m_EditorClassIdentifier: 
   weaponStats:
-    Name: 
-    magazineCapacity: 0
-    reloadTime: 0
-    fireRate: 300
-    weaponSpread: 0
-    bulletsPerShot: 1
+    Name: Double Barrel
+    magazineCapacity: 2
+    reloadTime: 3
+    fireRate: 500
+    weaponSpread: 10
+    bulletsPerShot: 20
     bulletsPerBurst: 1
     burstTime: 0
-    chargeTime: 0.5
+    chargeTime: 0
     fireWhenCharged: 0
-    Projectile: {fileID: 4846615784228082546, guid: e7cf5f436ac463144989ba4cb199fe24,
-      type: 3}
-    weaponType: 2
+    Projectile: {fileID: 0}
+    weaponType: 1
     weaponClass: 2
     projectileType: 1
-  weaponMovementProfile: {fileID: 11400000, guid: d1d75ed44897d0842bd8f514207e85b3,
+  weaponMovementProfile: {fileID: 11400000, guid: d6aa95c883e9c5f4585dd63261a62f3b,
     type: 2}
-  viewModel: {fileID: 7617160756214790565, guid: b1f3520f77158fd4c901cfe2ccacc9bb,
+  viewModel: {fileID: 9000678755088859745, guid: 0f55e233c43c4a844ab156833edb6fbb,
     type: 3}
-  offset: {x: 0.25, y: -0.2, z: 0}
+  offset: {x: 0.35, y: -0.3, z: 0.6}

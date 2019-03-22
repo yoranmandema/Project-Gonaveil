@@ -341,7 +341,7 @@ public class PlayerMovement : MonoBehaviour {
         // Limit acceleration when going forward
         var moveVector = desiredMovement.SetZ(desiredMovement.z - VelocityDotDirection * desiredMovement.z);
         var newTransformedMovement = transform.TransformDirection(moveVector);
-       // newTransformedMovement = Vector3.ProjectOnPlane(newTransformedMovement, groundNormal);
+        //newTransformedMovement = Vector3.ProjectOnPlane(newTransformedMovement, groundNormal);
 
         var upwards = Vector3.Dot(groundNormal, Vector3.up);
         var downVector = Vector3.ProjectOnPlane(Vector3.down, groundNormal); // Vector going down the ramp.
