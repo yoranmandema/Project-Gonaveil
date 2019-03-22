@@ -8,15 +8,15 @@ public class InventorySystem : MonoBehaviour
     public Weapon weaponMaster;
     private GameObject currentDropObject;
     public int selectedWeaponID;
+    public WeaponMovement weaponMovement;
 
-    private WeaponMovement weaponMovement;
     private int lastSelectedWeaponID = -1;
     private WeaponParameters current;
     private bool disabled;
 
     void Start()
     {
-        weaponMovement = GetComponent<WeaponMovement>();
+        //weaponMovement = GetComponent<WeaponMovement>();
     }
 
     void Update()
@@ -73,7 +73,26 @@ public class InventorySystem : MonoBehaviour
     void DropWeapon()
     {
         allWeapons[selectedWeaponID] = null;
-        Instantiate(currentDropObject, transform.position + transform.forward * 10, transform.rotation);
+        Instantiate(currentDropObject, transform.position + transform.forward * 1.5f, transform.rotation);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("TOUCH");
+        if (collision.transform.tag == "ItemWeapon")
+        {
+            WeaponParameters current = collision.transform.GetComponentInChildren<DroppedWeaponData>().weaponParameters;
+            if (allWeapons[0] == null)
+            {
+                allWeapons[0] = current;
+                Destroy(collision.gameObject);
+            }
+            else if (allWeapons[1] == null)
+            {
+                allWeapons[1] = current;
+                Destroy(collision.gameObject);
+            }
+        }
     }
 
     void SetWeapon() {
