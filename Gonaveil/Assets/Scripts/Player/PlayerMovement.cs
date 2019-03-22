@@ -79,6 +79,8 @@ public class PlayerMovement : MonoBehaviour {
 
         groundMask = ((LayerMask)gameObject.layer).GetReverseLayerMask();
         groundMask ^= 1 << gameObject.layer;
+
+        groundMask ^= 1 << LayerMask.NameToLayer("Ignore Raycast");
     }
 
     private bool WantsJumpInput() {

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6326993009227992958}
   - component: {fileID: 5616634062594161584}
   - component: {fileID: 1524945983039295250}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Hammer Buster Drop
   m_TagString: ItemWeapon
   m_Icon: {fileID: 0}
