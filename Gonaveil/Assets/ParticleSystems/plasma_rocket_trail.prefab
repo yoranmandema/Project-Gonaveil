@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1732098649999009752
+--- !u!1 &8799661908247616072
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,9 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 253201731815829124}
-  - component: {fileID: 7245636343716295091}
-  - component: {fileID: 698005539675999912}
+  - component: {fileID: 7031393127702729492}
+  - component: {fileID: 475869405920873507}
+  - component: {fileID: 7762195019625788216}
   m_Layer: 0
   m_Name: plasma_rocket_trail
   m_TagString: Untagged
@@ -18,13 +18,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &253201731815829124
+--- !u!4 &7031393127702729492
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1732098649999009752}
+  m_GameObject: {fileID: 8799661908247616072}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.021776, y: -11, z: 2.778679}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,13 +32,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!198 &7245636343716295091
+--- !u!198 &475869405920873507
 ParticleSystem:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1732098649999009752}
+  m_GameObject: {fileID: 8799661908247616072}
   serializedVersion: 6
   lengthInSec: 5
   simulationSpeed: 1
@@ -4645,14 +4645,14 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!199 &698005539675999912
+--- !u!199 &7762195019625788216
 ParticleSystemRenderer:
   serializedVersion: 6
   m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1732098649999009752}
+  m_GameObject: {fileID: 8799661908247616072}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0

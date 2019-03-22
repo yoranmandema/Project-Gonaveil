@@ -9895,7 +9895,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh319730
+  m_Name: pb_Mesh193256
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -14326,7 +14326,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh319146
+  m_Name: pb_Mesh192674
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -41867,7 +41867,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh319320
+  m_Name: pb_Mesh192846
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -78750,6 +78750,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4501231547599861634, guid: 908a70b9af8bb4e4bb3951e11a6b614a,
+        type: 3}
+      propertyPath: handBone
+      value: 
+      objectReference: {fileID: 1813734607}
     - target: {fileID: 2267398718312708731, guid: 908a70b9af8bb4e4bb3951e11a6b614a,
         type: 3}
       propertyPath: allWeapons.Array.size
@@ -78767,11 +78772,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 45d410edca6984b42ae41cc6a9443d93,
         type: 2}
-    - target: {fileID: 4501231547599861634, guid: 908a70b9af8bb4e4bb3951e11a6b614a,
-        type: 3}
-      propertyPath: handBone
-      value: 
-      objectReference: {fileID: 1813734607}
     - target: {fileID: 3500205305367817446, guid: 908a70b9af8bb4e4bb3951e11a6b614a,
         type: 3}
       propertyPath: handBone
