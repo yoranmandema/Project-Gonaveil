@@ -86,7 +86,42 @@ ModelImporter:
     4300026: Cylinder.005
     4300028: Cylinder.010
     2186277476908879412: ImportLogs
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hammer1
+    second: {fileID: 2100000, guid: 143dba8dee2d5e646a1fb355265e3be7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hammer2
+    second: {fileID: 2100000, guid: 0ddf9c6f73950884ea8b989a925e8c69, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hammer3
+    second: {fileID: 2100000, guid: 3eb0353ce99a8dd4a838cbe084a32640, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: cdd99f50d521f234abe28a2e6f69ab8a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.001
+    second: {fileID: 2100000, guid: a8153d5f60a0b77428d27f5ea19b78af, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.002
+    second: {fileID: 2100000, guid: 5313df4ceb010a24989e3069426db7de, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.003
+    second: {fileID: 2100000, guid: 6061b1210bd55c74f8290e1e28a9d774, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
