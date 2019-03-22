@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b891a8b7dd44db4e908db08b7187760, type: 3}
+  m_Name: Sabre
+  m_EditorClassIdentifier: 
+  weaponStats:
+    Name: Sabre LMG
+    magazineCapacity: 100
+    reloadTime: 0
+    fireRate: 600
+    weaponSpread: 2.5
+    bulletsPerShot: 1
+    bulletsPerBurst: 1
+    burstTime: 0
+    chargeTime: 0
+    fireWhenCharged: 0
+    Projectile: {fileID: 4846615784228082546, guid: e7cf5f436ac463144989ba4cb199fe24,
+      type: 3}
+    weaponType: 0
+    weaponClass: 2
+    projectileType: 1
+  weaponMovementProfile: {fileID: 11400000, guid: d6aa95c883e9c5f4585dd63261a62f3b,
+    type: 2}
+  viewModel: {fileID: 2040355385466374735, guid: ba54a20526ba3eb40bc88563c8d2a0f1,
+    type: 3}
+  offset: {x: 0.35, y: -0.3, z: 0.6}
+  weaponDropPrefab: {fileID: 7889961728042130609, guid: ca500af0c009cbf40ad3c019c5294c0d,
+    type: 3}
