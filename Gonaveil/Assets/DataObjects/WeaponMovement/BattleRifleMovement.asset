@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 79df09061a1986545921459efbe94f3b, type: 3}
-  m_Name: DefaultWeaponMovement
+  m_Name: BattleRifleMovement
   m_EditorClassIdentifier: 
   velocityMultiplier: 0.01
   rotationSpeed: 5
   rotationAmount: 2
+  bobbingSpeed: 75
   bobbingAmount: 0.5
   bobbingEngageTime: 1
   crouchAngle: 70

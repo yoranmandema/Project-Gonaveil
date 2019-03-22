@@ -9,7 +9,7 @@ public class Bullet : MonoBehaviour
     public float decayTime;
     public GameObject impactObject;
     public Rigidbody bulletRigid;
-    // Start is called before the first frame update
+
     void Start()
     {
         Destroy(gameObject, decayTime);

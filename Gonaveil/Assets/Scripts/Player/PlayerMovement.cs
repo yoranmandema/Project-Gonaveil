@@ -52,7 +52,6 @@ public class PlayerMovement : MonoBehaviour {
     private Vector3 flipAxis;
     private Rigidbody rb;
     private LayerMask groundMask;
-    private Animator anim;
     private float lateralJumpVelocity;
     private float lateralSurfVelocity;
     private float appliedCrouchHeight = 2f;
@@ -77,7 +76,6 @@ public class PlayerMovement : MonoBehaviour {
     private void Start() {
         rb = GetComponent<Rigidbody>();
         characterController = GetComponent<CharacterController>();
-        anim = GetComponentInChildren<Animator>();
 
         groundMask = ((LayerMask)gameObject.layer).GetReverseLayerMask();
         groundMask ^= 1 << gameObject.layer;
@@ -227,7 +225,7 @@ public class PlayerMovement : MonoBehaviour {
             isSliding = true;
 
             if (isGrounded) {
-                velocity *= 1;
+                velocity *= slideBoost;
             }
         }
         else if (Input.GetButtonUp("Crouch") && isSliding) {
@@ -259,12 +257,6 @@ public class PlayerMovement : MonoBehaviour {
         }
 
         CrouchMovement();
-
-        anim.SetBool("IsCrouching", isCrouching);
-        anim.SetFloat("MoveSpeed", velocity.sqrMagnitude);
-        if (isSliding) {
-            anim.SetTrigger("Slide");
-        }
     }
 
     private void SlideMovement() {
@@ -339,7 +331,7 @@ public class PlayerMovement : MonoBehaviour {
 
     private void SurfMovement() {
         if (!wasSurfing) {
-            lateralSurfVelocity = Vector3.Scale(velocity, new Vector3(1, 0, 1)).magnitude;
+            lateralSurfVelocity = Mathf.Max(1,Vector3.Scale(velocity, new Vector3(1, 0, 1)).magnitude * jumpLateralSpeedMultiplier);
             velocity = Vector3.ProjectOnPlane(velocity, groundNormal);
             characterController.slopeLimit = 90f;
         }
@@ -349,7 +341,7 @@ public class PlayerMovement : MonoBehaviour {
         // Limit acceleration when going forward
         var moveVector = desiredMovement.SetZ(desiredMovement.z - VelocityDotDirection * desiredMovement.z);
         var newTransformedMovement = transform.TransformDirection(moveVector);
-        newTransformedMovement = Vector3.ProjectOnPlane(newTransformedMovement, groundNormal);
+        //newTransformedMovement = Vector3.ProjectOnPlane(newTransformedMovement, groundNormal);
 
         var upwards = Vector3.Dot(groundNormal, Vector3.up);
         var downVector = Vector3.ProjectOnPlane(Vector3.down, groundNormal); // Vector going down the ramp.
@@ -358,10 +350,10 @@ public class PlayerMovement : MonoBehaviour {
         var velocityDelta = newTransformedMovement * airAccelaration * upwards * VelocityDotDirection * Time.deltaTime;
 
         if (limitAirVelocity) {
-            // Only add acceleration if we are below the velocity that we started at.
-            if (Vector3.Scale(velocity + velocityDelta, new Vector3(1, 0, 1)).magnitude < lateralSurfVelocity) {
-                velocity += velocityDelta;
-            }
+            var lateral = Vector3.Scale(velocity + velocityDelta, new Vector3(1, 0, 1)).magnitude;
+            var deltaAmount = Mathf.Clamp01((lateralSurfVelocity - lateral) / lateralSurfVelocity);
+
+            velocity += velocityDelta * deltaAmount;
         }
         else {
             velocity += velocityDelta;
@@ -370,13 +362,16 @@ public class PlayerMovement : MonoBehaviour {
         // Gravity.
         velocity += downVector * -Physics.gravity.y * upwards * Time.deltaTime;
 
+        // Faster fall velocity.
+        if (velocity.y > -fallMaxSpeedUp) velocity += downVector * -Physics.gravity.y * (fallSpeedMultiplier - 1) * Time.deltaTime;
+
         // Air drag / friction.
         velocity -= velocity * airDrag * Time.deltaTime;
     }
 
     private void AirMovement() {
         if (!wasInAir) {
-            lateralJumpVelocity = Vector3.Scale(velocity, new Vector3(1, 0, 1)).magnitude;
+            lateralJumpVelocity = Mathf.Max(1, Vector3.Scale(velocity, new Vector3(1, 0, 1)).magnitude * jumpLateralSpeedMultiplier);
             characterController.slopeLimit = 90f;
         }
 
@@ -388,10 +383,10 @@ public class PlayerMovement : MonoBehaviour {
         var velocityDelta = newTransformedMovement * airAccelaration * VelocityDotDirection * Time.deltaTime;
 
         if (limitAirVelocity) {
-            // Only add acceleration if we are below the velocity that we started at.
-            if (Vector3.Scale(velocity + velocityDelta, new Vector3(1, 0, 1)).magnitude < lateralJumpVelocity) {
-                velocity += velocityDelta;
-            }
+            var lateral = Vector3.Scale(velocity + velocityDelta, new Vector3(1, 0, 1)).magnitude;
+            var deltaAmount = Mathf.Clamp01((lateralJumpVelocity - lateral) / lateralJumpVelocity);
+
+            velocity += velocityDelta * deltaAmount;
         }
         else {
             velocity += velocityDelta;
@@ -401,9 +396,7 @@ public class PlayerMovement : MonoBehaviour {
         velocity -= velocity * airDrag * Time.deltaTime;
 
         // Faster fall velocity.
-        if (velocity.y > -fallMaxSpeedUp) {
-            velocity += Vector3.up * Physics.gravity.y * (fallSpeedMultiplier - 1) * Time.deltaTime;
-        }
+        if (velocity.y > -fallMaxSpeedUp) velocity += Vector3.up * Physics.gravity.y * (fallSpeedMultiplier - 1) * Time.deltaTime;
 
         // Gravity.
         velocity += Physics.gravity * Time.deltaTime;
