@@ -15,6 +15,6 @@ public class WeaponHolder : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        anim.SetInteger("WeaponType", (int)currentWeapon.weaponValues.weaponType);
+        anim.SetInteger("WeaponType", (int)currentWeapon.weaponParameters.weaponStats.weaponType);
     }
 }

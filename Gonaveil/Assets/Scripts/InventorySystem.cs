@@ -37,13 +37,13 @@ public class InventorySystem : MonoBehaviour
     }
 
     void SetWeapon() {
-        if (lastSelectedWeaponID > -1) allWeapons[lastSelectedWeaponID].weaponStats.modelObject.SetActive(false);
+        //if (lastSelectedWeaponID > -1) allWeapons[lastSelectedWeaponID].weaponStats.modelObject.SetActive(false);
 
-        allWeapons[selectedWeaponID].weaponStats.modelObject.SetActive(true);
-        weaponMaster.weaponValues = allWeapons[selectedWeaponID].weaponStats;
+        var current = allWeapons[selectedWeaponID];
 
-        weaponMovement.offset = allWeapons[selectedWeaponID].offset;
-        weaponMovement.Profile = allWeapons[selectedWeaponID].weaponMovementProfile;
+        weaponMaster.SetParameters(current);
+        weaponMovement.offset = current.offset;
+        weaponMovement.Profile = current.weaponMovementProfile;
 
         lastSelectedWeaponID = selectedWeaponID;
     }
