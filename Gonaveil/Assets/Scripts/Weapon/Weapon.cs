@@ -7,10 +7,12 @@ public class Weapon : MonoBehaviour {
     public LayerMask raycastMask;
     public GameObject impact;
     public Animator animator;
+    public Transform handBone;
 
     public enum FireStage { Idle, Firing, Charging, Cycled}
     public float chargeProgress;
     public GameObject viewModel;
+    public GameObject worldModel;
 
     private Camera mainCamera;
     private float loadTimer;
@@ -20,6 +22,7 @@ public class Weapon : MonoBehaviour {
     private Transform barrel;
     private WeaponModelData modelData;
     private bool Disabled;
+    private int playerLayer;
 
     private WeaponValues Stats => weaponParameters.weaponStats;
 
@@ -27,8 +30,15 @@ public class Weapon : MonoBehaviour {
         weaponParameters = parameters;
 
         if (viewModel != null) Destroy(viewModel);
+        if (worldModel != null) Destroy(worldModel);
 
         viewModel = Instantiate(weaponParameters.viewModel, transform, false);
+        worldModel = Instantiate(weaponParameters.viewModel, handBone, false);
+        worldModel.transform.localEulerAngles = new Vector3(-90, 90, 0);
+        worldModel.layer = playerLayer;
+        foreach (var mesh in worldModel.GetComponentsInChildren<MeshRenderer>()) {
+            mesh.gameObject.layer = playerLayer;
+        }
 
         modelData = viewModel.GetComponent<WeaponModelData>();
         barrel = modelData.barrel;
@@ -38,6 +48,7 @@ public class Weapon : MonoBehaviour {
     {
         Disabled = true;
         Destroy(viewModel);
+        Destroy(worldModel);
     }
 
     public void Rearm()
@@ -47,6 +58,7 @@ public class Weapon : MonoBehaviour {
 
     private void Start() {
         mainCamera = Camera.main;
+        playerLayer = LayerMask.NameToLayer("Player");
 
         SetParameters(weaponParameters);
     }
