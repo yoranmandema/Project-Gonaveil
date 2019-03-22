@@ -24,7 +24,7 @@ public class InventorySystem : MonoBehaviour
     void Update()
     {
         if (Input.GetAxis("Mouse ScrollWheel") > 0) {
-            if (++selectedWeaponID > 1) selectedWeaponID = 0;
+            if (++selectedWeaponID > allWeapons.Length - 1) selectedWeaponID = 0;
 
             SetWeapon();
         }
