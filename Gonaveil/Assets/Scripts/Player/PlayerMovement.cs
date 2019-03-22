@@ -52,7 +52,6 @@ public class PlayerMovement : MonoBehaviour {
     private Vector3 flipAxis;
     private Rigidbody rb;
     private LayerMask groundMask;
-    private Animator anim;
     private float lateralJumpVelocity;
     private float lateralSurfVelocity;
     private float appliedCrouchHeight = 2f;
@@ -77,7 +76,6 @@ public class PlayerMovement : MonoBehaviour {
     private void Start() {
         rb = GetComponent<Rigidbody>();
         characterController = GetComponent<CharacterController>();
-        anim = GetComponentInChildren<Animator>();
 
         groundMask = ((LayerMask)gameObject.layer).GetReverseLayerMask();
         groundMask ^= 1 << gameObject.layer;
@@ -259,12 +257,6 @@ public class PlayerMovement : MonoBehaviour {
         }
 
         CrouchMovement();
-
-        anim.SetBool("IsCrouching", isCrouching);
-        anim.SetFloat("MoveSpeed", velocity.sqrMagnitude);
-        if (isSliding) {
-            anim.SetTrigger("Slide");
-        }
     }
 
     private void SlideMovement() {
