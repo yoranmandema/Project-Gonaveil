@@ -5,23 +5,7 @@ using UnityEngine;
 public class WeaponMovement : MonoBehaviour
 {
     public PlayerMovement playerMovement;
-
-    public float velocityMultiplier = 0.05f;
-
-    public float rotationSpeed = 0.5f;
-    public float rotationAmount = 2.5f;
-
-    public float bobbingAmount = 1f;
-    public float bobbingEngageTime = 0.25f;
-
-    public float crouchAngle = 75f;
-    public float crouchEngageTime = 0.1f;
-    public float crouchEngageSmoothing = 0.05f;
-
-    public float lookDownRetraction = 0.25f;
-    public float lookDownSmoothing = 2f;
-
-    public float jumpAmount = 0.25f;
+    public WeaponMovementProfile Profile;
 
     [HideInInspector] public Vector3 offset;
 
@@ -45,12 +29,12 @@ public class WeaponMovement : MonoBehaviour
     void Update()
     {
         var isGrounded = playerMovement.isGrounded && !playerMovement.isSliding;
-        var velocityLerp = playerMovement.velocity.magnitude * velocityMultiplier;
+        var velocityLerp = playerMovement.velocity.magnitude * Profile.velocityMultiplier;
 
-        bobbingLerp = Mathf.Clamp(bobbingLerp + (isGrounded ? 1 : -1) * Time.deltaTime / bobbingEngageTime, 0, 1f);
-        crouchingLerp = Mathf.Clamp(crouchingLerp + (playerMovement.isCrouching || playerMovement.isSliding ? 1 : -1) * Time.deltaTime / crouchEngageTime, 0, 1f);
-        crouchingSmoothedLerp += (crouchingLerp - crouchingSmoothedLerp) * Time.deltaTime / crouchEngageSmoothing;
-        lookDownLerp += (Mathf.Clamp(transform.forward.y, -1, 0) - lookDownLerp) * Time.deltaTime / lookDownSmoothing;
+        bobbingLerp = Mathf.Clamp(bobbingLerp + (isGrounded ? 1 : -1) * Time.deltaTime / Profile.bobbingEngageTime, 0, 1f);
+        crouchingLerp = Mathf.Clamp(crouchingLerp + (playerMovement.isCrouching || playerMovement.isSliding ? 1 : -1) * Time.deltaTime / Profile.crouchEngageTime, 0, 1f);
+        crouchingSmoothedLerp += (crouchingLerp - crouchingSmoothedLerp) * Time.deltaTime / Profile.crouchEngageSmoothing;
+        lookDownLerp += (Mathf.Clamp(transform.forward.y, -1, 0) - lookDownLerp) * Time.deltaTime / Profile.lookDownSmoothing;
 
         if (isGrounded) bobbingStep += velocityLerp + Time.deltaTime;
 
@@ -64,22 +48,22 @@ public class WeaponMovement : MonoBehaviour
 
         sideComponent += Vector3.right * -crouchingSmoothedLerp * 0.4f;
 
-        forwardComponent += Vector3.forward * lookDownLerp * lookDownRetraction;
+        forwardComponent += Vector3.forward * lookDownLerp * Profile.lookDownRetraction;
 
         transform.localPosition = offset + (
             sideComponent +     
             forwardComponent +
             upComponent
-            ) * bobbingAmount;
+            ) * Profile.bobbingAmount;
 
-        yaw += (Input.GetAxis("Mouse X") - yaw) * Time.deltaTime * rotationSpeed;
-        pitch += (-Input.GetAxis("Mouse Y") - pitch) * Time.deltaTime * rotationSpeed;
+        yaw += (Input.GetAxis("Mouse X") - yaw) * Time.deltaTime * Profile.rotationSpeed;
+        pitch += (-Input.GetAxis("Mouse Y") - pitch) * Time.deltaTime * Profile.rotationSpeed;
 
         //if (wasInAir != playerMovement.isInAir || wasGrounded != isGrounded) {
         //    pitch += playerMovement.velocity.y * jumpAmount;
         //}
 
-        transform.localRotation = Quaternion.Euler(pitch * rotationAmount, yaw * rotationAmount, crouchingSmoothedLerp * crouchAngle);
+        transform.localRotation = Quaternion.Euler(pitch * Profile.rotationAmount, yaw * Profile.rotationAmount, crouchingSmoothedLerp * Profile.crouchAngle);
 
         wasInAir = playerMovement.isInAir;
         wasGrounded = isGrounded;

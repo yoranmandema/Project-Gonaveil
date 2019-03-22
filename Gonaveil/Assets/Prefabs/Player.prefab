@@ -86,14 +86,14 @@ MonoBehaviour:
   crouchCameraHeight: 0.9
   slideBoost: 1.25
   slideVelocityThreshold: 10
+  flipTime: 0.25
+  isFlipped: 0
   isGrounded: 0
   isInAir: 0
   isSurfing: 0
   isCrouching: 0
   isSliding: 0
   velocity: {x: 0, y: 0, z: 0}
-  crouchLerp: 1
-  desiredCrouchLerp: 1
 --- !u!143 &1352563271953662212
 CharacterController:
   m_ObjectHideFlags: 0
@@ -126,6 +126,7 @@ GameObject:
   - component: {fileID: 1352563272540711682}
   - component: {fileID: 1352563272540711685}
   - component: {fileID: 1534258969}
+  - component: {fileID: 1149725359}
   m_Layer: 10
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -343,6 +344,19 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!114 &1149725359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1352563272540711737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af3ee2b3a4ca2584183316bd5c830df5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugMagnitude: 0.15
 --- !u!1 &2770030682674942689
 GameObject:
   m_ObjectHideFlags: 0
@@ -645,6 +659,7 @@ MonoBehaviour:
     weaponType: 2
     weaponClass: 2
     projectileType: 1
+  offset: {x: 0.35, y: -0.3, z: 0.6}
 --- !u!1 &2770030682674942697
 GameObject:
   m_ObjectHideFlags: 0
@@ -1573,9 +1588,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2917357309090321875}
-  - component: {fileID: 1127598144}
   - component: {fileID: 4501231547599861634}
   - component: {fileID: 2267398718312708731}
+  - component: {fileID: 5067086843879541993}
   m_Layer: 11
   m_Name: WeaponHolder
   m_TagString: Untagged
@@ -1599,30 +1614,6 @@ Transform:
   m_Father: {fileID: 2917357310790119125}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1127598144
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2917357309090321874}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06592a893ac4d4247808e1bf9a1d12ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerMovement: {fileID: 1352563271953662209}
-  velocityMultiplier: 0.01
-  rotationSpeed: 5
-  rotationAmount: 2
-  bobbingAmount: 0.5
-  bobbingEngageTime: 1
-  crouchAngle: 70
-  crouchEngageTime: 0.1
-  crouchEngageSmoothing: 0.05
-  lookDownRetraction: 0.25
-  lookDownSmoothing: 2
-  jumpAmount: 0.25
 --- !u!114 &4501231547599861634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1676,6 +1667,21 @@ MonoBehaviour:
   allWeapons: []
   weaponMaster: {fileID: 4501231547599861634}
   selectedWeaponID: 0
+--- !u!114 &5067086843879541993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2917357309090321874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53c79ef96c287014e8bbf546ef3945bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMovement: {fileID: 1352563271953662209}
+  Profile: {fileID: 11400000, guid: d6aa95c883e9c5f4585dd63261a62f3b, type: 2}
+  offset: {x: 0, y: 0, z: 0}
 --- !u!1 &2917357310385049998
 GameObject:
   m_ObjectHideFlags: 0
@@ -1738,6 +1744,7 @@ MonoBehaviour:
     weaponType: 0
     weaponClass: 1
     projectileType: 0
+  offset: {x: 0.35, y: -0.3, z: 0.6}
 --- !u!1 &2917357310790119124
 GameObject:
   m_ObjectHideFlags: 0
