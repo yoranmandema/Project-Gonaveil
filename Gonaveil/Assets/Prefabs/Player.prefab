@@ -382,6 +382,7 @@ GameObject:
   - component: {fileID: 4501231547599861634}
   - component: {fileID: 2267398718312708731}
   - component: {fileID: 5067086843879541993}
+  - component: {fileID: 1815053613353290408}
   m_Layer: 11
   m_Name: WeaponHolder
   m_TagString: Untagged
@@ -415,6 +416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0586b8095bc2f346834eabdd9c1d074, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controller: {fileID: 1815053613353290408}
   chargeCircle: {fileID: 6447403044420535057}
   weaponParameters: {fileID: 11400000, guid: a6286d37e8039ed4cb77c9613c6a6bf7, type: 2}
   raycastMask:
@@ -457,6 +459,19 @@ MonoBehaviour:
   playerMovement: {fileID: 1352563271953662209}
   Profile: {fileID: 11400000, guid: d6aa95c883e9c5f4585dd63261a62f3b, type: 2}
   offset: {x: 0, y: 0, z: 0}
+--- !u!114 &1815053613353290408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2917357309090321874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6297c2a6e60b4cb4397eed24f0e4a0ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerState: 0
 --- !u!1 &2917357310790119124
 GameObject:
   m_ObjectHideFlags: 0
