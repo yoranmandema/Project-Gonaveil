@@ -15,7 +15,7 @@ public class InventorySystem : MonoBehaviour
 
     void Start()
     {
-        allWeapons = FindObjectsOfType<WeaponParameters>();
+        allWeapons = FindObjectsOfType<WeaponParameters>(); //Remove this line, it will cause problems later on
 
         weaponMovement = GetComponent<WeaponMovement>();
 
