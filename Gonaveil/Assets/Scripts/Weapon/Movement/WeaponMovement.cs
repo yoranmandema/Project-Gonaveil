@@ -46,7 +46,7 @@ public class WeaponMovement : MonoBehaviour
         forwardComponent += Vector3.forward * Mathf.Sin(bobbingStep * 2f) * bobbingLerp * 0.25f * velocityLerp;
         upComponent += Vector3.up * Mathf.Sin(bobbingStep * 2f) * bobbingLerp * 0.25f * velocityLerp;
 
-        sideComponent += Vector3.right * -crouchingSmoothedLerp * 0.4f;
+        sideComponent += Vector3.right * -crouchingSmoothedLerp * 0.2f;
 
         forwardComponent += Vector3.forward * lookDownLerp * Profile.lookDownRetraction;
 
