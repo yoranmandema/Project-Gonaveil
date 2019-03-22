@@ -83,29 +83,37 @@ public class InventorySystem : MonoBehaviour
 
     private void OnTriggerStay(Collider collision)
     {
-        Debug.Log(collision.tag);
         if (collision.tag == "ItemWeapon")
         {
-            WeaponParameters current = collision.GetComponentInChildren<DroppedWeaponData>().weaponParameters;
-            if (allWeapons[0] == null)
+            WeaponParameters droppedParameters = collision.GetComponentInChildren<DroppedWeaponData>().weaponParameters;
+            CheckInventory(0, 1, collision.gameObject, droppedParameters);
+            CheckInventory(1, 0, collision.gameObject, droppedParameters);
+        }
+    }
+
+    void CheckInventory(int PrimaryID, int SecondaryID, GameObject item, WeaponParameters droppedParameters)
+    {
+        if (allWeapons[PrimaryID] == null)
+        {
+            try
             {
-                if (allWeapons[1].name != current.name)
+                if (allWeapons[SecondaryID].name != droppedParameters.name)
                 {
-                    allWeapons[0] = current;
-                    lastSelectedWeaponID = -1;
-                    Destroy(collision.gameObject);
+                    PickupItem(PrimaryID, item, droppedParameters);
                 }
             }
-            else if (allWeapons[1] == null)
+            catch
             {
-                if (allWeapons[0].name != current.name)
-                {
-                    allWeapons[1] = current;
-                    lastSelectedWeaponID = -1;
-                    Destroy(collision.gameObject);
-                }
+                PickupItem(PrimaryID, item, droppedParameters);
             }
         }
+    }
+
+    void PickupItem(int InventorySlot, GameObject item, WeaponParameters droppedParameters)
+    {
+        allWeapons[InventorySlot] = droppedParameters;
+        lastSelectedWeaponID = -1;
+        Destroy(item);
     }
 
     void SetWeapon() {
