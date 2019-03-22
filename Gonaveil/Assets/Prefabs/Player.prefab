@@ -403,13 +403,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chargeCircle: {fileID: 6447403044420535057}
-  weaponParameters: {fileID: 0}
+  weaponParameters: {fileID: 11400000, guid: a6286d37e8039ed4cb77c9613c6a6bf7, type: 2}
   raycastMask:
     serializedVersion: 2
     m_Bits: 2871
   impact: {fileID: 3377271070747912948, guid: 5b634f2c54a76ad49840f1e67d6c980d, type: 3}
   animator: {fileID: 1263876997933826223}
   chargeProgress: 0
+  viewModel: {fileID: 0}
 --- !u!114 &2267398718312708731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -424,7 +425,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   primaryWeaponID: 0
   secondaryWeaponID: 1
-  allWeapons: []
+  allWeapons:
+  - {fileID: 11400000, guid: a6286d37e8039ed4cb77c9613c6a6bf7, type: 2}
   weaponMaster: {fileID: 4501231547599861634}
   selectedWeaponID: 0
 --- !u!114 &5067086843879541993

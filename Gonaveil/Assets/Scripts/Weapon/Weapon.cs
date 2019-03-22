@@ -9,7 +9,7 @@ public class Weapon : MonoBehaviour {
 
     public enum FireStage { Idle, Firing, Charging }
     [HideInInspector] public float chargeProgress;
-    [HideInInspector] public GameObject viewModel;
+    public GameObject viewModel;
 
     private Camera mainCamera;
     private float loadTimer;
@@ -24,9 +24,11 @@ public class Weapon : MonoBehaviour {
     public void SetParameters (WeaponParameters parameters) {
         weaponParameters = parameters;
 
-        Destroy(viewModel);
+        print(viewModel);
 
-        viewModel = Instantiate(weaponParameters.viewModel, transform);
+        if (viewModel != null) Destroy(viewModel);
+
+        viewModel = Instantiate(weaponParameters.viewModel, Vector3.zero, Quaternion.identity, transform);
 
         modelData = viewModel.GetComponent<WeaponModelData>();
         barrel = modelData.barrel;
