@@ -43,6 +43,7 @@ public class InventorySystem : MonoBehaviour
         weaponMaster.weaponValues = allWeapons[selectedWeaponID].weaponStats;
 
         weaponMovement.offset = allWeapons[selectedWeaponID].offset;
+        weaponMovement.Profile = allWeapons[selectedWeaponID].weaponMovementProfile;
 
         lastSelectedWeaponID = selectedWeaponID;
     }
