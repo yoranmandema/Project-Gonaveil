@@ -16,9 +16,9 @@ MonoBehaviour:
   rotationSpeed: 5
   rotationAmount: 2
   bobbingSpeed: 75
-  bobbingAmount: 0.5
+  bobbingAmount: 0.2
   bobbingEngageTime: 1
-  crouchAngle: 70
+  crouchAngle: 50
   crouchEngageTime: 0.1
   crouchEngageSmoothing: 0.05
   lookDownRetraction: 0.25
