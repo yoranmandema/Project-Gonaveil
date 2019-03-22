@@ -4,35 +4,76 @@ using UnityEngine;
 
 public class InventorySystem : MonoBehaviour
 {
-    public int primaryWeaponID;
-    public int secondaryWeaponID;
     public WeaponParameters[] allWeapons;
     public Weapon weaponMaster;
+    private GameObject currentDropObject;
     public int selectedWeaponID;
 
     private WeaponMovement weaponMovement;
     private int lastSelectedWeaponID = -1;
     private WeaponParameters current;
+    private bool disabled;
 
     void Start()
     {
         weaponMovement = GetComponent<WeaponMovement>();
-
-        SetWeapon();
     }
 
     void Update()
     {
+        CheckInventory();
         if (Input.GetAxis("Mouse ScrollWheel") > 0) {
-            if (++selectedWeaponID > allWeapons.Length - 1) selectedWeaponID = 0;
-
-            SetWeapon();
+            ++selectedWeaponID;
         }
         else if (Input.GetAxis("Mouse ScrollWheel") < 0) {
-            if (--selectedWeaponID < 0) selectedWeaponID = 1;
-
+            --selectedWeaponID;
+        }
+        if (selectedWeaponID > 1)
+        {
+            selectedWeaponID = 0;
+        } else if (selectedWeaponID < 0)
+        {
+            selectedWeaponID = 1;
+        }
+        if (allWeapons[selectedWeaponID] == null)
+        {
+            if (selectedWeaponID == 1)
+            {
+                selectedWeaponID = 0;
+            }
+            else if (selectedWeaponID == 0)
+            {
+                selectedWeaponID = 1;
+            }
+        }
+        if (lastSelectedWeaponID != selectedWeaponID && !disabled)
+        {
             SetWeapon();
         }
+        if (Input.GetButtonDown("Drop Weapon"))
+        {
+            DropWeapon();
+        }
+    }
+
+    void CheckInventory()
+    {
+        if(allWeapons[0] == null && allWeapons[1] == null)
+        {
+            weaponMaster.Disarm();
+            disabled = true;
+        }
+        else
+        {
+            weaponMaster.Rearm();
+            disabled = false;
+        }
+    }
+
+    void DropWeapon()
+    {
+        allWeapons[selectedWeaponID] = null;
+        Instantiate(currentDropObject, transform.position + transform.forward * 10, transform.rotation);
     }
 
     void SetWeapon() {
@@ -44,6 +85,7 @@ public class InventorySystem : MonoBehaviour
         weaponMovement.Profile = current.weaponMovementProfile;
         weaponMovement.offset = current.offset;
 
+        currentDropObject = current.weaponDropPrefab;
         lastSelectedWeaponID = selectedWeaponID;
     }
 }

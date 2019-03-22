@@ -19,6 +19,7 @@ public class Weapon : MonoBehaviour {
     private FireStage fireStage;
     private Transform barrel;
     private WeaponModelData modelData;
+    private bool Disabled;
 
     private WeaponValues Stats => weaponParameters.weaponStats;
 
@@ -31,6 +32,17 @@ public class Weapon : MonoBehaviour {
 
         modelData = viewModel.GetComponent<WeaponModelData>();
         barrel = modelData.barrel;
+    }
+
+    public void Disarm()
+    {
+        Disabled = true;
+        Destroy(viewModel);
+    }
+
+    public void Rearm()
+    {
+        Disabled = false;
     }
 
     private void Start() {
@@ -120,76 +132,82 @@ public class Weapon : MonoBehaviour {
     }
 
     private void Update() {
-        Stats.bulletsPerShot = Mathf.Clamp(Stats.bulletsPerShot, 1, int.MaxValue);
-        Stats.fireRate = Mathf.Clamp(Stats.fireRate, 1, int.MaxValue);
-        Stats.bulletsPerBurst = Mathf.Clamp(Stats.bulletsPerBurst, 1, int.MaxValue);
+        if (!Disabled)
+        {
+            Stats.bulletsPerShot = Mathf.Clamp(Stats.bulletsPerShot, 1, int.MaxValue);
+            Stats.fireRate = Mathf.Clamp(Stats.fireRate, 1, int.MaxValue);
+            Stats.bulletsPerBurst = Mathf.Clamp(Stats.bulletsPerBurst, 1, int.MaxValue);
 
-        float trueFireRate = (1 / (Stats.fireRate / 60)) + (Stats.burstTime * Stats.bulletsPerBurst);
+            float trueFireRate = (1 / (Stats.fireRate / 60)) + (Stats.burstTime * Stats.bulletsPerBurst);
 
-        if (loadTimer <= 0) {
-            if (controller.triggerState == GunController.TriggerStates.Primary)
+            if (loadTimer <= 0)
             {
-                if (Stats.weaponType == WeaponType.FullAuto)
+                if (controller.triggerState == GunController.TriggerStates.Primary)
                 {
-                    FireGun(trueFireRate);
-                }
-                else if (Stats.weaponType == WeaponType.Charge)
-                {
-                    ChargeWeapon();
-                    fireStage = FireStage.Charging;
-                }
-                else
-                {
-                    if (fireStage != FireStage.Cycled)
+                    if (Stats.weaponType == WeaponType.FullAuto)
                     {
                         FireGun(trueFireRate);
                     }
+                    else if (Stats.weaponType == WeaponType.Charge)
+                    {
+                        ChargeWeapon();
+                        fireStage = FireStage.Charging;
+                    }
+                    else
+                    {
+                        if (fireStage != FireStage.Cycled)
+                        {
+                            FireGun(trueFireRate);
+                        }
+                    }
                 }
-            }
-            if (fireStage == FireStage.Charging)
-            {
-                if (controller.triggerState == GunController.TriggerStates.Idle || (Stats.fireWhenCharged && chargeProgress == 1))
+                if (fireStage == FireStage.Charging)
                 {
-                    FireGun(trueFireRate);
-                    chargeProgress = 0;
+                    if (controller.triggerState == GunController.TriggerStates.Idle || (Stats.fireWhenCharged && chargeProgress == 1))
+                    {
+                        FireGun(trueFireRate);
+                        chargeProgress = 0;
+                    }
+                    chargeCircle.fillAmount = chargeProgress;
                 }
-                chargeCircle.fillAmount = chargeProgress;
-            }else if (fireStage == FireStage.Cycled)
-            {
-                if (controller.triggerState == GunController.TriggerStates.Idle)
+                else if (fireStage == FireStage.Cycled)
                 {
-                    fireStage = FireStage.Idle;
-                }
-            }
-        }
-        else {
-            loadTimer -= Time.deltaTime;
-        }
-
-        if (fireStage == FireStage.Firing)
-        {
-            if (burstCount < Stats.bulletsPerBurst)
-            {
-                if (burstTimer <= 0)
-                {
-                    burstCount += 1;
-                    burstTimer = Stats.burstTime;
-                    WeaponFire();
-                }
-                else
-                {
-                    burstTimer -= Time.deltaTime;
+                    if (controller.triggerState == GunController.TriggerStates.Idle)
+                    {
+                        fireStage = FireStage.Idle;
+                    }
                 }
             }
             else
             {
-                if (Stats.weaponType == WeaponType.SemiAuto)
+                loadTimer -= Time.deltaTime;
+            }
+
+            if (fireStage == FireStage.Firing)
+            {
+                if (burstCount < Stats.bulletsPerBurst)
                 {
-                    fireStage = FireStage.Cycled;
+                    if (burstTimer <= 0)
+                    {
+                        burstCount += 1;
+                        burstTimer = Stats.burstTime;
+                        WeaponFire();
+                    }
+                    else
+                    {
+                        burstTimer -= Time.deltaTime;
+                    }
                 }
                 else
                 {
-                    fireStage = FireStage.Idle;
+                    if (Stats.weaponType == WeaponType.SemiAuto)
+                    {
+                        fireStage = FireStage.Cycled;
+                    }
+                    else
+                    {
+                        fireStage = FireStage.Idle;
+                    }
                 }
             }
         }

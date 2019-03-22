@@ -33,3 +33,5 @@ MonoBehaviour:
   viewModel: {fileID: 6304173697746482174, guid: 37d370390b7db434296815fb27e0a327,
     type: 3}
   offset: {x: 0.15, y: -0.17, z: 0.3}
+  weaponDropPrefab: {fileID: 5209984929163130827, guid: 9ea28963fa6350b40a424f2800800104,
+    type: 3}
