@@ -17,7 +17,7 @@ MonoBehaviour:
     magazineCapacity: 100
     reloadTime: 0
     fireRate: 600
-    weaponSpread: 2.5
+    weaponSpread: 1.5
     bulletsPerShot: 1
     bulletsPerBurst: 1
     burstTime: 0
@@ -27,11 +27,11 @@ MonoBehaviour:
       type: 3}
     weaponType: 0
     weaponClass: 2
-    projectileType: 1
+    projectileType: 0
   weaponMovementProfile: {fileID: 11400000, guid: fcc571ada86a1d94a9d57434c441c56a,
     type: 2}
   viewModel: {fileID: 2040355385466374735, guid: ba54a20526ba3eb40bc88563c8d2a0f1,
     type: 3}
-  offset: {x: 0.25, y: -0.25, z: 0.4}
+  offset: {x: 0.15, y: -0.2, z: 0.3}
   weaponDropPrefab: {fileID: 7889961728042130609, guid: ca500af0c009cbf40ad3c019c5294c0d,
     type: 3}
