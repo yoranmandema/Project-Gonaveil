@@ -28,10 +28,10 @@ MonoBehaviour:
     weaponType: 1
     weaponClass: 2
     projectileType: 1
-  weaponMovementProfile: {fileID: 11400000, guid: d6aa95c883e9c5f4585dd63261a62f3b,
+  weaponMovementProfile: {fileID: 11400000, guid: 12b44c43f1717254f9ab37d48d78e369,
     type: 2}
   viewModel: {fileID: 9000678755088859745, guid: 0f55e233c43c4a844ab156833edb6fbb,
     type: 3}
-  offset: {x: 0.35, y: -0.3, z: 0.6}
+  offset: {x: 0.17, y: -0.25, z: 0.45}
   weaponDropPrefab: {fileID: 5228108675203581823, guid: 241c6b1bf8d7bef47833d821de48c9dd,
     type: 3}
