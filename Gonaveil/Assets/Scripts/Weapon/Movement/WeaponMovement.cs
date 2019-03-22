@@ -59,10 +59,6 @@ public class WeaponMovement : MonoBehaviour
         yaw += (Input.GetAxis("Mouse X") - yaw) * Time.deltaTime * Profile.rotationSpeed;
         pitch += (-Input.GetAxis("Mouse Y") - pitch) * Time.deltaTime * Profile.rotationSpeed;
 
-        //if (wasInAir != playerMovement.isInAir || wasGrounded != isGrounded) {
-        //    pitch += playerMovement.velocity.y * jumpAmount;
-        //}
-
         transform.localRotation = Quaternion.Euler(pitch * Profile.rotationAmount, yaw * Profile.rotationAmount, -yaw * Profile.rotationAmount + crouchingSmoothedLerp * Profile.crouchAngle);
 
         wasInAir = playerMovement.isInAir;
