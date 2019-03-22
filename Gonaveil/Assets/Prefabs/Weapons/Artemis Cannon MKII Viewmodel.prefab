@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5108779187697813789}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,8 +40,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5343307972866379779}
   - component: {fileID: 2796086995328325772}
-  m_Layer: 0
-  m_Name: Artemis Cannon MKII
+  m_Layer: 11
+  m_Name: Artemis Cannon MKII Viewmodel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -87,6 +87,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Artemis Cannon MKII
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 54310eff6c8d78d459620cc3a91f01de, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100026, guid: 54310eff6c8d78d459620cc3a91f01de, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100028, guid: 54310eff6c8d78d459620cc3a91f01de, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 54310eff6c8d78d459620cc3a91f01de, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -130,6 +142,54 @@ PrefabInstance:
     - target: {fileID: 400000, guid: 54310eff6c8d78d459620cc3a91f01de, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 54310eff6c8d78d459620cc3a91f01de, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 54310eff6c8d78d459620cc3a91f01de, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: 54310eff6c8d78d459620cc3a91f01de, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100010, guid: 54310eff6c8d78d459620cc3a91f01de, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100014, guid: 54310eff6c8d78d459620cc3a91f01de, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100016, guid: 54310eff6c8d78d459620cc3a91f01de, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100020, guid: 54310eff6c8d78d459620cc3a91f01de, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100022, guid: 54310eff6c8d78d459620cc3a91f01de, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100024, guid: 54310eff6c8d78d459620cc3a91f01de, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 54310eff6c8d78d459620cc3a91f01de, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100012, guid: 54310eff6c8d78d459620cc3a91f01de, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100018, guid: 54310eff6c8d78d459620cc3a91f01de, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54310eff6c8d78d459620cc3a91f01de, type: 3}

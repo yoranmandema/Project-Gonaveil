@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8306333883149867326}
   - component: {fileID: 2282351583304126897}
-  m_Layer: 0
-  m_Name: Plasma Rifle
+  m_Layer: 11
+  m_Name: Plasma Rifle Viewmodel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55,7 +55,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9189383351254237216}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,6 +86,18 @@ PrefabInstance:
     - target: {fileID: 100006, guid: ba3b78a6d22a75d4480e59219fca3a4d, type: 3}
       propertyPath: m_Name
       value: PlasmaRifle
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: ba3b78a6d22a75d4480e59219fca3a4d, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: ba3b78a6d22a75d4480e59219fca3a4d, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100012, guid: ba3b78a6d22a75d4480e59219fca3a4d, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: ba3b78a6d22a75d4480e59219fca3a4d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -130,6 +142,30 @@ PrefabInstance:
     - target: {fileID: 400006, guid: ba3b78a6d22a75d4480e59219fca3a4d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ba3b78a6d22a75d4480e59219fca3a4d, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: ba3b78a6d22a75d4480e59219fca3a4d, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: ba3b78a6d22a75d4480e59219fca3a4d, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100010, guid: ba3b78a6d22a75d4480e59219fca3a4d, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100014, guid: ba3b78a6d22a75d4480e59219fca3a4d, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100016, guid: ba3b78a6d22a75d4480e59219fca3a4d, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba3b78a6d22a75d4480e59219fca3a4d, type: 3}
