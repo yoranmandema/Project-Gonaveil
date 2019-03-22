@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 1352563271953662209}
   - component: {fileID: 1352563271953662212}
   - component: {fileID: 3500205305367817446}
-  - component: {fileID: 2430117030601341296}
+  - component: {fileID: 7221569541358873938}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -145,8 +145,8 @@ MonoBehaviour:
   weaponMaster: {fileID: 4501231547599861634}
   selectedWeaponID: 0
   weaponMovement: {fileID: 5067086843879541993}
---- !u!135 &2430117030601341296
-SphereCollider:
+--- !u!136 &7221569541358873938
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -155,9 +155,10 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.6
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.8
+  m_Height: 2.5
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &1352563272540711737
 GameObject:
   m_ObjectHideFlags: 0
@@ -456,8 +457,10 @@ MonoBehaviour:
     m_Bits: 2871
   impact: {fileID: 3377271070747912948, guid: 5b634f2c54a76ad49840f1e67d6c980d, type: 3}
   animator: {fileID: 1263876997933826223}
+  handBone: {fileID: 0}
   chargeProgress: 0
   viewModel: {fileID: 0}
+  worldModel: {fileID: 0}
 --- !u!114 &5067086843879541993
 MonoBehaviour:
   m_ObjectHideFlags: 0
