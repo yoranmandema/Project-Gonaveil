@@ -71,21 +71,25 @@ public class Weapon : MonoBehaviour {
         barrel.LookAt(hitPosition);
 
         var bulletObject = Instantiate(Stats.Projectile, barrel.position, barrel.rotation) as GameObject;
-
-        var SpreadX = Random.Range(-Stats.weaponSpread, Stats.weaponSpread);
-        var SpreadY = Random.Range(-Stats.weaponSpread, Stats.weaponSpread);
+        var angle = Random.Range(0, 2 * Mathf.PI);
+        var offset = Random.Range(0, Stats.weaponSpread);
+        var SpreadX = Mathf.Cos(angle) * offset;
+        var SpreadY = Mathf.Sin(angle) * offset;
 
         bulletObject.transform.Rotate(SpreadX, SpreadY, 0);
     }
 
     void HitScan(Vector3 hitPosition) {
-
         Transform hitParent = null;
         Rigidbody hitObjectRigid = null; //Rigidbody of object if it has one.
 
         var spreadVector = Vector3.zero;
-        spreadVector += mainCamera.transform.right.normalized * (Random.Range(-Stats.weaponSpread, Stats.weaponSpread) / 100);
-        spreadVector += mainCamera.transform.up.normalized * (Random.Range(-Stats.weaponSpread, Stats.weaponSpread) / 100);
+
+        var angle = Random.Range(0, 2 * Mathf.PI);
+        var offset = Random.Range(0, Stats.weaponSpread);
+        spreadVector += mainCamera.transform.right.normalized * Mathf.Cos(angle) * offset;
+        spreadVector += mainCamera.transform.up.normalized * Mathf.Sin(angle) * offset;
+        spreadVector += mainCamera.transform.forward * 75;
 
         if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward + spreadVector, out RaycastHit hit, 10000, raycastMask)) {
             hitPosition = hit.point;
