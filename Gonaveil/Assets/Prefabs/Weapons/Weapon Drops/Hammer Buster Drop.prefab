@@ -1,0 +1,167 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2783222280255535913
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2783222280255366921}
+  - component: {fileID: 8780728110697154107}
+  - component: {fileID: 6326993009227992958}
+  - component: {fileID: 5616634062594161584}
+  - component: {fileID: 1524945983039295250}
+  m_Layer: 0
+  m_Name: Hammer Buster Drop
+  m_TagString: ItemWeapon
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2783222280255366921
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2783222280255535913}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.942, y: 2, z: -32.906}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
+  m_Children:
+  - {fileID: 2597811890186115045}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &8780728110697154107
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2783222280255535913}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
+--- !u!114 &6326993009227992958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2783222280255535913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a2820c60c32cdd4caf581f13593fec8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponParameters: {fileID: 11400000, guid: 3d205efa17c19e94fb197236353c68dd, type: 2}
+--- !u!65 &5616634062594161584
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2783222280255535913}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.7571504, z: 4.233678}
+  m_Center: {x: 0, y: -0.24812022, z: -0.7865778}
+--- !u!114 &1524945983039295250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2783222280255535913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a2820c60c32cdd4caf581f13593fec8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponParameters: {fileID: 11400000, guid: dad1930dfeb8c2d4b9ac2f20a716b89b, type: 2}
+--- !u!1001 &2597811890185981305
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2783222280255366921}
+    m_Modifications:
+    - target: {fileID: 100028, guid: b9c2cd85636981d499406608bee29885, type: 3}
+      propertyPath: m_Name
+      value: Hammer Buster
+      objectReference: {fileID: 0}
+    - target: {fileID: 400028, guid: b9c2cd85636981d499406608bee29885, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400028, guid: b9c2cd85636981d499406608bee29885, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400028, guid: b9c2cd85636981d499406608bee29885, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400028, guid: b9c2cd85636981d499406608bee29885, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 400028, guid: b9c2cd85636981d499406608bee29885, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400028, guid: b9c2cd85636981d499406608bee29885, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400028, guid: b9c2cd85636981d499406608bee29885, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: 400028, guid: b9c2cd85636981d499406608bee29885, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400028, guid: b9c2cd85636981d499406608bee29885, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400028, guid: b9c2cd85636981d499406608bee29885, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400028, guid: b9c2cd85636981d499406608bee29885, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400028, guid: b9c2cd85636981d499406608bee29885, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 6.6666665
+      objectReference: {fileID: 0}
+    - target: {fileID: 400028, guid: b9c2cd85636981d499406608bee29885, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 6.666665
+      objectReference: {fileID: 0}
+    - target: {fileID: 400028, guid: b9c2cd85636981d499406608bee29885, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 6.666665
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b9c2cd85636981d499406608bee29885, type: 3}
+--- !u!4 &2597811890186115045 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400028, guid: b9c2cd85636981d499406608bee29885,
+    type: 3}
+  m_PrefabInstance: {fileID: 2597811890185981305}
+  m_PrefabAsset: {fileID: 0}

@@ -72,7 +72,8 @@ public class InventorySystem : MonoBehaviour
 
     void DropWeapon()
     {
-        GameObject dropItem = Instantiate(currentDropObject, transform.position + transform.forward * 1.5f + transform.up, transform.rotation) as GameObject;
+        GameObject dropItem = Instantiate(currentDropObject, transform.position + transform.up, transform.rotation) as GameObject;
+        dropItem.GetComponent<DroppedWeaponData>().Intangible(GetComponentInChildren<CapsuleCollider>());
         dropItem.GetComponent<DroppedWeaponData>().weaponParameters = allWeapons[selectedWeaponID];
         allWeapons[selectedWeaponID] = null;
         dropItem.transform.Rotate(0, 90, 0);

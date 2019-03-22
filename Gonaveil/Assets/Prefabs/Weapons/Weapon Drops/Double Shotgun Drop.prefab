@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5228108675203357521}
   - component: {fileID: 5228108675202554737}
   - component: {fileID: 5228108675201587633}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Cylinder.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 5228108675203357523}
   - component: {fileID: 5228108675202554739}
   - component: {fileID: 5228108675201587635}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Cylinder.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,7 +167,7 @@ GameObject:
   - component: {fileID: 5228108675203357525}
   - component: {fileID: 5228108675202554741}
   - component: {fileID: 5228108675201587637}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -244,7 +244,7 @@ GameObject:
   - component: {fileID: 5228108675203357527}
   - component: {fileID: 5228108675202554743}
   - component: {fileID: 5228108675201587639}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -325,7 +325,7 @@ GameObject:
   - component: {fileID: 5228108675203357531}
   - component: {fileID: 5228108675202554747}
   - component: {fileID: 5228108675201587643}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -402,7 +402,7 @@ GameObject:
   - component: {fileID: 5228108675203357533}
   - component: {fileID: 5228108675202554749}
   - component: {fileID: 5228108675201587645}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Cube.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -484,7 +484,7 @@ GameObject:
   - component: {fileID: 1714021498615020141}
   - component: {fileID: 4170327034663973672}
   - component: {fileID: 2585152098198357990}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Double Shotgun Drop
   m_TagString: ItemWeapon
   m_Icon: {fileID: 0}
