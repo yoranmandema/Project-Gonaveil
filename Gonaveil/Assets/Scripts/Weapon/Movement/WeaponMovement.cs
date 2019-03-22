@@ -63,7 +63,7 @@ public class WeaponMovement : MonoBehaviour
         //    pitch += playerMovement.velocity.y * jumpAmount;
         //}
 
-        transform.localRotation = Quaternion.Euler(pitch * Profile.rotationAmount, yaw * Profile.rotationAmount, crouchingSmoothedLerp * Profile.crouchAngle);
+        transform.localRotation = Quaternion.Euler(pitch * Profile.rotationAmount, yaw * Profile.rotationAmount, -yaw * Profile.rotationAmount + crouchingSmoothedLerp * Profile.crouchAngle);
 
         wasInAir = playerMovement.isInAir;
         wasGrounded = isGrounded;
