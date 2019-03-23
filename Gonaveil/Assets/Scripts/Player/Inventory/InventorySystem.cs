@@ -165,6 +165,8 @@ public class InventorySystem : MonoBehaviour {
         {
             grenade.weaponParameters = null;
             CycleWeapon(1);
+
+            if (!HasAnyWeapons) weaponMaster.Disarm();
         }
     }
 

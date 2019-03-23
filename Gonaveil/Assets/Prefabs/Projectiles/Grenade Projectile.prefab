@@ -74,7 +74,7 @@ MonoBehaviour:
   effect: {fileID: 4320170458937209827}
   hasContact: 0
   fuseTime: 10
-  bounceMultipler: 0.95
+  bounceMultipler: 0.4
   frictionMultipler: 0.9
   explosionRadius: 6
   explosionForce: 500
