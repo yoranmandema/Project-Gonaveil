@@ -119,14 +119,18 @@ public class InventorySystem : MonoBehaviour
     void PickupItem(int InventorySlot, int SecondarySlot, GameObject item, WeaponParameters droppedParameters, UnityEngine.UI.Text TextDisplay)
     {
         allWeapons[InventorySlot] = droppedParameters;
-        TextDisplay.text = allWeapons[InventorySlot].name;
+        TextDisplay.text = allWeapons[InventorySlot].weaponStats.WeaponName;
         lastSelectedWeaponID = SecondarySlot;
         Destroy(item);
     }
 
     void SetWeapon() {
         //if (lastSelectedWeaponID > -1) allWeapons[lastSelectedWeaponID].weaponStats.modelObject.SetActive(false);
-        currentWeaponText.text = allWeapons[selectedWeaponID].name;
+        currentWeaponText.text = allWeapons[selectedWeaponID].weaponStats.WeaponName;
+        if (lastSelectedWeaponID != -1 && allWeapons[lastSelectedWeaponID] != null)
+        {
+            holsteredWeaponText.text = allWeapons[lastSelectedWeaponID].weaponStats.WeaponName;
+        }
         current = allWeapons[selectedWeaponID];
 
         weaponMaster.SetParameters(current);
@@ -134,10 +138,7 @@ public class InventorySystem : MonoBehaviour
         weaponMovement.offset = current.offset;
 
         currentDropObject = current.weaponDropPrefab;
-        if (lastSelectedWeaponID != -1 && allWeapons[lastSelectedWeaponID] != null)
-        {
-            holsteredWeaponText.text = allWeapons[lastSelectedWeaponID].name;
-        }
+
         lastSelectedWeaponID = selectedWeaponID;
     }
 }
