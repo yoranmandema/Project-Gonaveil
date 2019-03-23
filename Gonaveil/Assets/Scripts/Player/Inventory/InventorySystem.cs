@@ -136,8 +136,8 @@ public class InventorySystem : MonoBehaviour {
     private void Start () {
         selectedWeaponID = -1;
 
+        if (!HasAnyWeapons) return;
         CycleWeapon(1); // Set weapon to first available.
-
         weaponMaster.Rearm();
     }
 
@@ -194,11 +194,18 @@ public class InventorySystem : MonoBehaviour {
                 secondary.weaponParameters = dropData.weaponParameters;
                 secondary.SetInventoryAmmo(dropData.currentMagazineCapacity, dropData.currentAmmoPool);
             }
+            else
+            {
+                return;
+            }
         } else {
             if (grenade.weaponParameters == null)
             {
                 grenade.weaponParameters = dropData.weaponParameters;
                 grenade.SetInventoryAmmo(dropData.currentMagazineCapacity, dropData.currentAmmoPool);
+            }            else
+            {
+                return;
             }
         }
 
