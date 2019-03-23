@@ -91,6 +91,14 @@ public class Weapon : MonoBehaviour {
     public void WeaponFire() {
         //remove a round from the magazine
         currentMagazine -= 1;
+        try //Placeholder until we add muzzle flashes for all weapons.
+        {
+            transform.GetComponentInChildren<ParticleSystem>().Play(true);
+        }
+        catch
+        {
+
+        }
         //loops to fire multiple shots in one round
         for (int i = 0; i < weaponParameters.weaponStats.bulletsPerShot; i++) {
             //check if the gun is hitscan or projectile, does the apporpriate thing.
@@ -171,14 +179,6 @@ public class Weapon : MonoBehaviour {
         burstCount = 0;
         loadTimer = trueFireRate;
         fireStage = FireStage.Firing;
-        try //Placeholder until we add muzzle flashes for all weapons.
-        {
-            transform.GetComponentInChildren<ParticleSystem>().Play(true);
-        }
-        catch
-        {
-
-        }
     }
     
     void ReloadGun()
@@ -246,14 +246,11 @@ public class Weapon : MonoBehaviour {
                 //UI circle
                 chargeCircle.fillAmount = chargeProgress;
             }
-            else if (fireStage == FireStage.Cycling)
-            {
                 //waits for trigger to be released before allowing the player to fire again.
-                if (controller.triggerState == PlayerInputController.TriggerStates.Idle)
-                {
-                    fireStage = FireStage.Idle;
-                }
-            }
+             if (controller.triggerState == PlayerInputController.TriggerStates.Idle)
+             {
+                fireStage = FireStage.Idle;
+             }
         }
         else
         {
