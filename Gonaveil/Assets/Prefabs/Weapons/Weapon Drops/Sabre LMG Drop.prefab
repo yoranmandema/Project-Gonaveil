@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4796397628743955190}
   - component: {fileID: 4205410128823389182}
-  - component: {fileID: 7523884421765223370}
   - component: {fileID: 5746524295948841610}
+  - component: {fileID: 7523884421765223370}
   m_Layer: 13
   m_Name: Sabre LMG Drop
   m_TagString: ItemWeapon
@@ -47,6 +47,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.1, y: 0.5, z: 1.3215995}
   m_Center: {x: 0, y: 0, z: 0.19866681}
+--- !u!114 &5746524295948841610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7889961728042130609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a2820c60c32cdd4caf581f13593fec8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponParameters: {fileID: 11400000, guid: 9823a23e8dd17da49b567b1ab4d7d69b, type: 2}
+  currentMagazineCapacity: 0
+  currentAmmoPool: 0
 --- !u!54 &7523884421765223370
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -63,19 +78,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &5746524295948841610
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7889961728042130609}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a2820c60c32cdd4caf581f13593fec8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponParameters: {fileID: 11400000, guid: 9823a23e8dd17da49b567b1ab4d7d69b, type: 2}
 --- !u!1001 &3912064580128833534
 PrefabInstance:
   m_ObjectHideFlags: 0

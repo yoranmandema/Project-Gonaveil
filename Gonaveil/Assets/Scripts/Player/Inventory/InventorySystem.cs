@@ -3,9 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class InventorySystem : MonoBehaviour {
-    public WeaponParameters primary;
-    public WeaponParameters secondary;
-    public WeaponParameters grenade;
+
+    [System.Serializable]
+    public class InventorySlot
+    {
+        public int weaponMagazine;
+        public int weaponAmmoPool;
+        public WeaponParameters weaponParameters;
+
+        public void SetInventoryAmmo(int magazine, int ammoPool)
+        {
+            weaponMagazine = magazine;
+            weaponAmmoPool = ammoPool;
+        }
+    }
+
+    public InventorySlot primary;
+    public InventorySlot secondary;
+    public InventorySlot grenade;
 
     public Weapon weaponMaster;
     public int selectedWeaponID;
@@ -14,7 +29,7 @@ public class InventorySystem : MonoBehaviour {
     private GameObject currentDropObject;
     private WeaponParameters current;
 
-    public WeaponParameters CurrentWeapon { get {
+    public InventorySlot CurrentWeapon { get {
             switch (selectedWeaponID) {
                 case 0:
                     return primary;
@@ -48,9 +63,9 @@ public class InventorySystem : MonoBehaviour {
         get {
             var hasAnyWeapon = false;
 
-            hasAnyWeapon = hasAnyWeapon || primary != null;
-            hasAnyWeapon = hasAnyWeapon || secondary != null;
-            hasAnyWeapon = hasAnyWeapon || grenade != null;
+            hasAnyWeapon = hasAnyWeapon || primary.weaponParameters != null;
+            hasAnyWeapon = hasAnyWeapon || secondary.weaponParameters != null;
+            hasAnyWeapon = hasAnyWeapon || grenade.weaponParameters != null;
 
             return hasAnyWeapon;
         }
@@ -60,11 +75,11 @@ public class InventorySystem : MonoBehaviour {
     private bool isSlotAvailable (int slot) {
         switch (slot) {
             case 0:
-                return primary == null;
+                return primary.weaponParameters == null;
             case 1:
-                return secondary == null;
+                return secondary.weaponParameters == null;
             case 2:
-                return grenade == null;
+                return grenade.weaponParameters == null;
             default:
                 Debug.LogError($"Invalid slot number '{slot}'!");
                 return false;
@@ -126,9 +141,15 @@ public class InventorySystem : MonoBehaviour {
         weaponMaster.Rearm();
     }
 
+    private void UpdateAmmo()
+    {
+        if (!HasAnyWeapons) return;
+        CurrentWeapon.SetInventoryAmmo(weaponMaster.currentMagazine, weaponMaster.currentAmmoPool);
+    }
+
     private void Update() {
         Cycle();
-
+        UpdateAmmo();
         if (InputManager.GetButtonDown("Drop Weapon")) {
             DropWeapon();
         }
@@ -138,14 +159,15 @@ public class InventorySystem : MonoBehaviour {
         var dropItem = Instantiate(currentDropObject, transform.position + transform.up, transform.rotation) as GameObject;
         dropItem.transform.Rotate(0, 90, 0);
 
-        var dropData = dropItem.GetComponent<DroppedWeaponData>();
+        var dropData = dropItem.GetComponentInChildren<DroppedWeaponData>();
         dropData.Intangible(GetComponentInChildren<CapsuleCollider>());
-        dropData.weaponParameters = CurrentWeapon;
+        dropData.weaponParameters = CurrentWeapon.weaponParameters;
+        dropData.SetDroppedAmmo(CurrentWeapon.weaponMagazine, CurrentWeapon.weaponAmmoPool);
 
         var throwVector = transform.forward + Vector3.up;
         dropItem.GetComponent<Rigidbody>().AddForce(throwVector * 200);
 
-        CurrentWeapon = null;
+        CurrentWeapon.weaponParameters = null;
 
         CycleWeapon(1); // Set weapon to first available.
 
@@ -158,29 +180,30 @@ public class InventorySystem : MonoBehaviour {
 
             if (dropData == null) return;
 
-            var droppedParameters = dropData.weaponParameters;
-
-            PickupWeapon(collision.gameObject, droppedParameters);
+            PickupWeapon(collision.gameObject, dropData);
         }
     }
 
-    void PickupWeapon(GameObject item, WeaponParameters droppedParameters) {
+    void PickupWeapon(GameObject item, DroppedWeaponData dropData) {
 
-        if (!droppedParameters.isGrenade) {
-            if (primary == null) {
-                primary = droppedParameters;
-            } else if (secondary == null) {
-                secondary = droppedParameters;
+        if (!dropData.weaponParameters.isGrenade) {
+            if (primary.weaponParameters == null) {
+                primary.weaponParameters = dropData.weaponParameters;
+                primary.SetInventoryAmmo(dropData.currentMagazineCapacity, dropData.currentAmmoPool);
+            } else if (secondary.weaponParameters == null) {
+                secondary.weaponParameters = dropData.weaponParameters;
+                secondary.SetInventoryAmmo(dropData.currentMagazineCapacity, dropData.currentAmmoPool);
             }
         } else {
-            if (grenade == null) {
-                grenade = droppedParameters;
+            if (grenade.weaponParameters == null)
+            {
+                grenade.weaponParameters = dropData.weaponParameters;
+                grenade.SetInventoryAmmo(dropData.currentMagazineCapacity, dropData.currentAmmoPool);
             }
         }
 
-        if (HasAnyWeapons && weaponMaster.weaponEquipped) {
+        if (HasAnyWeapons && !weaponMaster.weaponEquipped) {
             CycleWeapon(1); // Set weapon to first available.
-
             weaponMaster.Rearm();
         }
 
@@ -190,9 +213,10 @@ public class InventorySystem : MonoBehaviour {
     void SetWeapon() {
         if (!HasAnyWeapons) return;
 
-        current = CurrentWeapon;
+        current = CurrentWeapon.weaponParameters;
 
         weaponMaster.SetParameters(current);
+        weaponMaster.SetWeaponAmmo(CurrentWeapon.weaponMagazine, CurrentWeapon.weaponAmmoPool);
         weaponMovement.Profile = current.weaponMovementProfile;
         weaponMovement.offset = current.offset;
 
