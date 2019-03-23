@@ -15,7 +15,7 @@ MonoBehaviour:
   weaponStats:
     WeaponName: Sabre
     magazineCapacity: 100
-    reloadTime: 0
+    reloadTime: 2.75
     fireRate: 600
     weaponSpread: 1.5
     bulletsPerShot: 1

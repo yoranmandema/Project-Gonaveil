@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponStats:
     WeaponName: Cer. Plasma Gun
-    magazineCapacity: 0
-    reloadTime: 0
+    magazineCapacity: 35
+    reloadTime: 1
     fireRate: 700
     weaponSpread: 1
     bulletsPerShot: 1

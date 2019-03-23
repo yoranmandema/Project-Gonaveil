@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponStats:
     WeaponName: Artemis
-    magazineCapacity: 0
-    reloadTime: 0
+    magazineCapacity: 5
+    reloadTime: 3
     fireRate: 300
     weaponSpread: 0
     bulletsPerShot: 1

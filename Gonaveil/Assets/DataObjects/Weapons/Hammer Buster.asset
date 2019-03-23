@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponStats:
     WeaponName: Hammer Buster
-    magazineCapacity: 0
-    reloadTime: 0
+    magazineCapacity: 6
+    reloadTime: 2
     fireRate: 225
     weaponSpread: 0
     bulletsPerShot: 1
