@@ -139,9 +139,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a6e59697087ebc4ba2b6759fcc221f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  primary: {fileID: 11400000, guid: 45d410edca6984b42ae41cc6a9443d93, type: 2}
-  secondary: {fileID: 11400000, guid: dad1930dfeb8c2d4b9ac2f20a716b89b, type: 2}
-  grenade: {fileID: 0}
+  primary:
+    weaponMagazine: 0
+    weaponAmmoPool: 0
+    weaponParameters: {fileID: 0}
+  secondary:
+    weaponMagazine: 0
+    weaponAmmoPool: 0
+    weaponParameters: {fileID: 0}
+  grenade:
+    weaponMagazine: 0
+    weaponAmmoPool: 0
+    weaponParameters: {fileID: 0}
   weaponMaster: {fileID: 4501231547599861634}
   selectedWeaponID: 0
   weaponMovement: {fileID: 5067086843879541993}
@@ -523,10 +532,12 @@ MonoBehaviour:
   impact: {fileID: 3377271070747912948, guid: 5b634f2c54a76ad49840f1e67d6c980d, type: 3}
   animator: {fileID: 1263876997933826223}
   handBone: {fileID: 1263876997926678335}
-  disabled: 0
+  weaponEquipped: 0
   chargeProgress: 0
   viewModel: {fileID: 0}
   worldModel: {fileID: 0}
+  currentMagazine: 0
+  currentAmmoPool: 0
 --- !u!114 &5067086843879541993
 MonoBehaviour:
   m_ObjectHideFlags: 0
