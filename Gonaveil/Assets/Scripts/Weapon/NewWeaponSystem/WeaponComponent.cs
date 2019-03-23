@@ -2,17 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponComponent : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+public abstract class WeaponComponent : MonoBehaviour {
+    public WeaponController weaponController;
+    public Transform camera;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public abstract void OnFireStart();
+    public abstract void OnFireEnd();
 }

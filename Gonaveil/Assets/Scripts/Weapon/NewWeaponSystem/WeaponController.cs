@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponController : MonoBehaviour
-{
+public class WeaponController : MonoBehaviour {
     public Transform weaponHolder;
     public Transform camera;
     public Transform handBone;
@@ -21,7 +20,7 @@ public class WeaponController : MonoBehaviour
         if (worldModel != null) Destroy(worldModel);
 
         weaponParameters = parameters;
- 
+
         viewModel = Instantiate(weaponParameters.viewModel, transform, false);
         worldModel = Instantiate(weaponParameters.worldModel, handBone, false);
 
@@ -29,13 +28,11 @@ public class WeaponController : MonoBehaviour
         barrel = modelData.barrel;
     }
 
-    void Start()
-    {
+    void Start() {
         inventorySystem = GetComponent<InventorySystem>();
     }
 
-    void Update()
-    {
-        
+    void Update() {
+
     }
 }
