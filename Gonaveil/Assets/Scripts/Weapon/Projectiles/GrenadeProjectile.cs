@@ -31,7 +31,7 @@ public class GrenadeProjectile : Projectile
 
     public override void OnHit(ref Vector3 position, float deltaTime, RaycastHit hit) {
         var rollVelocity = Vector3.ProjectOnPlane(velocity, hit.normal) * frictionMultipler;
-        var bounceVelocity = Vector3.Reflect(velocity.normalized, hit.normal) * velocity.magnitude;
+        var bounceVelocity = Vector3.Reflect(velocity.normalized, hit.normal) * velocity.magnitude * bounceMultipler;
         var lerp = Vector3.Dot(velocity.normalized,-hit.normal);
 
         velocity = Vector3.Lerp(rollVelocity, bounceVelocity, lerp);
