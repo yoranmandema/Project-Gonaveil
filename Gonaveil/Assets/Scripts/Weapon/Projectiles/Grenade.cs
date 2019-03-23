@@ -27,7 +27,7 @@ public class Grenade : MonoBehaviour
         if (sphereCast) {
             velocity = Vector3.Reflect(velocity.normalized, hit.normal) * velocity.magnitude;
 
-            transform.position = hit.point + velocity;
+            transform.position = hit.point;
         }
         else {
             velocity += Physics.gravity * Time.deltaTime;

@@ -108,7 +108,11 @@ public class Weapon : MonoBehaviour {
         //create bullet
         var bulletObject = Instantiate(Stats.Projectile, mainCamera.transform.position, mainCamera.transform.rotation) as GameObject;
         //tell the bullet where the barrel is (used for bullet model)
-        bulletObject.GetComponent<Bullet>().barrel = barrel;
+        var bulletComponent = bulletObject.GetComponent<Bullet>();
+
+        if (bulletComponent) {
+            bulletComponent.barrel = barrel;
+        }
 
         //calculate uniform spread
         var angle = Random.Range(0, 2 * Mathf.PI);
