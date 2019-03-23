@@ -7,7 +7,7 @@ public enum ProjectileType { Projectile, Hitscan }
 
 [System.Serializable]
 public class WeaponValues {
-    public string WeaponName;
+    //public string WeaponName;
     //public GameObject modelObject;
     public int magazineCapacity;
     public float reloadTime;

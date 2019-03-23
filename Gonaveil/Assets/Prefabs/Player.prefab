@@ -139,14 +139,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a6e59697087ebc4ba2b6759fcc221f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allWeapons:
-  - {fileID: 11400000, guid: a6286d37e8039ed4cb77c9613c6a6bf7, type: 2}
-  - {fileID: 11400000, guid: e781dbeaf61a63c4fb186ff594857493, type: 2}
+  primary: {fileID: 11400000, guid: 45d410edca6984b42ae41cc6a9443d93, type: 2}
+  secondary: {fileID: 11400000, guid: dad1930dfeb8c2d4b9ac2f20a716b89b, type: 2}
+  grenade: {fileID: 0}
   weaponMaster: {fileID: 4501231547599861634}
   selectedWeaponID: 0
   weaponMovement: {fileID: 5067086843879541993}
-  currentWeaponText: {fileID: 2242140002763489645}
-  holsteredWeaponText: {fileID: 8746912410737185429}
 --- !u!1 &1352563272540711737
 GameObject:
   m_ObjectHideFlags: 0
@@ -409,7 +407,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &672576096935119095
 RectTransform:
   m_ObjectHideFlags: 0
@@ -525,6 +523,7 @@ MonoBehaviour:
   impact: {fileID: 3377271070747912948, guid: 5b634f2c54a76ad49840f1e67d6c980d, type: 3}
   animator: {fileID: 1263876997933826223}
   handBone: {fileID: 1263876997926678335}
+  disabled: 0
   chargeProgress: 0
   viewModel: {fileID: 0}
   worldModel: {fileID: 0}
@@ -996,6 +995,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9135018573814942319}
+  - component: {fileID: 2824068554205835917}
   m_Layer: 5
   m_Name: Inventory Display
   m_TagString: Untagged
@@ -1026,6 +1026,21 @@ RectTransform:
   m_AnchoredPosition: {x: 238, y: 318}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2824068554205835917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6428752373554752237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ce116eb3717a2d4292ef623963dc076, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: {fileID: 3500205305367817446}
+  currentWeaponText: {fileID: 2242140002763489645}
+  holsteredWeaponText: {fileID: 0}
 --- !u!1 &7967798477184359888
 GameObject:
   m_ObjectHideFlags: 0
@@ -1546,12 +1561,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90e6630f938cd684abfbc05182523e50, type: 3}
---- !u!95 &1263876997933826223 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 9500000, guid: 90e6630f938cd684abfbc05182523e50,
-    type: 3}
-  m_PrefabInstance: {fileID: 1263876997926548943}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1263876997926580887 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100184, guid: 90e6630f938cd684abfbc05182523e50,
@@ -1561,6 +1570,12 @@ GameObject:
 --- !u!4 &1263876997926678263 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400184, guid: 90e6630f938cd684abfbc05182523e50,
+    type: 3}
+  m_PrefabInstance: {fileID: 1263876997926548943}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1263876997933826223 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9500000, guid: 90e6630f938cd684abfbc05182523e50,
     type: 3}
   m_PrefabInstance: {fileID: 1263876997926548943}
   m_PrefabAsset: {fileID: 0}
@@ -1689,6 +1704,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2f6b79e5aafd06449dfb5692b7169f1, type: 3}
+--- !u!224 &6447403044381061190 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1763587266404969489, guid: a2f6b79e5aafd06449dfb5692b7169f1,
+    type: 3}
+  m_PrefabInstance: {fileID: 4683818030699027543}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &6447403044420535057 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1763587266432196422, guid: a2f6b79e5aafd06449dfb5692b7169f1,
@@ -1701,9 +1722,3 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &6447403044381061190 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 1763587266404969489, guid: a2f6b79e5aafd06449dfb5692b7169f1,
-    type: 3}
-  m_PrefabInstance: {fileID: 4683818030699027543}
-  m_PrefabAsset: {fileID: 0}

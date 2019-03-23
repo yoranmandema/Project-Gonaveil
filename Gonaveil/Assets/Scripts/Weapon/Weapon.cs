@@ -8,6 +8,7 @@ public class Weapon : MonoBehaviour {
     public GameObject impact;
     public Animator animator;
     public Transform handBone;
+    public bool disabled;
 
     public enum FireStage { Idle, Firing, Charging, Cycling, Reloading}
     public float chargeProgress;
@@ -24,6 +25,7 @@ public class Weapon : MonoBehaviour {
     private Transform barrel;
     private WeaponModelData modelData;
     private bool weaponEquipped;
+
     private int playerLayer;
 
     private WeaponValues Stats => weaponParameters.weaponStats;
@@ -62,6 +64,11 @@ public class Weapon : MonoBehaviour {
     public void Disarm() //Used by the inventory system to ensure the player can't shoot when there are no more weapons
     {
         weaponEquipped = false;
+
+        if (disabled) return;
+
+        disabled = true;
+
         Destroy(viewModel);
         Destroy(worldModel);
     }
@@ -69,6 +76,8 @@ public class Weapon : MonoBehaviour {
     public void Rearm() //return the system to be active again.
     {
         weaponEquipped = true;
+
+        disabled = false;
     }
 
     private void Start() {
@@ -173,7 +182,7 @@ public class Weapon : MonoBehaviour {
 
         }
     }
-
+    
     void ReloadGun()
     {
         //increments loadTimer until = reload time

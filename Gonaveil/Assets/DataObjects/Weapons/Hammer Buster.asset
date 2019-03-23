@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b891a8b7dd44db4e908db08b7187760, type: 3}
   m_Name: Hammer Buster
   m_EditorClassIdentifier: 
+  weaponName: Hammer Buster
   weaponStats:
-    WeaponName: Hammer Buster
     magazineCapacity: 6
     reloadTime: 2
     fireRate: 225
@@ -35,3 +35,4 @@ MonoBehaviour:
   offset: {x: 0.17, y: -0.17, z: 0.66}
   weaponDropPrefab: {fileID: 2783222280255535913, guid: 9ba8532be31ca0f4a9d295f4aab488af,
     type: 3}
+  isGrenade: 0

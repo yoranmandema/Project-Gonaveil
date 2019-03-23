@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b891a8b7dd44db4e908db08b7187760, type: 3}
   m_Name: Double Barrel Shotgun
   m_EditorClassIdentifier: 
+  weaponName: Double Barrel
   weaponStats:
-    WeaponName: Double Barrel
     magazineCapacity: 2
     reloadTime: 2.5
     fireRate: 500
@@ -35,3 +35,4 @@ MonoBehaviour:
   offset: {x: 0.17, y: -0.25, z: 0.45}
   weaponDropPrefab: {fileID: 5228108675203581823, guid: 241c6b1bf8d7bef47833d821de48c9dd,
     type: 3}
+  isGrenade: 0

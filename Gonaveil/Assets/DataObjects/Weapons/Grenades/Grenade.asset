@@ -10,29 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0b891a8b7dd44db4e908db08b7187760, type: 3}
-  m_Name: BattleRifle
+  m_Name: Grenade
   m_EditorClassIdentifier: 
-  weaponName: Battle Rifle
+  weaponName: Grenade
   weaponStats:
-    magazineCapacity: 30
-    reloadTime: 2
-    fireRate: 800
-    weaponSpread: 2
-    bulletsPerShot: 1
-    bulletsPerBurst: 1
+    magazineCapacity: 0
+    reloadTime: 0
+    fireRate: 0
+    weaponSpread: 0
+    bulletsPerShot: 0
+    bulletsPerBurst: 0
     burstTime: 0
     chargeTime: 0
     fireWhenCharged: 0
     Projectile: {fileID: 4846615784228082546, guid: e7cf5f436ac463144989ba4cb199fe24,
       type: 3}
-    weaponType: 0
-    weaponClass: 2
-    projectileType: 1
-  weaponMovementProfile: {fileID: 11400000, guid: d990bb4dfaa7bda48b79e62e5599ada3,
+    weaponType: 1
+    weaponClass: 0
+    projectileType: 0
+  weaponMovementProfile: {fileID: 11400000, guid: d6aa95c883e9c5f4585dd63261a62f3b,
     type: 2}
-  viewModel: {fileID: 6304173697746482174, guid: 37d370390b7db434296815fb27e0a327,
+  viewModel: {fileID: 3506668811766850200, guid: 30c4777b425007e43b614faaf6a5400f,
     type: 3}
-  offset: {x: 0.15, y: -0.17, z: 0.3}
-  weaponDropPrefab: {fileID: 5209984929163130827, guid: 9ea28963fa6350b40a424f2800800104,
+  offset: {x: 0.35, y: -0.3, z: 0.6}
+  weaponDropPrefab: {fileID: 7812966916841739600, guid: 385e6ee058c9d3f48a956e406add207c,
     type: 3}
-  isGrenade: 0
+  isGrenade: 1
