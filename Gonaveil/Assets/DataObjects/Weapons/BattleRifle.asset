@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponStats:
     WeaponName: Battle Rifle
-    magazineCapacity: 0
-    reloadTime: 0
+    magazineCapacity: 30
+    reloadTime: 2
     fireRate: 800
     weaponSpread: 2
     bulletsPerShot: 1

@@ -31,6 +31,7 @@ public class Weapon : MonoBehaviour {
     public void SetParameters (WeaponParameters parameters) {
         weaponParameters = parameters;
 
+
         if (viewModel != null) Destroy(viewModel);
         if (worldModel != null) Destroy(worldModel);
 
