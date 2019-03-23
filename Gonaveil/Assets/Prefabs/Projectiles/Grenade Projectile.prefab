@@ -71,7 +71,7 @@ MonoBehaviour:
   velocity: {x: 0, y: 0, z: 0}
   instigator: {fileID: 0}
   barrel: {fileID: 0}
-  effect: {fileID: 0}
+  effect: {fileID: 1087033104606774025}
   hasContact: 0
   fuseTime: 3
   bounceMultipler: 0.5
