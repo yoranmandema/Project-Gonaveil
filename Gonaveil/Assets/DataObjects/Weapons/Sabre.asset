@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sabre
   m_EditorClassIdentifier: 
   weaponStats:
-    WeaponName: Sabre LMG
+    WeaponName: Sabre
     magazineCapacity: 100
     reloadTime: 0
     fireRate: 600
