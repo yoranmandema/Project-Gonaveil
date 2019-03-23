@@ -94,7 +94,8 @@ public class Weapon : MonoBehaviour {
 
         barrel.LookAt(hitPosition);
 
-        var bulletObject = Instantiate(Stats.Projectile, barrel.position, barrel.rotation) as GameObject;
+        var bulletObject = Instantiate(Stats.Projectile, mainCamera.transform.position, mainCamera.transform.rotation) as GameObject;
+        bulletObject.GetComponent<Bullet>().barrel = barrel;
         var angle = Random.Range(0, 2 * Mathf.PI);
         var offset = Random.Range(0, Stats.weaponSpread);
         var SpreadX = Mathf.Cos(angle) * offset;
