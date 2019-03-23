@@ -38,5 +38,9 @@ public class WeaponSpawner : MonoBehaviour
                 SpawnWeapon();
             }
         }
+        else
+        {
+            spawnedWeapon.transform.Rotate(0, 50 * Time.deltaTime, 0);
+        }
     }
 }
