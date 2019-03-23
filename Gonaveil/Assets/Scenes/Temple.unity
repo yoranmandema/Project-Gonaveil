@@ -13655,6 +13655,16 @@ PrefabInstance:
       propertyPath: selectedWeaponID
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 3500205305367817446, guid: 908a70b9af8bb4e4bb3951e11a6b614a,
+        type: 3}
+      propertyPath: primary.weaponParameters
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3500205305367817446, guid: 908a70b9af8bb4e4bb3951e11a6b614a,
+        type: 3}
+      propertyPath: primary.weaponMagazine
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4501231547599861634, guid: 908a70b9af8bb4e4bb3951e11a6b614a,
         type: 3}
       propertyPath: weaponParameters

@@ -140,9 +140,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   primary:
-    weaponMagazine: 6
+    weaponMagazine: 0
     weaponAmmoPool: 0
-    weaponParameters: {fileID: 11400000, guid: 3d205efa17c19e94fb197236353c68dd, type: 2}
+    weaponParameters: {fileID: 0}
   secondary:
     weaponMagazine: 0
     weaponAmmoPool: 0

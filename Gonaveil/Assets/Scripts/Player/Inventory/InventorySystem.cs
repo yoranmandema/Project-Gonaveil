@@ -156,7 +156,7 @@ public class InventorySystem : MonoBehaviour {
     private void Update() {
         Cycle();
         UpdateAmmo();
-        if (InputManager.GetButtonDown("Drop Weapon")) {
+        if (InputManager.GetButtonDown("Drop Weapon") && HasAnyWeapons) {
             DropWeapon();
         }
     }
