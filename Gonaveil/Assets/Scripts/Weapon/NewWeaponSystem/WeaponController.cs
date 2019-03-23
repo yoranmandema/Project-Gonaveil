@@ -7,7 +7,7 @@ public class WeaponController : MonoBehaviour {
     public Transform camera;
     public Transform handBone;
 
-    public WeaponParameters weaponParameters;
+    public WeaponAsset weaponAsset;
 
     private GameObject viewModel;
     private GameObject worldModel;
@@ -15,17 +15,26 @@ public class WeaponController : MonoBehaviour {
     private WeaponModelData modelData;
     private InventorySystem inventorySystem;
 
-    public void SetParameters(WeaponParameters parameters) {
+    private WeaponComponent primaryComponent;
+    private WeaponComponent secondaryComponent;
+
+    public void SetParameters(WeaponAsset asset) {
         if (viewModel != null) Destroy(viewModel);
         if (worldModel != null) Destroy(worldModel);
+        if (primaryComponent != null) Destroy(primaryComponent);
+        if (secondaryComponent != null) Destroy(secondaryComponent);
 
-        weaponParameters = parameters;
+        weaponAsset = asset;
 
-        viewModel = Instantiate(weaponParameters.viewModel, transform, false);
-        worldModel = Instantiate(weaponParameters.worldModel, handBone, false);
+        viewModel = Instantiate(weaponAsset.viewModel, transform, false);
+        worldModel = Instantiate(weaponAsset.worldModel, handBone, false);
 
         modelData = viewModel.GetComponent<WeaponModelData>();
         barrel = modelData.barrel;
+
+        // Add WeaponComponents to Weapon Holder object on player.
+        primaryComponent = weaponHolder.gameObject.AddComponent(weaponAsset.primaryComponent.GetType()) as WeaponComponent;
+        secondaryComponent = weaponHolder.gameObject.AddComponent(weaponAsset.secondaryComponent.GetType()) as WeaponComponent;
     }
 
     void Start() {
@@ -33,6 +42,18 @@ public class WeaponController : MonoBehaviour {
     }
 
     void Update() {
+        if (primaryComponent != null) {
+            if (InputManager.GetButtonDown("Fire1"))
+                primaryComponent.OnFireStart();
+            else if (InputManager.GetButtonUp("Fire1"))
+                primaryComponent.OnFireEnd();
+        }
 
+        if (secondaryComponent != null) {
+            if (InputManager.GetButtonDown("Fire2"))
+                secondaryComponent.OnFireStart();
+            else if (InputManager.GetButtonUp("Fire2"))
+                secondaryComponent.OnFireEnd();
+        }
     }
 }
