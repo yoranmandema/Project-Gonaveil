@@ -45,8 +45,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16b60a40903a2d3448c16c4abfc172a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lifeTime: 10
   startVelocity: 20
-  radius: 0.07
+  radius: 0.05
+  timeSteps: 6
   mask:
     serializedVersion: 2
     m_Bits: 1

@@ -22,5 +22,5 @@ MonoBehaviour:
   crouchEngageTime: 0.2
   crouchEngageSmoothing: 0.05
   lookDownRetraction: 0.25
-  lookDownSmoothing: 1
+  lookDownSmoothing: 0.25
   jumpAmount: 0.25
