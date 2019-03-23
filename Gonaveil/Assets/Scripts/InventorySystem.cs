@@ -113,7 +113,11 @@ public class InventorySystem : MonoBehaviour {
         }
     } 
 
-    void Update() {
+    private void Start () {
+        CycleWeapon(1); // Set weapon to first available.
+    }
+
+    private void Update() {
         CheckInventory();
 
         Cycle();
@@ -133,15 +137,17 @@ public class InventorySystem : MonoBehaviour {
     }
 
     void DropWeapon() {
-        GameObject dropItem = Instantiate(currentDropObject, transform.position + transform.up, transform.rotation) as GameObject;
-        dropItem.GetComponent<DroppedWeaponData>().Intangible(GetComponentInChildren<CapsuleCollider>());
-        dropItem.GetComponent<DroppedWeaponData>().weaponParameters = CurrentWeapon;
+        var dropItem = Instantiate(currentDropObject, transform.position + transform.up, transform.rotation) as GameObject;
         dropItem.transform.Rotate(0, 90, 0);
 
-        CurrentWeapon = null;
+        var dropData = dropItem.GetComponent<DroppedWeaponData>();
+        dropData.Intangible(GetComponentInChildren<CapsuleCollider>());
+        dropData.weaponParameters = CurrentWeapon;
 
         var throwVector = transform.forward + Vector3.up;
         dropItem.GetComponent<Rigidbody>().AddForce(throwVector * 100);
+
+        CurrentWeapon = null;
     }
 
     private void OnTriggerStay(Collider collision) {
@@ -150,7 +156,7 @@ public class InventorySystem : MonoBehaviour {
             //CheckInventory(0, 1, collision.gameObject, droppedParameters, currentWeaponText);
             //CheckInventory(1, 0, collision.gameObject, droppedParameters, holsteredWeaponText);
 
-
+            
         }
     }
 
