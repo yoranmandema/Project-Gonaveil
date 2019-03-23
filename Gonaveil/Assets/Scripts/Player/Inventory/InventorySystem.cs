@@ -136,9 +136,15 @@ public class InventorySystem : MonoBehaviour {
     private void Start () {
         selectedWeaponID = -1;
 
-        if (!HasAnyWeapons) return;
-        CycleWeapon(1); // Set weapon to first available.
-        weaponMaster.Rearm();
+        if (!HasAnyWeapons)
+        {
+            weaponMaster.Disarm();
+        }
+        else
+        {
+            CycleWeapon(1); // Set weapon to first available.
+            weaponMaster.Rearm();
+        }
     }
 
     private void UpdateAmmo()
