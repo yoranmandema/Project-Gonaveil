@@ -159,35 +159,27 @@ public class InventorySystem : MonoBehaviour {
 
     private void OnTriggerStay(Collider collision) {
         if (collision.tag == "ItemWeapon") {
-            WeaponParameters droppedParameters = collision.GetComponentInChildren<DroppedWeaponData>().weaponParameters;
-            //CheckInventory(0, 1, collision.gameObject, droppedParameters, currentWeaponText);
-            //CheckInventory(1, 0, collision.gameObject, droppedParameters, holsteredWeaponText);
+            var dropData = collision.GetComponentInChildren<DroppedWeaponData>();
 
-            
+            if (dropData == null) return;
+
+            var droppedParameters = dropData.weaponParameters;
+
+            PickupWeapon(collision.gameObject, droppedParameters);
         }
     }
 
-    void TryToPickupWeapon(GameObject item, WeaponParameters droppedParameters) {
-        //if (allWeapons[PrimaryID] == null) {
-        //    try {
-        //        if (allWeapons[SecondaryID].name != droppedParameters.name) {
-        //            PickupItem(PrimaryID, SecondaryID, item, droppedParameters, TextDisplay);
-        //        }
-        //    }
-        //    catch {
-        //        PickupItem(PrimaryID, SecondaryID, item, droppedParameters, TextDisplay);
-        //    }
-        //}
+    void PickupWeapon(GameObject item, WeaponParameters droppedParameters) {
 
-        //if (allWeapons[0] == null) {
-
-        //}
-
-        //PickupItem(PrimaryID, SecondaryID, item, droppedParameters, TextDisplay);
-    }
-
-    void PickupItem(int InventorySlot, int SecondarySlot, GameObject item, WeaponParameters droppedParameters) {
-        CurrentWeapon = droppedParameters;
+        if (!droppedParameters.isGrenade) {
+            if (primary == null) {
+                primary = droppedParameters;
+            } else if (secondary == null) {
+                secondary = droppedParameters;
+            }
+        } else {
+            grenade = droppedParameters;
+        }
 
         Destroy(item);
     }
