@@ -5,15 +5,14 @@ using UnityEngine;
 public class InventorySystem : MonoBehaviour
 {
     public WeaponParameters[] allWeapons;
-    public GrenadeParameters grenade;
     public Weapon weaponMaster;
-    private GameObject currentDropObject;
     public int selectedWeaponID;
     public WeaponMovement weaponMovement;
 
     public UnityEngine.UI.Text currentWeaponText;
     public UnityEngine.UI.Text holsteredWeaponText;
 
+    private GameObject currentDropObject;
     private int lastSelectedWeaponID = -1;
     private WeaponParameters current;
     private bool disabled;
