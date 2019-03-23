@@ -8,6 +8,7 @@ public class Weapon : MonoBehaviour {
     public GameObject impact;
     public Animator animator;
     public Transform handBone;
+    public bool disabled;
 
     public enum FireStage { Idle, Firing, Charging, Cycled}
     public float chargeProgress;
@@ -21,7 +22,6 @@ public class Weapon : MonoBehaviour {
     private FireStage fireStage;
     private Transform barrel;
     private WeaponModelData modelData;
-    private bool Disabled;
     private int playerLayer;
 
     private WeaponValues Stats => weaponParameters.weaponStats;
@@ -46,14 +46,16 @@ public class Weapon : MonoBehaviour {
 
     public void Disarm()
     {
-        Disabled = true;
+        if (disabled) return;
+
+        disabled = true;
         Destroy(viewModel);
         Destroy(worldModel);
     }
 
     public void Rearm()
     {
-        Disabled = false;
+        disabled = false;
     }
 
     private void Start() {
@@ -141,7 +143,7 @@ public class Weapon : MonoBehaviour {
     }
 
     private void Update() {
-        if (!Disabled)
+        if (!disabled)
         {
             Stats.bulletsPerShot = Mathf.Clamp(Stats.bulletsPerShot, 1, int.MaxValue);
             Stats.fireRate = Mathf.Clamp(Stats.fireRate, 1, int.MaxValue);

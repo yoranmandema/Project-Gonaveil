@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class InventorySystem : MonoBehaviour {
-    public WeaponParameters[] allWeapons;
+    public WeaponParameters primary;
+    public WeaponParameters secondary;
+    public WeaponParameters grenade;
+
     public Weapon weaponMaster;
     public int selectedWeaponID;
     public WeaponMovement weaponMovement;
@@ -11,61 +14,125 @@ public class InventorySystem : MonoBehaviour {
     private GameObject currentDropObject;
     private int lastSelectedWeaponID = -1;
     private WeaponParameters current;
-    private bool disabled;
+
+    private WeaponParameters CurrentWeapon { get {
+            switch (selectedWeaponID) {
+                case 0:
+                    return primary;
+                case 1:
+                    return secondary;
+                case 2:
+                    return grenade;
+                default:
+                    return null;
+            }
+        }
+
+        set {
+            switch (selectedWeaponID) {
+                case 0:
+                    primary = value;
+                    break;
+                case 1:
+                    secondary = value;
+                    break;
+                case 2:
+                    grenade = value;
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    private bool HasAnyWeapons {
+        get {
+            var hasAnyWeapon = false;
+
+            hasAnyWeapon = hasAnyWeapon || primary != null;
+            hasAnyWeapon = hasAnyWeapon || secondary != null;
+            hasAnyWeapon = hasAnyWeapon || grenade != null;
+
+            return hasAnyWeapon;
+        }
+    }
 
     void Start() {
         //weaponMovement = GetComponent<WeaponMovement>();
         lastSelectedWeaponID = 1;
     }
+    
+    private bool isSlotAvailable (int slot) {
+        switch (slot) {
+            case 0:
+                return primary == null;
+            case 1:
+                return secondary == null;
+            case 2:
+                return grenade == null;
+            default:
+                Debug.LogError($"Invalid slot number '{slot}'!");
+                return false;
+        }
+    }
+
+    private void IncrementWeaponIndex() {
+        if (++selectedWeaponID > 2) selectedWeaponID = 0;
+    }
+
+    private void DecrementWeaponIndex() {
+        if (--selectedWeaponID < 0) selectedWeaponID = 2;
+    }
+
+    private void Cycle () {
+        if (!HasAnyWeapons) return;
+
+        if (Input.GetAxis("Mouse ScrollWheel") > 0) {
+            IncrementWeaponIndex();
+
+            while (!isSlotAvailable(selectedWeaponID)) {
+                IncrementWeaponIndex();
+            }
+        }
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0) {
+            DecrementWeaponIndex();
+
+            while (!isSlotAvailable(selectedWeaponID)) {
+                DecrementWeaponIndex();
+            }
+        }
+    } 
 
     void Update() {
         CheckInventory();
-        if (Input.GetAxis("Mouse ScrollWheel") > 0) {
-            ++selectedWeaponID;
-        }
-        else if (Input.GetAxis("Mouse ScrollWheel") < 0) {
-            --selectedWeaponID;
-        }
-        if (selectedWeaponID > 1) {
-            selectedWeaponID = 0;
-        }
-        else if (selectedWeaponID < 0) {
-            selectedWeaponID = 1;
-        }
-        if (allWeapons[selectedWeaponID] == null) {
-            if (selectedWeaponID == 1) {
-                selectedWeaponID = 0;
-            }
-            else if (selectedWeaponID == 0) {
-                selectedWeaponID = 1;
-            }
-        }
-        if (lastSelectedWeaponID != selectedWeaponID && !disabled) {
+
+        Cycle();
+
+        if (lastSelectedWeaponID != selectedWeaponID) {
             SetWeapon();
         }
-        if (Input.GetButtonDown("Drop Weapon") && !disabled) {
+
+        if (InputManager.GetButtonDown("Drop Weapon")) {
             DropWeapon();
         }
     }
 
     void CheckInventory() {
-        if (allWeapons[0] == null && allWeapons[1] == null) {
+        if (!HasAnyWeapons) {
             weaponMaster.Disarm();
-            disabled = true;
         }
         else {
             weaponMaster.Rearm();
-            disabled = false;
         }
     }
 
     void DropWeapon() {
         GameObject dropItem = Instantiate(currentDropObject, transform.position + transform.up, transform.rotation) as GameObject;
         dropItem.GetComponent<DroppedWeaponData>().Intangible(GetComponentInChildren<CapsuleCollider>());
-        dropItem.GetComponent<DroppedWeaponData>().weaponParameters = allWeapons[selectedWeaponID];
+        dropItem.GetComponent<DroppedWeaponData>().weaponParameters = CurrentWeapon;
         dropItem.transform.Rotate(0, 90, 0);
 
-        allWeapons[selectedWeaponID] = null;
+        CurrentWeapon = null;
 
         var throwVector = transform.forward + Vector3.up;
         dropItem.GetComponent<Rigidbody>().AddForce(throwVector * 100);
@@ -101,7 +168,7 @@ public class InventorySystem : MonoBehaviour {
     }
 
     void PickupItem(int InventorySlot, int SecondarySlot, GameObject item, WeaponParameters droppedParameters) {
-        allWeapons[InventorySlot] = droppedParameters;
+        CurrentWeapon = droppedParameters;
 
         lastSelectedWeaponID = SecondarySlot;
 
@@ -109,7 +176,7 @@ public class InventorySystem : MonoBehaviour {
     }
 
     void SetWeapon() {
-        current = allWeapons[selectedWeaponID];
+        current = CurrentWeapon;
 
         weaponMaster.SetParameters(current);
         weaponMovement.Profile = current.weaponMovementProfile;
