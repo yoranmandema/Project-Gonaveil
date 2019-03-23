@@ -111,6 +111,8 @@ public class Weapon : MonoBehaviour {
         //tell the bullet where the barrel is (used for bullet model)
         var projectile = projectileObject.GetComponent<Projectile>();
         projectile.barrel = barrel;
+        projectile.instigator = transform.root.gameObject;
+        projectile.Fire();
 
         //calculate uniform spread
         var angle = Random.Range(0, 2 * Mathf.PI);

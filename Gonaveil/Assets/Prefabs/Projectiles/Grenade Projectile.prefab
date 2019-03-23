@@ -68,6 +68,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1025
   velocity: {x: 0, y: 0, z: 0}
+  instigator: {fileID: 0}
+  barrel: {fileID: 0}
+  effect: {fileID: 4320170458937209827}
+  fuseTime: 3
+  explosionRadius: 3
+  explosionForce: 500
 --- !u!1001 &4320170458936813923
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -11,13 +11,15 @@ public class GrenadeProjectile : Projectile
     public override void OnStart() {
         velocity = transform.forward * startVelocity;
 
-        velocity += instigator.GetComponent<CharacterController>().velocity; 
+        velocity += instigator.GetComponent<CharacterController>().velocity;
+
+        StartCoroutine(Fuse());
     }
 
     public override void OnHit(RaycastHit hit, ref Vector3 position, float deltaTime) {
         velocity = Vector3.Reflect(velocity.normalized, hit.normal) * velocity.magnitude;
 
-        position = hit.point + velocity * deltaTime;
+        position = hit.point + velocity * 0.75f * deltaTime;
     }
 
     private IEnumerator Fuse () {
