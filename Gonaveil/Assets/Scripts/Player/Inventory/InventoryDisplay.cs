@@ -21,7 +21,11 @@ public class InventoryDisplay : MonoBehaviour
         } else if (inventory.HasAnyWeapons && disabled) {
             foreach (Transform child in transform)
                 child.gameObject.SetActive(true);
+
+            disabled = false;
         }
+
+        if (disabled) return;
 
         currentWeaponText.text = inventory.CurrentWeapon.weaponName;
     }
