@@ -22,7 +22,7 @@ public class GamePlayPhysics
         }
     }
 
-    public static void DoExplosion (Vector3 position, float radius, float force, float upwards, ExplosionType explosionType = ExplosionType.Players) {
+    public static void DoExplosion (Vector3 position, float radius, float force, float upwards = 1f, ExplosionType explosionType = ExplosionType.Players) {
         var layerMask = GetExplosionTypeLayerMask(explosionType);
         var mask = (1 << 0) | (1 << layerMask);
 
@@ -48,7 +48,7 @@ public class GamePlayPhysics
                 if (playerMovement != null) {
                     var difference = hit.transform.position - position;
 
-                    var addForce = difference.normalized * force;
+                    var addForce = difference.normalized * force + Vector3.up * force * upwards;
 
                     playerMovement.AddForce(addForce);
 

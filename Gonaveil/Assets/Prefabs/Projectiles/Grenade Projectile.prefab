@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4320170459746706973}
-  - component: {fileID: 4320170459746706972}
   - component: {fileID: 4320170459746706975}
+  - component: {fileID: 1147570840546330786}
   m_Layer: 12
   m_Name: Grenade Projectile
   m_TagString: Untagged
@@ -33,26 +33,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4320170459746706972
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4320170459746706974}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16b60a40903a2d3448c16c4abfc172a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lifeTime: 10
-  startVelocity: 20
-  radius: 0.05
-  timeSteps: 6
-  mask:
-    serializedVersion: 2
-    m_Bits: 1
-  velocity: {x: 0, y: 0, z: 0}
 --- !u!135 &4320170459746706975
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -66,6 +46,34 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.075
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1147570840546330786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4320170459746706974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93becd9b32e7574418ebcb135cb5d332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeTime: 10
+  startVelocity: 10
+  gravityScale: 1
+  useSphereCast: 1
+  radius: 0.07
+  timeSteps: 6
+  mask:
+    serializedVersion: 2
+    m_Bits: 1025
+  velocity: {x: 0, y: 0, z: 0}
+  instigator: {fileID: 0}
+  barrel: {fileID: 0}
+  effect: {fileID: 4320170458937209827}
+  fuseTime: 3
+  explosionRadius: 3
+  explosionForce: 500
 --- !u!1001 &4320170458936813923
 PrefabInstance:
   m_ObjectHideFlags: 0
