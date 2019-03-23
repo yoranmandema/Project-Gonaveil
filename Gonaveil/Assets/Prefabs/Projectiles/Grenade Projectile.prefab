@@ -59,11 +59,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTime: 10
-  startVelocity: 10
+  startVelocity: 12
   gravityScale: 1
   useSphereCast: 1
   radius: 0.07
   timeSteps: 6
+  timeScale: 1
   mask:
     serializedVersion: 2
     m_Bits: 1025
@@ -71,9 +72,12 @@ MonoBehaviour:
   instigator: {fileID: 0}
   barrel: {fileID: 0}
   effect: {fileID: 4320170458937209827}
+  hasContact: 0
   fuseTime: 3
-  explosionRadius: 3
-  explosionForce: 500
+  bounceMultipler: 0.5
+  frictionMultipler: 0.7
+  explosionRadius: 6
+  explosionForce: 1000
 --- !u!1001 &4320170458936813923
 PrefabInstance:
   m_ObjectHideFlags: 0

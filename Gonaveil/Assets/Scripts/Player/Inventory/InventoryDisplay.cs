@@ -8,6 +8,8 @@ public class InventoryDisplay : MonoBehaviour
     public InventorySystem inventory;
     public UnityEngine.UI.Text currentWeaponText;
     public UnityEngine.UI.Text holsteredWeaponText;
+    public UnityEngine.UI.Text currentAmmoText;
+    public UnityEngine.UI.Text holsteredAmmoText;
 
     private bool disabled;
 
@@ -28,5 +30,6 @@ public class InventoryDisplay : MonoBehaviour
         if (disabled) return;
 
         currentWeaponText.text = inventory.CurrentWeapon.weaponParameters.weaponName;
+        currentAmmoText.text = inventory.CurrentWeapon.weaponMagazine.ToString() + "|" + inventory.CurrentWeapon.weaponAmmoPool.ToString();
     }
 }

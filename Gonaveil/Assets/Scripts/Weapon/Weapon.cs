@@ -37,7 +37,7 @@ public class Weapon : MonoBehaviour {
         //removes previous view model and world model
         if (viewModel != null) Destroy(viewModel);
         if (worldModel != null) Destroy(worldModel);
-        fireStage = FireStage.Idle;
+        fireStage = FireStage.Cycling;
 
         //creates new view model and world model.
         viewModel = Instantiate(weaponParameters.viewModel, transform, false);
@@ -91,6 +91,14 @@ public class Weapon : MonoBehaviour {
     public void WeaponFire() {
         //remove a round from the magazine
         currentMagazine -= 1;
+        try //Placeholder until we add muzzle flashes for all weapons.
+        {
+            transform.GetComponentInChildren<ParticleSystem>().Play(true);
+        }
+        catch
+        {
+
+        }
         //loops to fire multiple shots in one round
         for (int i = 0; i < weaponParameters.weaponStats.bulletsPerShot; i++) {
             //check if the gun is hitscan or projectile, does the apporpriate thing.
@@ -171,14 +179,6 @@ public class Weapon : MonoBehaviour {
         burstCount = 0;
         loadTimer = trueFireRate;
         fireStage = FireStage.Firing;
-        try //Placeholder until we add muzzle flashes for all weapons.
-        {
-            transform.GetComponentInChildren<ParticleSystem>().Play(true);
-        }
-        catch
-        {
-
-        }
     }
     
     void ReloadGun()
@@ -218,19 +218,20 @@ public class Weapon : MonoBehaviour {
             if (controller.triggerState == PlayerInputController.TriggerStates.Primary)
             {
                 //Full Auto, "pulls" trigger every time the gun has cycled
-                if (Stats.weaponType == WeaponType.FullAuto)
+                if (fireStage != FireStage.Cycling) //semi auto is a different system, this checks if the gun hasn't fired.
                 {
-                    PrepareFire(trueFireRate);
-                }
-                else if (Stats.weaponType == WeaponType.Charge) //Charge weapons are similar. "Holds" trigger.
-                {
-                    ChargeWeapon();
-                    fireStage = FireStage.Charging;
-                }
-                else
-                {
-                    if (fireStage != FireStage.Cycling) //semi auto is a different system, this checks if the gun hasn't fired.
+                    if (Stats.weaponType == WeaponType.FullAuto)
                     {
+                        PrepareFire(trueFireRate);
+                    }
+                    else if (Stats.weaponType == WeaponType.Charge) //Charge weapons are similar. "Holds" trigger.
+                    {
+                        ChargeWeapon();
+                        fireStage = FireStage.Charging;
+                    }
+                    else
+                    {
+
                         PrepareFire(trueFireRate);
                     }
                 }
@@ -323,6 +324,7 @@ public class Weapon : MonoBehaviour {
                 {
                     GunFireMechanics();
                 }
+
             }
             else
             {
