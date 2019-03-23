@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 341c394b00e7c3e49aa7701a60cec797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barrel: {fileID: 0}
+  barrel: {fileID: 6336307752769151954}
 --- !u!1001 &6336307752769288530
 PrefabInstance:
   m_ObjectHideFlags: 0

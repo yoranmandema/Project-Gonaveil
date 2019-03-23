@@ -20,6 +20,8 @@ public abstract class Projectile : MonoBehaviour {
     private float startTime;
 
     public void Fire() {
+        effect.position = barrel.position;
+
         OnStart();
 
         startTime = Time.realtimeSinceStartup;
