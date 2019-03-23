@@ -188,7 +188,7 @@ public class InventorySystem : MonoBehaviour {
     }
 
     void PickupWeapon(GameObject item, DroppedWeaponData dropData) {
-
+        bool Empty = false;
         if (!dropData.weaponParameters.isGrenade) {
             if (primary.weaponParameters == null) {
                 primary.weaponParameters = dropData.weaponParameters;
@@ -199,7 +199,7 @@ public class InventorySystem : MonoBehaviour {
                 secondary.SetInventoryAmmo(dropData.currentMagazineCapacity, dropData.currentAmmoPool);
             }
             else {
-                return;
+                Empty = true;
             }
         }
         else {
@@ -208,16 +208,37 @@ public class InventorySystem : MonoBehaviour {
                 grenade.SetInventoryAmmo(dropData.currentMagazineCapacity, dropData.currentAmmoPool);
             }
             else {
+                Empty = true;
+            }
+        }
+        if (Empty)
+        {
+            if(primary.weaponParameters.name == dropData.weaponParameters.name)
+            {
+                primary.SetInventoryAmmo(primary.weaponMagazine, primary.weaponAmmoPool + dropData.currentAmmoPool);
+                SetWeapon();
+            }else if(secondary.weaponParameters.name == dropData.weaponParameters.name)
+            {
+                secondary.SetInventoryAmmo(secondary.weaponMagazine, secondary.weaponAmmoPool + dropData.currentAmmoPool);
+                SetWeapon();
+            }else if(grenade.weaponParameters.name == dropData.weaponParameters.name)
+            {
+                grenade.SetInventoryAmmo(grenade.weaponMagazine, grenade.weaponAmmoPool + dropData.currentAmmoPool);
+                SetWeapon();
+            }
+            else
+            {
                 return;
             }
         }
-
-        if (HasAnyWeapons && !weaponMaster.weaponEquipped) {
-            CycleWeapon(1); // Set weapon to first available.
-            weaponMaster.Rearm();
+        else {
+            if (HasAnyWeapons && !weaponMaster.weaponEquipped) {
+                CycleWeapon(1); // Set weapon to first available.
+                weaponMaster.Rearm();
+            }
         }
-
         Destroy(item);
+
     }
 
     void SetWeapon() {

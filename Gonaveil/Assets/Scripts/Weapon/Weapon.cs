@@ -183,17 +183,29 @@ public class Weapon : MonoBehaviour {
     
     void ReloadGun()
     {
-        //increments loadTimer until = reload time
-        if(loadTimer < Stats.reloadTime)
+        if (currentAmmoPool > 0)
         {
-            loadTimer += Time.deltaTime;
-        }
-        else
-        {
-            //set values and reset the gun.
-            currentMagazine = Stats.magazineCapacity;
-            loadTimer = 0;
-            fireStage = FireStage.Idle;
+            //increments loadTimer until = reload time
+            if (loadTimer < Stats.reloadTime)
+            {
+                loadTimer += Time.deltaTime;
+            }
+            else
+            {
+                //set values and reset the gun.
+                currentAmmoPool += currentMagazine;
+                if (currentAmmoPool < Stats.magazineCapacity)
+                {
+                    currentMagazine = currentAmmoPool;
+                }
+                else
+                {
+                    currentMagazine = Stats.magazineCapacity;
+                }
+                currentAmmoPool -= currentMagazine;
+                loadTimer = 0;
+                fireStage = FireStage.Idle;
+            }
         }
     }
 

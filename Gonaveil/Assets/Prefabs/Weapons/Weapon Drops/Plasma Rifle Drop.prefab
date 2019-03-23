@@ -63,6 +63,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponParameters: {fileID: 11400000, guid: a6286d37e8039ed4cb77c9613c6a6bf7, type: 2}
+  currentMagazineCapacity: 35
+  currentAmmoPool: 105
 --- !u!65 &3885453189341082102
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -143,6 +145,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 100016, guid: ba3b78a6d22a75d4480e59219fca3a4d, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: ba3b78a6d22a75d4480e59219fca3a4d, type: 3}
       propertyPath: m_Layer
       value: 13
@@ -160,10 +166,6 @@ PrefabInstance:
       value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 100014, guid: ba3b78a6d22a75d4480e59219fca3a4d, type: 3}
-      propertyPath: m_Layer
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 100016, guid: ba3b78a6d22a75d4480e59219fca3a4d, type: 3}
       propertyPath: m_Layer
       value: 13
       objectReference: {fileID: 0}

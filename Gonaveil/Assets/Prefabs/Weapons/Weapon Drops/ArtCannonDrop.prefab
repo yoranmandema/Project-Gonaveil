@@ -63,6 +63,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponParameters: {fileID: 11400000, guid: e781dbeaf61a63c4fb186ff594857493, type: 2}
+  currentMagazineCapacity: 5
+  currentAmmoPool: 15
 --- !u!65 &857529580642658715
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -151,11 +153,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 54310eff6c8d78d459620cc3a91f01de, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: 54310eff6c8d78d459620cc3a91f01de, type: 3}
       propertyPath: m_Layer
       value: 13
       objectReference: {fileID: 0}
-    - target: {fileID: 100006, guid: 54310eff6c8d78d459620cc3a91f01de, type: 3}
+    - target: {fileID: 100014, guid: 54310eff6c8d78d459620cc3a91f01de, type: 3}
       propertyPath: m_Layer
       value: 13
       objectReference: {fileID: 0}
@@ -167,19 +173,15 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 13
       objectReference: {fileID: 0}
-    - target: {fileID: 100014, guid: 54310eff6c8d78d459620cc3a91f01de, type: 3}
-      propertyPath: m_Layer
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 100016, guid: 54310eff6c8d78d459620cc3a91f01de, type: 3}
-      propertyPath: m_Layer
-      value: 13
-      objectReference: {fileID: 0}
     - target: {fileID: 100020, guid: 54310eff6c8d78d459620cc3a91f01de, type: 3}
       propertyPath: m_Layer
       value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 100022, guid: 54310eff6c8d78d459620cc3a91f01de, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 100016, guid: 54310eff6c8d78d459620cc3a91f01de, type: 3}
       propertyPath: m_Layer
       value: 13
       objectReference: {fileID: 0}
