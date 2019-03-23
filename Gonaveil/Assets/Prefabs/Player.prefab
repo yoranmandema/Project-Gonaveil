@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1679408568
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1679408569}
+  m_Layer: 10
+  m_Name: WorldModelHoldPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1679408569
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1679408568}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.07, y: 0.2, z: 0.03}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1263876997926678335}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8928229822054956759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,7 +182,7 @@ MonoBehaviour:
     weaponAmmoPool: 0
     weaponParameters: {fileID: 0}
   weaponMaster: {fileID: 4501231547599861634}
-  selectedWeaponID: 0
+  selectedWeaponID: -1
   weaponMovement: {fileID: 5067086843879541993}
 --- !u!1 &1352563272540711737
 GameObject:
@@ -531,7 +561,7 @@ MonoBehaviour:
     m_Bits: 2871
   impact: {fileID: 3377271070747912948, guid: 5b634f2c54a76ad49840f1e67d6c980d, type: 3}
   animator: {fileID: 1263876997933826223}
-  handBone: {fileID: 1263876997926678335}
+  handBone: {fileID: 1679408569}
   weaponEquipped: 0
   chargeProgress: 0
   viewModel: {fileID: 0}
@@ -1572,15 +1602,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90e6630f938cd684abfbc05182523e50, type: 3}
---- !u!1 &1263876997926580887 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100184, guid: 90e6630f938cd684abfbc05182523e50,
-    type: 3}
-  m_PrefabInstance: {fileID: 1263876997926548943}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1263876997926678263 stripped
+--- !u!4 &1263876997926678335 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 400184, guid: 90e6630f938cd684abfbc05182523e50,
+  m_CorrespondingSourceObject: {fileID: 400112, guid: 90e6630f938cd684abfbc05182523e50,
     type: 3}
   m_PrefabInstance: {fileID: 1263876997926548943}
   m_PrefabAsset: {fileID: 0}
@@ -1590,9 +1614,15 @@ Animator:
     type: 3}
   m_PrefabInstance: {fileID: 1263876997926548943}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1263876997926678335 stripped
+--- !u!4 &1263876997926678263 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 400112, guid: 90e6630f938cd684abfbc05182523e50,
+  m_CorrespondingSourceObject: {fileID: 400184, guid: 90e6630f938cd684abfbc05182523e50,
+    type: 3}
+  m_PrefabInstance: {fileID: 1263876997926548943}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1263876997926580887 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100184, guid: 90e6630f938cd684abfbc05182523e50,
     type: 3}
   m_PrefabInstance: {fileID: 1263876997926548943}
   m_PrefabAsset: {fileID: 0}
