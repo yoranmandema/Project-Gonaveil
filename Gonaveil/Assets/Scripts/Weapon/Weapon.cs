@@ -37,7 +37,7 @@ public class Weapon : MonoBehaviour {
         //removes previous view model and world model
         if (viewModel != null) Destroy(viewModel);
         if (worldModel != null) Destroy(worldModel);
-        fireStage = FireStage.Idle;
+        fireStage = FireStage.Cycling;
 
         //creates new view model and world model.
         viewModel = Instantiate(weaponParameters.viewModel, transform, false);
