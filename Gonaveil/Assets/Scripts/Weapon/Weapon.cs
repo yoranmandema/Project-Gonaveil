@@ -141,6 +141,14 @@ public class Weapon : MonoBehaviour {
         burstCount = 0;
         loadTimer = trueFireRate;
         fireStage = FireStage.Firing;
+        try
+        {
+            transform.GetComponentInChildren<ParticleSystem>().Play(true);
+        }
+        catch
+        {
+
+        }
     }
 
     private void Update() {
