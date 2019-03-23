@@ -18,12 +18,12 @@ MonoBehaviour:
     reloadTime: 0
     fireRate: 700
     weaponSpread: 1
-    bulletsPerShot: 5
+    bulletsPerShot: 1
     bulletsPerBurst: 1
     burstTime: 0
     chargeTime: 0
     fireWhenCharged: 0
-    Projectile: {fileID: 7029257663271969234, guid: a389b91c8457b6d489bd193c13284b4b,
+    Projectile: {fileID: 4846615784228082546, guid: e7cf5f436ac463144989ba4cb199fe24,
       type: 3}
     weaponType: 0
     weaponClass: 2
