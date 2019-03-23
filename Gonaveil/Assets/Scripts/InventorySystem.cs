@@ -84,22 +84,38 @@ public class InventorySystem : MonoBehaviour {
         if (--selectedWeaponID < 0) selectedWeaponID = 2;
     }
 
+    private void CycleWeaponIndex(int delta) {
+        selectedWeaponID += delta;
+
+        if (selectedWeaponID > 2) {
+            selectedWeaponID = 0;
+        }
+        else if (selectedWeaponID < 0) {
+            selectedWeaponID = 2;
+        }
+    }
+
+    // Gets called when the player changes weapons by scrolling.
+    private void CycleWeapon(int delta) {
+        if (delta == 0) return; // Realistically this would never happen. 
+
+        CycleWeaponIndex(delta);
+
+        while (isSlotAvailable(selectedWeaponID)) CycleWeaponIndex(delta);
+
+        SetWeapon();
+
+        print(selectedWeaponID);
+    }
+
     private void Cycle () {
         if (!HasAnyWeapons) return;
 
         if (Input.GetAxis("Mouse ScrollWheel") > 0) {
-            IncrementWeaponIndex();
-
-            while (!isSlotAvailable(selectedWeaponID)) {
-                IncrementWeaponIndex();
-            }
+            CycleWeapon(1);
         }
         else if (Input.GetAxis("Mouse ScrollWheel") < 0) {
-            DecrementWeaponIndex();
-
-            while (!isSlotAvailable(selectedWeaponID)) {
-                DecrementWeaponIndex();
-            }
+            CycleWeapon(-1);
         }
     } 
 
@@ -176,6 +192,8 @@ public class InventorySystem : MonoBehaviour {
     }
 
     void SetWeapon() {
+        if (!HasAnyWeapons) return;
+
         current = CurrentWeapon;
 
         weaponMaster.SetParameters(current);
