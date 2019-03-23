@@ -294,7 +294,6 @@ public class Weapon : MonoBehaviour {
     }
 
     private void Update() {
-        Debug.Log(fireStage);
         //boolean to tell if there is any weapon in the inventory
         if (weaponEquipped)
         {
