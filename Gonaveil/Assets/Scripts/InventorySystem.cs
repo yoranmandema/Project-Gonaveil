@@ -12,7 +12,6 @@ public class InventorySystem : MonoBehaviour {
     public WeaponMovement weaponMovement;
 
     private GameObject currentDropObject;
-    private int lastSelectedWeaponID = -1;
     private WeaponParameters current;
 
     private WeaponParameters CurrentWeapon { get {
@@ -57,11 +56,6 @@ public class InventorySystem : MonoBehaviour {
         }
     }
 
-    void Start() {
-        //weaponMovement = GetComponent<WeaponMovement>();
-        lastSelectedWeaponID = 1;
-    }
-    
     private bool isSlotAvailable (int slot) {
         switch (slot) {
             case 0:
@@ -74,14 +68,6 @@ public class InventorySystem : MonoBehaviour {
                 Debug.LogError($"Invalid slot number '{slot}'!");
                 return false;
         }
-    }
-
-    private void IncrementWeaponIndex() {
-        if (++selectedWeaponID > 2) selectedWeaponID = 0;
-    }
-
-    private void DecrementWeaponIndex() {
-        if (--selectedWeaponID < 0) selectedWeaponID = 2;
     }
 
     private void CycleWeaponIndex(int delta) {
@@ -101,11 +87,10 @@ public class InventorySystem : MonoBehaviour {
 
         CycleWeaponIndex(delta);
 
+        // Keep cycling while the current slot if available.
         while (isSlotAvailable(selectedWeaponID)) CycleWeaponIndex(delta);
 
         SetWeapon();
-
-        print(selectedWeaponID);
     }
 
     private void Cycle () {
@@ -123,10 +108,6 @@ public class InventorySystem : MonoBehaviour {
         CheckInventory();
 
         Cycle();
-
-        if (lastSelectedWeaponID != selectedWeaponID) {
-            SetWeapon();
-        }
 
         if (InputManager.GetButtonDown("Drop Weapon")) {
             DropWeapon();
@@ -186,8 +167,6 @@ public class InventorySystem : MonoBehaviour {
     void PickupItem(int InventorySlot, int SecondarySlot, GameObject item, WeaponParameters droppedParameters) {
         CurrentWeapon = droppedParameters;
 
-        lastSelectedWeaponID = SecondarySlot;
-
         Destroy(item);
     }
 
@@ -201,7 +180,5 @@ public class InventorySystem : MonoBehaviour {
         weaponMovement.offset = current.offset;
 
         currentDropObject = current.weaponDropPrefab;
-
-        lastSelectedWeaponID = selectedWeaponID;
     }
 }
