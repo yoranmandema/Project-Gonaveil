@@ -22,10 +22,10 @@ public class InventorySystem : MonoBehaviour
     void Update()
     {
         CheckInventory();
-        if (InputManager.GetAxis("Mouse ScrollWheel") > 0) {
+        if (Input.GetAxis("Mouse ScrollWheel") > 0) {
             ++selectedWeaponID;
         }
-        else if (InputManager.GetAxis("Mouse ScrollWheel") < 0) {
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0) {
             --selectedWeaponID;
         }
         if (selectedWeaponID > 1)
@@ -50,7 +50,7 @@ public class InventorySystem : MonoBehaviour
         {
             SetWeapon();
         }
-        if (InputManager.GetButtonDown("Drop Weapon") && !disabled)
+        if (Input.GetButtonDown("Drop Weapon") && !disabled)
         {
             DropWeapon();
         }

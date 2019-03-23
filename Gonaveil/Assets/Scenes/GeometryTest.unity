@@ -2006,7 +2006,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh17750
+  m_Name: pb_Mesh319240
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -10062,7 +10062,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh18254
+  m_Name: pb_Mesh53156
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -14499,7 +14499,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh17654
+  m_Name: pb_Mesh52556
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -24826,6 +24826,11 @@ PrefabInstance:
     - target: {fileID: 8019477031622035233, guid: a389b91c8457b6d489bd193c13284b4b,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 914915567892907177, guid: a389b91c8457b6d489bd193c13284b4b,
+        type: 3}
+      propertyPath: m_UseGravity
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -42153,7 +42158,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh17830
+  m_Name: pb_Mesh52732
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -64964,7 +64969,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh30728
+  m_Name: pb_Mesh53064
   serializedVersion: 9
   m_SubMeshes: []
   m_Shapes:
@@ -80228,7 +80233,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh30464
+  m_Name: pb_Mesh52780
   serializedVersion: 9
   m_SubMeshes: []
   m_Shapes:
@@ -83947,6 +83952,12 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4501231547599861634, guid: 908a70b9af8bb4e4bb3951e11a6b614a,
+        type: 3}
+      propertyPath: impact
+      value: 
+      objectReference: {fileID: 7014942900961724035, guid: daa85898c81bb1b4ba5aa5853330b35d,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 908a70b9af8bb4e4bb3951e11a6b614a, type: 3}
 --- !u!1001 &5458122776786480681
