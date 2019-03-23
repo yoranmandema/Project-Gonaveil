@@ -5,6 +5,7 @@ using UnityEngine;
 public class InventorySystem : MonoBehaviour
 {
     public WeaponParameters[] allWeapons;
+    public GrenadeParameters grenade;
     public Weapon weaponMaster;
     private GameObject currentDropObject;
     public int selectedWeaponID;
