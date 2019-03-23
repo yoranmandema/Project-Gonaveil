@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 public class Weapon : MonoBehaviour {
-    public PlayerInputController controller;
+    public GunController controller;
     public UnityEngine.UI.Image chargeCircle;
     public WeaponParameters weaponParameters;
     public LayerMask raycastMask;
@@ -161,7 +161,7 @@ public class Weapon : MonoBehaviour {
 
             if (loadTimer <= 0)
             {
-                if (controller.triggerState == PlayerInputController.TriggerStates.Primary)
+                if (controller.triggerState == GunController.TriggerStates.Primary)
                 {
                     if (Stats.weaponType == WeaponType.FullAuto)
                     {
@@ -182,7 +182,7 @@ public class Weapon : MonoBehaviour {
                 }
                 if (fireStage == FireStage.Charging)
                 {
-                    if (controller.triggerState == PlayerInputController.TriggerStates.Idle || (Stats.fireWhenCharged && chargeProgress == 1))
+                    if (controller.triggerState == GunController.TriggerStates.Idle || (Stats.fireWhenCharged && chargeProgress == 1))
                     {
                         FireGun(trueFireRate);
                         chargeProgress = 0;
@@ -191,7 +191,7 @@ public class Weapon : MonoBehaviour {
                 }
                 else if (fireStage == FireStage.Cycled)
                 {
-                    if (controller.triggerState == PlayerInputController.TriggerStates.Idle)
+                    if (controller.triggerState == GunController.TriggerStates.Idle)
                     {
                         fireStage = FireStage.Idle;
                     }
