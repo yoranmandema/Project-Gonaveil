@@ -83,6 +83,9 @@ public class InventorySystem : MonoBehaviour {
 
     // Gets called when the player changes weapons by scrolling.
     private void CycleWeapon(int delta) {
+        // Don't cycle if we don't have any weapons.
+        if (!HasAnyWeapons) return;
+
         if (delta == 0) return; // Realistically this would never happen. 
 
         CycleWeaponIndex(delta);
@@ -114,8 +117,6 @@ public class InventorySystem : MonoBehaviour {
     } 
 
     private void Start () {
-        if (!HasAnyWeapons) return;
-
         selectedWeaponID = -1;
 
         CycleWeapon(1); // Set weapon to first available.
