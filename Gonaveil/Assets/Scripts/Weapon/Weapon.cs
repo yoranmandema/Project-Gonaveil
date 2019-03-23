@@ -106,13 +106,11 @@ public class Weapon : MonoBehaviour {
     void Projectile() {
 
         //create bullet
-        var bulletObject = Instantiate(Stats.Projectile, mainCamera.transform.position, mainCamera.transform.rotation) as GameObject;
+        var projectileObject = Instantiate(Stats.Projectile, mainCamera.transform.position, mainCamera.transform.rotation) as GameObject;
+        
         //tell the bullet where the barrel is (used for bullet model)
-        var bulletComponent = bulletObject.GetComponent<Bullet>();
-
-        if (bulletComponent) {
-            bulletComponent.barrel = barrel;
-        }
+        var projectile = projectileObject.GetComponent<Projectile>();
+        projectile.barrel = barrel;
 
         //calculate uniform spread
         var angle = Random.Range(0, 2 * Mathf.PI);
@@ -120,7 +118,7 @@ public class Weapon : MonoBehaviour {
         var SpreadX = Mathf.Cos(angle) * offset;
         var SpreadY = Mathf.Sin(angle) * offset;
         //apply spread
-        bulletObject.transform.Rotate(SpreadX, SpreadY, 0);
+        projectileObject.transform.Rotate(SpreadX, SpreadY, 0);
     }
 
     void HitScan() {
