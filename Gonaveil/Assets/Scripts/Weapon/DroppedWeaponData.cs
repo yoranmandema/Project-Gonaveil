@@ -11,7 +11,7 @@ public class DroppedWeaponData : MonoBehaviour
     {
         pickupTrigger = playerCollider;
         Physics.IgnoreCollision(GetComponent<BoxCollider>(), pickupTrigger, true);
-        Invoke("Tangible", 1);
+        Invoke("Tangible", 0.5f);
     }
 
     void Tangible()
