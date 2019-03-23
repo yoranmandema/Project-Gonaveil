@@ -200,7 +200,8 @@ public class InventorySystem : MonoBehaviour {
     }
 
     void PickupWeapon(GameObject item, DroppedWeaponData dropData) {
-        bool Empty = false;
+        bool WeaponFull = false;
+        bool GrenadeFull = false;
         if (!dropData.weaponParameters.isGrenade) {
             if (primary.weaponParameters == null) {
                 primary.weaponParameters = dropData.weaponParameters;
@@ -211,7 +212,7 @@ public class InventorySystem : MonoBehaviour {
                 secondary.SetInventoryAmmo(dropData.currentMagazineCapacity, dropData.currentAmmoPool);
             }
             else {
-                Empty = true;
+                WeaponFull = true;
             }
         }
         else {
@@ -220,22 +221,30 @@ public class InventorySystem : MonoBehaviour {
                 grenade.SetInventoryAmmo(dropData.currentMagazineCapacity, dropData.currentAmmoPool);
             }
             else {
-                Empty = true;
+                GrenadeFull = true;
             }
         }
-        if (Empty)
+        if (GrenadeFull)
         {
-            if(primary.weaponParameters.name == dropData.weaponParameters.name && primary.weaponParameters != null)
+            if (grenade.weaponParameters.name == dropData.weaponParameters.name)
             {
-                primary.SetInventoryAmmo(primary.weaponMagazine, primary.weaponAmmoPool + dropData.currentAmmoPool);
+                grenade.SetInventoryAmmo(grenade.weaponMagazine + dropData.currentMagazineCapacity + dropData.currentAmmoPool, 0);
                 SetWeapon();
-            }else if(secondary.weaponParameters.name == dropData.weaponParameters.name && secondary.weaponParameters != null)
+            }
+            else
             {
-                secondary.SetInventoryAmmo(secondary.weaponMagazine, secondary.weaponAmmoPool + dropData.currentAmmoPool);
+                return;
+            }
+        }
+        if (WeaponFull)
+        {
+            if(primary.weaponParameters.name == dropData.weaponParameters.name)
+            {
+                primary.SetInventoryAmmo(primary.weaponMagazine, primary.weaponAmmoPool + dropData.currentAmmoPool + dropData.currentMagazineCapacity);
                 SetWeapon();
-            }else if(grenade.weaponParameters.name == dropData.weaponParameters.name && grenade.weaponParameters != null)
+            }else if(secondary.weaponParameters.name == dropData.weaponParameters.name)
             {
-                grenade.SetInventoryAmmo(grenade.weaponMagazine, grenade.weaponAmmoPool + dropData.currentAmmoPool);
+                secondary.SetInventoryAmmo(secondary.weaponMagazine, secondary.weaponAmmoPool + dropData.currentAmmoPool + dropData.currentMagazineCapacity);
                 SetWeapon();
             }
             else
