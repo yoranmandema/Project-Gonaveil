@@ -5,14 +5,12 @@ using UnityEngine;
 public class InventorySystem : MonoBehaviour {
 
     [System.Serializable]
-    public class InventorySlot
-    {
+    public class InventorySlot {
         public int weaponMagazine;
         public int weaponAmmoPool;
         public WeaponParameters weaponParameters;
 
-        public void SetInventoryAmmo(int magazine, int ammoPool)
-        {
+        public void SetInventoryAmmo(int magazine, int ammoPool) {
             weaponMagazine = magazine;
             weaponAmmoPool = ammoPool;
         }
@@ -29,7 +27,8 @@ public class InventorySystem : MonoBehaviour {
     private GameObject currentDropObject;
     private WeaponParameters current;
 
-    public InventorySlot CurrentWeapon { get {
+    public InventorySlot CurrentWeapon {
+        get {
             switch (selectedWeaponID) {
                 case 0:
                     return primary;
@@ -72,7 +71,7 @@ public class InventorySystem : MonoBehaviour {
     }
 
     // Returns whether the specified slot is available.
-    private bool isSlotAvailable (int slot) {
+    private bool isSlotAvailable(int slot) {
         switch (slot) {
             case 0:
                 return primary.weaponParameters == null;
@@ -113,7 +112,7 @@ public class InventorySystem : MonoBehaviour {
         SetWeapon();
     }
 
-    private void Cycle () {
+    private void Cycle() {
         // Don't cycle if we don't have any weapons.
         if (!HasAnyWeapons) return;
 
@@ -122,7 +121,8 @@ public class InventorySystem : MonoBehaviour {
         }
         else if (InputManager.GetAxis("Mouse ScrollWheel") < 0) {
             CycleWeapon(-1);
-        } else if (InputManager.GetButtonDown("Grenade")) {
+        }
+        else if (InputManager.GetButtonDown("Grenade")) {
 
             // Only switch if we actually have a grenade.
             if (grenade != null) {
@@ -131,24 +131,21 @@ public class InventorySystem : MonoBehaviour {
                 SetWeapon();
             }
         }
-    } 
+    }
 
-    private void Start () {
+    private void Start() {
         selectedWeaponID = -1;
 
-        if (!HasAnyWeapons)
-        {
+        if (!HasAnyWeapons) {
             weaponMaster.Disarm();
         }
-        else
-        {
+        else {
             CycleWeapon(1); // Set weapon to first available.
             weaponMaster.Rearm();
         }
     }
 
-    private void UpdateAmmo()
-    {
+    private void UpdateAmmo() {
         if (!HasAnyWeapons) return;
         CurrentWeapon.SetInventoryAmmo(weaponMaster.currentMagazine, weaponMaster.currentAmmoPool);
     }
@@ -196,21 +193,21 @@ public class InventorySystem : MonoBehaviour {
             if (primary.weaponParameters == null) {
                 primary.weaponParameters = dropData.weaponParameters;
                 primary.SetInventoryAmmo(dropData.currentMagazineCapacity, dropData.currentAmmoPool);
-            } else if (secondary.weaponParameters == null) {
+            }
+            else if (secondary.weaponParameters == null) {
                 secondary.weaponParameters = dropData.weaponParameters;
                 secondary.SetInventoryAmmo(dropData.currentMagazineCapacity, dropData.currentAmmoPool);
             }
-            else
-            {
+            else {
                 return;
             }
-        } else {
-            if (grenade.weaponParameters == null)
-            {
+        }
+        else {
+            if (grenade.weaponParameters == null) {
                 grenade.weaponParameters = dropData.weaponParameters;
                 grenade.SetInventoryAmmo(dropData.currentMagazineCapacity, dropData.currentAmmoPool);
-            }            else
-            {
+            }
+            else {
                 return;
             }
         }
