@@ -1052,6 +1052,8 @@ MonoBehaviour:
   inventory: {fileID: 3500205305367817446}
   currentWeaponText: {fileID: 2242140002763489645}
   holsteredWeaponText: {fileID: 0}
+  currentAmmoText: {fileID: 2943395557047609331}
+  holsteredAmmoText: {fileID: 0}
 --- !u!1 &7967798477184359888
 GameObject:
   m_ObjectHideFlags: 0

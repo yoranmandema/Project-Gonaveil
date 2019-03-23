@@ -185,6 +185,7 @@ public class Weapon : MonoBehaviour {
     {
         if (currentAmmoPool > 0)
         {
+            Debug.Log("reloadin");
             //increments loadTimer until = reload time
             if (loadTimer < Stats.reloadTime)
             {
@@ -308,17 +309,17 @@ public class Weapon : MonoBehaviour {
             if (fireStage != FireStage.Reloading)
             {
                 //check if the player wants to reload and they can, or if the gun is in dire need of a reload.
+                CycleGun(trueFireRate);
+                if (fireStage == FireStage.Firing) //check if the gun should be firing
+                {
+                    GunFireMechanics();
+                }
                 if (((InputManager.GetButtonDown("Reload Weapon") && currentMagazine < Stats.magazineCapacity) || currentMagazine <= 0))
                 {
                     //loadTimer is reused for reloading, saves memory space :)
                     loadTimer = 0;
                     //force reload
                     fireStage = FireStage.Reloading;
-                }
-                CycleGun(trueFireRate);
-                if (fireStage == FireStage.Firing) //check if the gun should be firing
-                {
-                    GunFireMechanics();
                 }
             }
             else
