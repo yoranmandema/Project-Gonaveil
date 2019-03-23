@@ -7,6 +7,7 @@ public class GrenadeProjectile : Projectile
     public float fuseTime = 3f;
     public float bounceMultipler = 0.95f;
     public float frictionMultipler = 0.98f;
+    public GameObject explosionParticle;
 
     public float explosionRadius = 3f;
     public float explosionForce = 500f;
@@ -67,6 +68,7 @@ public class GrenadeProjectile : Projectile
         yield return new WaitForSeconds(fuseTime);
 
         GamePlayPhysics.DoExplosion(transform.position, explosionRadius, explosionForce);
+        Instantiate(explosionParticle,transform.position,transform.rotation);
 
         Destroy(gameObject);
     }

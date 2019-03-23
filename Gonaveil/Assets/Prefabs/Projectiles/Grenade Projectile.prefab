@@ -76,6 +76,8 @@ MonoBehaviour:
   fuseTime: 3
   bounceMultipler: 0.5
   frictionMultipler: 0.7
+  explosionParticle: {fileID: 2437728945485432310, guid: 3cfa18cb20361c3479d9a2ffb0b02917,
+    type: 3}
   explosionRadius: 6
   explosionForce: 1000
 --- !u!1001 &1087033104606648715
@@ -85,22 +87,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4320170459746706973}
     m_Modifications:
-    - target: {fileID: 100002, guid: bf63636b5f7e7534daae02e90b59bd54, type: 3}
-      propertyPath: m_Name
-      value: grenade lmao
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: bf63636b5f7e7534daae02e90b59bd54, type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: bf63636b5f7e7534daae02e90b59bd54, type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 100004, guid: bf63636b5f7e7534daae02e90b59bd54, type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: bf63636b5f7e7534daae02e90b59bd54, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -156,6 +142,22 @@ PrefabInstance:
     - target: {fileID: 400002, guid: bf63636b5f7e7534daae02e90b59bd54, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.049999997
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: bf63636b5f7e7534daae02e90b59bd54, type: 3}
+      propertyPath: m_Name
+      value: grenade lmao
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: bf63636b5f7e7534daae02e90b59bd54, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: bf63636b5f7e7534daae02e90b59bd54, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: bf63636b5f7e7534daae02e90b59bd54, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: bf63636b5f7e7534daae02e90b59bd54, type: 3}
       propertyPath: m_Materials.Array.data[0]

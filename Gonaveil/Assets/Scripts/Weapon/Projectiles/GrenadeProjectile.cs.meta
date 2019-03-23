@@ -3,7 +3,12 @@ guid: 93becd9b32e7574418ebcb135cb5d332
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - instigator: {instanceID: 0}
+  - barrel: {instanceID: 0}
+  - effect: {instanceID: 0}
+  - explosionParticle: {fileID: 2437728945485432310, guid: 3cfa18cb20361c3479d9a2ffb0b02917,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
