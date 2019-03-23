@@ -27,6 +27,6 @@ public class InventoryDisplay : MonoBehaviour
 
         if (disabled) return;
 
-        currentWeaponText.text = inventory.CurrentWeapon.weaponName;
+        currentWeaponText.text = inventory.CurrentWeapon.weaponParameters.weaponName;
     }
 }

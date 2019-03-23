@@ -3,9 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class InventorySystem : MonoBehaviour {
-    public WeaponParameters primary;
-    public WeaponParameters secondary;
-    public WeaponParameters grenade;
+
+    public class InventorySlot
+    {
+        public int weaponMagazine;
+        public int weaponAmmoPool;
+        public WeaponParameters weaponParameters;
+
+        public void SetInventoryAmmo(int magazine, int ammoPool)
+        {
+            weaponMagazine = magazine;
+            weaponAmmoPool = ammoPool;
+        }
+    }
+
+    public InventorySlot primary;
+    public InventorySlot secondary;
+    public InventorySlot grenade;
 
     public Weapon weaponMaster;
     public int selectedWeaponID;
@@ -14,7 +28,7 @@ public class InventorySystem : MonoBehaviour {
     private GameObject currentDropObject;
     private WeaponParameters current;
 
-    public WeaponParameters CurrentWeapon { get {
+    public InventorySlot CurrentWeapon { get {
             switch (selectedWeaponID) {
                 case 0:
                     return primary;
@@ -140,7 +154,8 @@ public class InventorySystem : MonoBehaviour {
 
         var dropData = dropItem.GetComponent<DroppedWeaponData>();
         dropData.Intangible(GetComponentInChildren<CapsuleCollider>());
-        dropData.weaponParameters = CurrentWeapon;
+        dropData.weaponParameters = CurrentWeapon.weaponParameters;
+        dropData.SetDroppedAmmo(CurrentWeapon.weaponMagazine, CurrentWeapon.weaponAmmoPool);
 
         var throwVector = transform.forward + Vector3.up;
         dropItem.GetComponent<Rigidbody>().AddForce(throwVector * 200);
@@ -158,23 +173,25 @@ public class InventorySystem : MonoBehaviour {
 
             if (dropData == null) return;
 
-            var droppedParameters = dropData.weaponParameters;
-
-            PickupWeapon(collision.gameObject, droppedParameters);
+            PickupWeapon(collision.gameObject, dropData);
         }
     }
 
-    void PickupWeapon(GameObject item, WeaponParameters droppedParameters) {
+    void PickupWeapon(GameObject item, DroppedWeaponData dropData) {
 
-        if (!droppedParameters.isGrenade) {
+        if (!dropData.weaponParameters.isGrenade) {
             if (primary == null) {
-                primary = droppedParameters;
+                primary.weaponParameters = dropData.weaponParameters;
+                primary.SetInventoryAmmo(dropData.currentMagazineCapacity, dropData.currentAmmoPool);
             } else if (secondary == null) {
-                secondary = droppedParameters;
+                secondary.weaponParameters = dropData.weaponParameters;
+                secondary.SetInventoryAmmo(dropData.currentMagazineCapacity, dropData.currentAmmoPool);
             }
         } else {
-            if (grenade == null) {
-                grenade = droppedParameters;
+            if (grenade == null)
+            {
+                grenade.weaponParameters = dropData.weaponParameters;
+                grenade.SetInventoryAmmo(dropData.currentMagazineCapacity, dropData.currentAmmoPool);
             }
         }
 
@@ -190,7 +207,7 @@ public class InventorySystem : MonoBehaviour {
     void SetWeapon() {
         if (!HasAnyWeapons) return;
 
-        current = CurrentWeapon;
+        current = CurrentWeapon.weaponParameters;
 
         weaponMaster.SetParameters(current);
         weaponMovement.Profile = current.weaponMovementProfile;
