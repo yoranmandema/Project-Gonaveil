@@ -185,7 +185,6 @@ public class Weapon : MonoBehaviour {
     {
         if (currentAmmoPool > 0)
         {
-            Debug.Log("reloadin");
             //increments loadTimer until = reload time
             if (loadTimer < Stats.reloadTime)
             {
