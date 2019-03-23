@@ -63,8 +63,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponParameters: {fileID: 11400000, guid: 3d205efa17c19e94fb197236353c68dd, type: 2}
-  currentMagazineCapacity: 0
-  currentAmmoPool: 0
+  currentMagazineCapacity: 6
+  currentAmmoPool: 24
 --- !u!65 &5616634062594161584
 BoxCollider:
   m_ObjectHideFlags: 0

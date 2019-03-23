@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponParameters: {fileID: 11400000, guid: 0ed315660e3d174428ed5e376daf4bdd, type: 2}
-  currentMagazineCapacity: 0
+  currentMagazineCapacity: 3
   currentAmmoPool: 0
 --- !u!1001 &6575466676148243005
 PrefabInstance:
