@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Hammer Buster
   m_EditorClassIdentifier: 
   weaponStats:
-    Name: Hammer Buster
+    WeaponName: Hammer Buster
     magazineCapacity: 0
     reloadTime: 0
     fireRate: 100

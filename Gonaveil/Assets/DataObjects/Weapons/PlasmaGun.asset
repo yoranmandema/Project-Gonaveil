@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlasmaGun
   m_EditorClassIdentifier: 
   weaponStats:
-    Name: Plasma Gun
+    WeaponName: Plasma Gun
     magazineCapacity: 0
     reloadTime: 0
     fireRate: 700

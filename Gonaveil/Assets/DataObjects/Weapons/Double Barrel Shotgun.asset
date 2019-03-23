@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Double Barrel Shotgun
   m_EditorClassIdentifier: 
   weaponStats:
-    Name: Double Barrel
+    WeaponName: Double Barrel
     magazineCapacity: 2
     reloadTime: 3
     fireRate: 500
