@@ -94,13 +94,22 @@ public class InventorySystem : MonoBehaviour {
     }
 
     private void Cycle () {
+        // Don't cycle if we don't have any weapons.
         if (!HasAnyWeapons) return;
 
-        if (Input.GetAxis("Mouse ScrollWheel") > 0) {
+        if (InputManager.GetAxis("Mouse ScrollWheel") > 0) {
             CycleWeapon(1);
         }
-        else if (Input.GetAxis("Mouse ScrollWheel") < 0) {
+        else if (InputManager.GetAxis("Mouse ScrollWheel") < 0) {
             CycleWeapon(-1);
+        } else if (InputManager.GetButtonDown("Grenade")) {
+
+            // Only switch if we actually have a grenade.
+            if (grenade != null) {
+                selectedWeaponID = 2;
+
+                SetWeapon();
+            }
         }
     } 
 
