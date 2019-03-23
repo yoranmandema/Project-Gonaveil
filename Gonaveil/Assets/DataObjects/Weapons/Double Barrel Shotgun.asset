@@ -15,8 +15,8 @@ MonoBehaviour:
   weaponName: Double Barrel
   weaponStats:
     magazineCapacity: 2
-    reloadTime: 2.5
-    fireRate: 500
+    reloadTime: 1
+    fireRate: 350
     weaponSpread: 10
     bulletsPerShot: 20
     bulletsPerBurst: 1
