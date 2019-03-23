@@ -2,10 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class WeaponComponent : MonoBehaviour {
-    public WeaponController weaponController;
-    public Transform camera;
+[System.Serializable]
+public class WeaponComponent : MonoBehaviour {
+    [HideInInspector] public WeaponController weaponController;
+    [HideInInspector] public Transform camera;
 
-    public abstract void OnFireStart();
-    public abstract void OnFireEnd();
+    public virtual void OnFireStart() { }
+    public virtual void OnFireEnd() { }
+
+    public void Initialise(Transform cam, WeaponController weapon) {
+        camera = cam;
+        weaponController = weapon;
+    }
 }

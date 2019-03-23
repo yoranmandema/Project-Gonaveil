@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ce116eb3717a2d4292ef623963dc076, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory: {fileID: 5185282175998314726}
+  inventory: {fileID: 0}
   currentWeaponText: {fileID: 7528689201815020909}
   holsteredWeaponText: {fileID: 0}
   currentAmmoText: {fileID: 6899481844180354035}
@@ -704,7 +704,6 @@ GameObject:
   - component: {fileID: 7323888345545729283}
   - component: {fileID: 7323888345545729281}
   - component: {fileID: 7323888345545729284}
-  - component: {fileID: 5185282175998314726}
   - component: {fileID: 8603819795533908750}
   m_Layer: 10
   m_Name: Player
@@ -807,33 +806,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &5185282175998314726
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7323888345545729285}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a6e59697087ebc4ba2b6759fcc221f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primary:
-    weaponMagazine: 0
-    weaponAmmoPool: 0
-    weaponParameters: {fileID: 0}
-  secondary:
-    weaponMagazine: 0
-    weaponAmmoPool: 0
-    weaponParameters: {fileID: 0}
-  grenade:
-    weaponMagazine: 0
-    weaponAmmoPool: 0
-    weaponParameters: {fileID: 0}
-  weaponMaster: {fileID: 0}
-  selectedWeaponID: -1
-  weaponMovement: {fileID: 3546303403184842985}
 --- !u!114 &8603819795533908750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1710,15 +1682,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7416542286875152847}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &7416542286875121303 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100184, guid: 90e6630f938cd684abfbc05182523e50,
-    type: 3}
-  m_PrefabInstance: {fileID: 7416542286875152847}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7416542286875282239 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400112, guid: 90e6630f938cd684abfbc05182523e50,
+    type: 3}
+  m_PrefabInstance: {fileID: 7416542286875152847}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7416542286875121303 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100184, guid: 90e6630f938cd684abfbc05182523e50,
     type: 3}
   m_PrefabInstance: {fileID: 7416542286875152847}
   m_PrefabAsset: {fileID: 0}

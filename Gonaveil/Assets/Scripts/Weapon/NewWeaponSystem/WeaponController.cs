@@ -33,8 +33,13 @@ public class WeaponController : MonoBehaviour {
         barrel = modelData.barrel;
 
         // Add WeaponComponents to Weapon Holder object on player.
-        primaryComponent = weaponHolder.gameObject.AddComponent(weaponAsset.primaryComponent.GetType()) as WeaponComponent;
-        secondaryComponent = weaponHolder.gameObject.AddComponent(weaponAsset.secondaryComponent.GetType()) as WeaponComponent;
+        primaryComponent = weaponHolder.gameObject.AddComponent(weaponAsset.primaryComponent) as WeaponComponent;
+        secondaryComponent = weaponHolder.gameObject.AddComponent(weaponAsset.secondaryComponent) as WeaponComponent;
+
+        print(weaponAsset.primaryComponent);
+
+        primaryComponent?.Initialise(camera, this);
+        secondaryComponent?.Initialise(camera, this);
     }
 
     void Start() {

@@ -3,7 +3,11 @@ guid: 6d5d88a8b371cc64ba754b5d26f0a35e
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - weaponController: {instanceID: 0}
+  - camera: {instanceID: 0}
+  - impact: {fileID: 3377271070747912948, guid: 5b634f2c54a76ad49840f1e67d6c980d,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

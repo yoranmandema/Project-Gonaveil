@@ -4,8 +4,8 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewWeaponAsset", menuName = "Weapons/New Weapon Asset")]
 public class WeaponAsset : ScriptableObject {
-    public WeaponComponent primaryComponent;
-    public WeaponComponent secondaryComponent;
+    public System.Type primaryComponent;
+    public System.Type secondaryComponent;
 
     public WeaponMovementProfile weaponMovementProfile;
     public GameObject viewModel;
