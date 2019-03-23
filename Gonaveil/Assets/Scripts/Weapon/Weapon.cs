@@ -69,30 +69,17 @@ public class Weapon : MonoBehaviour {
 
     public void WeaponFire() {
 
-        var hitPosition = Vector3.zero; //Used to check if the player is actually looking somewhere.
-
         for (int i = 0; i < weaponParameters.weaponStats.bulletsPerShot; i++) {
             if (weaponParameters.weaponStats.projectileType == ProjectileType.Hitscan) {
-                HitScan(hitPosition);
+                HitScan();
             }
             else {
-                Projectile(hitPosition);
+                Projectile();
             }
         }
     }
 
-    void Projectile(Vector3 hitPosition) {
-
-        if (barrel != null) {
-            if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out RaycastHit hit, 10000, raycastMask)) {
-                hitPosition = hit.point;
-            }
-            if (hitPosition == Vector3.zero) {
-                hitPosition = mainCamera.transform.position + mainCamera.transform.forward * 1000;
-            }
-        }
-
-        barrel.LookAt(hitPosition);
+    void Projectile() {
 
         var bulletObject = Instantiate(Stats.Projectile, mainCamera.transform.position, mainCamera.transform.rotation) as GameObject;
         bulletObject.GetComponent<Bullet>().barrel = barrel;
@@ -104,7 +91,8 @@ public class Weapon : MonoBehaviour {
         bulletObject.transform.Rotate(SpreadX, SpreadY, 0);
     }
 
-    void HitScan(Vector3 hitPosition) {
+    void HitScan() {
+        var hitPosition = Vector3.zero; //Used to check if the player is actually looking somewhere.
         Transform hitParent = null;
         Rigidbody hitObjectRigid = null; //Rigidbody of object if it has one.
 
