@@ -246,11 +246,14 @@ public class Weapon : MonoBehaviour {
                 //UI circle
                 chargeCircle.fillAmount = chargeProgress;
             }
+            else if (fireStage == FireStage.Cycling)
+            {
                 //waits for trigger to be released before allowing the player to fire again.
-             if (controller.triggerState == PlayerInputController.TriggerStates.Idle)
-             {
-                fireStage = FireStage.Idle;
-             }
+                if (controller.triggerState == PlayerInputController.TriggerStates.Idle)
+                {
+                    fireStage = FireStage.Idle;
+                }
+            }
         }
         else
         {
@@ -308,11 +311,6 @@ public class Weapon : MonoBehaviour {
             if (fireStage != FireStage.Reloading)
             {
                 //check if the player wants to reload and they can, or if the gun is in dire need of a reload.
-                CycleGun(trueFireRate);
-                if (fireStage == FireStage.Firing) //check if the gun should be firing
-                {
-                    GunFireMechanics();
-                }
                 if (((InputManager.GetButtonDown("Reload Weapon") && currentMagazine < Stats.magazineCapacity) || currentMagazine <= 0))
                 {
                     //loadTimer is reused for reloading, saves memory space :)
@@ -320,6 +318,12 @@ public class Weapon : MonoBehaviour {
                     //force reload
                     fireStage = FireStage.Reloading;
                 }
+                CycleGun(trueFireRate);
+                if (fireStage == FireStage.Firing) //check if the gun should be firing
+                {
+                    GunFireMechanics();
+                }
+
             }
             else
             {
