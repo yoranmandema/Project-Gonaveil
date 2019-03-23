@@ -218,19 +218,20 @@ public class Weapon : MonoBehaviour {
             if (controller.triggerState == PlayerInputController.TriggerStates.Primary)
             {
                 //Full Auto, "pulls" trigger every time the gun has cycled
-                if (Stats.weaponType == WeaponType.FullAuto)
+                if (fireStage != FireStage.Cycling) //semi auto is a different system, this checks if the gun hasn't fired.
                 {
-                    PrepareFire(trueFireRate);
-                }
-                else if (Stats.weaponType == WeaponType.Charge) //Charge weapons are similar. "Holds" trigger.
-                {
-                    ChargeWeapon();
-                    fireStage = FireStage.Charging;
-                }
-                else
-                {
-                    if (fireStage != FireStage.Cycling) //semi auto is a different system, this checks if the gun hasn't fired.
+                    if (Stats.weaponType == WeaponType.FullAuto)
                     {
+                        PrepareFire(trueFireRate);
+                    }
+                    else if (Stats.weaponType == WeaponType.Charge) //Charge weapons are similar. "Holds" trigger.
+                    {
+                        ChargeWeapon();
+                        fireStage = FireStage.Charging;
+                    }
+                    else
+                    {
+
                         PrepareFire(trueFireRate);
                     }
                 }
