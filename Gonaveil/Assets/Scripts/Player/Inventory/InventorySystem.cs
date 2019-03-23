@@ -225,15 +225,15 @@ public class InventorySystem : MonoBehaviour {
         }
         if (Empty)
         {
-            if(primary.weaponParameters.name == dropData.weaponParameters.name)
+            if(primary.weaponParameters.name == dropData.weaponParameters.name && primary.weaponParameters != null)
             {
                 primary.SetInventoryAmmo(primary.weaponMagazine, primary.weaponAmmoPool + dropData.currentAmmoPool);
                 SetWeapon();
-            }else if(secondary.weaponParameters.name == dropData.weaponParameters.name)
+            }else if(secondary.weaponParameters.name == dropData.weaponParameters.name && secondary.weaponParameters != null)
             {
                 secondary.SetInventoryAmmo(secondary.weaponMagazine, secondary.weaponAmmoPool + dropData.currentAmmoPool);
                 SetWeapon();
-            }else if(grenade.weaponParameters.name == dropData.weaponParameters.name)
+            }else if(grenade.weaponParameters.name == dropData.weaponParameters.name && grenade.weaponParameters != null)
             {
                 grenade.SetInventoryAmmo(grenade.weaponMagazine, grenade.weaponAmmoPool + dropData.currentAmmoPool);
                 SetWeapon();
