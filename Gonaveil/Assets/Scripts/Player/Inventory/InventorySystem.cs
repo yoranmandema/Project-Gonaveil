@@ -173,7 +173,9 @@ public class InventorySystem : MonoBehaviour {
                 secondary = droppedParameters;
             }
         } else {
-            grenade = droppedParameters;
+            if (grenade == null) {
+                grenade = droppedParameters;
+            }
         }
 
         if (HasAnyWeapons && weaponMaster.weaponEquipped) {
