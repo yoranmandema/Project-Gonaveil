@@ -4,5 +4,6 @@ using UnityEngine;
 
 public class WeaponModelData : MonoBehaviour
 {
+    //yeeeee
     public Transform barrel;
 }

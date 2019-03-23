@@ -1,0 +1,26 @@
+Creating A Weapon
+
+Part 1: Weapon Parameters
+	-Head into Assests>DataObjects>Weapons
+	-Right click and hover into create>Weapons>New WeaponParameters
+	-This produces the base weapon parameters. set them up how you'd like.
+
+Part 2: View Model
+	-Create a prefab of the view model
+	-Set the view model's layer to ViewModel
+	-Add an object that will signify the barrel of the model
+	-Add the script "WeaponModelData" to the view model and attach the barrel to it
+
+Part 3: Drop Model
+	-Create another prefab of the model
+	-Add a rigidbody to it
+	-Add a collider to it
+	-Set layer to WeaponDrop
+	-Set tag to ItemWeapon
+	-Add script "DroppedWeaponData" to the weapon drop
+	-Attach the weapon parameters assigned to the  weapondrop model.
+
+Part 4: Finalisation
+	-Add the weapondrop model and viewmodel to the weapn parameters
+	-Place weapon drop in the game world
+	-Enjoy!
