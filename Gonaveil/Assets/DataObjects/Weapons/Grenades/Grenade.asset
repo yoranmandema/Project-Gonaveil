@@ -14,16 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: Grenade
   weaponStats:
-    magazineCapacity: 0
+    magazineCapacity: 157
     reloadTime: 0
-    fireRate: 0
+    fireRate: 3000
     weaponSpread: 0
-    bulletsPerShot: 0
-    bulletsPerBurst: 0
+    bulletsPerShot: 1
+    bulletsPerBurst: 1
     burstTime: 0
     chargeTime: 0
     fireWhenCharged: 0
-    Projectile: {fileID: 4846615784228082546, guid: e7cf5f436ac463144989ba4cb199fe24,
+    Projectile: {fileID: 4320170459746706974, guid: 77f749fdc50b92a49862aed01c1f7c41,
       type: 3}
     weaponType: 1
     weaponClass: 0
