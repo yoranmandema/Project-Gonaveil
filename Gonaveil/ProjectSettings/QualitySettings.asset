@@ -76,4 +76,17 @@ QualitySettings:
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
     excludedTargetPlatforms: []
-  m_PerPlatformDefaultQuality: {}
+  m_PerPlatformDefaultQuality:
+    Android: 0
+    Nintendo 3DS: 1
+    Nintendo Switch: 1
+    PS4: 1
+    PSP2: 0
+    Standalone: 1
+    Tizen: 0
+    WebGL: 0
+    WiiU: 1
+    Windows Store Apps: 1
+    XboxOne: 1
+    iPhone: 0
+    tvOS: 0
