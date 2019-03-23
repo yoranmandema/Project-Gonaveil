@@ -8,7 +8,8 @@ public class Weapon : MonoBehaviour {
     public GameObject impact;
     public Animator animator;
     public Transform handBone;
-    public bool disabled;
+    //public bool disabled;
+    public bool weaponEquipped;
 
     public enum FireStage { Idle, Firing, Charging, Cycling, Reloading}
     public float chargeProgress;
@@ -24,7 +25,6 @@ public class Weapon : MonoBehaviour {
     private FireStage fireStage;
     private Transform barrel;
     private WeaponModelData modelData;
-    private bool weaponEquipped;
 
     private int playerLayer;
 
@@ -65,10 +65,6 @@ public class Weapon : MonoBehaviour {
     {
         weaponEquipped = false;
 
-        if (disabled) return;
-
-        disabled = true;
-
         Destroy(viewModel);
         Destroy(worldModel);
     }
@@ -76,8 +72,6 @@ public class Weapon : MonoBehaviour {
     public void Rearm() //return the system to be active again.
     {
         weaponEquipped = true;
-
-        disabled = false;
     }
 
     private void Start() {

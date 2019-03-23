@@ -122,6 +122,8 @@ public class InventorySystem : MonoBehaviour {
         selectedWeaponID = -1;
 
         CycleWeapon(1); // Set weapon to first available.
+
+        weaponMaster.Rearm();
     }
 
     private void Update() {
@@ -174,10 +176,10 @@ public class InventorySystem : MonoBehaviour {
             grenade = droppedParameters;
         }
 
-        if (HasAnyWeapons && weaponMaster.disabled) {
-            weaponMaster.Rearm();
-
+        if (HasAnyWeapons && weaponMaster.weaponEquipped) {
             CycleWeapon(1); // Set weapon to first available.
+
+            weaponMaster.Rearm();
         }
 
         Destroy(item);
