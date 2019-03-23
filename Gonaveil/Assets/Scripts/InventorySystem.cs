@@ -114,12 +114,14 @@ public class InventorySystem : MonoBehaviour {
     } 
 
     private void Start () {
+        if (!HasAnyWeapons) return;
+
+        selectedWeaponID = -1;
+
         CycleWeapon(1); // Set weapon to first available.
     }
 
     private void Update() {
-        CheckInventory();
-
         Cycle();
 
         if (InputManager.GetButtonDown("Drop Weapon")) {
@@ -145,9 +147,13 @@ public class InventorySystem : MonoBehaviour {
         dropData.weaponParameters = CurrentWeapon;
 
         var throwVector = transform.forward + Vector3.up;
-        dropItem.GetComponent<Rigidbody>().AddForce(throwVector * 100);
+        dropItem.GetComponent<Rigidbody>().AddForce(throwVector * 200);
 
         CurrentWeapon = null;
+
+        CycleWeapon(1); // Set weapon to first available.
+
+        CheckInventory();
     }
 
     private void OnTriggerStay(Collider collision) {
