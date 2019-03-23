@@ -5,7 +5,15 @@ using UnityEngine;
 public class DroppedWeaponData : MonoBehaviour
 {
     public WeaponParameters weaponParameters;
+    public int currentMagazineCapacity;
+    public int currentAmmoPool;
     private CapsuleCollider pickupTrigger;
+
+    public void SetDroppedAmmo(int magazine, int ammoPool)
+    {
+        currentMagazineCapacity = magazine;
+        currentAmmoPool = ammoPool;
+    }
 
     public void Intangible(CapsuleCollider playerCollider)
     {
