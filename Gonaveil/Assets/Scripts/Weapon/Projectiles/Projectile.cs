@@ -10,6 +10,7 @@ public abstract class Projectile : MonoBehaviour {
     public bool useSphereCast = false;
     public float radius = 0.07f;
     public int timeSteps = 6; // Should be moved to some kind of settings file?
+    public float timeScale = 1f;
 
     public LayerMask mask;
     public Vector3 velocity;
@@ -17,7 +18,10 @@ public abstract class Projectile : MonoBehaviour {
     public Transform barrel;
     public Transform effect;
 
+    public bool hasContact;
+
     private float startTime;
+
 
     public void Fire() {
         effect.position = barrel.position;
@@ -53,30 +57,29 @@ public abstract class Projectile : MonoBehaviour {
     }
 
     Vector3 Simulate(Vector3 start) {
-        var deltaTime = Time.deltaTime / timeSteps;
+        var deltaTime = Time.deltaTime / timeSteps * timeScale;
         var position = start;
-        var isHit = false;
         var hit = default(RaycastHit);
 
         position += velocity * deltaTime;
 
         if (useSphereCast) {
-            isHit = Physics.SphereCast(position, radius, velocity, out hit, velocity.magnitude * deltaTime, mask);
+            hasContact = Physics.SphereCast(position, radius, velocity, out hit, velocity.magnitude * deltaTime, mask);
         }
         else {
-            isHit = Physics.Raycast(position, velocity, out hit, velocity.magnitude * deltaTime, mask);
+            hasContact = Physics.Raycast(position, velocity, out hit, velocity.magnitude * deltaTime, mask);
         }
 
-        if (isHit) {
+        if (hasContact) {
             Debug.DrawLine(hit.point, hit.point + hit.normal, Color.yellow, 10f);
 
-            OnHit(hit, ref position, deltaTime);
+            OnHit(ref position, deltaTime, hit);
 
             //force bullet effect to centre
             effect.localPosition = Vector3.zero;
         }
         else {
-            velocity += Physics.gravity * gravityScale * deltaTime;
+            OnSimulateGravity(ref position, deltaTime);
         }
 
         OnSimulate(ref position, deltaTime);
@@ -84,8 +87,11 @@ public abstract class Projectile : MonoBehaviour {
         return position;
     }
 
-    public virtual void OnHit(RaycastHit hit, ref Vector3 position, float deltaTime) { }
+    public virtual void OnHit(ref Vector3 position, float deltaTime, RaycastHit hit) { }
     public virtual void OnSimulate(ref Vector3 position, float deltaTime) { }
+    public virtual void OnSimulateGravity(ref Vector3 position, float deltaTime) {
+        velocity += Physics.gravity * gravityScale * deltaTime;
+    }
     public virtual void OnUpdate() { }
     public virtual void OnStart() {
         velocity = transform.forward * startVelocity;
