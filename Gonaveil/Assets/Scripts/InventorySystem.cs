@@ -8,9 +8,6 @@ public class InventorySystem : MonoBehaviour {
     public int selectedWeaponID;
     public WeaponMovement weaponMovement;
 
-    public UnityEngine.UI.Text currentWeaponText;
-    public UnityEngine.UI.Text holsteredWeaponText;
-
     private GameObject currentDropObject;
     private int lastSelectedWeaponID = -1;
     private WeaponParameters current;
@@ -53,7 +50,6 @@ public class InventorySystem : MonoBehaviour {
 
     void CheckInventory() {
         if (allWeapons[0] == null && allWeapons[1] == null) {
-            currentWeaponText.text = "None";
             weaponMaster.Disarm();
             disabled = true;
         }
@@ -64,8 +60,6 @@ public class InventorySystem : MonoBehaviour {
     }
 
     void DropWeapon() {
-        holsteredWeaponText.text = "None";
-
         GameObject dropItem = Instantiate(currentDropObject, transform.position + transform.up, transform.rotation) as GameObject;
         dropItem.GetComponent<DroppedWeaponData>().Intangible(GetComponentInChildren<CapsuleCollider>());
         dropItem.GetComponent<DroppedWeaponData>().weaponParameters = allWeapons[selectedWeaponID];
@@ -87,7 +81,7 @@ public class InventorySystem : MonoBehaviour {
         }
     }
 
-    void TryToPickupWeapon(GameObject item, WeaponParameters droppedParameters, UnityEngine.UI.Text TextDisplay) {
+    void TryToPickupWeapon(GameObject item, WeaponParameters droppedParameters) {
         //if (allWeapons[PrimaryID] == null) {
         //    try {
         //        if (allWeapons[SecondaryID].name != droppedParameters.name) {
