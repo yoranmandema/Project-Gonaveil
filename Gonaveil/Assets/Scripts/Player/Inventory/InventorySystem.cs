@@ -153,8 +153,18 @@ public class InventorySystem : MonoBehaviour {
     private void Update() {
         Cycle();
         UpdateAmmo();
+        CheckGrenades();
         if (InputManager.GetButtonDown("Drop Weapon") && HasAnyWeapons) {
             DropWeapon();
+        }
+    }
+
+    private void CheckGrenades()
+    {
+        if(grenade.weaponMagazine == 0 && grenade.weaponParameters != null)
+        {
+            grenade.weaponParameters = null;
+            CycleWeapon(1);
         }
     }
 
