@@ -10,6 +10,9 @@ public class InventorySystem : MonoBehaviour
     public int selectedWeaponID;
     public WeaponMovement weaponMovement;
 
+    public UnityEngine.UI.Text currentWeaponText;
+    public UnityEngine.UI.Text holsteredWeaponText;
+
     private int lastSelectedWeaponID = -1;
     private WeaponParameters current;
     private bool disabled;
@@ -17,6 +20,7 @@ public class InventorySystem : MonoBehaviour
     void Start()
     {
         //weaponMovement = GetComponent<WeaponMovement>();
+        lastSelectedWeaponID = 1;
     }
 
     void Update()
@@ -60,6 +64,7 @@ public class InventorySystem : MonoBehaviour
     {
         if(allWeapons[0] == null && allWeapons[1] == null)
         {
+            currentWeaponText.text = "None";
             weaponMaster.Disarm();
             disabled = true;
         }
@@ -72,6 +77,7 @@ public class InventorySystem : MonoBehaviour
 
     void DropWeapon()
     {
+        holsteredWeaponText.text = "None";
         GameObject dropItem = Instantiate(currentDropObject, transform.position + transform.up, transform.rotation) as GameObject;
         dropItem.GetComponent<DroppedWeaponData>().Intangible(GetComponentInChildren<CapsuleCollider>());
         dropItem.GetComponent<DroppedWeaponData>().weaponParameters = allWeapons[selectedWeaponID];
@@ -87,12 +93,12 @@ public class InventorySystem : MonoBehaviour
         if (collision.tag == "ItemWeapon")
         {
             WeaponParameters droppedParameters = collision.GetComponentInChildren<DroppedWeaponData>().weaponParameters;
-            CheckInventory(0, 1, collision.gameObject, droppedParameters);
-            CheckInventory(1, 0, collision.gameObject, droppedParameters);
+            CheckInventory(0, 1, collision.gameObject, droppedParameters, currentWeaponText);
+            CheckInventory(1, 0, collision.gameObject, droppedParameters, holsteredWeaponText);
         }
     }
 
-    void CheckInventory(int PrimaryID, int SecondaryID, GameObject item, WeaponParameters droppedParameters)
+    void CheckInventory(int PrimaryID, int SecondaryID, GameObject item, WeaponParameters droppedParameters, UnityEngine.UI.Text TextDisplay)
     {
         if (allWeapons[PrimaryID] == null)
         {
@@ -100,26 +106,27 @@ public class InventorySystem : MonoBehaviour
             {
                 if (allWeapons[SecondaryID].name != droppedParameters.name)
                 {
-                    PickupItem(PrimaryID, item, droppedParameters);
+                    PickupItem(PrimaryID, SecondaryID, item, droppedParameters, TextDisplay);
                 }
             }
             catch
             {
-                PickupItem(PrimaryID, item, droppedParameters);
+                PickupItem(PrimaryID, SecondaryID, item, droppedParameters, TextDisplay);
             }
         }
     }
 
-    void PickupItem(int InventorySlot, GameObject item, WeaponParameters droppedParameters)
+    void PickupItem(int InventorySlot, int SecondarySlot, GameObject item, WeaponParameters droppedParameters, UnityEngine.UI.Text TextDisplay)
     {
         allWeapons[InventorySlot] = droppedParameters;
-        lastSelectedWeaponID = -1;
+        TextDisplay.text = allWeapons[InventorySlot].name;
+        lastSelectedWeaponID = SecondarySlot;
         Destroy(item);
     }
 
     void SetWeapon() {
         //if (lastSelectedWeaponID > -1) allWeapons[lastSelectedWeaponID].weaponStats.modelObject.SetActive(false);
-
+        currentWeaponText.text = allWeapons[selectedWeaponID].name;
         current = allWeapons[selectedWeaponID];
 
         weaponMaster.SetParameters(current);
@@ -127,6 +134,10 @@ public class InventorySystem : MonoBehaviour
         weaponMovement.offset = current.offset;
 
         currentDropObject = current.weaponDropPrefab;
+        if (lastSelectedWeaponID != -1 && allWeapons[lastSelectedWeaponID] != null)
+        {
+            holsteredWeaponText.text = allWeapons[lastSelectedWeaponID].name;
+        }
         lastSelectedWeaponID = selectedWeaponID;
     }
 }
