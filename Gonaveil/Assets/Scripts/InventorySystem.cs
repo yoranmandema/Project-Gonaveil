@@ -56,6 +56,7 @@ public class InventorySystem : MonoBehaviour {
         }
     }
 
+    // Returns whether the specified slot is available.
     private bool isSlotAvailable (int slot) {
         switch (slot) {
             case 0:
@@ -70,6 +71,7 @@ public class InventorySystem : MonoBehaviour {
         }
     }
 
+    // Cycles the weapon index between 0 and 2
     private void CycleWeaponIndex(int delta) {
         selectedWeaponID += delta;
 
@@ -130,15 +132,6 @@ public class InventorySystem : MonoBehaviour {
         }
     }
 
-    void CheckInventory() {
-        if (!HasAnyWeapons) {
-            weaponMaster.Disarm();
-        }
-        else {
-            weaponMaster.Rearm();
-        }
-    }
-
     void DropWeapon() {
         var dropItem = Instantiate(currentDropObject, transform.position + transform.up, transform.rotation) as GameObject;
         dropItem.transform.Rotate(0, 90, 0);
@@ -154,7 +147,7 @@ public class InventorySystem : MonoBehaviour {
 
         CycleWeapon(1); // Set weapon to first available.
 
-        CheckInventory();
+        if (!HasAnyWeapons) weaponMaster.Disarm();
     }
 
     private void OnTriggerStay(Collider collision) {
@@ -179,6 +172,12 @@ public class InventorySystem : MonoBehaviour {
             }
         } else {
             grenade = droppedParameters;
+        }
+
+        if (HasAnyWeapons && weaponMaster.disabled) {
+            weaponMaster.Rearm();
+
+            CycleWeapon(1); // Set weapon to first available.
         }
 
         Destroy(item);
