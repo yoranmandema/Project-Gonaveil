@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b891a8b7dd44db4e908db08b7187760, type: 3}
   m_Name: Artemis
   m_EditorClassIdentifier: 
+  weaponName: Artemis
   weaponStats:
-    WeaponName: Artemis
     magazineCapacity: 0
     reloadTime: 0
     fireRate: 300
@@ -35,3 +35,4 @@ MonoBehaviour:
   offset: {x: 0.25, y: -0.2, z: 0}
   weaponDropPrefab: {fileID: 9176300260718665028, guid: 5ecec54096adb944584f537541c8e78f,
     type: 3}
+  isGrenade: 0

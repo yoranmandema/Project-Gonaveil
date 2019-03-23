@@ -14,7 +14,7 @@ public class InventorySystem : MonoBehaviour {
     private GameObject currentDropObject;
     private WeaponParameters current;
 
-    private WeaponParameters CurrentWeapon { get {
+    public WeaponParameters CurrentWeapon { get {
             switch (selectedWeaponID) {
                 case 0:
                     return primary;
@@ -27,7 +27,7 @@ public class InventorySystem : MonoBehaviour {
             }
         }
 
-        set {
+        private set {
             switch (selectedWeaponID) {
                 case 0:
                     primary = value;
@@ -44,7 +44,7 @@ public class InventorySystem : MonoBehaviour {
         }
     }
 
-    private bool HasAnyWeapons {
+    public bool HasAnyWeapons {
         get {
             var hasAnyWeapon = false;
 

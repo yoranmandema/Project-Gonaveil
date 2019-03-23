@@ -13650,24 +13650,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3500205305367817446, guid: 908a70b9af8bb4e4bb3951e11a6b614a,
-        type: 3}
-      propertyPath: allWeapons.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: 9823a23e8dd17da49b567b1ab4d7d69b,
-        type: 2}
-    - target: {fileID: 3500205305367817446, guid: 908a70b9af8bb4e4bb3951e11a6b614a,
-        type: 3}
-      propertyPath: primary
-      value: 
-      objectReference: {fileID: 11400000, guid: 45d410edca6984b42ae41cc6a9443d93,
-        type: 2}
-    - target: {fileID: 3500205305367817446, guid: 908a70b9af8bb4e4bb3951e11a6b614a,
-        type: 3}
-      propertyPath: secondary
-      value: 
-      objectReference: {fileID: 11400000, guid: dad1930dfeb8c2d4b9ac2f20a716b89b,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 908a70b9af8bb4e4bb3951e11a6b614a, type: 3}
 --- !u!43 &186870810

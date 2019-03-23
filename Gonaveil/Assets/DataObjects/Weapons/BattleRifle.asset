@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b891a8b7dd44db4e908db08b7187760, type: 3}
   m_Name: BattleRifle
   m_EditorClassIdentifier: 
+  weaponName: Battle Rifle
   weaponStats:
-    WeaponName: Battle Rifle
     magazineCapacity: 0
     reloadTime: 0
     fireRate: 800
@@ -35,3 +35,4 @@ MonoBehaviour:
   offset: {x: 0.15, y: -0.17, z: 0.3}
   weaponDropPrefab: {fileID: 5209984929163130827, guid: 9ea28963fa6350b40a424f2800800104,
     type: 3}
+  isGrenade: 0

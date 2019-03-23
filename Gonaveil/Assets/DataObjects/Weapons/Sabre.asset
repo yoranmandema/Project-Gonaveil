@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b891a8b7dd44db4e908db08b7187760, type: 3}
   m_Name: Sabre
   m_EditorClassIdentifier: 
+  weaponName: Sabre
   weaponStats:
-    WeaponName: Sabre
     magazineCapacity: 100
     reloadTime: 0
     fireRate: 600
@@ -35,3 +35,4 @@ MonoBehaviour:
   offset: {x: 0.15, y: -0.2, z: 0.3}
   weaponDropPrefab: {fileID: 7889961728042130609, guid: ca500af0c009cbf40ad3c019c5294c0d,
     type: 3}
+  isGrenade: 0

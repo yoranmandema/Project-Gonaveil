@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b891a8b7dd44db4e908db08b7187760, type: 3}
   m_Name: Line Rifle
   m_EditorClassIdentifier: 
+  weaponName: Line Rifle
   weaponStats:
-    WeaponName: Cer. Plasma Gun
     magazineCapacity: 0
     reloadTime: 0
     fireRate: 700
@@ -35,3 +35,4 @@ MonoBehaviour:
   offset: {x: 0.2, y: -0.21, z: 0.35}
   weaponDropPrefab: {fileID: 8597316631990123773, guid: fba30980a2d78194abb28fd7d2eb4be9,
     type: 3}
+  isGrenade: 0
