@@ -16,7 +16,7 @@ MonoBehaviour:
     WeaponName: Hammer Buster
     magazineCapacity: 0
     reloadTime: 0
-    fireRate: 100
+    fireRate: 225
     weaponSpread: 0
     bulletsPerShot: 1
     bulletsPerBurst: 1
