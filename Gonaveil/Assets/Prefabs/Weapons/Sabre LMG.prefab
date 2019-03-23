@@ -30,7 +30,6 @@ Transform:
   m_Children:
   - {fileID: 5144368650418320268}
   - {fileID: 9043802408533381604}
-  - {fileID: 2326026239850909952}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -46,37 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 341c394b00e7c3e49aa7701a60cec797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barrel: {fileID: 2326026239850909952}
---- !u!1 &8628236062525457639
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2326026239850909952}
-  m_Layer: 11
-  m_Name: Barrel
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2326026239850909952
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8628236062525457639}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.053, z: 0.854}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 3728470529525982216}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  barrel: {fileID: 9043802408533381604}
 --- !u!1001 &5144368650417924352
 PrefabInstance:
   m_ObjectHideFlags: 0
