@@ -262,7 +262,6 @@ public class WeaponInventory : MonoBehaviour {
         weaponMaster.SetParameters(current);
         //weaponMaster.SetWeaponAmmo(CurrentWeapon.weaponMagazine, CurrentWeapon.weaponAmmoPool);
         weaponMovement.Profile = current.weaponMovementProfile;
-        weaponMovement.offset = current.offset;
 
         //currentDropObject = current.weaponDropPrefab;
     }

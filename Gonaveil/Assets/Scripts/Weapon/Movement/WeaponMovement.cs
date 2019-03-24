@@ -7,8 +7,6 @@ public class WeaponMovement : MonoBehaviour
     public PlayerMovement playerMovement;
     public WeaponMovementProfile Profile;
 
-    [HideInInspector] public Vector3 offset;
-
     private float bobbingLerp = 1f;
     private float bobbingStep = 0f;
     private float crouchingLerp = 0f;
@@ -20,11 +18,6 @@ public class WeaponMovement : MonoBehaviour
 
     private bool wasInAir;
     private bool wasGrounded;
-
-    void Start()
-    {
-        offset = transform.localPosition;
-    }
 
     void Update()
     {
@@ -50,7 +43,7 @@ public class WeaponMovement : MonoBehaviour
 
         forwardComponent += Vector3.forward * lookDownLerp * Profile.lookDownRetraction;
 
-        transform.localPosition = offset + (
+        transform.localPosition = Profile.offset + (
             sideComponent +     
             forwardComponent +
             upComponent
