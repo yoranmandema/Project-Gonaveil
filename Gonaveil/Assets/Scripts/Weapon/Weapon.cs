@@ -37,7 +37,12 @@ public class Weapon : MonoBehaviour {
         //removes previous view model and world model
         if (viewModel != null) Destroy(viewModel);
         if (worldModel != null) Destroy(worldModel);
-        if(stopWeaponFire) fireStage = FireStage.Cycling;
+        if (stopWeaponFire)
+        {
+            chargeProgress = 0;
+            chargeCircle.fillAmount = chargeProgress;
+            fireStage = FireStage.Cycling;
+        }
 
         //creates new view model and world model.
         viewModel = Instantiate(weaponParameters.viewModel, transform, false);
