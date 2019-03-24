@@ -69,7 +69,8 @@ public class Weapon : MonoBehaviour {
     public void Disarm() //Used by the inventory system to ensure the player can't shoot when there are no more weapons
     {
         weaponEquipped = false;
-
+        chargeProgress = 0;
+        chargeCircle.fillAmount = chargeProgress;
         Destroy(viewModel);
         Destroy(worldModel);
     }
