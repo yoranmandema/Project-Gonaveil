@@ -247,19 +247,19 @@ public class Weapon : MonoBehaviour {
                 //UI circle
                 chargeCircle.fillAmount = chargeProgress;
             }
-            else if (fireStage == FireStage.Cycling)
-            {
-                //waits for trigger to be released before allowing the player to fire again.
-                if (controller.triggerState == PlayerInputController.TriggerStates.Idle)
-                {
-                    fireStage = FireStage.Idle;
-                }
-            }
         }
         else
         {
             //cycle gun
             loadTimer -= Time.deltaTime;
+        }
+        if (fireStage == FireStage.Cycling)
+        {
+            //waits for trigger to be released before allowing the player to fire again.
+            if (controller.triggerState == PlayerInputController.TriggerStates.Idle)
+            {
+                fireStage = FireStage.Idle;
+            }
         }
     }
 
