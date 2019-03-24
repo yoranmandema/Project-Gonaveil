@@ -109,7 +109,7 @@ public class InventorySystem : MonoBehaviour {
         // Keep cycling while the current slot if available.
         while (isSlotAvailable(selectedWeaponID)) CycleWeaponIndex(delta);
 
-        SetWeapon();
+        SetWeapon(true);
     }
 
     private void Cycle() {
@@ -128,7 +128,7 @@ public class InventorySystem : MonoBehaviour {
             if (grenade != null) {
                 selectedWeaponID = 2;
 
-                SetWeapon();
+                SetWeapon(true);
             }
         }
     }
@@ -229,7 +229,7 @@ public class InventorySystem : MonoBehaviour {
             if (grenade.weaponParameters.name == dropData.weaponParameters.name)
             {
                 grenade.SetInventoryAmmo(grenade.weaponMagazine + dropData.currentMagazineCapacity + dropData.currentAmmoPool, 0);
-                SetWeapon();
+                SetWeapon(false);
             }
             else
             {
@@ -241,11 +241,11 @@ public class InventorySystem : MonoBehaviour {
             if(primary.weaponParameters.name == dropData.weaponParameters.name)
             {
                 primary.SetInventoryAmmo(primary.weaponMagazine, primary.weaponAmmoPool + dropData.currentAmmoPool + dropData.currentMagazineCapacity);
-                SetWeapon();
+                SetWeapon(false);
             }else if(secondary.weaponParameters.name == dropData.weaponParameters.name)
             {
                 secondary.SetInventoryAmmo(secondary.weaponMagazine, secondary.weaponAmmoPool + dropData.currentAmmoPool + dropData.currentMagazineCapacity);
-                SetWeapon();
+                SetWeapon(false);
             }
             else
             {
@@ -262,12 +262,12 @@ public class InventorySystem : MonoBehaviour {
 
     }
 
-    void SetWeapon() {
+    void SetWeapon(bool stopWeaponFire) {
         if (!HasAnyWeapons) return;
 
         current = CurrentWeapon.weaponParameters;
 
-        weaponMaster.SetParameters(current);
+        weaponMaster.SetParameters(current, stopWeaponFire);
         weaponMaster.SetWeaponAmmo(CurrentWeapon.weaponMagazine, CurrentWeapon.weaponAmmoPool);
         weaponMovement.profile = current.weaponMovementProfile;
 

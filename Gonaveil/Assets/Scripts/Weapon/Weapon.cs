@@ -30,14 +30,14 @@ public class Weapon : MonoBehaviour {
 
     private WeaponValues Stats => weaponParameters.weaponStats;
 
-    public void SetParameters (WeaponParameters parameters) {
+    public void SetParameters (WeaponParameters parameters, bool stopWeaponFire) {
         //applies the selected weapon's parameters
         weaponParameters = parameters;
 
         //removes previous view model and world model
         if (viewModel != null) Destroy(viewModel);
         if (worldModel != null) Destroy(worldModel);
-        fireStage = FireStage.Cycling;
+        if(stopWeaponFire) fireStage = FireStage.Cycling;
 
         //creates new view model and world model.
         viewModel = Instantiate(weaponParameters.viewModel, transform, false);
@@ -80,7 +80,7 @@ public class Weapon : MonoBehaviour {
         //force the player into the layer
         playerLayer = LayerMask.NameToLayer("Player");
         //set the weapon to the one already in.
-        SetParameters(weaponParameters);
+        SetParameters(weaponParameters, true);
     }
 
     private void FixedUpdate() {
