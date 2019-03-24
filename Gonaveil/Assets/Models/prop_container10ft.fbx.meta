@@ -59,17 +59,12 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Emission
-    second: {fileID: 2100000, guid: a424b1c503aabe54ba0ab9b6ab35da1c, type: 2}
+    second: {fileID: 2100000, guid: 8813a59c1cc92934e8ccc627aaa23d28, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Emission_Container
     second: {fileID: 2100000, guid: 8deec4634bb38d04ba2dd40ea15f182d, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: lambert1
-    second: {fileID: 2100000, guid: 72c7e666ecc83604ab28fab5389bd4d0, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -79,42 +74,42 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: pasted__Detail2
-    second: {fileID: 2100000, guid: bf8c5c41d6a31334fa924862a2b5c116, type: 2}
+    second: {fileID: 2100000, guid: 6c08936af25ad2c4fb62588a2f4e0b94, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: pasted__Emission1
-    second: {fileID: 2100000, guid: 2f4aadbf0338c3e43a78cd7045a43204, type: 2}
+    second: {fileID: 2100000, guid: 8813a59c1cc92934e8ccc627aaa23d28, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: pasted__Emission_Container1
-    second: {fileID: 2100000, guid: 764458a9041267b4798fb19b894a73fd, type: 2}
+    second: {fileID: 2100000, guid: 8deec4634bb38d04ba2dd40ea15f182d, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: pasted__Emission_Container_3
-    second: {fileID: 2100000, guid: bca3d88a03da2b2449cfc2c2012a9d1d, type: 2}
+    second: {fileID: 2100000, guid: 56d58db3c4c46294d9556975e19d26dc, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: pasted__Emission_Crate3
-    second: {fileID: 2100000, guid: f954773fc7335144189c3f0c95333124, type: 2}
+    second: {fileID: 2100000, guid: e90b708c50cc6cb4bb1c27b37fa7aea0, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: pasted__Screen_Crate3
-    second: {fileID: 2100000, guid: 5ac7071744f4dcb4d94a4e668e1d5525, type: 2}
+    second: {fileID: 2100000, guid: 14d47d7bbd9a08a4192a91e09298b180, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: pasted__Secondary3
-    second: {fileID: 2100000, guid: ec9a5f092453eed4a98e2b973ee90a5a, type: 2}
+    second: {fileID: 2100000, guid: 46f3ecc18d043bd44bc968169536a526, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: pasted__Steel2
-    second: {fileID: 2100000, guid: 724a0bc3d6156f1458edee13e72c9885, type: 2}
+    second: {fileID: 2100000, guid: 6ccbe4bde72ef46458220f42c92effe1, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

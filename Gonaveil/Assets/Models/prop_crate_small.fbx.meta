@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f190045cbcd12f54c9c85f09b49b91fe
+guid: bde76991113915745bec1477d934607f
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -33,7 +33,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Detail
-    second: {fileID: 2100000, guid: e2c102be79c878548988df944ab31ead, type: 2}
+    second: {fileID: 2100000, guid: 6c08936af25ad2c4fb62588a2f4e0b94, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -48,27 +48,22 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Screen_Crate
-    second: {fileID: 2100000, guid: 952bc520f24cc2e449aaede516fe7e09, type: 2}
+    second: {fileID: 2100000, guid: 14d47d7bbd9a08a4192a91e09298b180, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Secondary
-    second: {fileID: 2100000, guid: 5155ad70369def6489af48902e5192d1, type: 2}
+    second: {fileID: 2100000, guid: 46f3ecc18d043bd44bc968169536a526, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Steel
-    second: {fileID: 2100000, guid: 263b881d32219af44a9c65c45ad18b88, type: 2}
+    second: {fileID: 2100000, guid: 6ccbe4bde72ef46458220f42c92effe1, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Tertiary
-    second: {fileID: 2100000, guid: 94d96d99bc61e3a4f9c359cff058af31, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: lambert1
-    second: {fileID: 2100000, guid: c77c45960b5d0964bb087b367397727a, type: 2}
+    second: {fileID: 2100000, guid: 4ced4f254f1e6af43b723bc59196c870, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -99,7 +94,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1.75
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1

@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 524b91c0e53ddf24db01a3181671129a
+guid: f73f0454e51bf9f488f32519204a2245
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: Bandages
-    100002: Handle
-    100004: HealthVial2
-    100006: HelathVial1
-    100008: //RootNode
+    100002: //RootNode
+    100004: Handle
+    100006: HealthVial2
+    100008: HelathVial1
     100010: MedKit 1
     100012: MedKitHandleBase
     100014: Misc
@@ -15,10 +15,10 @@ ModelImporter:
     100018: SmallBandages2
     100020: SmallBandages3
     400000: Bandages
-    400002: Handle
-    400004: HealthVial2
-    400006: HelathVial1
-    400008: //RootNode
+    400002: //RootNode
+    400004: Handle
+    400006: HealthVial2
+    400008: HelathVial1
     400010: MedKit 1
     400012: MedKitHandleBase
     400014: Misc
@@ -77,12 +77,12 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Detail
-    second: {fileID: 2100000, guid: 0200932403730e74fb4b264776a1b540, type: 2}
+    second: {fileID: 2100000, guid: 6c08936af25ad2c4fb62588a2f4e0b94, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Emission_Container
-    second: {fileID: 2100000, guid: 4c26eee9d6fa3c240ad747d25994a984, type: 2}
+    second: {fileID: 2100000, guid: 8deec4634bb38d04ba2dd40ea15f182d, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -92,72 +92,67 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Primary
-    second: {fileID: 2100000, guid: 3b69e0f31a4a88e4bb7dc4b39cea5fff, type: 2}
+    second: {fileID: 2100000, guid: 95e7e1a31db8c0340bc0e7beac612e9f, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Secondary
-    second: {fileID: 2100000, guid: 2c07ec41b8be41a4497b1c9dffe76742, type: 2}
+    second: {fileID: 2100000, guid: 46f3ecc18d043bd44bc968169536a526, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Steel
-    second: {fileID: 2100000, guid: b6347e3c33fcf43448799a5e4466c7b7, type: 2}
+    second: {fileID: 2100000, guid: 6ccbe4bde72ef46458220f42c92effe1, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Tertiary
-    second: {fileID: 2100000, guid: 125235a78f4683740b5462e239a51883, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: lambert1
-    second: {fileID: 2100000, guid: 27786529ff3b23740bcaeb1dc8877c8b, type: 2}
+    second: {fileID: 2100000, guid: 4ced4f254f1e6af43b723bc59196c870, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: pasted__Detail3
-    second: {fileID: 2100000, guid: 7383c8949a44e8d498cac05f29bd4667, type: 2}
+    second: {fileID: 2100000, guid: 6c08936af25ad2c4fb62588a2f4e0b94, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: pasted__Emission_Container2
-    second: {fileID: 2100000, guid: bd4faf4b65e4d514e9ab72f91ea130cf, type: 2}
+    second: {fileID: 2100000, guid: 8deec4634bb38d04ba2dd40ea15f182d, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: pasted__Steel3
-    second: {fileID: 2100000, guid: 7c7c3f343f87028488b44b084094cc55, type: 2}
+    second: {fileID: 2100000, guid: 6ccbe4bde72ef46458220f42c92effe1, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: pasted__Tertiary1
-    second: {fileID: 2100000, guid: 2b4fc440864515d4e9fd24406527cd8c, type: 2}
+    second: {fileID: 2100000, guid: 4ced4f254f1e6af43b723bc59196c870, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: pasted__Tertiary2
-    second: {fileID: 2100000, guid: c0bb4d80cc88c6c488ccd2ef1dee10f8, type: 2}
+    second: {fileID: 2100000, guid: 4ced4f254f1e6af43b723bc59196c870, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: pasted__pasted__Steel3
-    second: {fileID: 2100000, guid: b6ddff8ddab98d649ab195f044b9f2db, type: 2}
+    second: {fileID: 2100000, guid: 6ccbe4bde72ef46458220f42c92effe1, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: pasted__pasted__Tertiary2
-    second: {fileID: 2100000, guid: a3e98f7a576138343a0309b94d1baa96, type: 2}
+    second: {fileID: 2100000, guid: 4ced4f254f1e6af43b723bc59196c870, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: pasted__pasted__pasted__Steel3
-    second: {fileID: 2100000, guid: 77939bad1817a64499cc48db53f8888d, type: 2}
+    second: {fileID: 2100000, guid: 6ccbe4bde72ef46458220f42c92effe1, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: pasted__pasted__pasted__Tertiary2
-    second: {fileID: 2100000, guid: 00ae98428e298194fb3f251d851d070f, type: 2}
+    second: {fileID: 2100000, guid: 4ced4f254f1e6af43b723bc59196c870, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
