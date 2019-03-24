@@ -23,7 +23,7 @@ MonoBehaviour:
     burstTime: 0
     chargeTime: 0
     fireWhenCharged: 0
-    Projectile: {fileID: 4846615784228082546, guid: e7cf5f436ac463144989ba4cb199fe24,
+    Projectile: {fileID: 5675225362919209099, guid: 807eab746f6b4444e8c932d8dbe1b2f8,
       type: 3}
     weaponType: 0
     weaponClass: 2
@@ -32,7 +32,6 @@ MonoBehaviour:
     type: 2}
   viewModel: {fileID: 5442470406717144034, guid: e556d05aa8434e344b8dd5ffb5d061f2,
     type: 3}
-  offset: {x: 0.35, y: -0.3, z: 0.6}
   weaponDropPrefab: {fileID: 4606314494304747424, guid: 2d6df1e3e4705674ea9fc3049aacfb65,
     type: 3}
   isGrenade: 0
