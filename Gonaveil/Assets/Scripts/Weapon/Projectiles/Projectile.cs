@@ -31,7 +31,7 @@ public abstract class Projectile : MonoBehaviour {
         startTime = Time.realtimeSinceStartup;
     }
 
-    void Update() {
+    void FixedUpdate() {
         SimulateSteps();
 
         OnUpdate();
