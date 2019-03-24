@@ -1,0 +1,202 @@
+fileFormatVersion: 2
+guid: 4aa9b222daad80346b3b27b25fabb442
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Container
+    100002: Handle
+    100004: Handle 1
+    100006: LockbarBottom
+    100008: LockbarTop
+    100010: pCylinder2
+    100012: pCylinder5
+    100014: //RootNode
+    100016: screen
+    400000: Container
+    400002: Handle
+    400004: Handle 1
+    400006: LockbarBottom
+    400008: LockbarTop
+    400010: pCylinder2
+    400012: pCylinder5
+    400014: //RootNode
+    400016: screen
+    2100000: lambert1
+    2100002: pasted__Screen_Crate3
+    2100004: pasted__Emission_Container1
+    2100006: Emission_Container
+    2100008: pasted__Emission1
+    2100010: Emission
+    2100012: pasted__Emission_Crate3
+    2100014: pasted__Emission_Container_3
+    2100016: pasted__Container_Paint1
+    2100018: pasted__Steel2
+    2100020: pasted__Detail2
+    2100022: pasted__Secondary3
+    2300000: Container
+    2300002: Handle 1
+    2300004: LockbarBottom
+    2300006: LockbarTop
+    2300008: pCylinder2
+    2300010: pCylinder5
+    2300012: screen
+    3300000: Container
+    3300002: Handle 1
+    3300004: LockbarBottom
+    3300006: LockbarTop
+    3300008: pCylinder2
+    3300010: pCylinder5
+    3300012: screen
+    4300000: screen
+    4300002: Container
+    4300004: pCylinder5
+    4300006: Handle
+    4300008: pCylinder2
+    4300010: LockbarTop
+    4300012: LockbarBottom
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Emission
+    second: {fileID: 2100000, guid: a424b1c503aabe54ba0ab9b6ab35da1c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Emission_Container
+    second: {fileID: 2100000, guid: 8deec4634bb38d04ba2dd40ea15f182d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: 72c7e666ecc83604ab28fab5389bd4d0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pasted__Container_Paint1
+    second: {fileID: 2100000, guid: 1027b6933cde6e642898543ee6058a22, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pasted__Detail2
+    second: {fileID: 2100000, guid: bf8c5c41d6a31334fa924862a2b5c116, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pasted__Emission1
+    second: {fileID: 2100000, guid: 2f4aadbf0338c3e43a78cd7045a43204, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pasted__Emission_Container1
+    second: {fileID: 2100000, guid: 764458a9041267b4798fb19b894a73fd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pasted__Emission_Container_3
+    second: {fileID: 2100000, guid: bca3d88a03da2b2449cfc2c2012a9d1d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pasted__Emission_Crate3
+    second: {fileID: 2100000, guid: f954773fc7335144189c3f0c95333124, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pasted__Screen_Crate3
+    second: {fileID: 2100000, guid: 5ac7071744f4dcb4d94a4e668e1d5525, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pasted__Secondary3
+    second: {fileID: 2100000, guid: ec9a5f092453eed4a98e2b973ee90a5a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pasted__Steel2
+    second: {fileID: 2100000, guid: 724a0bc3d6156f1458edee13e72c9885, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
