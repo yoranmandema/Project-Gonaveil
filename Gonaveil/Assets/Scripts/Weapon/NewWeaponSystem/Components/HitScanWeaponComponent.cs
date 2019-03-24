@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class HitScanWeaponComponent : WeaponComponent {
-    public GameObject impact;
+    public HitScanWeaponComponentProfile profile;
 
     public override void OnFireStart() {
         var cast = Physics.Raycast(camera.position, camera.forward, out RaycastHit hit, Mathf.Infinity);
@@ -11,7 +11,7 @@ public class HitScanWeaponComponent : WeaponComponent {
         Debug.DrawLine(camera.position, hit.point, Color.red, 10f);
 
         if (cast) {
-            var impactObject = Instantiate(impact, hit.point, Quaternion.LookRotation(Vector3.up, hit.normal));
+            var impactObject = Instantiate(profile.impact, hit.point, Quaternion.LookRotation(Vector3.up, hit.normal));
         }
     }
 }
