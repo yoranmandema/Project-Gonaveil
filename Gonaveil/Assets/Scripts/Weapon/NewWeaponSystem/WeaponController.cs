@@ -38,13 +38,13 @@ public class WeaponController : MonoBehaviour {
         if (weaponAsset.primaryComponentName != null) {
             primaryComponent = weaponHolder.gameObject.AddComponent(System.Type.GetType(weaponAsset.primaryComponentName)) as WeaponComponent;
 
-            primaryComponent?.Initialise(camera, this);
+            primaryComponent.Initialise(camera, this, weaponAsset.primaryProfile);
         }
 
         if (weaponAsset.secondaryComponentName != null) {
             secondaryComponent = weaponHolder.gameObject.AddComponent(System.Type.GetType(weaponAsset.secondaryComponentName)) as WeaponComponent;
 
-            secondaryComponent?.Initialise(camera, this);
+            secondaryComponent.Initialise(camera, this, weaponAsset.secondaryProfile);
         }
     }
 

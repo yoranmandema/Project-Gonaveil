@@ -3,7 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class HitScanWeaponComponent : WeaponComponent {
-    public HitScanWeaponComponentProfile profile;
+
+    private HitScanWeaponComponentProfile profile;
+
+    private void Start () {
+        profile = (HitScanWeaponComponentProfile)Profile;
+    }
 
     public override void OnFireStart() {
         var cast = Physics.Raycast(camera.position, camera.forward, out RaycastHit hit, Mathf.Infinity);

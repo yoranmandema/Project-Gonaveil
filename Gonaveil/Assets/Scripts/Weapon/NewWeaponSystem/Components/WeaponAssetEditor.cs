@@ -18,6 +18,8 @@ public class WeaponAssetEditor : Editor {
     public SerializedProperty viewModel;
     public SerializedProperty worldModel;
     public SerializedProperty offset;
+    public SerializedProperty primaryProfile;
+    public SerializedProperty secondaryProfile;
 
     void OnEnable() {
         var types = Assembly.GetAssembly(typeof(WeaponComponent))
@@ -34,13 +36,15 @@ public class WeaponAssetEditor : Editor {
 
         var asset = (WeaponAsset)target;
 
-        selectedPrimary = asset.primaryComponentName != null ? typeNameList.IndexOf(asset.primaryComponentName) : 0;
-        selectedSecondary = asset.secondaryComponentName != null ? typeNameList.IndexOf(asset.secondaryComponentName) : 0;
+        selectedPrimary = !string.IsNullOrEmpty(asset.primaryComponentName) ? typeNameList.IndexOf(asset.primaryComponentName) : 0;
+        selectedSecondary = !string.IsNullOrEmpty(asset.secondaryComponentName) ? typeNameList.IndexOf(asset.secondaryComponentName) : 0;
 
         weaponMovementProfile = serializedObject.FindProperty("weaponMovementProfile");
         viewModel = serializedObject.FindProperty("viewModel");
         worldModel = serializedObject.FindProperty("worldModel");
         offset = serializedObject.FindProperty("offset");
+        primaryProfile = serializedObject.FindProperty("primaryProfile");
+        secondaryProfile = serializedObject.FindProperty("secondaryProfile");
     }
 
     public override void OnInspectorGUI() {
@@ -49,7 +53,12 @@ public class WeaponAssetEditor : Editor {
         EditorGUILayout.LabelField("Fire Components", EditorStyles.boldLabel);
 
         selectedPrimary = EditorGUILayout.Popup("Label", selectedPrimary, availableTypes);
+
+        EditorGUILayout.PropertyField(primaryProfile);
+
         selectedSecondary = EditorGUILayout.Popup("Label", selectedSecondary, availableTypes);
+
+        EditorGUILayout.PropertyField(secondaryProfile);
 
         var asset = (WeaponAsset)target;
 
