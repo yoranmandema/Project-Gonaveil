@@ -98,14 +98,9 @@ public class Weapon : MonoBehaviour {
         //remove a round from the magazine
         currentMagazine -= 1;
         EventManager.TriggerEvent("Shot Fired", chargeProgress);
-        try //Placeholder until we add muzzle flashes for all weapons.
-        {
-            transform.GetComponentInChildren<ParticleSystem>().Play(true);
-        }
-        catch
-        {
 
-        }
+        transform.GetComponentInChildren<ParticleSystem>()?.Play(true);
+
         //loops to fire multiple shots in one round
         for (int i = 0; i < weaponParameters.weaponStats.bulletsPerShot; i++) {
             //check if the gun is hitscan or projectile, does the apporpriate thing.
@@ -115,6 +110,11 @@ public class Weapon : MonoBehaviour {
             else {
                 Projectile();
             }
+        }
+
+        if (Stats.weaponType == WeaponType.Charge) {
+            chargeProgress = 0;
+            chargeCircle.fillAmount = chargeProgress;
         }
     }
 
@@ -127,6 +127,7 @@ public class Weapon : MonoBehaviour {
         var projectile = projectileObject.GetComponent<Projectile>();
         projectile.barrel = barrel;
         projectile.instigator = transform.root.gameObject;
+        projectile.weapon = this;
         projectile.Fire();
 
         //calculate uniform spread
@@ -254,7 +255,6 @@ public class Weapon : MonoBehaviour {
                 if (controller.triggerState == PlayerInputController.TriggerStates.Idle || (Stats.fireWhenCharged && chargeProgress == 1)) //waits for trigger release or when charging is done
                 {
                     PrepareFire(trueFireRate); //fires gun
-                    chargeProgress = 0;
                 }
                 //UI circle
                 chargeCircle.fillAmount = chargeProgress;
