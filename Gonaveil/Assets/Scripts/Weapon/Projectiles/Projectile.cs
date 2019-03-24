@@ -37,7 +37,7 @@ public abstract class Projectile : MonoBehaviour {
         OnUpdate();
 
         //move the effect slowly to the centre of the actual bullet.
-        effect.localPosition = Vector3.Lerp(effect.localPosition, Vector3.zero, 10f * Time.deltaTime);
+        effect.localPosition = Vector3.Lerp(effect.localPosition, Vector3.zero, 10f * Time.fixedDeltaTime);
 
         if ((Time.realtimeSinceStartup - startTime) > lifeTime) {
             Destroy(gameObject);
@@ -57,7 +57,7 @@ public abstract class Projectile : MonoBehaviour {
     }
 
     Vector3 Simulate(Vector3 start) {
-        var deltaTime = Time.deltaTime / timeSteps * timeScale;
+        var deltaTime = Time.fixedDeltaTime / timeSteps * timeScale;
         var position = start;
         var hit = default(RaycastHit);
 
