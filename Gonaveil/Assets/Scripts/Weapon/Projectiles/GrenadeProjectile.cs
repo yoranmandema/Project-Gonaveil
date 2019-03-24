@@ -68,7 +68,7 @@ public class GrenadeProjectile : Projectile
         yield return new WaitForSeconds(fuseTime);
 
         GamePlayPhysics.DoExplosion(transform.position, explosionRadius, explosionForce);
-        Instantiate(explosionParticle,transform.position,transform.rotation);
+        Instantiate(explosionParticle,transform.position,Quaternion.Euler(0,0,0));
 
         Destroy(gameObject);
     }
