@@ -21,6 +21,8 @@ public class WeaponMovement : MonoBehaviour
 
     void Update()
     {
+        if (profile == null) return;
+
         var isGrounded = playerMovement.isGrounded && !playerMovement.isSliding;
         var velocityLerp = playerMovement.velocity.magnitude * profile.velocityMultiplier;
 
