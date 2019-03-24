@@ -19,4 +19,6 @@ public class WeaponMovementProfile : ScriptableObject {
     public float lookDownSmoothing = 2f;
 
     public float jumpAmount = 0.25f;
+
+    public Vector3 offset = new Vector3(0.35f, -0.3f, 0.6f);
 }
