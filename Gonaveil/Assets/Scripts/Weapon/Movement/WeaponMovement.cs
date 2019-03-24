@@ -55,7 +55,7 @@ public class WeaponMovement : MonoBehaviour
         sideComponent += Vector3.right * -crouchingSmoothedLerp * 0.2f;
 
         forwardComponent += Vector3.forward * lookDownLerp * profile.lookDownRetraction;
-        forwardComponent += Vector3.forward * recoil * -0.05f;
+        forwardComponent += Vector3.forward * recoilSmoothed * -0.05f;
 
         transform.localPosition = profile.offset + (
             sideComponent +     
@@ -66,7 +66,7 @@ public class WeaponMovement : MonoBehaviour
         yaw += (Input.GetAxis("Mouse X") - yaw) * Time.deltaTime * profile.rotationSpeed;
         pitch += (-Input.GetAxis("Mouse Y") - pitch) * Time.deltaTime * profile.rotationSpeed;
 
-        transform.localRotation = Quaternion.Euler(pitch * profile.rotationAmount + -recoil, yaw * profile.rotationAmount, -yaw * profile.rotationAmount + crouchingSmoothedLerp * profile.crouchAngle);
+        transform.localRotation = Quaternion.Euler(pitch * profile.rotationAmount + -recoilSmoothed, yaw * profile.rotationAmount, -yaw * profile.rotationAmount + crouchingSmoothedLerp * profile.crouchAngle);
 
         wasInAir = playerMovement.isInAir;
         wasGrounded = isGrounded;
@@ -74,6 +74,6 @@ public class WeaponMovement : MonoBehaviour
         recoil = Mathf.Max(recoil - profile.recoilRecovery * Time.deltaTime, 0);
         recoil = Mathf.Min(recoil, 10f);
 
-        recoilSmoothed = (recoil - recoilSmoothed) * Time.deltaTime;
+        recoilSmoothed += (recoil - recoilSmoothed) * Time.deltaTime / 0.04f;
     }
 }
