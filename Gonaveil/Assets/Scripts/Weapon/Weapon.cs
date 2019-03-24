@@ -178,6 +178,11 @@ public class Weapon : MonoBehaviour {
         //just increments the charge progress until 1
         if (chargeProgress < 1) {
             chargeProgress = Mathf.Min(1, chargeProgress + Time.deltaTime / Stats.chargeTime);
+            OnChargingWeapon(chargeProgress);
+        }
+        else
+        {
+            OnChargeFull();
         }
     }
 
@@ -329,6 +334,7 @@ public class Weapon : MonoBehaviour {
                     loadTimer = 0;
                     //force reload
                     fireStage = FireStage.Reloading;
+                    OnReload(Stats.reloadTime);
                 }
             }
             else
@@ -338,4 +344,9 @@ public class Weapon : MonoBehaviour {
             }
         }
     }
+
+    public virtual void OnChargeFull() { }
+    public virtual void OnChargingWeapon(float chargeProgress) { }
+    public virtual void OnShotFired() { }
+    public virtual void OnReload(float reloadTime) { }
 }
