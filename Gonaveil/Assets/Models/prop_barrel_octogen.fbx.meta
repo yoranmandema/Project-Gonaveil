@@ -5,16 +5,10 @@ ModelImporter:
   fileIDToRecycleName:
     100000: body
     100002: cap
-    100004: front1
-    100006: left1
-    100008: //RootNode
+    100004: //RootNode
     400000: body
     400002: cap
-    400004: front1
-    400006: left1
-    400008: //RootNode
-    2000000: front1
-    2000002: left1
+    400004: //RootNode
     2100000: Primary
     2100002: Steel
     2100004: Secondary

@@ -11,7 +11,7 @@ public class Weapon : MonoBehaviour {
     //public bool disabled;
     public bool weaponEquipped;
 
-    public enum FireStage { Idle, Firing, Charging, Cycling, Reloading }
+    public enum FireStage { Idle, Firing, Charging, Cycling, Reloading}
     public float chargeProgress;
     public GameObject viewModel;
     public GameObject worldModel;
@@ -30,14 +30,15 @@ public class Weapon : MonoBehaviour {
 
     private WeaponValues Stats => weaponParameters.weaponStats;
 
-    public void SetParameters(WeaponParameters parameters, bool stopWeaponFire) {
+    public void SetParameters (WeaponParameters parameters, bool stopWeaponFire) {
         //applies the selected weapon's parameters
         weaponParameters = parameters;
 
         //removes previous view model and world model
         if (viewModel != null) Destroy(viewModel);
         if (worldModel != null) Destroy(worldModel);
-        if (stopWeaponFire) {
+        if (stopWeaponFire)
+        {
             chargeProgress = 0;
             chargeCircle.fillAmount = chargeProgress;
             fireStage = FireStage.Cycling;
@@ -96,10 +97,14 @@ public class Weapon : MonoBehaviour {
     public void WeaponFire() {
         //remove a round from the magazine
         currentMagazine -= 1;
-        EventManager.TriggerEvent("Shot Fired", chargeProgress);
+        try //Placeholder until we add muzzle flashes for all weapons.
+        {
+            transform.GetComponentInChildren<ParticleSystem>().Play(true);
+        }
+        catch
+        {
 
-        transform.GetComponentInChildren<ParticleSystem>()?.Play(true);
-
+        }
         //loops to fire multiple shots in one round
         for (int i = 0; i < weaponParameters.weaponStats.bulletsPerShot; i++) {
             //check if the gun is hitscan or projectile, does the apporpriate thing.
@@ -110,40 +115,26 @@ public class Weapon : MonoBehaviour {
                 Projectile();
             }
         }
-
-        if (Stats.weaponType == WeaponType.Charge) {
-            chargeProgress = 0;
-            chargeCircle.fillAmount = chargeProgress;
-        }
-    }
-
-    Vector3 CalculateSpreadVector() {
-        var spreadVector = Vector3.zero;
-
-        var angle = Random.Range(0, 2 * Mathf.PI);
-        var offset = Random.Range(0, Stats.weaponSpread * Mathf.Deg2Rad);
-
-        spreadVector += mainCamera.transform.right * Mathf.Cos(angle) * Mathf.Sin(offset);
-        spreadVector += mainCamera.transform.up * Mathf.Sin(angle) * Mathf.Sin(offset);
-        spreadVector += mainCamera.transform.forward * Mathf.Cos(offset);
-
-        return spreadVector.normalized;
     }
 
     void Projectile() {
 
         //create bullet
         var projectileObject = Instantiate(Stats.Projectile, mainCamera.transform.position, mainCamera.transform.rotation) as GameObject;
-
-        var spreadVector = CalculateSpreadVector();
-
+        
+        //tell the bullet where the barrel is (used for bullet model)
         var projectile = projectileObject.GetComponent<Projectile>();
-
-        projectileObject.transform.rotation = Quaternion.LookRotation(spreadVector);
         projectile.barrel = barrel;
         projectile.instigator = transform.root.gameObject;
-        projectile.weapon = this;
         projectile.Fire();
+
+        //calculate uniform spread
+        var angle = Random.Range(0, 2 * Mathf.PI);
+        var offset = Random.Range(0, Stats.weaponSpread);
+        var SpreadX = Mathf.Cos(angle) * offset;
+        var SpreadY = Mathf.Sin(angle) * offset;
+        //apply spread
+        projectileObject.transform.Rotate(SpreadX, SpreadY, 0);
     }
 
     void HitScan() {
@@ -151,10 +142,20 @@ public class Weapon : MonoBehaviour {
         Transform hitParent = null;
         Rigidbody hitObjectRigid = null; //Rigidbody of object if it has one.
 
-        var spreadVector = CalculateSpreadVector();
+        //vector to apply to raycast
+        var spreadVector = Vector3.zero;
+
+        //calculate uniform spread
+        var angle = Random.Range(0, 2 * Mathf.PI);
+        var offset = Random.Range(0, Stats.weaponSpread);
+
+        //Apply vector maths to ensure the raycast moves.
+        spreadVector += mainCamera.transform.right.normalized * Mathf.Cos(angle) * offset;
+        spreadVector += mainCamera.transform.up.normalized * Mathf.Sin(angle) * offset;
+        spreadVector += mainCamera.transform.forward * 75;
 
         //fire a raycast in that direction.
-        if (Physics.Raycast(mainCamera.transform.position, spreadVector, out RaycastHit hit, 10000, raycastMask)) {
+        if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward + spreadVector, out RaycastHit hit, 10000, raycastMask)) {
             hitPosition = hit.point;
             hitParent = hit.transform;
             hitObjectRigid = hit.transform.GetComponent<Rigidbody>();
@@ -177,10 +178,11 @@ public class Weapon : MonoBehaviour {
         //just increments the charge progress until 1
         if (chargeProgress < 1) {
             chargeProgress = Mathf.Min(1, chargeProgress + Time.deltaTime / Stats.chargeTime);
-            EventManager.TriggerEvent("Charging", chargeProgress);
+            OnChargingWeapon(chargeProgress);
         }
-        else {
-            EventManager.TriggerEvent("Charge Done", 1);
+        else
+        {
+            OnChargeFull();
         }
     }
 
@@ -189,20 +191,26 @@ public class Weapon : MonoBehaviour {
         loadTimer = trueFireRate;
         fireStage = FireStage.Firing;
     }
-
-    void ReloadGun() {
-        if (currentAmmoPool > 0) {
+    
+    void ReloadGun()
+    {
+        if (currentAmmoPool > 0)
+        {
             //increments loadTimer until = reload time
-            if (loadTimer < Stats.reloadTime) {
+            if (loadTimer < Stats.reloadTime)
+            {
                 loadTimer += Time.deltaTime;
             }
-            else {
+            else
+            {
                 //set values and reset the gun.
                 currentAmmoPool += currentMagazine;
-                if (currentAmmoPool < Stats.magazineCapacity) {
+                if (currentAmmoPool < Stats.magazineCapacity)
+                {
                     currentMagazine = currentAmmoPool;
                 }
-                else {
+                else
+                {
                     currentMagazine = Stats.magazineCapacity;
                 }
                 currentAmmoPool -= currentMagazine;
@@ -212,15 +220,19 @@ public class Weapon : MonoBehaviour {
         }
     }
 
-    void CycleGun(float trueFireRate) {
+    void CycleGun(float trueFireRate)
+    {
         //Simulates fire rate, inputs aren't detected until cycled
-        if (loadTimer <= 0) {
+        if (loadTimer <= 0)
+        {
             //Check if the player is using primary fire
-            if (controller.triggerState == PlayerInputController.TriggerStates.Primary) {
+            if (controller.triggerState == PlayerInputController.TriggerStates.Primary)
+            {
                 //Full Auto, "pulls" trigger every time the gun has cycled
                 if (fireStage != FireStage.Cycling) //semi auto is a different system, this checks if the gun hasn't fired.
                 {
-                    if (Stats.weaponType == WeaponType.FullAuto) {
+                    if (Stats.weaponType == WeaponType.FullAuto)
+                    {
                         PrepareFire(trueFireRate);
                     }
                     else if (Stats.weaponType == WeaponType.Charge) //Charge weapons are similar. "Holds" trigger.
@@ -228,30 +240,35 @@ public class Weapon : MonoBehaviour {
                         ChargeWeapon();
                         fireStage = FireStage.Charging;
                     }
-                    else {
+                    else
+                    {
 
                         PrepareFire(trueFireRate);
                     }
                 }
             }
             //Checks if the gun is charging
-            if (fireStage == FireStage.Charging) {
+            if (fireStage == FireStage.Charging)
+            {
                 if (controller.triggerState == PlayerInputController.TriggerStates.Idle || (Stats.fireWhenCharged && chargeProgress == 1)) //waits for trigger release or when charging is done
                 {
                     PrepareFire(trueFireRate); //fires gun
+                    chargeProgress = 0;
                 }
                 //UI circle
                 chargeCircle.fillAmount = chargeProgress;
             }
         }
-        else {
+        else
+        {
             //cycle gun
             loadTimer -= Time.deltaTime;
         }
-
-        if (fireStage == FireStage.Cycling) {
+        if (fireStage == FireStage.Cycling)
+        {
             //waits for trigger to be released before allowing the player to fire again.
-            if (controller.triggerState == PlayerInputController.TriggerStates.Idle) {
+            if (controller.triggerState == PlayerInputController.TriggerStates.Idle)
+            {
                 fireStage = FireStage.Idle;
             }
         }
@@ -260,25 +277,31 @@ public class Weapon : MonoBehaviour {
     void GunFireMechanics() //Handles burst fire and semi auto mechanics.
     {
         //check if the gun hasn't fired it's burst, and there's enough ammo
-        if (burstCount < Stats.bulletsPerBurst && currentMagazine > 0) {
+        if (burstCount < Stats.bulletsPerBurst && currentMagazine > 0)
+        {
             //adds delay between bursts
-            if (burstTimer <= 0) {
+            if (burstTimer <= 0)
+            {
                 //increments the burst counter and resets the timer
                 burstCount += 1;
                 burstTimer = Stats.burstTime;
                 WeaponFire(); //Finally fire the gun
             }
-            else {
+            else
+            {
                 //decrease the timer.
                 burstTimer -= Time.deltaTime;
             }
         }
-        else {
+        else
+        {
             //used for semi auto, ensures the trigger has to be released to allow another shot.
-            if (Stats.weaponType == WeaponType.SemiAuto) {
+            if (Stats.weaponType == WeaponType.SemiAuto)
+            {
                 fireStage = FireStage.Cycling;
             }
-            else {
+            else
+            {
                 fireStage = FireStage.Idle;
             }
         }
@@ -286,7 +309,8 @@ public class Weapon : MonoBehaviour {
 
     private void Update() {
         //boolean to tell if there is any weapon in the inventory
-        if (weaponEquipped) {
+        if (weaponEquipped)
+        {
             //clamps to ensure no errors
             Stats.bulletsPerShot = Mathf.Clamp(Stats.bulletsPerShot, 1, int.MaxValue);
             Stats.fireRate = Mathf.Clamp(Stats.fireRate, 1, int.MaxValue);
@@ -296,25 +320,33 @@ public class Weapon : MonoBehaviour {
             float trueFireRate = (1 / (Stats.fireRate / 60)) + (Stats.burstTime * Stats.bulletsPerBurst);
 
             //check if the gun hasn't begun reloading
-            if (fireStage != FireStage.Reloading) {
+            if (fireStage != FireStage.Reloading)
+            {
                 //check if the player wants to reload and they can, or if the gun is in dire need of a reload.
                 CycleGun(trueFireRate);
                 if (fireStage == FireStage.Firing) //check if the gun should be firing
                 {
                     GunFireMechanics();
                 }
-                if (((InputManager.GetButtonDown("Reload Weapon") && currentMagazine < Stats.magazineCapacity) || currentMagazine <= 0)) {
+                if (((InputManager.GetButtonDown("Reload Weapon") && currentMagazine < Stats.magazineCapacity) || currentMagazine <= 0))
+                {
                     //loadTimer is reused for reloading, saves memory space :)
                     loadTimer = 0;
                     //force reload
                     fireStage = FireStage.Reloading;
-                    EventManager.TriggerEvent("Reload", Stats.reloadTime);
+                    OnReload(Stats.reloadTime);
                 }
             }
-            else {
+            else
+            {
                 //RELOAD
                 ReloadGun();
             }
         }
     }
+
+    public virtual void OnChargeFull() { }
+    public virtual void OnChargingWeapon(float chargeProgress) { }
+    public virtual void OnShotFired() { }
+    public virtual void OnReload(float reloadTime) { }
 }

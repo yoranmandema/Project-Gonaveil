@@ -24,9 +24,7 @@ public class GrenadeProjectile : Projectile
 
         rollAxis = Random.onUnitSphere;
 
-        var time = fuseTime - weapon.chargeProgress * fuseTime;
-
-        StartCoroutine(Fuse(time));
+        StartCoroutine(Fuse());
     }
 
     public override void OnUpdate() {
@@ -69,8 +67,8 @@ public class GrenadeProjectile : Projectile
         velocity += gravityDirection * gravityScale * deltaTime;
     }
 
-    private IEnumerator Fuse (float time) {
-        yield return new WaitForSeconds(time);
+    private IEnumerator Fuse () {
+        yield return new WaitForSeconds(fuseTime);
 
         GamePlayPhysics.DoExplosion(transform.position, explosionRadius, explosionForce);
         Instantiate(explosionParticle,transform.position,Quaternion.Euler(0,0,0));
