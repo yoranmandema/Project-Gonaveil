@@ -24,3 +24,4 @@ MonoBehaviour:
   lookDownRetraction: 0.25
   lookDownSmoothing: 0.25
   jumpAmount: 0.25
+  offset: {x: 0.14, y: -0.18, z: 0.33}

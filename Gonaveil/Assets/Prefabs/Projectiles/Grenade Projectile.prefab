@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTime: 10
-  startVelocity: 12
+  startVelocity: 15
   gravityScale: 1
   useSphereCast: 1
   radius: 0.07
@@ -75,7 +75,7 @@ MonoBehaviour:
   hasContact: 0
   fuseTime: 3
   bounceMultipler: 0.5
-  frictionMultipler: 0.7
+  friction: 1
   explosionParticle: {fileID: 2437728945485432310, guid: 3cfa18cb20361c3479d9a2ffb0b02917,
     type: 3}
   explosionRadius: 6
