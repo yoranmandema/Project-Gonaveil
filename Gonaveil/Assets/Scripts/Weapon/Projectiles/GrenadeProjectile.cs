@@ -26,8 +26,6 @@ public class GrenadeProjectile : Projectile
 
         var time = fuseTime - weapon.chargeProgress * fuseTime;
 
-        print(weapon.chargeProgress);
-
         StartCoroutine(Fuse(time));
     }
 
