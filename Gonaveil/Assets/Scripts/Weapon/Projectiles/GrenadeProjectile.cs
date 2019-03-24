@@ -6,7 +6,8 @@ public class GrenadeProjectile : Projectile
 {
     public float fuseTime = 3f;
     public float bounceMultipler = 0.95f;
-    public float frictionMultipler = 0.98f;
+    public float friction = 0.1f;
+    public float velocityInheritance = 0.65f;
     public GameObject explosionParticle;
 
     public float explosionRadius = 3f;
@@ -19,7 +20,7 @@ public class GrenadeProjectile : Projectile
     public override void OnStart() {
         velocity = transform.forward * startVelocity;
 
-        velocity += instigator.GetComponent<CharacterController>().velocity / 2f;
+        velocity += instigator.GetComponent<CharacterController>().velocity * velocityInheritance;
 
         rollAxis = Random.onUnitSphere;
 
@@ -27,11 +28,11 @@ public class GrenadeProjectile : Projectile
     }
 
     public override void OnUpdate() {
-        effect.Rotate(rollAxis, velocity.magnitude * 720 * Mathf.PI * radius * Time.deltaTime * timeScale, Space.World);
+        effect.Rotate(rollAxis, (velocity.magnitude / radius) * Mathf.Rad2Deg * Time.deltaTime * timeScale, Space.World);
     }
 
     public override void OnHit(ref Vector3 position, float deltaTime, RaycastHit hit) {
-        var rollVelocity = Vector3.ProjectOnPlane(velocity, hit.normal) * frictionMultipler;
+        var rollVelocity = Vector3.ProjectOnPlane(velocity, hit.normal);
         var bounceVelocity = Vector3.Reflect(velocity.normalized, hit.normal) * velocity.magnitude * bounceMultipler;
         var lerp = Vector3.Dot(velocity.normalized,-hit.normal);
 
@@ -51,6 +52,8 @@ public class GrenadeProjectile : Projectile
 
         if (hasDownContact) {
             position += hit.normal * (radius - hit.distance);
+
+            velocity *= 1 - (friction * deltaTime);
         }
     }
 
