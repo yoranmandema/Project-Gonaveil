@@ -22,7 +22,7 @@ MonoBehaviour:
     bulletsPerBurst: 1
     burstTime: 0
     chargeTime: 3
-    fireWhenCharged: 0
+    fireWhenCharged: 1
     Projectile: {fileID: 4320170459746706974, guid: 77f749fdc50b92a49862aed01c1f7c41,
       type: 3}
     weaponType: 2

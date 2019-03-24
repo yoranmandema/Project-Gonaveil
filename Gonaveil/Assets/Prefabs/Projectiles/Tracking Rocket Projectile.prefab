@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTime: 10
-  startVelocity: 25
+  startVelocity: 35
   gravityScale: 0
   useSphereCast: 0
   radius: 0.07
@@ -141,7 +141,7 @@ MonoBehaviour:
   fuseTime: 3
   explosionParticle: {fileID: 2437728945485432310, guid: 3cfa18cb20361c3479d9a2ffb0b02917,
     type: 3}
-  explosionRadius: 1
+  explosionRadius: 2
   explosionForce: 100
   trackingMask:
     serializedVersion: 2
