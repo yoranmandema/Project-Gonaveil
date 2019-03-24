@@ -24,6 +24,8 @@ public class TrackingRocketProjectile : Projectile {
     public override void OnSimulate(ref Vector3 position, float deltaTime) {
         var lookHit = Physics.Raycast(camera.position, camera.forward, out RaycastHit targetPosHit, Mathf.Infinity, trackingMask);
 
+        print(targetPosHit.transform);
+
         if (lookHit) {
             var direction = targetPosHit.point - position;
 

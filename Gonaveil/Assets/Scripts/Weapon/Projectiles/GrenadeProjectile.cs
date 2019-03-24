@@ -28,7 +28,7 @@ public class GrenadeProjectile : Projectile
     }
 
     public override void OnUpdate() {
-        effect.Rotate(rollAxis, (velocity.magnitude / radius) * Mathf.Rad2Deg * Time.deltaTime * timeScale, Space.World);
+        effect.Rotate(rollAxis, (velocity.magnitude / radius) * Mathf.Rad2Deg * Time.fixedDeltaTime * timeScale, Space.World);
     }
 
     public override void OnHit(ref Vector3 position, float deltaTime, RaycastHit hit) {

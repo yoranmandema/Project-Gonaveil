@@ -145,7 +145,7 @@ MonoBehaviour:
   explosionForce: 100
   trackingMask:
     serializedVersion: 2
-    m_Bits: 1025
+    m_Bits: 1
 --- !u!1001 &1867192271124885685
 PrefabInstance:
   m_ObjectHideFlags: 0
