@@ -6,6 +6,7 @@ public class InventorySystem : MonoBehaviour {
 
     [System.Serializable]
     public class InventorySlot {
+        public string weaponName;
         public int weaponMagazine;
         public int weaponAmmoPool;
         public WeaponParameters weaponParameters;
@@ -203,12 +204,14 @@ public class InventorySystem : MonoBehaviour {
         bool WeaponFull = false;
         bool GrenadeFull = false;
         if (!dropData.weaponParameters.isGrenade) {
-            if (primary.weaponParameters == null) {
+            if (primary.weaponParameters == null && secondary.weaponName != dropData.weaponParameters.weaponName) {
                 primary.weaponParameters = dropData.weaponParameters;
+                primary.weaponName = dropData.weaponParameters.weaponName;
                 primary.SetInventoryAmmo(dropData.currentMagazineCapacity, dropData.currentAmmoPool);
             }
-            else if (secondary.weaponParameters == null) {
+            else if (secondary.weaponParameters == null && primary.weaponName != dropData.weaponParameters.weaponName) {
                 secondary.weaponParameters = dropData.weaponParameters;
+                secondary.weaponName = dropData.weaponParameters.weaponName;
                 secondary.SetInventoryAmmo(dropData.currentMagazineCapacity, dropData.currentAmmoPool);
             }
             else {
