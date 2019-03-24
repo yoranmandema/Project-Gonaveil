@@ -126,7 +126,7 @@ public class InventorySystem : MonoBehaviour {
         else if (InputManager.GetButtonDown("Grenade")) {
 
             // Only switch if we actually have a grenade.
-            if (grenade != null) {
+            if (grenade.weaponParameters != null) {
                 selectedWeaponID = 2;
 
                 SetWeapon(true);
