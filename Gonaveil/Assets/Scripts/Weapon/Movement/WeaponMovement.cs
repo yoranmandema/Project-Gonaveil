@@ -16,9 +16,6 @@ public class WeaponMovement : MonoBehaviour
     private float yaw;
     private float pitch;
 
-    private bool wasInAir;
-    private bool wasGrounded;
-
     private float recoil;
     private float recoilSmoothed;
 
@@ -67,9 +64,6 @@ public class WeaponMovement : MonoBehaviour
         pitch += (-Input.GetAxis("Mouse Y") - pitch) * Time.deltaTime * profile.rotationSpeed;
 
         transform.localRotation = Quaternion.Euler(pitch * profile.rotationAmount + -recoilSmoothed, yaw * profile.rotationAmount, -yaw * profile.rotationAmount + crouchingSmoothedLerp * profile.crouchAngle);
-
-        wasInAir = playerMovement.isInAir;
-        wasGrounded = isGrounded;
 
         recoil = Mathf.Max(recoil - profile.recoilRecovery * Time.deltaTime, 0);
         recoil = Mathf.Min(recoil, 10f);
