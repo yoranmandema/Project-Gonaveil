@@ -97,7 +97,7 @@ public class Weapon : MonoBehaviour {
     public void WeaponFire() {
         //remove a round from the magazine
         currentMagazine -= 1;
-        EventManager.TriggerEvent("Shot Fired");
+        EventManager.TriggerEvent("Shot Fired", chargeProgress);
         try //Placeholder until we add muzzle flashes for all weapons.
         {
             transform.GetComponentInChildren<ParticleSystem>().Play(true);
@@ -179,11 +179,11 @@ public class Weapon : MonoBehaviour {
         //just increments the charge progress until 1
         if (chargeProgress < 1) {
             chargeProgress = Mathf.Min(1, chargeProgress + Time.deltaTime / Stats.chargeTime);
-            EventManager.TriggerEvent("Charging");
+            EventManager.TriggerEvent("Charging", chargeProgress);
         }
         else
         {
-            EventManager.TriggerEvent("Charge Done");
+            EventManager.TriggerEvent("Charge Done", 1);
         }
     }
 
@@ -335,7 +335,7 @@ public class Weapon : MonoBehaviour {
                     loadTimer = 0;
                     //force reload
                     fireStage = FireStage.Reloading;
-                    EventManager.TriggerEvent("Reload");
+                    EventManager.TriggerEvent("Reload", Stats.reloadTime);
                 }
             }
             else

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class EventManager : MonoBehaviour
 {
 
-    private Dictionary<string, UnityEvent> eventDictionary;
+    private Dictionary<string, FloatEvent> eventDictionary;
 
     private static EventManager eventManager;
 
@@ -36,41 +36,46 @@ public class EventManager : MonoBehaviour
     {
         if (eventDictionary == null)
         {
-            eventDictionary = new Dictionary<string, UnityEvent>();
+            eventDictionary = new Dictionary<string, FloatEvent>();
         }
     }
 
-    public static void StartListening(string eventName, UnityAction listener)
+    public static void StartListening(string eventName, UnityAction<float> listener)
     {
-        UnityEvent thisEvent = null;
+        FloatEvent thisEvent = null;
         if (instance.eventDictionary.TryGetValue(eventName, out thisEvent))
         {
             thisEvent.AddListener(listener);
         }
         else
         {
-            thisEvent = new UnityEvent();
+            thisEvent = new FloatEvent();
             thisEvent.AddListener(listener);
             instance.eventDictionary.Add(eventName, thisEvent);
         }
     }
 
-    public static void StopListening(string eventName, UnityAction listener)
+    public static void StopListening(string eventName, UnityAction<float> listener)
     {
         if (eventManager == null) return;
-        UnityEvent thisEvent = null;
+        FloatEvent thisEvent = null;
         if (instance.eventDictionary.TryGetValue(eventName, out thisEvent))
         {
             thisEvent.RemoveListener(listener);
         }
     }
 
-    public static void TriggerEvent(string eventName)
+    public static void TriggerEvent(string eventName, float eventArg)
     {
-        UnityEvent thisEvent = null;
+        FloatEvent thisEvent = null;
         if (instance.eventDictionary.TryGetValue(eventName, out thisEvent))
         {
-            thisEvent.Invoke();
+            thisEvent.Invoke(eventArg);
         }
+    }
+
+    public class FloatEvent : UnityEvent<float>
+    {
+
     }
 }
