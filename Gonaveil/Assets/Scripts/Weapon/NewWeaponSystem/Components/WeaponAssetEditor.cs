@@ -34,8 +34,8 @@ public class WeaponAssetEditor : Editor {
 
         var asset = (WeaponAsset)target;
 
-        selectedPrimary = asset.primaryComponent != null ? typeNameList.IndexOf(asset.primaryComponent.Name) : 0;
-        selectedSecondary = asset.secondaryComponent != null ? typeNameList.IndexOf(asset.secondaryComponent.Name) : 0;
+        selectedPrimary = asset.primaryComponentName != null ? typeNameList.IndexOf(asset.primaryComponentName) : 0;
+        selectedSecondary = asset.secondaryComponentName != null ? typeNameList.IndexOf(asset.secondaryComponentName) : 0;
 
         weaponMovementProfile = serializedObject.FindProperty("weaponMovementProfile");
         viewModel = serializedObject.FindProperty("viewModel");
@@ -53,21 +53,22 @@ public class WeaponAssetEditor : Editor {
 
         var asset = (WeaponAsset)target;
 
-        asset.primaryComponent = selectedPrimary > 0 ? Type.GetType(availableTypes[selectedPrimary]) : null;
-        asset.primaryComponent = selectedSecondary > 0 ? Type.GetType(availableTypes[selectedSecondary]) : null;
+        asset.primaryComponentName = selectedPrimary > 0 ? availableTypes[selectedPrimary] : null;
+        asset.secondaryComponentName = selectedSecondary > 0 ? availableTypes[selectedSecondary] : null;
+
+        EditorGUILayout.LabelField("Movement Profile", EditorStyles.boldLabel);
+        EditorGUILayout.PropertyField(weaponMovementProfile);
 
         EditorGUILayout.LabelField("Models", EditorStyles.boldLabel);
-
         EditorGUILayout.PropertyField(viewModel);
         EditorGUILayout.PropertyField(worldModel);
 
         EditorGUILayout.LabelField("Offset", EditorStyles.boldLabel);
-
         EditorGUILayout.PropertyField(offset);
 
-        //Debug.Log(asset.primaryComponent);
-
         serializedObject.ApplyModifiedProperties();
+
+        Undo.RecordObject(asset, "edit weapon asset");
     }
 }
 #endif

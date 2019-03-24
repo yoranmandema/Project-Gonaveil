@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-[CreateAssetMenu(fileName = "NewHitScanComponent", menuName = "Weapons/New Hit Scan Component")]
 public class HitScanWeaponComponent : WeaponComponent {
     public GameObject impact;
 
