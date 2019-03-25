@@ -41,10 +41,10 @@ public class WeaponMovement : MonoBehaviour {
 
         // Positional stuff.
 
-        bobbingLerp = Mathf.Clamp(bobbingLerp + (isGrounded ? 1 : -1) * Time.deltaTime / profile.bobbingEngageTime, 0, 1f);
+        bobbingLerp = Mathf.Clamp01(bobbingLerp + (isGrounded ? 1 : -1) * Time.deltaTime / profile.bobbingEngageTime);
         lookDownLerp += (Mathf.Clamp(transform.forward.y, -1, 0) - lookDownLerp) * Time.deltaTime / profile.lookDownSmoothing;
 
-        crouchingLerp = Mathf.Clamp(crouchingLerp + (playerMovement.isCrouching || playerMovement.isSliding ? 1 : -1) * Time.deltaTime / profile.crouchEngageTime, 0, 1f);
+        crouchingLerp = Mathf.Clamp01(crouchingLerp + (playerMovement.isCrouching || playerMovement.isSliding ? 1 : -1) * Time.deltaTime / profile.crouchEngageTime);
         crouchingSmoothedLerp += (crouchingLerp - crouchingSmoothedLerp) * Time.deltaTime / profile.crouchEngageSmoothing;
         crouchChange = (crouchingSmoothedLerp - crouchOld) / Time.deltaTime;
         crouchOld = crouchingLerp;
@@ -76,8 +76,8 @@ public class WeaponMovement : MonoBehaviour {
         yaw += (Input.GetAxis("Mouse X") + crouchChange * profile.crouchDisturb - yaw) * Time.deltaTime * profile.rotationSpeed;
         pitch += (-Input.GetAxis("Mouse Y") - crouchChange * profile.crouchDisturb - pitch) * Time.deltaTime * profile.rotationSpeed;
 
-        var targetYaw = Input.GetAxis("Mouse X") + crouchChange * 0.2f + recoilVectorSmoothed.y;
-        var targetPitch = Input.GetAxis("Mouse Y") + crouchChange * 0.2f + recoilVectorSmoothed.x;
+        var targetYaw = Input.GetAxis("Mouse X") + crouchChange * profile.crouchDisturb + recoilVectorSmoothed.y;
+        var targetPitch = Input.GetAxis("Mouse Y") + crouchChange * profile.crouchDisturb + recoilVectorSmoothed.x;
 
         var swayDir = new Vector2(-targetPitch, targetYaw) * profile.rotationAmount;
 
@@ -88,6 +88,10 @@ public class WeaponMovement : MonoBehaviour {
         var useYaw = Mathf.Lerp(yaw, swayVector.y, profile.wiggleAmount);
         var usePitch = Mathf.Lerp(pitch - recoilVectorSmoothed.x, swayVector.x, profile.wiggleAmount);
 
-        transform.localRotation = Quaternion.Euler(usePitch, useYaw, -yaw * profile.rotationAmount + crouchingSmoothedLerp * profile.crouchAngle);
+        transform.localRotation = Quaternion.Euler(
+            usePitch, 
+            useYaw, 
+            -useYaw * profile.rotationAmount + crouchingSmoothedLerp * profile.crouchAngle
+            );
     }
 }
