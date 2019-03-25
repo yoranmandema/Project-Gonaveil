@@ -27,7 +27,18 @@ public class WeaponMovement : MonoBehaviour {
     private Vector3 jiggleForce;
 
     void TestListen(float charge) {
-        recoilVector += new Vector3(profile.recoil, profile.recoil * Random.Range(-1f, 1f) * profile.recoilSide, profile.recoil);
+        var recoilAngle = crouchingSmoothedLerp * profile.crouchAngle;
+
+        var x = Mathf.Cos(recoilAngle * Mathf.Deg2Rad);
+        var y = Mathf.Sin(recoilAngle * Mathf.Deg2Rad);
+
+        var pitch = profile.recoil;
+        var yaw = profile.recoil * Random.Range(-1f, 1f) * profile.recoilSide;
+
+        var usePitch = Mathf.Lerp(yaw, pitch, x);
+        var useYaw = Mathf.Lerp(yaw, -pitch, y);
+
+        recoilVector += new Vector3(usePitch, useYaw, profile.recoil);
     }
 
     void Start() {
