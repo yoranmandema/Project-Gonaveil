@@ -28,7 +28,7 @@ MonoBehaviour:
     weaponType: 0
     weaponClass: 2
     projectileType: 0
-  weaponMovementProfile: {fileID: 11400000, guid: d6aa95c883e9c5f4585dd63261a62f3b,
+  weaponMovementProfile: {fileID: 11400000, guid: 2ada62791b0bc404089ba337bdaccd59,
     type: 2}
   viewModel: {fileID: 5442470406717144034, guid: e556d05aa8434e344b8dd5ffb5d061f2,
     type: 3}

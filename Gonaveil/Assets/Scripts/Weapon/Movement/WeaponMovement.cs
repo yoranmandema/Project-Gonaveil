@@ -71,8 +71,8 @@ public class WeaponMovement : MonoBehaviour
             ) * profile.bobbingAmount;
 
 
-        yaw += (Input.GetAxis("Mouse X") + crouchChange * 0.2f - yaw) * Time.deltaTime * profile.rotationSpeed;
-        pitch += (-Input.GetAxis("Mouse Y") - crouchChange * 0.2f - pitch) * Time.deltaTime * profile.rotationSpeed;
+        yaw += (Input.GetAxis("Mouse X") + crouchChange * profile.crouchDisturb - yaw) * Time.deltaTime * profile.rotationSpeed;
+        pitch += (-Input.GetAxis("Mouse Y") - crouchChange * profile.crouchDisturb - pitch) * Time.deltaTime * profile.rotationSpeed;
 
         var targetYaw = Input.GetAxis("Mouse X") + crouchChange * 0.2f;
         var targetPitch = Input.GetAxis("Mouse Y") + crouchChange * 0.2f + recoilSmoothed;

@@ -14,6 +14,7 @@ public class WeaponMovementProfile : ScriptableObject {
     public float crouchAngle = 70f;
     public float crouchEngageTime = 0.1f;
     public float crouchEngageSmoothing = 0.05f;
+    public float crouchDisturb = 0.1f;
 
     public float lookDownRetraction = 0.25f;
     public float lookDownSmoothing = 2f;

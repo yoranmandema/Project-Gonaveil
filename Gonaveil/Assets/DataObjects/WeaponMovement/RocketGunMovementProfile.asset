@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 79df09061a1986545921459efbe94f3b, type: 3}
-  m_Name: DefaultWeaponMovement
+  m_Name: RocketGunMovementProfile
   m_EditorClassIdentifier: 
   velocityMultiplier: 0.01
   rotationSpeed: 5
@@ -23,11 +23,11 @@ MonoBehaviour:
   crouchEngageSmoothing: 0.05
   crouchDisturb: 0.1
   lookDownRetraction: 0.25
-  lookDownSmoothing: 0.25
+  lookDownSmoothing: 2
   jumpAmount: 0.25
   recoil: 4
-  recoilRecovery: 40
+  recoilRecovery: 30
   wiggleAmount: 0.5
-  wiggleForce: 5
-  wiggleDamping: 0.8
-  offset: {x: 0.26, y: -0.23, z: 0.54}
+  wiggleForce: 1.5
+  wiggleDamping: 0.85
+  offset: {x: 0.19, y: -0.2, z: 0.45}

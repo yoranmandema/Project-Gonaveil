@@ -14,16 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocityMultiplier: 0.01
   rotationSpeed: 3
-  rotationAmount: 2
+  rotationAmount: 1
   bobbingSpeed: 75
   bobbingAmount: 0.25
   bobbingEngageTime: 1
   crouchAngle: 45
   crouchEngageTime: 0.2
   crouchEngageSmoothing: 0.05
+  crouchDisturb: 0.1
   lookDownRetraction: 0.25
   lookDownSmoothing: 0.25
   jumpAmount: 0.25
   recoil: 10
   recoilRecovery: 20
+  wiggleAmount: 1
+  wiggleForce: 1
+  wiggleDamping: 0.87
   offset: {x: 0.26, y: -0.14, z: 0.02}
