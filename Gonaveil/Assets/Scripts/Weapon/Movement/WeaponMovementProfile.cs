@@ -23,5 +23,9 @@ public class WeaponMovementProfile : ScriptableObject {
     public float recoil = 10f;
     public float recoilRecovery = 30f;
 
+    public float wiggleAmount = 0.5f;
+    public float wiggleForce = 5f;
+    public float wiggleDamping = 0.8f;
+
     public Vector3 offset = new Vector3(0.35f, -0.3f, 0.6f);
 }
