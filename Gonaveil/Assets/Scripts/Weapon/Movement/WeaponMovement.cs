@@ -23,6 +23,9 @@ public class WeaponMovement : MonoBehaviour {
     private Vector2 swayVector;
     private Vector2 swayForce;
 
+    private Vector3 jiggleVector;
+    private Vector3 jiggleForce;
+
     void TestListen(float charge) {
         recoilVector += new Vector3(profile.recoil, profile.recoil * Random.Range(-1f, 1f) * profile.recoilSide, profile.recoil);
     }
@@ -62,11 +65,15 @@ public class WeaponMovement : MonoBehaviour {
         forwardComponent += Vector3.forward * lookDownLerp * profile.lookDownRetraction;
         forwardComponent += Vector3.forward * recoilVectorSmoothed.z * -0.05f;
 
-        transform.localPosition = profile.offset + (
-            sideComponent +
-            forwardComponent +
-            upComponent
-            ) * profile.bobbingAmount;
+        var jiggleDir = (sideComponent + forwardComponent + upComponent) * profile.bobbingAmount;
+
+        jiggleVector *= profile.wiggleDamping;
+        jiggleForce += (jiggleDir - jiggleVector) * Time.deltaTime * profile.wiggleForce;
+        jiggleVector += jiggleForce;
+
+        var useOffset = Vector3.Lerp(jiggleDir, jiggleVector, profile.wigglePositionAmount);
+
+        transform.localPosition = profile.offset + useOffset;
 
         // Rotation stuff.
 
@@ -91,7 +98,7 @@ public class WeaponMovement : MonoBehaviour {
         transform.localRotation = Quaternion.Euler(
             usePitch, 
             useYaw, 
-            -useYaw * profile.rotationAmount + crouchingSmoothedLerp * profile.crouchAngle
+            -useYaw * profile.rollRotation + crouchingSmoothedLerp * profile.crouchAngle
             );
     }
 }

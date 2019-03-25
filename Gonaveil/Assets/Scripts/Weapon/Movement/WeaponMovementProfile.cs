@@ -6,6 +6,7 @@ public class WeaponMovementProfile : ScriptableObject {
 
     public float rotationSpeed = 5f;
     public float rotationAmount = 2;
+    public float rollRotation = 1f;
 
     public float bobbingSpeed = 75f;
     public float bobbingAmount = 0.5f;
@@ -25,6 +26,7 @@ public class WeaponMovementProfile : ScriptableObject {
     public float recoilRecovery = 30f;
     public float recoilSide = 0.25f;
 
+    public float wigglePositionAmount = 0.5f;
     public float wiggleAmount = 0.5f;
     public float wiggleForce = 5f;
     public float wiggleDamping = 0.8f;
