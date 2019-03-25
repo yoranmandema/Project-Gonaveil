@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponMovement : MonoBehaviour
-{
+public class WeaponMovement : MonoBehaviour {
     public PlayerMovement playerMovement;
     public WeaponMovementProfile profile;
 
@@ -18,12 +17,6 @@ public class WeaponMovement : MonoBehaviour
     private float yaw;
     private float pitch;
 
-    private bool wasInAir;
-    private bool wasGrounded;
-
-    //private float recoil;
-    //private float recoilSmoothed;
-
     private Vector3 recoilVector;
     private Vector3 recoilVectorSmoothed;
 
@@ -31,30 +24,30 @@ public class WeaponMovement : MonoBehaviour
     private Vector2 swayForce;
 
     void TestListen(float charge) {
-        //recoil += profile.recoil;
-
-        recoilVector += new Vector3(profile.recoil, profile.recoil * Random.Range(-1f,1f) * profile.recoilSide, profile.recoil);
+        recoilVector += new Vector3(profile.recoil, profile.recoil * Random.Range(-1f, 1f) * profile.recoilSide, profile.recoil);
     }
 
-    void Start () {
+    void Start() {
         EventManager.StartListening("Shot Fired", TestListen);
     }
 
-    void Update()
-    {
+    void Update() {
         if (profile == null) return;
 
         var isGrounded = playerMovement.isGrounded && !playerMovement.isSliding;
         var velocityLerp = playerMovement.velocity.magnitude * profile.velocityMultiplier;
 
+        if (isGrounded) bobbingStep += velocityLerp * profile.bobbingSpeed * Time.deltaTime;
+
+        // Positional stuff.
+
         bobbingLerp = Mathf.Clamp(bobbingLerp + (isGrounded ? 1 : -1) * Time.deltaTime / profile.bobbingEngageTime, 0, 1f);
-        crouchingLerp = Mathf.Clamp(crouchingLerp + (playerMovement.isCrouching || playerMovement.isSliding ? 1 : -1) * Time.deltaTime / profile.crouchEngageTime, 0, 1f);
-        crouchingSmoothedLerp += (crouchingLerp - crouchingSmoothedLerp) * Time.deltaTime / profile.crouchEngageSmoothing;
         lookDownLerp += (Mathf.Clamp(transform.forward.y, -1, 0) - lookDownLerp) * Time.deltaTime / profile.lookDownSmoothing;
 
+        crouchingLerp = Mathf.Clamp(crouchingLerp + (playerMovement.isCrouching || playerMovement.isSliding ? 1 : -1) * Time.deltaTime / profile.crouchEngageTime, 0, 1f);
+        crouchingSmoothedLerp += (crouchingLerp - crouchingSmoothedLerp) * Time.deltaTime / profile.crouchEngageSmoothing;
         crouchChange = (crouchingSmoothedLerp - crouchOld) / Time.deltaTime;
-
-        if (isGrounded) bobbingStep += velocityLerp * profile.bobbingSpeed * Time.deltaTime;
+        crouchOld = crouchingLerp;
 
         var sideComponent = Vector3.zero;
         var forwardComponent = Vector3.zero;
@@ -70,11 +63,15 @@ public class WeaponMovement : MonoBehaviour
         forwardComponent += Vector3.forward * recoilVectorSmoothed.z * -0.05f;
 
         transform.localPosition = profile.offset + (
-            sideComponent +     
+            sideComponent +
             forwardComponent +
             upComponent
             ) * profile.bobbingAmount;
 
+        // Rotation stuff.
+
+        recoilVector += -Vector3.ClampMagnitude(recoilVector, 1) * (profile.recoilRecovery * Time.deltaTime);
+        recoilVectorSmoothed += (recoilVector - recoilVectorSmoothed) * Time.deltaTime / 0.04f;
 
         yaw += (Input.GetAxis("Mouse X") + crouchChange * profile.crouchDisturb - yaw) * Time.deltaTime * profile.rotationSpeed;
         pitch += (-Input.GetAxis("Mouse Y") - crouchChange * profile.crouchDisturb - pitch) * Time.deltaTime * profile.rotationSpeed;
@@ -85,34 +82,12 @@ public class WeaponMovement : MonoBehaviour
         var swayDir = new Vector2(-targetPitch, targetYaw) * profile.rotationAmount;
 
         swayVector *= profile.wiggleDamping;
-
         swayForce += (swayDir - swayVector) * Time.deltaTime * profile.wiggleForce;
-
         swayVector += swayForce;
 
         var useYaw = Mathf.Lerp(yaw, swayVector.y, profile.wiggleAmount);
         var usePitch = Mathf.Lerp(pitch - recoilVectorSmoothed.x, swayVector.x, profile.wiggleAmount);
 
         transform.localRotation = Quaternion.Euler(usePitch, useYaw, -yaw * profile.rotationAmount + crouchingSmoothedLerp * profile.crouchAngle);
-
-        wasInAir = playerMovement.isInAir;
-        wasGrounded = isGrounded;
-
-        //recoil = Mathf.Max(recoil - profile.recoilRecovery * Time.deltaTime, 0);
-        //recoil = Mathf.Min(recoil, 10f);
-
-        recoilVector += -Vector3.ClampMagnitude(recoilVector,1) * (profile.recoilRecovery * Time.deltaTime);
-
-        //recoilVector = new Vector3(
-        //    Mathf.Max(recoilVector.x,0),
-        //    recoilVector.y,
-        //    Mathf.Max(recoilVector.z, 0)
-        //    );
-
-        recoilVectorSmoothed += (recoilVector - recoilVectorSmoothed) * Time.deltaTime / 0.04f;
-
-        //recoilSmoothed += (recoil - recoilSmoothed) * Time.deltaTime / 0.04f;
-
-        crouchOld = crouchingLerp;
     }
 }
