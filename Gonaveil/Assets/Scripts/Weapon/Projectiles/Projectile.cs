@@ -17,6 +17,7 @@ public abstract class Projectile : MonoBehaviour {
     public GameObject instigator;
     public Transform barrel;
     public Transform effect;
+    public Weapon weapon;
 
     public bool hasContact;
 

@@ -241,11 +241,11 @@ public class InventorySystem : MonoBehaviour {
         }
         if (WeaponFull)
         {
-            if(primary.weaponParameters.name == dropData.weaponParameters.name)
+            if(primary.weaponName == dropData.weaponParameters.weaponName)
             {
                 primary.SetInventoryAmmo(primary.weaponMagazine, primary.weaponAmmoPool + dropData.currentAmmoPool + dropData.currentMagazineCapacity);
                 SetWeapon(false);
-            }else if(secondary.weaponParameters.name == dropData.weaponParameters.name)
+            }else if(secondary.weaponName == dropData.weaponParameters.weaponName)
             {
                 secondary.SetInventoryAmmo(secondary.weaponMagazine, secondary.weaponAmmoPool + dropData.currentAmmoPool + dropData.currentMagazineCapacity);
                 SetWeapon(false);

@@ -1,63 +1,74 @@
 fileFormatVersion: 2
-guid: 5a099b3547a2ef24f99552370d29e506
+guid: f190045cbcd12f54c9c85f09b49b91fe
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: body
-    100002: cap
-    100004: front1
-    100006: left1
-    100008: //RootNode
-    400000: body
-    400002: cap
-    400004: front1
-    400006: left1
-    400008: //RootNode
-    2000000: front1
-    2000002: left1
-    2100000: Primary
-    2100002: Steel
-    2100004: Secondary
-    2100006: Tertiary
-    2100008: Detail
-    2100010: Emission
-    2300000: body
-    2300002: cap
-    3300000: body
-    3300002: cap
-    4300000: body
-    4300002: cap
+    100000: Crate
+    100002: Handles
+    100004: //RootNode
+    100006: Screen
+    400000: Crate
+    400002: Handles
+    400004: //RootNode
+    400006: Screen
+    2100000: Tertiary
+    2100002: Primary_Crate
+    2100004: Steel
+    2100006: Detail
+    2100008: Secondary
+    2100010: lambert1
+    2100012: Screen_Crate
+    2100014: Emission_Crate
+    2300000: Crate
+    2300002: Handles
+    2300004: Screen
+    3300000: Crate
+    3300002: Handles
+    3300004: Screen
+    4300000: Crate
+    4300002: Handles
+    4300004: Screen
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Detail
-    second: {fileID: 2100000, guid: 6c08936af25ad2c4fb62588a2f4e0b94, type: 2}
+    second: {fileID: 2100000, guid: e2c102be79c878548988df944ab31ead, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Emission
-    second: {fileID: 2100000, guid: 8813a59c1cc92934e8ccc627aaa23d28, type: 2}
+      name: Emission_Crate
+    second: {fileID: 2100000, guid: e90b708c50cc6cb4bb1c27b37fa7aea0, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Primary
-    second: {fileID: 2100000, guid: 95e7e1a31db8c0340bc0e7beac612e9f, type: 2}
+      name: Primary_Crate
+    second: {fileID: 2100000, guid: 7500162e7c90f6d4a94377608cad07ea, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Screen_Crate
+    second: {fileID: 2100000, guid: 952bc520f24cc2e449aaede516fe7e09, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Secondary
-    second: {fileID: 2100000, guid: 46f3ecc18d043bd44bc968169536a526, type: 2}
+    second: {fileID: 2100000, guid: 5155ad70369def6489af48902e5192d1, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Steel
-    second: {fileID: 2100000, guid: 6ccbe4bde72ef46458220f42c92effe1, type: 2}
+    second: {fileID: 2100000, guid: 263b881d32219af44a9c65c45ad18b88, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Tertiary
-    second: {fileID: 2100000, guid: 4ced4f254f1e6af43b723bc59196c870, type: 2}
+    second: {fileID: 2100000, guid: 94d96d99bc61e3a4f9c359cff058af31, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: c77c45960b5d0964bb087b367397727a, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -88,7 +99,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 1.75
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1

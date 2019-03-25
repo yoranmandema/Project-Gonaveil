@@ -24,4 +24,6 @@ MonoBehaviour:
   lookDownRetraction: 0.25
   lookDownSmoothing: 0.25
   jumpAmount: 0.25
+  recoil: 10
+  recoilRecovery: 20
   offset: {x: 0.26, y: -0.14, z: 0.02}
