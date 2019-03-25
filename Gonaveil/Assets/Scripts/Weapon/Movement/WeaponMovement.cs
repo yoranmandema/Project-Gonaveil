@@ -21,14 +21,19 @@ public class WeaponMovement : MonoBehaviour
     private bool wasInAir;
     private bool wasGrounded;
 
-    private float recoil;
-    private float recoilSmoothed;
+    //private float recoil;
+    //private float recoilSmoothed;
+
+    private Vector3 recoilVector;
+    private Vector3 recoilVectorSmoothed;
 
     private Vector2 swayVector;
     private Vector2 swayForce;
 
     void TestListen(float charge) {
-        recoil += profile.recoil;
+        //recoil += profile.recoil;
+
+        recoilVector += new Vector3(profile.recoil, profile.recoil * Random.Range(-1f,1f) * profile.recoilSide, profile.recoil);
     }
 
     void Start () {
@@ -62,7 +67,7 @@ public class WeaponMovement : MonoBehaviour
         sideComponent += Vector3.right * -crouchingSmoothedLerp * 0.2f;
 
         forwardComponent += Vector3.forward * lookDownLerp * profile.lookDownRetraction;
-        forwardComponent += Vector3.forward * recoilSmoothed * -0.05f;
+        forwardComponent += Vector3.forward * recoilVectorSmoothed.z * -0.05f;
 
         transform.localPosition = profile.offset + (
             sideComponent +     
@@ -74,8 +79,8 @@ public class WeaponMovement : MonoBehaviour
         yaw += (Input.GetAxis("Mouse X") + crouchChange * profile.crouchDisturb - yaw) * Time.deltaTime * profile.rotationSpeed;
         pitch += (-Input.GetAxis("Mouse Y") - crouchChange * profile.crouchDisturb - pitch) * Time.deltaTime * profile.rotationSpeed;
 
-        var targetYaw = Input.GetAxis("Mouse X") + crouchChange * 0.2f;
-        var targetPitch = Input.GetAxis("Mouse Y") + crouchChange * 0.2f + recoilSmoothed;
+        var targetYaw = Input.GetAxis("Mouse X") + crouchChange * 0.2f + recoilVectorSmoothed.y;
+        var targetPitch = Input.GetAxis("Mouse Y") + crouchChange * 0.2f + recoilVectorSmoothed.x;
 
         var swayDir = new Vector2(-targetPitch, targetYaw) * profile.rotationAmount;
 
@@ -86,17 +91,27 @@ public class WeaponMovement : MonoBehaviour
         swayVector += swayForce;
 
         var useYaw = Mathf.Lerp(yaw, swayVector.y, profile.wiggleAmount);
-        var usePitch = Mathf.Lerp(pitch - recoilSmoothed, swayVector.x, profile.wiggleAmount);
+        var usePitch = Mathf.Lerp(pitch - recoilVectorSmoothed.x, swayVector.x, profile.wiggleAmount);
 
         transform.localRotation = Quaternion.Euler(usePitch, useYaw, -yaw * profile.rotationAmount + crouchingSmoothedLerp * profile.crouchAngle);
 
         wasInAir = playerMovement.isInAir;
         wasGrounded = isGrounded;
 
-        recoil = Mathf.Max(recoil - profile.recoilRecovery * Time.deltaTime, 0);
-        recoil = Mathf.Min(recoil, 10f);
+        //recoil = Mathf.Max(recoil - profile.recoilRecovery * Time.deltaTime, 0);
+        //recoil = Mathf.Min(recoil, 10f);
 
-        recoilSmoothed += (recoil - recoilSmoothed) * Time.deltaTime / 0.04f;
+        recoilVector += -Vector3.ClampMagnitude(recoilVector,1) * (profile.recoilRecovery * Time.deltaTime);
+
+        //recoilVector = new Vector3(
+        //    Mathf.Max(recoilVector.x,0),
+        //    recoilVector.y,
+        //    Mathf.Max(recoilVector.z, 0)
+        //    );
+
+        recoilVectorSmoothed += (recoilVector - recoilVectorSmoothed) * Time.deltaTime / 0.04f;
+
+        //recoilSmoothed += (recoil - recoilSmoothed) * Time.deltaTime / 0.04f;
 
         crouchOld = crouchingLerp;
     }

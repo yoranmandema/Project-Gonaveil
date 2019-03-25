@@ -26,7 +26,8 @@ MonoBehaviour:
   lookDownSmoothing: 0.25
   jumpAmount: 0.25
   recoil: 4
-  recoilRecovery: 45
+  recoilRecovery: 90
+  recoilSide: 0.5
   wiggleAmount: 0.5
   wiggleForce: 5
   wiggleDamping: 0.8

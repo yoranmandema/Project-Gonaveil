@@ -23,6 +23,7 @@ public class WeaponMovementProfile : ScriptableObject {
 
     public float recoil = 10f;
     public float recoilRecovery = 30f;
+    public float recoilSide = 0.25f;
 
     public float wiggleAmount = 0.5f;
     public float wiggleForce = 5f;

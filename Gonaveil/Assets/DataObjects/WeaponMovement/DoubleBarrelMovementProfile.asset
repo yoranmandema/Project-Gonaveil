@@ -21,12 +21,13 @@ MonoBehaviour:
   crouchAngle: 20
   crouchEngageTime: 0.1
   crouchEngageSmoothing: 0.05
-  crouchDisturb: 0.1
+  crouchDisturb: -0.1
   lookDownRetraction: 0.25
   lookDownSmoothing: 0.25
   jumpAmount: 0.25
   recoil: 10
-  recoilRecovery: 40
+  recoilRecovery: 90
+  recoilSide: 0.3
   wiggleAmount: 0.5
   wiggleForce: 3
   wiggleDamping: 0.8
