@@ -15,6 +15,7 @@ MonoBehaviour:
   velocityMultiplier: 0.01
   rotationSpeed: 5
   rotationAmount: 2
+  rollRotation: 1
   bobbingSpeed: 75
   bobbingAmount: 0.5
   bobbingEngageTime: 1
@@ -28,7 +29,8 @@ MonoBehaviour:
   recoil: 12
   recoilRecovery: 75
   recoilSide: 0.25
+  wigglePositionAmount: 0.5
   wiggleAmount: 0.5
   wiggleForce: 5
-  wiggleDamping: 0.8
+  wiggleDamping: 0.77
   offset: {x: 0.19, y: -0.17, z: 0.66}

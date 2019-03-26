@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocityMultiplier: 0.01
   rotationSpeed: 5
-  rotationAmount: 2
+  rotationAmount: 1
   rollRotation: 1
   bobbingSpeed: 75
   bobbingAmount: 0.5
@@ -26,7 +26,7 @@ MonoBehaviour:
   lookDownRetraction: 0.25
   lookDownSmoothing: 2
   jumpAmount: 0.25
-  recoil: 4
+  recoil: 5
   recoilRecovery: 50
   recoilSide: 0.5
   wigglePositionAmount: 0.5

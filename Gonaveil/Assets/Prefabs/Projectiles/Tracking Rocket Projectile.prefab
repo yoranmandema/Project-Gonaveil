@@ -136,8 +136,9 @@ MonoBehaviour:
   instigator: {fileID: 0}
   barrel: {fileID: 0}
   effect: {fileID: 4641771697091592366}
+  weapon: {fileID: 0}
   hasContact: 0
-  rotationSpeed: 2
+  rotationSpeed: 3
   fuseTime: 3
   explosionParticle: {fileID: 2437728945485432310, guid: 3cfa18cb20361c3479d9a2ffb0b02917,
     type: 3}
