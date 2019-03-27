@@ -17,14 +17,15 @@ MonoBehaviour:
   rotationAmount: 2
   rollRotation: 1
   bobbingSpeed: 80
-  bobbingAmount: 0.3
+  bobbingAmount: 0.25
   bobbingEngageTime: 1
+  bobbingRotation: 1
   crouchAngle: 70
   crouchEngageTime: 0.1
   crouchEngageSmoothing: 0.05
   crouchDisturb: 0.1
   lookDownRetraction: 0.25
-  lookDownSmoothing: 0.25
+  lookDownSmoothing: 0.15
   jumpAmount: 0.25
   recoil: 4
   recoilRecovery: 90

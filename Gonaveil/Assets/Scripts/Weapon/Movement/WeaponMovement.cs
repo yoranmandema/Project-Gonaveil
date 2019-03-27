@@ -64,7 +64,7 @@ public class WeaponMovement : MonoBehaviour {
         var upComponent = Vector3.zero;
 
         sideComponent += Vector3.right * Mathf.Sin(bobbingStep) * bobbingLerp * velocityLerp;
-        forwardComponent += Vector3.forward * Mathf.Sin(bobbingStep * 2f) * bobbingLerp * 0.25f * velocityLerp;
+        forwardComponent += Vector3.forward * Mathf.Sin(bobbingStep * 2f) * bobbingLerp * 0.35f * velocityLerp;
         upComponent += Vector3.up * Mathf.Sin(bobbingStep * 2f) * bobbingLerp * 0.25f * velocityLerp;
 
         sideComponent += Vector3.right * -crouchingSmoothedLerp * 0.2f;
@@ -84,14 +84,17 @@ public class WeaponMovement : MonoBehaviour {
 
         // Rotation stuff.
 
+        var bob = Mathf.Sin(bobbingStep) * profile.bobbingRotation * bobbingLerp * velocityLerp;
+        var bob2 = Mathf.Sin(bobbingStep * 2f) * profile.bobbingRotation * bobbingLerp * velocityLerp;
+
         recoilVector += -Vector3.ClampMagnitude(recoilVector, 1) * (profile.recoilRecovery * Time.deltaTime);
         recoilVectorSmoothed += (recoilVector - recoilVectorSmoothed) * Time.deltaTime / 0.04f;
 
-        yaw += (Input.GetAxis("Mouse X") + crouchChange * profile.crouchDisturb - yaw) * Time.deltaTime * profile.rotationSpeed;
-        pitch += (-Input.GetAxis("Mouse Y") - crouchChange * profile.crouchDisturb - pitch) * Time.deltaTime * profile.rotationSpeed;
+        yaw += (Input.GetAxis("Mouse X") + crouchChange * profile.crouchDisturb + bob - yaw) * Time.deltaTime * profile.rotationSpeed;
+        pitch += (-Input.GetAxis("Mouse Y") - crouchChange * profile.crouchDisturb + bob2 - pitch) * Time.deltaTime * profile.rotationSpeed;
 
-        var targetYaw = Input.GetAxis("Mouse X") + crouchChange * profile.crouchDisturb + recoilVectorSmoothed.y;
-        var targetPitch = Input.GetAxis("Mouse Y") + crouchChange * profile.crouchDisturb + recoilVectorSmoothed.x;
+        var targetYaw = Input.GetAxis("Mouse X") + crouchChange * profile.crouchDisturb + recoilVectorSmoothed.y + bob;
+        var targetPitch = Input.GetAxis("Mouse Y") + crouchChange * profile.crouchDisturb + recoilVectorSmoothed.x + bob2;
 
         var swayDir = new Vector2(-targetPitch, targetYaw) * profile.rotationAmount;
 

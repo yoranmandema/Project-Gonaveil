@@ -11,6 +11,7 @@ public class WeaponMovementProfile : ScriptableObject {
     public float bobbingSpeed = 75f;
     public float bobbingAmount = 0.5f;
     public float bobbingEngageTime = 1f;
+    public float bobbingRotation = 1f;
 
     public float crouchAngle = 70f;
     public float crouchEngageTime = 0.1f;
