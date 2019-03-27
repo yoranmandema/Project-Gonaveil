@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OnScreenDebug : MonoBehaviour
-{
+public class OnScreenDebug : MonoBehaviour {
     class PrintMessage {
         public string message;
         public float lifeTime;
@@ -17,16 +16,17 @@ public class OnScreenDebug : MonoBehaviour
     private static List<PrintMessage> messages = new List<PrintMessage>();
     private static GUIStyle style;
 
-    private static void Initialise () {
+    private static void Initialise() {
         style = new GUIStyle {
             fontSize = 16
         };
     }
 
-    private void Awake () {
+    private void Awake() {
         if (Instance == null) {
             Instance = this;
-        } else {
+        }
+        else {
             Debug.LogError("Too many OnScreenDebug instances in the scene.");
         }
 
@@ -37,7 +37,7 @@ public class OnScreenDebug : MonoBehaviour
         Print(message, Color.white, Time.deltaTime);
     }
 
-    public static void Print (string message, Color color) {
+    public static void Print(string message, Color color) {
         Print(message, color, Time.deltaTime);
     }
 
@@ -45,7 +45,7 @@ public class OnScreenDebug : MonoBehaviour
         Print(message, Color.white, lifeTime);
     }
 
-    public static void Print (string message, Color color, float lifeTime) {
+    public static void Print(string message, Color color, float lifeTime) {
         if (Instance == null) {
             var find = FindObjectOfType<OnScreenDebug>();
 
@@ -65,13 +65,13 @@ public class OnScreenDebug : MonoBehaviour
             lifeTime = lifeTime,
             color = color,
             startTime = Time.realtimeSinceStartup
-            });
+        });
     }
 
-    void OnGUI () {
+    void OnGUI() {
         for (var i = messages.Count - 1; i > 0; i--) {
             var message = messages[i];
-            var rect = new Rect(10, 10 + (i - 0) * 20, 100, 20);
+            var rect = new Rect(10, 10 + (((messages.Count - 1) - i) - 0) * 20, 100, 20);
             var oldColor = style.normal.textColor;
 
             style.normal.textColor = message.color;

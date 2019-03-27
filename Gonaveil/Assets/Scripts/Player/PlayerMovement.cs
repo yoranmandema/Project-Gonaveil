@@ -219,7 +219,7 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     void Update() {
-        OnScreenDebug.Print("Vel: " + velocity.SetY(0).magnitude, Color.magenta);
+        OnScreenDebug.Print("Vel: " + velocity.SetY(0).magnitude, Color.magenta, 2f);
 
         GroundCheck();
 
