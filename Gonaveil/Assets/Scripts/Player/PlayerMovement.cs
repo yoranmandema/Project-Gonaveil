@@ -219,6 +219,8 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     void Update() {
+        OnScreenDebug.Print("Vel: " + velocity.SetY(0).magnitude);
+
         GroundCheck();
 
         if (Input.GetButtonDown("Crouch") && velocity.magnitude > slideVelocityThreshold) {
