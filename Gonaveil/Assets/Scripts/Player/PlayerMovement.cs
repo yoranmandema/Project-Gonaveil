@@ -383,7 +383,7 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     private Vector3 GetAirAcceleration (Vector3 wishDirection, float maxAccel) {
-        var dotVelocity = Vector3.Dot(velocity, wishDirection);
+        var dotVelocity = Vector3.Dot(velocity.SetY(0), wishDirection);
         var addSpeed = maxVelocity - dotVelocity;
         addSpeed = Mathf.Clamp(addSpeed, 0, maxAccel * Time.deltaTime);
 

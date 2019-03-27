@@ -114,7 +114,7 @@ MonoBehaviour:
   maxVelocity: 12
   acceleration: 100
   stepSlope: 85
-  airAcceleration: 150
+  airAcceleration: 300
   airDrag: 0
   airVelocityMultiplier: 1.4
   limitAirVelocity: 1
