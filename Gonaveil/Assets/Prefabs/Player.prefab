@@ -2456,6 +2456,7 @@ MonoBehaviour:
   impact: {fileID: 3377271070747912948, guid: 5b634f2c54a76ad49840f1e67d6c980d, type: 3}
   animator: {fileID: 1263876997933826223}
   handBone: {fileID: 1679408569}
+  weaponMovement: {fileID: 5067086843879541993}
   weaponEquipped: 0
   chargeProgress: 0
   viewModel: {fileID: 0}

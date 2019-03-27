@@ -8,6 +8,7 @@ public class Weapon : MonoBehaviour {
     public GameObject impact;
     public Animator animator;
     public Transform handBone;
+    public WeaponMovement weaponMovement;
     //public bool disabled;
     public bool weaponEquipped;
 
@@ -99,6 +100,8 @@ public class Weapon : MonoBehaviour {
         EventManager.TriggerEvent("Shot Fired", chargeProgress);
 
         transform.GetComponentInChildren<ParticleSystem>()?.Play(true);
+
+        weaponMovement.DoRecoil();
 
         //loops to fire multiple shots in one round
         for (int i = 0; i < weaponParameters.weaponStats.bulletsPerShot; i++) {
