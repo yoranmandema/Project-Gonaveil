@@ -116,7 +116,7 @@ MonoBehaviour:
   stepSlope: 85
   airAcceleration: 300
   airDrag: 0
-  airVelocityMultiplier: 1.4
+  airVelocityMultiplier: 1.25
   limitAirVelocity: 1
   fallSpeedMultiplier: 3
   fallMaxSpeedUp: 10

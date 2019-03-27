@@ -219,8 +219,6 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     void Update() {
-        OnScreenDebug.Print("Vel: " + velocity.SetY(0).magnitude, Color.magenta);
-
         GroundCheck();
 
         if (Input.GetButtonDown("Crouch") && velocity.magnitude > slideVelocityThreshold) {
@@ -375,9 +373,15 @@ public class PlayerMovement : MonoBehaviour {
         var velocityDelta = GetAirAcceleration(transform.TransformDirection(desiredMovement), maxAccel);
 
         if (limitAirVelocity) {
-            var deltaAmount = Mathf.Clamp01((maxAirVelocity - (velocity + velocityDelta).magnitude) / maxAirVelocity);
+            var deltaAmount = Mathf.Clamp01((maxAirVelocity - (velocity - velocityDelta).magnitude) / maxAirVelocity);
 
-            velocity += velocityDelta * deltaAmount;
+            velocity += velocityDelta;
+
+            var y = velocity.y;
+
+            velocity = Vector3.ClampMagnitude(velocity.SetY(0), maxAirVelocity);
+
+            velocity.y = y;
         }
         else {
             velocity += velocityDelta;
@@ -388,6 +392,9 @@ public class PlayerMovement : MonoBehaviour {
         var dotVelocity = Vector3.Dot(velocity.SetY(0), wishDirection);
         var addSpeed = maxVelocity - dotVelocity;
         addSpeed = Mathf.Clamp(addSpeed, 0, maxAccel * Time.deltaTime);
+
+        Debug.DrawLine(transform.position, transform.position + velocity.SetY(0), Color.red);
+        Debug.DrawLine(transform.position, transform.position + wishDirection * dotVelocity, Color.green);
 
         return wishDirection * addSpeed;
     }
