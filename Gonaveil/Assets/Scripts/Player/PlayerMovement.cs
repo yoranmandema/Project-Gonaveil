@@ -53,13 +53,10 @@ public class PlayerMovement : MonoBehaviour {
     private Vector3 flipAxis;
     private Rigidbody rb;
     private LayerMask groundMask;
-    private float lateralJumpVelocity;
-    private float lateralSurfVelocity;
+    private float maxAirVelocity;
     private float appliedCrouchHeight = 2f;
     private float crouchLerp = 1f;
     private float desiredCrouchLerp = 1f;
-
-    private float flipAngle = 0;
 
     private bool canJump = true;
     private bool canJumpCooldown = true;
@@ -243,8 +240,7 @@ public class PlayerMovement : MonoBehaviour {
             velocity = characterController.velocity;
         }
 
-        desiredMovement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-
+        desiredMovement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
 
         if (isSurfing) {
             SurfMovement();
@@ -299,8 +295,7 @@ public class PlayerMovement : MonoBehaviour {
             StartCoroutine(JumpCooldown());
 
             var lateralVelocity = Vector3.Scale(velocity, new Vector3(1, 0, 1)) * jumpLateralSpeedMultiplier;
-            var jumpVelocity =
-                Vector3.up * Mathf.Sqrt(jumpHeight * 2f * Physics.gravity.magnitude * (fallSpeedMultiplier - 1));
+            var jumpVelocity = Vector3.up * Mathf.Sqrt(jumpHeight * 2f * Physics.gravity.magnitude * (fallSpeedMultiplier - 1));
 
             // Boost the jump when going uphill.
             if (ProjectedMovement.y > 0) {
@@ -316,14 +311,12 @@ public class PlayerMovement : MonoBehaviour {
             characterController.slopeLimit = surfSlope;
         }
 
-        desiredMovement.Normalize();
-
         var moveVector = TransformedMovement;
 
         // Use projected movement input when moving down a sloped surface to prevent bouncing.
-        if (ProjectedMovement.y < 0) {
+        //if (ProjectedMovement.y < 0) {
             moveVector = ProjectedMovement;
-        }
+        //}
 
         var maxVel = isCrouching && !isSliding ? crouchVelocity : maxVelocity;
 
@@ -334,56 +327,34 @@ public class PlayerMovement : MonoBehaviour {
 
     private void SurfMovement() {
         if (!wasSurfing) {
-            lateralSurfVelocity = Mathf.Max(1, velocity.magnitude * airVelocityMultiplier);
+            maxAirVelocity = Mathf.Max(0.01f, velocity.SetY(0).magnitude * airVelocityMultiplier);
             velocity = Vector3.ProjectOnPlane(velocity, groundNormal);
             characterController.slopeLimit = 90f;
         }
 
-        desiredMovement.Normalize();
-
-        var upwards = Vector3.Dot(groundNormal, Vector3.up);
-        var downVector = Vector3.ProjectOnPlane(Vector3.down, groundNormal); // Vector going down the ramp.
-
-        var velocityDelta = GetAirAcceleration(transform.TransformDirection(desiredMovement), surfAcceleration);
-
-        if (limitAirVelocity) {
-            var deltaAmount = Mathf.Clamp01((lateralSurfVelocity - (velocity + velocityDelta).magnitude) / lateralSurfVelocity);
-
-            velocity += velocityDelta * deltaAmount;
-        }
-        else {
-            velocity += velocityDelta;
-        }
+        DoAirAcceleration(surfAcceleration);
 
         // Air drag / friction.
         velocity -= velocity * airDrag * Time.deltaTime;
 
-        // Gravity.
-        velocity += downVector * -Physics.gravity.y * upwards * Time.deltaTime;
+        var upwards = Vector3.Dot(groundNormal, Vector3.up);
+        var downVector = Vector3.ProjectOnPlane(Vector3.down, groundNormal); // Vector going down the ramp.
 
         // Faster fall velocity.
         if (velocity.y > -fallMaxSpeedUp) velocity += downVector * -Physics.gravity.y * (fallSpeedMultiplier - 1) * Time.deltaTime;
+
+        // Gravity.
+        velocity += downVector * -Physics.gravity.y * upwards * Time.deltaTime;
     }
 
     private void AirMovement() {
         if (!wasInAir) {
-            lateralJumpVelocity = Mathf.Max(1, velocity.magnitude * airVelocityMultiplier);
+            maxAirVelocity = Mathf.Max(0.01f, velocity.SetY(0).magnitude * airVelocityMultiplier);
 
             characterController.slopeLimit = 90f;
         }
 
-        desiredMovement.Normalize();
-
-        var velocityDelta = GetAirAcceleration(transform.TransformDirection(desiredMovement), airAcceleration);
-
-        if (limitAirVelocity) {
-            var deltaAmount = Mathf.Clamp01((lateralJumpVelocity - (velocity + velocityDelta).magnitude) / lateralJumpVelocity);
-
-            velocity += velocityDelta * deltaAmount;
-        }
-        else {
-            velocity += velocityDelta;
-        }
+        DoAirAcceleration(airAcceleration);
 
         // Air drag.
         velocity -= velocity * airDrag * Time.deltaTime;
@@ -396,6 +367,19 @@ public class PlayerMovement : MonoBehaviour {
 
         if (Input.GetButtonDown("Flip")) StartCoroutine(FlipStart());
         if (Input.GetButtonUp("Flip") && isFlipped) StartCoroutine(FlipEnd());
+    }
+
+    private void DoAirAcceleration (float maxAccel) {
+        var velocityDelta = GetAirAcceleration(transform.TransformDirection(desiredMovement), maxAccel);
+
+        if (limitAirVelocity) {
+            var deltaAmount = Mathf.Clamp01((maxAirVelocity - (velocity + velocityDelta).magnitude) / maxAirVelocity);
+
+            velocity += velocityDelta * deltaAmount;
+        }
+        else {
+            velocity += velocityDelta;
+        }
     }
 
     private Vector3 GetAirAcceleration (Vector3 wishDirection, float maxAccel) {

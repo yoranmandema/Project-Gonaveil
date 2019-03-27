@@ -116,7 +116,7 @@ MonoBehaviour:
   stepSlope: 85
   airAcceleration: 150
   airDrag: 0
-  airVelocityMultiplier: 1.1
+  airVelocityMultiplier: 1.4
   limitAirVelocity: 1
   fallSpeedMultiplier: 3
   fallMaxSpeedUp: 10
@@ -126,7 +126,7 @@ MonoBehaviour:
   jumpCooldown: 0.25
   upHillJumpBoost: 1.5
   surfSlope: 45
-  surfAcceleration: 50
+  surfAcceleration: 150
   crouchHeight: 1
   crouchTime: 0.1
   crouchVelocity: 8
