@@ -11,9 +11,9 @@ public class PlayerMovement : MonoBehaviour {
     public float acceleration = 200f;
     public float stepSlope = 85f;
 
-    public float airAccelaration = 150f;
+    public float airAcceleration = 150f;
     public float airDrag = 0.05f;
-
+    public float airVelocityMultiplier = 1.05f;
     public bool limitAirVelocity = false;
     public float fallSpeedMultiplier = 1.5f;
     public float fallMaxSpeedUp = 10f;
@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour {
     public float upHillJumpBoost = 5f;
 
     public float surfSlope = 45f;
+    public float surfAcceleration = 150f;
 
     public float crouchHeight = 1f;
     public float crouchTime = 0.5f;
@@ -333,27 +334,20 @@ public class PlayerMovement : MonoBehaviour {
 
     private void SurfMovement() {
         if (!wasSurfing) {
-            lateralSurfVelocity = Mathf.Max(1,Vector3.Scale(velocity, new Vector3(1, 0, 1)).magnitude * jumpLateralSpeedMultiplier);
+            lateralSurfVelocity = Mathf.Max(1, velocity.magnitude * airVelocityMultiplier);
             velocity = Vector3.ProjectOnPlane(velocity, groundNormal);
             characterController.slopeLimit = 90f;
         }
 
         desiredMovement.Normalize();
 
-        // Limit acceleration when going forward
-        var moveVector = desiredMovement.SetZ(desiredMovement.z - VelocityDotDirection * desiredMovement.z);
-        var newTransformedMovement = transform.TransformDirection(moveVector);
-        //newTransformedMovement = Vector3.ProjectOnPlane(newTransformedMovement, groundNormal);
-
         var upwards = Vector3.Dot(groundNormal, Vector3.up);
         var downVector = Vector3.ProjectOnPlane(Vector3.down, groundNormal); // Vector going down the ramp.
 
-        // Acceleration based on input
-        var velocityDelta = newTransformedMovement * airAccelaration * upwards * VelocityDotDirection * Time.deltaTime;
+        var velocityDelta = GetAirAcceleration(transform.TransformDirection(desiredMovement), surfAcceleration);
 
         if (limitAirVelocity) {
-            var lateral = Vector3.Scale(velocity + velocityDelta, new Vector3(1, 0, 1)).magnitude;
-            var deltaAmount = Mathf.Clamp01((lateralSurfVelocity - lateral) / lateralSurfVelocity);
+            var deltaAmount = Mathf.Clamp01((lateralSurfVelocity - (velocity + velocityDelta).magnitude) / lateralSurfVelocity);
 
             velocity += velocityDelta * deltaAmount;
         }
@@ -361,32 +355,29 @@ public class PlayerMovement : MonoBehaviour {
             velocity += velocityDelta;
         }
 
+        // Air drag / friction.
+        velocity -= velocity * airDrag * Time.deltaTime;
+
         // Gravity.
         velocity += downVector * -Physics.gravity.y * upwards * Time.deltaTime;
 
         // Faster fall velocity.
         if (velocity.y > -fallMaxSpeedUp) velocity += downVector * -Physics.gravity.y * (fallSpeedMultiplier - 1) * Time.deltaTime;
-
-        // Air drag / friction.
-        velocity -= velocity * airDrag * Time.deltaTime;
     }
 
     private void AirMovement() {
         if (!wasInAir) {
-            lateralJumpVelocity = Mathf.Max(1, Vector3.Scale(velocity, new Vector3(1, 0, 1)).magnitude * jumpLateralSpeedMultiplier);
+            lateralJumpVelocity = Mathf.Max(1, velocity.magnitude * airVelocityMultiplier);
+
             characterController.slopeLimit = 90f;
         }
 
         desiredMovement.Normalize();
 
-        // Limit acceleration when going forward
-        var moveVector = desiredMovement.SetZ(desiredMovement.z - VelocityDotDirection * desiredMovement.z);
-        var newTransformedMovement = transform.TransformDirection(moveVector);
-        var velocityDelta = newTransformedMovement * airAccelaration * VelocityDotDirection * Time.deltaTime;
+        var velocityDelta = GetAirAcceleration(transform.TransformDirection(desiredMovement), airAcceleration);
 
         if (limitAirVelocity) {
-            var lateral = Vector3.Scale(velocity + velocityDelta, new Vector3(1, 0, 1)).magnitude;
-            var deltaAmount = Mathf.Clamp01((lateralJumpVelocity - lateral) / lateralJumpVelocity);
+            var deltaAmount = Mathf.Clamp01((lateralJumpVelocity - (velocity + velocityDelta).magnitude) / lateralJumpVelocity);
 
             velocity += velocityDelta * deltaAmount;
         }
@@ -405,6 +396,14 @@ public class PlayerMovement : MonoBehaviour {
 
         if (Input.GetButtonDown("Flip")) StartCoroutine(FlipStart());
         if (Input.GetButtonUp("Flip") && isFlipped) StartCoroutine(FlipEnd());
+    }
+
+    private Vector3 GetAirAcceleration (Vector3 wishDirection, float maxAccel) {
+        var dotVelocity = Vector3.Dot(velocity, wishDirection);
+        var addSpeed = maxVelocity - dotVelocity;
+        addSpeed = Mathf.Clamp(addSpeed, 0, maxAccel * Time.deltaTime);
+
+        return wishDirection * addSpeed;
     }
 
     public void AddForce (Vector3 force) {
