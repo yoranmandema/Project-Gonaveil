@@ -162,8 +162,6 @@ public class PlayerMovement : MonoBehaviour {
             castDirection = transform.up;
         }
 
-        Debug.DrawLine(castPosition, transform.TransformPoint(characterController.center), Color.green);
-
         var groundHits = Physics.SphereCastAll(
             castPosition,
             characterController.radius,
@@ -327,18 +325,24 @@ public class PlayerMovement : MonoBehaviour {
 
     private void SurfMovement() {
         if (!wasSurfing) {
-            maxAirVelocity = Mathf.Max(0.01f, velocity.SetY(0).magnitude * airVelocityMultiplier);
+            //maxAirVelocity = Mathf.Max(0.01f, velocity.SetY(0).magnitude * airVelocityMultiplier);
+            maxAirVelocity = maxVelocity;
             velocity = Vector3.ProjectOnPlane(velocity, groundNormal);
+
+            //Debug.DrawLine(groundPoint, groundPoint + velocity, Color.yellow, 100f);
+        
             characterController.slopeLimit = 90f;
         }
+
+        var upwards = Vector3.Dot(groundNormal, Vector3.up);
+        var downVector = Vector3.ProjectOnPlane(Vector3.down, groundNormal); // Vector going down the ramp.
 
         DoAirAcceleration(surfAcceleration);
 
         // Air drag / friction.
         velocity -= velocity * airDrag * Time.deltaTime;
 
-        var upwards = Vector3.Dot(groundNormal, Vector3.up);
-        var downVector = Vector3.ProjectOnPlane(Vector3.down, groundNormal); // Vector going down the ramp.
+        Debug.DrawLine(groundPoint, groundPoint + downVector, Color.cyan);
 
         // Faster fall velocity.
         if (velocity.y > -fallMaxSpeedUp) velocity += downVector * -Physics.gravity.y * (fallSpeedMultiplier - 1) * Time.deltaTime;
@@ -372,6 +376,11 @@ public class PlayerMovement : MonoBehaviour {
     private void DoAirAcceleration (float maxAccel) {
         var velocityDelta = GetAirAcceleration(transform.TransformDirection(desiredMovement), maxAccel);
 
+        var downVector = Vector3.ProjectOnPlane(Vector3.down, groundNormal); // Vector going down the ramp.
+        var groundDot = 1 - (Vector3.Dot(velocityDelta.normalized, -downVector) + 1) / 2;
+
+        velocityDelta *= groundDot;
+
         if (limitAirVelocity) {
             var deltaAmount = Mathf.Clamp01((maxAirVelocity - (velocity - velocityDelta).magnitude) / maxAirVelocity);
 
@@ -392,9 +401,6 @@ public class PlayerMovement : MonoBehaviour {
         var dotVelocity = Vector3.Dot(velocity.SetY(0), wishDirection);
         var addSpeed = maxVelocity - dotVelocity;
         addSpeed = Mathf.Clamp(addSpeed, 0, maxAccel * Time.deltaTime);
-
-        Debug.DrawLine(transform.position, transform.position + velocity.SetY(0), Color.red);
-        Debug.DrawLine(transform.position, transform.position + wishDirection * dotVelocity, Color.green);
 
         return wishDirection * addSpeed;
     }
