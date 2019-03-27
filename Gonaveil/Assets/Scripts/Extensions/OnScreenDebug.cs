@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class OnScreenDebug : MonoBehaviour
 {
-    struct PrintMessage {
+    class PrintMessage {
         public string message;
         public float lifeTime;
         public Color color;
@@ -17,6 +17,12 @@ public class OnScreenDebug : MonoBehaviour
     private static List<PrintMessage> messages = new List<PrintMessage>();
     private static GUIStyle style;
 
+    private static void Initialise () {
+        style = new GUIStyle {
+            fontSize = 16
+        };
+    }
+
     private void Awake () {
         if (Instance == null) {
             Instance = this;
@@ -24,9 +30,7 @@ public class OnScreenDebug : MonoBehaviour
             Debug.LogError("Too many OnScreenDebug instances in the scene.");
         }
 
-        style = new GUIStyle {
-            fontSize = 16
-        };
+        Initialise();
     }
 
     public static void Print(string message) {
@@ -43,8 +47,17 @@ public class OnScreenDebug : MonoBehaviour
 
     public static void Print (string message, Color color, float lifeTime) {
         if (Instance == null) {
-            Debug.LogError("Please place an OnScreenDebug instance in the scene.");
-            return;
+            var find = FindObjectOfType<OnScreenDebug>();
+
+            if (find == null) {
+                Debug.LogError("Please place an OnScreenDebug instance in the scene.");
+                return;
+            }
+            else {
+                Instance = find;
+
+                Initialise();
+            }
         }
 
         messages.Add(new PrintMessage {
@@ -58,7 +71,6 @@ public class OnScreenDebug : MonoBehaviour
     void OnGUI () {
         for (var i = messages.Count - 1; i > 0; i--) {
             var message = messages[i];
-
             var rect = new Rect(10, 10 + (i - 0) * 20, 100, 20);
             var oldColor = style.normal.textColor;
 
@@ -68,7 +80,7 @@ public class OnScreenDebug : MonoBehaviour
 
             style.normal.textColor = oldColor;
 
-            if (Time.realtimeSinceStartup - message.startTime > message.lifeTime) messages.RemoveAt(i);
+            if (Time.realtimeSinceStartup - message.startTime >= message.lifeTime) messages.RemoveAt(i);
         }
     }
 }
