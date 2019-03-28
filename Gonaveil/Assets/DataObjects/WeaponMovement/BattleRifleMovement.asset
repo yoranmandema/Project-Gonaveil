@@ -31,7 +31,7 @@ MonoBehaviour:
   recoilSide: 0.5
   wigglePositionAmount: 0.5
   wiggleAmount: 0.5
-  wiggleForce: 4
-  wiggleDamping: 10
+  wiggleForce: 2
+  wiggleDamping: 12
   jumpAmount: 1
   offset: {x: 0.14, y: -0.18, z: 0.33}

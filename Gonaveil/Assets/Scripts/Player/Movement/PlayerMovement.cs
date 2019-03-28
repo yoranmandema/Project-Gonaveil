@@ -216,8 +216,8 @@ public partial class PlayerMovement : MonoBehaviour {
 
         if (!wasGrounded && isGrounded) {
             weaponMovement.Impulse(
-                new Vector3(0, 0, 0),
-                new Vector2(-700, 0)
+                new Vector3(0, -2, 0),
+                new Vector2(-100, 0)
                 );
         }
 
@@ -313,8 +313,8 @@ public partial class PlayerMovement : MonoBehaviour {
             queuedJump = false;
 
             weaponMovement.Impulse(
-               new Vector3(0, 0, 0),
-               new Vector2(400, 0)
+               new Vector3(0, -2, 0),
+               new Vector2(-50, 0)
                );
 
             StartCoroutine(JumpCooldown());

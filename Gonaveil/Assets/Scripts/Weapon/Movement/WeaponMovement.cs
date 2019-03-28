@@ -17,9 +17,6 @@ public class WeaponMovement : MonoBehaviour {
     private float yaw;
     private float pitch;
 
-    private Vector3 jumpVector;
-    private Vector3 jumpVectorSmoothed;
-
     private Vector3 recoilVector;
     private Vector3 recoilVectorSmoothed;
 
@@ -28,6 +25,9 @@ public class WeaponMovement : MonoBehaviour {
 
     private Vector2 swayImpulse;
     private Vector2 swayImpulseForce;
+
+    private Vector3 jiggleImpulse;
+    private Vector3 jiggleImpulseForce;
 
     private Vector3 jiggleVector;
     private Vector3 jiggleForce;
@@ -49,8 +49,8 @@ public class WeaponMovement : MonoBehaviour {
     }
 
     public void Impulse (Vector3 impulse, Vector2 sway) {
-        swayImpulse += sway * Time.deltaTime;
-        jiggleVector += impulse * Time.deltaTime;
+        swayImpulseForce += sway * Time.deltaTime;
+        jiggleImpulseForce += impulse * Time.deltaTime;
     }
 
     void Update() {
@@ -84,9 +84,13 @@ public class WeaponMovement : MonoBehaviour {
         forwardComponent += Vector3.forward * lookDownLerp * profile.lookDownRetraction;
         forwardComponent += Vector3.forward * recoilVectorSmoothed.z * -0.05f;
 
+        forwardComponent += Vector3.forward * jiggleImpulse.x;
+        sideComponent += Vector3.right * jiggleImpulse.z;
+        upComponent += Vector3.up * jiggleImpulse.y;
+
         var jiggleDir = (sideComponent + forwardComponent + upComponent) * profile.bobbingAmount;
 
-        ApplyDamping(ref jiggleVector, profile.wiggleDamping);
+        ApplyDamping(ref jiggleForce, profile.wiggleDamping);
         jiggleForce += (jiggleDir - jiggleVector) * Time.deltaTime * profile.wiggleForce;
         jiggleVector += jiggleForce;
 
@@ -102,15 +106,15 @@ public class WeaponMovement : MonoBehaviour {
         recoilVector += -Vector3.ClampMagnitude(recoilVector, 1) * (profile.recoilRecovery * Time.deltaTime);
         recoilVectorSmoothed += (recoilVector - recoilVectorSmoothed) * Time.deltaTime / 0.04f;
 
-        yaw += (Input.GetAxis("Mouse X") + crouchChange * profile.crouchDisturb + bob - yaw) * Time.deltaTime * profile.rotationSpeed;
-        pitch += (-Input.GetAxis("Mouse Y") - crouchChange * profile.crouchDisturb + bob2 - pitch) * Time.deltaTime * profile.rotationSpeed;
+        yaw += (Input.GetAxis("Mouse X") + crouchChange * profile.crouchDisturb + bob + swayImpulse.y - yaw) * Time.deltaTime * profile.rotationSpeed;
+        pitch += (-Input.GetAxis("Mouse Y") - crouchChange * profile.crouchDisturb + bob2 + swayImpulse.x - pitch) * Time.deltaTime * profile.rotationSpeed;
 
         var targetYaw = Input.GetAxis("Mouse X") + crouchChange * profile.crouchDisturb + recoilVectorSmoothed.y + bob + swayImpulse.y;
         var targetPitch = Input.GetAxis("Mouse Y") + crouchChange * profile.crouchDisturb + recoilVectorSmoothed.x + bob2 + swayImpulse.x;
 
         var swayDir = new Vector2(-targetPitch, targetYaw) * profile.rotationAmount;
 
-        ApplyDamping(ref swayVector, profile.wiggleDamping);
+        ApplyDamping(ref swayForce, profile.wiggleDamping);
         swayForce += (swayDir - swayVector) * Time.deltaTime * profile.wiggleForce;
         swayVector += swayForce;
 
@@ -123,9 +127,13 @@ public class WeaponMovement : MonoBehaviour {
             -useYaw * profile.rollRotation + crouchingSmoothedLerp * profile.crouchAngle
             );
 
-        ApplyDamping(ref swayImpulse, 15f);
+        ApplyDamping(ref swayImpulseForce, 13f);
         swayImpulseForce += -swayImpulse * Time.deltaTime;
         swayImpulse += swayImpulseForce;
+
+        ApplyDamping(ref jiggleImpulseForce, 13f);
+        jiggleImpulseForce += -jiggleImpulse * Time.deltaTime;
+        jiggleImpulse += jiggleImpulseForce;
     }
 
     private void ApplyDamping(ref float value, float damping) {

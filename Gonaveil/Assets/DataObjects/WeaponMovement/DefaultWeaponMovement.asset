@@ -15,19 +15,23 @@ MonoBehaviour:
   velocityMultiplier: 0.01
   rotationSpeed: 5
   rotationAmount: 2
+  rollRotation: 1
   bobbingSpeed: 75
   bobbingAmount: 0.5
   bobbingEngageTime: 1
+  bobbingRotation: 1
   crouchAngle: 70
   crouchEngageTime: 0.1
   crouchEngageSmoothing: 0.05
   crouchDisturb: 0.1
   lookDownRetraction: 0.25
   lookDownSmoothing: 0.25
-  jumpAmount: 0.25
   recoil: 4
   recoilRecovery: 40
+  recoilSide: 0.25
+  wigglePositionAmount: 0.5
   wiggleAmount: 0.5
   wiggleForce: 5
-  wiggleDamping: 0.8
+  wiggleDamping: 20
+  jumpAmount: 0.25
   offset: {x: 0.26, y: -0.23, z: 0.54}
