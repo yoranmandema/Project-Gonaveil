@@ -21,8 +21,6 @@ public class WeaponMovementProfile : ScriptableObject {
     public float lookDownRetraction = 0.25f;
     public float lookDownSmoothing = 2f;
 
-    public float jumpAmount = 0.25f;
-
     public float recoil = 10f;
     public float recoilRecovery = 30f;
     public float recoilSide = 0.25f;
@@ -31,6 +29,8 @@ public class WeaponMovementProfile : ScriptableObject {
     public float wiggleAmount = 0.5f;
     public float wiggleForce = 5f;
     public float wiggleDamping = 0.8f;
+
+    public float jumpAmount = 1f;
 
     public Vector3 offset = new Vector3(0.35f, -0.3f, 0.6f);
 }

@@ -71,6 +71,8 @@ public partial class PlayerMovement : MonoBehaviour {
     private bool canApplyFriction;
     private float frictionMul;
 
+    private WeaponMovement weaponMovement;
+
     private Vector3 TransformedMovement => transform.TransformDirection(desiredMovement);
     private Vector3 ProjectedMovement => Vector3.ProjectOnPlane(TransformedMovement, groundNormal).normalized;
     private float GroundSlope => Mathf.Acos(Vector3.Dot(groundNormal, Vector3.up)) * Mathf.Rad2Deg;
@@ -78,6 +80,7 @@ public partial class PlayerMovement : MonoBehaviour {
     private void Start() {
         rb = GetComponent<Rigidbody>();
         characterController = GetComponent<CharacterController>();
+        weaponMovement = GetComponentInChildren<WeaponMovement>();
 
         groundMask = ((LayerMask)gameObject.layer).GetReverseLayerMask();
         groundMask ^= 1 << gameObject.layer;
@@ -211,6 +214,13 @@ public partial class PlayerMovement : MonoBehaviour {
             }
         }
 
+        if (!wasGrounded && isGrounded) {
+            weaponMovement.Impulse(
+                new Vector3(0, 0, 0),
+                new Vector2(-700, 0)
+                );
+        }
+
         if (GroundSlope > surfSlope) {
             isSurfing = true;
             isGrounded = false;
@@ -220,7 +230,7 @@ public partial class PlayerMovement : MonoBehaviour {
 
         if (wasGrounded && !isGrounded) {
             frictionMul = 0;
-        } 
+        }
 
         if (wasSurfing) StartCoroutine(JumpCooldown());
     }
@@ -302,6 +312,11 @@ public partial class PlayerMovement : MonoBehaviour {
             canJump = false;
             queuedJump = false;
 
+            weaponMovement.Impulse(
+               new Vector3(0, 0, 0),
+               new Vector2(400, 0)
+               );
+
             StartCoroutine(JumpCooldown());
 
             var lateralVelocity = Vector3.Scale(velocity, new Vector3(1, 0, 1)) * jumpLateralSpeedMultiplier;
@@ -346,7 +361,7 @@ public partial class PlayerMovement : MonoBehaviour {
         JumpMovement();
     }
 
-    private IEnumerator DisableFrictionForFrame () {
+    private IEnumerator DisableFrictionForFrame() {
         canApplyFriction = false;
 
         yield return new WaitForSeconds(Time.fixedDeltaTime);
