@@ -11,6 +11,7 @@ public class PlayerMovementEditor : Editor {
     SerializedProperty maxVelocity;
     SerializedProperty acceleration;
     SerializedProperty friction;
+    SerializedProperty frictionTime;
     SerializedProperty stepSlope;
 
     SerializedProperty airAcceleration;
@@ -24,7 +25,8 @@ public class PlayerMovementEditor : Editor {
 
     SerializedProperty jumpHeight;
     SerializedProperty jumpLateralSpeedMultiplier;
-    SerializedProperty autoJump;
+    SerializedProperty autoJumping;
+    SerializedProperty queueJumping;
     SerializedProperty jumpCooldown;
     SerializedProperty upHillJumpBoost;
 
@@ -43,6 +45,7 @@ public class PlayerMovementEditor : Editor {
         maxVelocity = serializedObject.FindProperty("maxVelocity");
         acceleration = serializedObject.FindProperty("acceleration");
         friction = serializedObject.FindProperty("friction");
+        frictionTime = serializedObject.FindProperty("frictionTime");
         stepSlope = serializedObject.FindProperty("stepSlope");
 
         airAcceleration = serializedObject.FindProperty("airAcceleration");
@@ -56,7 +59,8 @@ public class PlayerMovementEditor : Editor {
 
         jumpHeight = serializedObject.FindProperty("jumpHeight");
         jumpLateralSpeedMultiplier = serializedObject.FindProperty("jumpLateralSpeedMultiplier");
-        autoJump = serializedObject.FindProperty("autoJump");
+        autoJumping = serializedObject.FindProperty("autoJumping");
+        queueJumping = serializedObject.FindProperty("queueJumping");
         jumpCooldown = serializedObject.FindProperty("jumpCooldown");
         upHillJumpBoost = serializedObject.FindProperty("upHillJumpBoost");
 
@@ -82,6 +86,7 @@ public class PlayerMovementEditor : Editor {
         EditorGUILayout.PropertyField(maxVelocity);
         EditorGUILayout.PropertyField(acceleration);
         EditorGUILayout.PropertyField(friction);
+        EditorGUILayout.PropertyField(frictionTime);
         EditorGUILayout.PropertyField(stepSlope);
 
         EditorGUILayout.Space();
@@ -109,7 +114,8 @@ public class PlayerMovementEditor : Editor {
         EditorGUILayout.LabelField("Jump Movement", EditorStyles.boldLabel);
         EditorGUILayout.PropertyField(jumpHeight);
         EditorGUILayout.PropertyField(jumpLateralSpeedMultiplier);
-        EditorGUILayout.PropertyField(autoJump);
+        EditorGUILayout.PropertyField(autoJumping);
+        EditorGUILayout.PropertyField(queueJumping);
         EditorGUILayout.PropertyField(jumpCooldown);
         EditorGUILayout.PropertyField(upHillJumpBoost);
 

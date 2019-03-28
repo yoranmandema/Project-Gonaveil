@@ -10,6 +10,7 @@ public partial class PlayerMovement : MonoBehaviour {
     public float maxVelocity = 12f;
     public float acceleration = 200f;
     public float friction = 2f;
+    public float frictionTime = 0.1f;
     public float stepSlope = 85f;
 
     public float airAcceleration = 150f;
@@ -22,7 +23,8 @@ public partial class PlayerMovement : MonoBehaviour {
 
     public float jumpHeight = 1f;
     public float jumpLateralSpeedMultiplier = 1.1f;
-    public bool autoJump;
+    public bool autoJumping;
+    public bool queueJumping;
     public float jumpCooldown = 0.25f;
     public float upHillJumpBoost = 5f;
 
@@ -62,11 +64,14 @@ public partial class PlayerMovement : MonoBehaviour {
 
     private bool canJump = true;
     private bool canJumpCooldown = true;
+    private bool queuedJump;
     private bool wasGrounded;
     private bool wasSurfing;
     private bool wasInAir;
 
     private bool isEndingFlip;
+    private bool canApplyFriction;
+    private float frictionMul;
 
     private Vector3 TransformedMovement => transform.TransformDirection(desiredMovement);
     private Vector3 ProjectedMovement => Vector3.ProjectOnPlane(TransformedMovement, groundNormal).normalized;
@@ -84,7 +89,7 @@ public partial class PlayerMovement : MonoBehaviour {
     }
 
     private bool WantsJumpInput() {
-        if (autoJump) {
+        if (autoJumping) {
             return Input.GetButton("Jump");
         }
         else {
@@ -216,6 +221,10 @@ public partial class PlayerMovement : MonoBehaviour {
 
         isInAir = !isGrounded && !isSurfing;
 
+        if (wasGrounded && !isGrounded) {
+            frictionMul = 0;
+        } 
+
         if (wasSurfing) StartCoroutine(JumpCooldown());
     }
 
@@ -292,8 +301,9 @@ public partial class PlayerMovement : MonoBehaviour {
     }
 
     private void JumpMovement() {
-        if (WantsJumpInput() && canJumpCooldown) {
+        if ((WantsJumpInput() || queuedJump) && canJumpCooldown) {
             canJump = false;
+            queuedJump = false;
 
             StartCoroutine(JumpCooldown());
 
@@ -312,7 +322,11 @@ public partial class PlayerMovement : MonoBehaviour {
     private void GroundMovement() {
         if (!wasGrounded) {
             characterController.slopeLimit = surfSlope;
+
+            StartCoroutine(DisableFrictionForFrame());
         }
+
+        frictionMul = Mathf.Min(frictionMul + Time.deltaTime / frictionTime, 1);
 
         var moveVector = TransformedMovement;
 
@@ -325,16 +339,22 @@ public partial class PlayerMovement : MonoBehaviour {
 
         var speed = velocity.magnitude;
 
-        if (speed != 0) {
-            OnScreenDebug.Print("APPLYING FRICTION", Color.red);
-
-            var drop = speed * friction * Time.deltaTime;
+        if (speed != 0 && canApplyFriction) {
+            var drop = speed * friction * frictionMul * Time.deltaTime;
             velocity *= Mathf.Max(speed - drop, 0) / speed; // Scale the velocity based on friction.
         }
 
         DoAcceleration(transform.TransformDirection(desiredMovement), acceleration, maxVel);
 
         JumpMovement();
+    }
+
+    private IEnumerator DisableFrictionForFrame () {
+        canApplyFriction = false;
+
+        yield return new WaitForSeconds(Time.fixedDeltaTime);
+
+        canApplyFriction = true;
     }
 
     private void SurfMovement() {
@@ -363,6 +383,8 @@ public partial class PlayerMovement : MonoBehaviour {
         if (!wasInAir) {
             characterController.slopeLimit = 90f;
         }
+
+        if (queueJumping && isInAir && Input.GetButtonDown("Jump")) queuedJump = true;
 
         DoAcceleration(transform.TransformDirection(desiredMovement), airAcceleration, maxAirVelocity);
 

@@ -1928,7 +1928,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b66ecc595d3271c45ab6fa39f1af275c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMovement: {fileID: 1352563271953662209}
+  playerMovement: {fileID: 4097230799405380432}
 --- !u!1 &1352563271953662213
 GameObject:
   m_ObjectHideFlags: 0
@@ -1939,7 +1939,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1352563271953662208}
   - component: {fileID: 1352563271953662211}
-  - component: {fileID: 1352563271953662209}
+  - component: {fileID: 4097230799405380432}
   - component: {fileID: 1352563271953662212}
   - component: {fileID: 3500205305367817446}
   m_Layer: 10
@@ -1983,7 +1983,7 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 3
---- !u!114 &1352563271953662209
+--- !u!114 &4097230799405380432
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1992,7 +1992,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1352563271953662213}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ab3b73f181c3de4e81bc8fb21520cad, type: 3}
+  m_Script: {fileID: 11500000, guid: 3b345c101ae6d5347828fa6524a09e64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cameraTransform: {fileID: 1352563272540711684}
@@ -2001,25 +2001,25 @@ MonoBehaviour:
   acceleration: 250
   friction: 15
   stepSlope: 85
-  airAcceleration: 100
+  airAcceleration: 150
   airDrag: 0
   airVelocityMultiplier: 1
-  maxAirVelocity: 0.3
+  maxAirVelocity: 1
   limitAirVelocity: 1
   fallSpeedMultiplier: 3
   fallMaxSpeedUp: 10
   jumpHeight: 3
   jumpLateralSpeedMultiplier: 1
-  autoJump: 1
+  autoJump: 0
   jumpCooldown: 0.25
-  upHillJumpBoost: 1.5
+  upHillJumpBoost: 1
   surfSlope: 45
-  surfAcceleration: 50
+  surfAcceleration: 150
   crouchHeight: 1
   crouchTime: 0.1
-  crouchVelocity: 8
+  crouchVelocity: 6
   crouchCameraHeight: 0.9
-  slideBoost: 1.2
+  slideBoost: 1.25
   slideVelocityThreshold: 10
   flipTime: 0.25
   isFlipped: 0
@@ -2248,7 +2248,7 @@ MonoBehaviour:
   velocityRollSmoothing: 0.1
   velocityRollMultiplier: 0.4
   maxVelocityRoll: 4
-  playerMovement: {fileID: 1352563271953662209}
+  playerMovement: {fileID: 4097230799405380432}
 --- !u!114 &1534258969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2477,7 +2477,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53c79ef96c287014e8bbf546ef3945bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMovement: {fileID: 1352563271953662209}
+  playerMovement: {fileID: 4097230799405380432}
   profile: {fileID: 0}
 --- !u!114 &1815053613353290408
 MonoBehaviour:
