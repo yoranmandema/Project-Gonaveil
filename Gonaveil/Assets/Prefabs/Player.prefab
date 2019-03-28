@@ -1998,11 +1998,13 @@ MonoBehaviour:
   cameraTransform: {fileID: 1352563272540711684}
   cameraHeight: 1.8
   maxVelocity: 12
-  acceleration: 100
+  acceleration: 250
+  friction: 15
   stepSlope: 85
-  airAcceleration: 50
+  airAcceleration: 100
   airDrag: 0
-  airVelocityMultiplier: 1.1
+  airVelocityMultiplier: 1
+  maxAirVelocity: 0.3
   limitAirVelocity: 1
   fallSpeedMultiplier: 3
   fallMaxSpeedUp: 10

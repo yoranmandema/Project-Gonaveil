@@ -10,11 +10,13 @@ public class PlayerMovementEditor : Editor {
 
     SerializedProperty maxVelocity;
     SerializedProperty acceleration;
+    SerializedProperty friction;
     SerializedProperty stepSlope;
 
     SerializedProperty airAcceleration;
     SerializedProperty airDrag;
     SerializedProperty airVelocityMultiplier;
+    SerializedProperty maxAirVelocity;
     SerializedProperty limitAirVelocity;
     SerializedProperty fallSpeedMultiplier;
     SerializedProperty fallMaxSpeedUp;
@@ -40,10 +42,12 @@ public class PlayerMovementEditor : Editor {
 
         maxVelocity = serializedObject.FindProperty("maxVelocity");
         acceleration = serializedObject.FindProperty("acceleration");
+        friction = serializedObject.FindProperty("friction");
         stepSlope = serializedObject.FindProperty("stepSlope");
 
         airAcceleration = serializedObject.FindProperty("airAcceleration");
         airDrag = serializedObject.FindProperty("airDrag");
+        maxAirVelocity = serializedObject.FindProperty("maxAirVelocity");
         airVelocityMultiplier = serializedObject.FindProperty("airVelocityMultiplier");
         limitAirVelocity = serializedObject.FindProperty("limitAirVelocity");
         fallSpeedMultiplier = serializedObject.FindProperty("fallSpeedMultiplier");
@@ -77,6 +81,7 @@ public class PlayerMovementEditor : Editor {
         EditorGUILayout.LabelField("Grounded Movement", EditorStyles.boldLabel);
         EditorGUILayout.PropertyField(maxVelocity);
         EditorGUILayout.PropertyField(acceleration);
+        EditorGUILayout.PropertyField(friction);
         EditorGUILayout.PropertyField(stepSlope);
 
         EditorGUILayout.Space();
@@ -93,6 +98,7 @@ public class PlayerMovementEditor : Editor {
         EditorGUILayout.PropertyField(airAcceleration);
         EditorGUILayout.PropertyField(airVelocityMultiplier);
         EditorGUILayout.PropertyField(limitAirVelocity);
+        EditorGUILayout.PropertyField(maxAirVelocity);
         EditorGUILayout.PropertyField(airDrag);
         EditorGUILayout.PropertyField(fallSpeedMultiplier);
         EditorGUILayout.PropertyField(fallMaxSpeedUp);

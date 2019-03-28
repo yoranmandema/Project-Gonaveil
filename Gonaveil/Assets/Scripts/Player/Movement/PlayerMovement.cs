@@ -3,17 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
-public class PlayerMovement : MonoBehaviour {
+public partial class PlayerMovement : MonoBehaviour {
     public Transform cameraTransform;
     public float cameraHeight = 1.8f;
 
     public float maxVelocity = 12f;
     public float acceleration = 200f;
+    public float friction = 2f;
     public float stepSlope = 85f;
 
     public float airAcceleration = 150f;
     public float airDrag = 0.05f;
     public float airVelocityMultiplier = 1.05f;
+    public float maxAirVelocity = 0.3f;
     public bool limitAirVelocity = false;
     public float fallSpeedMultiplier = 1.5f;
     public float fallMaxSpeedUp = 10f;
@@ -53,7 +55,7 @@ public class PlayerMovement : MonoBehaviour {
     private Vector3 flipAxis;
     private Rigidbody rb;
     private LayerMask groundMask;
-    private float maxAirVelocity;
+    //private float maxAirVelocity;
     private float appliedCrouchHeight = 2f;
     private float crouchLerp = 1f;
     private float desiredCrouchLerp = 1f;
@@ -98,7 +100,7 @@ public class PlayerMovement : MonoBehaviour {
         canJumpCooldown = true;
     }
 
-    private IEnumerator FlipStart () {
+    private IEnumerator FlipStart() {
         isFlipped = true;
 
         flipAxis = transform.right;
@@ -180,7 +182,8 @@ public class PlayerMovement : MonoBehaviour {
 
             if (useUpwards) {
                 normal += Vector3.up;
-            } else {
+            }
+            else {
                 normal += hit.normal;
             }
 
@@ -218,6 +221,8 @@ public class PlayerMovement : MonoBehaviour {
 
     void Update() {
         GroundCheck();
+
+        OnScreenDebug.Print($"Vel: {velocity.SetY(0).magnitude}");
 
         if (Input.GetButtonDown("Crouch") && velocity.magnitude > slideVelocityThreshold) {
             isSliding = true;
@@ -313,36 +318,39 @@ public class PlayerMovement : MonoBehaviour {
 
         // Use projected movement input when moving down a sloped surface to prevent bouncing.
         //if (ProjectedMovement.y < 0) {
-            moveVector = ProjectedMovement;
+        moveVector = ProjectedMovement;
         //}
 
         var maxVel = isCrouching && !isSliding ? crouchVelocity : maxVelocity;
 
-        velocity += Vector3.ClampMagnitude(moveVector * maxVel - velocity, acceleration * Time.deltaTime);
+        var speed = velocity.magnitude;
+
+        if (speed != 0) {
+            OnScreenDebug.Print("APPLYING FRICTION", Color.red);
+
+            var drop = speed * friction * Time.deltaTime;
+            velocity *= Mathf.Max(speed - drop, 0) / speed; // Scale the velocity based on friction.
+        }
+
+        DoAcceleration(transform.TransformDirection(desiredMovement), acceleration, maxVel);
 
         JumpMovement();
     }
 
     private void SurfMovement() {
         if (!wasSurfing) {
-            //maxAirVelocity = Mathf.Max(0.01f, velocity.SetY(0).magnitude * airVelocityMultiplier);
-            maxAirVelocity = maxVelocity;
             velocity = Vector3.ProjectOnPlane(velocity, groundNormal);
 
-            //Debug.DrawLine(groundPoint, groundPoint + velocity, Color.yellow, 100f);
-        
             characterController.slopeLimit = 90f;
         }
 
         var upwards = Vector3.Dot(groundNormal, Vector3.up);
         var downVector = Vector3.ProjectOnPlane(Vector3.down, groundNormal); // Vector going down the ramp.
 
-        DoAirAcceleration(surfAcceleration);
+        DoAcceleration(transform.TransformDirection(desiredMovement), surfAcceleration, maxAirVelocity);
 
         // Air drag / friction.
         velocity -= velocity * airDrag * Time.deltaTime;
-
-        Debug.DrawLine(groundPoint, groundPoint + downVector, Color.cyan);
 
         // Faster fall velocity.
         if (velocity.y > -fallMaxSpeedUp) velocity += downVector * -Physics.gravity.y * (fallSpeedMultiplier - 1) * Time.deltaTime;
@@ -353,12 +361,10 @@ public class PlayerMovement : MonoBehaviour {
 
     private void AirMovement() {
         if (!wasInAir) {
-            maxAirVelocity = Mathf.Max(0.01f, velocity.SetY(0).magnitude * airVelocityMultiplier);
-
             characterController.slopeLimit = 90f;
         }
 
-        DoAirAcceleration(airAcceleration);
+        DoAcceleration(transform.TransformDirection(desiredMovement), airAcceleration, maxAirVelocity);
 
         // Air drag.
         velocity -= velocity * airDrag * Time.deltaTime;
@@ -373,39 +379,26 @@ public class PlayerMovement : MonoBehaviour {
         if (Input.GetButtonUp("Flip") && isFlipped) StartCoroutine(FlipEnd());
     }
 
-    private void DoAirAcceleration (float maxAccel) {
-        var velocityDelta = GetAirAcceleration(transform.TransformDirection(desiredMovement), maxAccel);
+    private void DoAcceleration(Vector3 wishDirection, float maxAccel, float maxVel) {
+        var velocityDelta = GetAcceleration(wishDirection, maxAccel, maxVel);
 
-        var downVector = Vector3.ProjectOnPlane(Vector3.down, groundNormal); // Vector going down the ramp.
-        var groundDot = 1 - (Vector3.Dot(velocityDelta.normalized, -downVector) + 1) / 2;
+        //var downVector = Vector3.ProjectOnPlane(Vector3.down, groundNormal); // Vector going down the ramp.
+        //var groundDot = 1 - (Vector3.Dot(velocityDelta.normalized, -downVector) + 1) / 2;
 
-        velocityDelta *= groundDot;
+        //velocityDelta *= groundDot;
 
-        if (limitAirVelocity) {
-            var deltaAmount = Mathf.Clamp01((maxAirVelocity - (velocity - velocityDelta).magnitude) / maxAirVelocity);
-
-            velocity += velocityDelta;
-
-            var y = velocity.y;
-
-            velocity = Vector3.ClampMagnitude(velocity.SetY(0), maxAirVelocity);
-
-            velocity.y = y;
-        }
-        else {
-            velocity += velocityDelta;
-        }
+        velocity += velocityDelta;
     }
 
-    private Vector3 GetAirAcceleration (Vector3 wishDirection, float maxAccel) {
-        var dotVelocity = Vector3.Dot(velocity.SetY(0), wishDirection);
-        var addSpeed = maxVelocity - dotVelocity;
+    private Vector3 GetAcceleration(Vector3 wishDirection, float maxAccel, float maxVel) {
+        var dotVelocity = Vector3.Dot(velocity, wishDirection);
+        var addSpeed = maxVel - dotVelocity;
         addSpeed = Mathf.Clamp(addSpeed, 0, maxAccel * Time.deltaTime);
 
         return wishDirection * addSpeed;
     }
 
-    public void AddForce (Vector3 force) {
+    public void AddForce(Vector3 force) {
         velocity += force * Time.deltaTime;
     }
 }
