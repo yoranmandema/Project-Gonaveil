@@ -26,12 +26,12 @@ MonoBehaviour:
   crouchDisturb: 0.1
   lookDownRetraction: 0.25
   lookDownSmoothing: 0.15
-  jumpAmount: 0.25
   recoil: 4
   recoilRecovery: 90
   recoilSide: 0.5
   wigglePositionAmount: 0.5
   wiggleAmount: 0.5
   wiggleForce: 4
-  wiggleDamping: 0.8
+  wiggleDamping: 10
+  jumpAmount: 1
   offset: {x: 0.14, y: -0.18, z: 0.33}
