@@ -2000,17 +2000,17 @@ MonoBehaviour:
   maxVelocity: 12
   acceleration: 250
   friction: 15
+  frictionTime: 0.1
   stepSlope: 85
   airAcceleration: 150
   airDrag: 0
-  airVelocityMultiplier: 1
   maxAirVelocity: 1
-  limitAirVelocity: 1
   fallSpeedMultiplier: 3
   fallMaxSpeedUp: 10
   jumpHeight: 3
   jumpLateralSpeedMultiplier: 1
-  autoJump: 0
+  autoJumping: 0
+  queueJumping: 1
   jumpCooldown: 0.25
   upHillJumpBoost: 1
   surfSlope: 45

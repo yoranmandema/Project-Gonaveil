@@ -8,17 +8,15 @@ public partial class PlayerMovement : MonoBehaviour {
     public float cameraHeight = 1.8f;
 
     public float maxVelocity = 12f;
-    public float acceleration = 200f;
-    public float friction = 2f;
+    public float acceleration = 250f;
+    public float friction = 15f;
     public float frictionTime = 0.1f;
     public float stepSlope = 85f;
 
     public float airAcceleration = 150f;
-    public float airDrag = 0.05f;
-    public float airVelocityMultiplier = 1.05f;
-    public float maxAirVelocity = 0.3f;
-    public bool limitAirVelocity = false;
-    public float fallSpeedMultiplier = 1.5f;
+    public float airDrag = 0.0f;
+    public float maxAirVelocity = 1f;
+    public float fallSpeedMultiplier = 3f;
     public float fallMaxSpeedUp = 10f;
 
     public float jumpHeight = 1f;
@@ -32,8 +30,8 @@ public partial class PlayerMovement : MonoBehaviour {
     public float surfAcceleration = 150f;
 
     public float crouchHeight = 1f;
-    public float crouchTime = 0.5f;
-    public float crouchVelocity = 8f;
+    public float crouchTime = 0.1f;
+    public float crouchVelocity = 6f;
     public float crouchCameraHeight = 0.9f;
 
     public float slideBoost = 1.25f;
@@ -76,7 +74,6 @@ public partial class PlayerMovement : MonoBehaviour {
     private Vector3 TransformedMovement => transform.TransformDirection(desiredMovement);
     private Vector3 ProjectedMovement => Vector3.ProjectOnPlane(TransformedMovement, groundNormal).normalized;
     private float GroundSlope => Mathf.Acos(Vector3.Dot(groundNormal, Vector3.up)) * Mathf.Rad2Deg;
-    private float VelocityDotDirection => Mathf.Max(0, Vector3.Dot(transform.forward, Vector3.Scale(velocity.normalized, new Vector3(1, 0, 1))));
 
     private void Start() {
         rb = GetComponent<Rigidbody>();

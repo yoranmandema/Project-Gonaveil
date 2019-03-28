@@ -16,9 +16,7 @@ public class PlayerMovementEditor : Editor {
 
     SerializedProperty airAcceleration;
     SerializedProperty airDrag;
-    SerializedProperty airVelocityMultiplier;
     SerializedProperty maxAirVelocity;
-    SerializedProperty limitAirVelocity;
     SerializedProperty fallSpeedMultiplier;
     SerializedProperty fallMaxSpeedUp;
     SerializedProperty flipTime;
@@ -38,6 +36,9 @@ public class PlayerMovementEditor : Editor {
     SerializedProperty crouchVelocity;
     SerializedProperty crouchCameraHeight;
 
+    SerializedProperty slideBoost;
+    SerializedProperty slideVelocity;
+
     void OnEnable() {
         cameraTransform = serializedObject.FindProperty("cameraTransform");
         cameraHeight = serializedObject.FindProperty("cameraHeight");
@@ -51,8 +52,6 @@ public class PlayerMovementEditor : Editor {
         airAcceleration = serializedObject.FindProperty("airAcceleration");
         airDrag = serializedObject.FindProperty("airDrag");
         maxAirVelocity = serializedObject.FindProperty("maxAirVelocity");
-        airVelocityMultiplier = serializedObject.FindProperty("airVelocityMultiplier");
-        limitAirVelocity = serializedObject.FindProperty("limitAirVelocity");
         fallSpeedMultiplier = serializedObject.FindProperty("fallSpeedMultiplier");
         fallMaxSpeedUp = serializedObject.FindProperty("fallMaxSpeedUp");
         flipTime = serializedObject.FindProperty("flipTime");
@@ -71,6 +70,9 @@ public class PlayerMovementEditor : Editor {
         crouchTime = serializedObject.FindProperty("crouchTime");
         crouchVelocity = serializedObject.FindProperty("crouchVelocity");
         crouchCameraHeight = serializedObject.FindProperty("crouchCameraHeight");
+
+        slideBoost = serializedObject.FindProperty("slideBoost");
+        slideVelocity = serializedObject.FindProperty("slideVelocityThreshold");
     }
 
     public override void OnInspectorGUI() {
@@ -91,7 +93,7 @@ public class PlayerMovementEditor : Editor {
 
         EditorGUILayout.Space();
 
-        EditorGUILayout.LabelField("Crouch Movement", EditorStyles.boldLabel);
+        EditorGUILayout.LabelField("Crouching", EditorStyles.boldLabel);
         EditorGUILayout.PropertyField(crouchHeight);
         EditorGUILayout.PropertyField(crouchTime);
         EditorGUILayout.PropertyField(crouchVelocity);
@@ -99,10 +101,14 @@ public class PlayerMovementEditor : Editor {
 
         EditorGUILayout.Space();
 
+        EditorGUILayout.LabelField("Sliding", EditorStyles.boldLabel);
+        EditorGUILayout.PropertyField(slideBoost);
+        EditorGUILayout.PropertyField(slideVelocity);
+
+        EditorGUILayout.Space();
+
         EditorGUILayout.LabelField("Air Movement", EditorStyles.boldLabel);
         EditorGUILayout.PropertyField(airAcceleration);
-        EditorGUILayout.PropertyField(airVelocityMultiplier);
-        EditorGUILayout.PropertyField(limitAirVelocity);
         EditorGUILayout.PropertyField(maxAirVelocity);
         EditorGUILayout.PropertyField(airDrag);
         EditorGUILayout.PropertyField(fallSpeedMultiplier);
