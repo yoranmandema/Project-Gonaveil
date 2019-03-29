@@ -38,7 +38,7 @@ public abstract class Projectile : MonoBehaviour {
         OnUpdate();
 
         //move the effect slowly to the centre of the actual bullet.
-        effect.localPosition = Vector3.Lerp(effect.localPosition, Vector3.zero, 10f * Time.fixedDeltaTime);
+        effect.localPosition = Vector3.Lerp(effect.localPosition, Vector3.zero, Time.fixedDeltaTime);
 
         if ((Time.realtimeSinceStartup - startTime) > lifeTime) {
             Destroy(gameObject);
