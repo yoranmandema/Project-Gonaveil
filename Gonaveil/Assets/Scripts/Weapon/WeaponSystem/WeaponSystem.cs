@@ -6,8 +6,10 @@ public class WeaponSystem : MonoBehaviour {
     public WeaponMovementProfile weaponMovementProfile;
     public GameObject worldModel;
     public WeaponMovement weaponMovement;
+    public new Transform camera;
     public bool isGrenade;
 
+    protected WeaponModelData weaponModelData;
     [HideInInspector] public bool isFiringPrimary;
     [HideInInspector] public bool isFiringSecondary;
 
@@ -17,6 +19,12 @@ public class WeaponSystem : MonoBehaviour {
 
     public void Disable() {
         isFiringPrimary = isFiringSecondary = false;
+    }
+
+    void Start () {
+        weaponModelData = GetComponent<WeaponModelData>();
+
+        OnStart();
     }
 
     void Update() {
@@ -44,7 +52,12 @@ public class WeaponSystem : MonoBehaviour {
         if (InputManager.GetButtonDown("Reload")) {
             OnReload();
         }
+
+        OnUpdate();
     }
+
+    public virtual void OnStart() { }
+    public virtual void OnUpdate () { }
 
     public virtual void OnReload () { }
 
@@ -53,4 +66,19 @@ public class WeaponSystem : MonoBehaviour {
 
     public virtual void OnStartSecondary() { }
     public virtual void OnEndSecondary() { }
+
+    // Utility functions
+
+    protected Vector3 CalculateSpreadVector(float max) {
+        var spreadVector = Vector3.zero;
+
+        var angle = Random.Range(0, 2 * Mathf.PI);
+        var offset = Random.Range(0, max * Mathf.Deg2Rad);
+
+        spreadVector += camera.right * Mathf.Cos(angle) * Mathf.Sin(offset);
+        spreadVector += camera.up * Mathf.Sin(angle) * Mathf.Sin(offset);
+        spreadVector += camera.forward * Mathf.Cos(offset);
+
+        return spreadVector.normalized;
+    }
 }

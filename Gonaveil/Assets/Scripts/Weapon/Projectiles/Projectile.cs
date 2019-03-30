@@ -18,6 +18,7 @@ public abstract class Projectile : MonoBehaviour {
     public Transform barrel;
     public Transform effect;
     public Weapon weapon;
+    public WeaponSystem weaponSystem;
 
     public bool hasContact;
 
