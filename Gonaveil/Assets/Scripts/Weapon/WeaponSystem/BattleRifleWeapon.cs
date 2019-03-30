@@ -6,24 +6,24 @@ public class BattleRifleWeapon : WeaponSystem {
 
     public GameObject projectile;
     public float fireRate = 800;
-    public float accuracy = 1f;
+    public AnimationCurve accuracyCurve; 
 
     private float lastFireTime;
+    private float accuracyTime;
+    private float accuracy;
 
     public override void OnStart () {
         Disable();
     }
 
-    public override void OnStartPrimary() {
-        base.OnStartPrimary();
-    }
-
-    public override void OnStartSecondary() {
-        base.OnStartSecondary();
-    }
-
     public override void OnUpdate() {
         base.OnUpdate();
+
+        var accuracyCurveEnd = accuracyCurve[accuracyCurve.length - 1].time;
+
+        accuracyTime = Mathf.Clamp(accuracyTime + Time.deltaTime * (isFiringPrimary ? 1 : -1), 0, accuracyCurveEnd);
+
+        accuracy = accuracyCurve.Evaluate(accuracyTime);
 
         if (isFiringPrimary) {
             var fireTime = 1 / (fireRate / 60);
@@ -38,8 +38,6 @@ public class BattleRifleWeapon : WeaponSystem {
         lastFireTime = Time.realtimeSinceStartup;
 
         weaponMovement.DoRecoil();
-
-        var spread = CalculateSpreadVector(accuracy);
 
         //create bullet
         var projectileObject = Instantiate(projectile, camera.position, camera.rotation) as GameObject;
