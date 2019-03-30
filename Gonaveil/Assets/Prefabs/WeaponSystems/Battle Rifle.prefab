@@ -63,8 +63,37 @@ MonoBehaviour:
     type: 2}
   worldModel: {fileID: 0}
   weaponMovement: {fileID: 0}
+  camera: {fileID: 0}
+  isGrenade: 0
   isFiringPrimary: 0
   isFiringSecondary: 0
+  projectile: {fileID: 4846615784228082546, guid: e7cf5f436ac463144989ba4cb199fe24,
+    type: 3}
+  fireRate: 800
+  accuracyCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 2.0016975
+      value: 1.4957336
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &8391214908463622520
 GameObject:
   m_ObjectHideFlags: 0
