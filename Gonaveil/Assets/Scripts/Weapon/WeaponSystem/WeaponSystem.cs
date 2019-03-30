@@ -6,9 +6,10 @@ public class WeaponSystem : MonoBehaviour {
     public WeaponMovementProfile weaponMovementProfile;
     public GameObject worldModel;
     public WeaponMovement weaponMovement;
+    public bool isGrenade;
 
-    public bool isFiringPrimary;
-    public bool isFiringSecondary;
+    [HideInInspector] public bool isFiringPrimary;
+    [HideInInspector] public bool isFiringSecondary;
 
     public void Enable () {
         weaponMovement.profile = weaponMovementProfile;
