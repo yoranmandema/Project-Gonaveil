@@ -17,7 +17,7 @@ MonoBehaviour:
   rotationAmount: 2
   rollRotation: 1
   bobbingSpeed: 75
-  bobbingAmount: 0.2
+  bobbingAmount: -0.2
   bobbingEngageTime: 1
   bobbingRotation: 15
   crouchAngle: 10

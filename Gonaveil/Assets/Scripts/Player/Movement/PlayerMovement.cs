@@ -183,14 +183,16 @@ public partial class PlayerMovement : MonoBehaviour {
         foreach (var hit in groundHits) {
             var rayCast = Physics.Raycast(hit.point + hit.normal * 0.01f, -hit.normal, out RaycastHit rayCastHit, 0.02f, groundMask);
 
-            var useUpwards = (rayCastHit.normal != hit.normal) && (Mathf.Acos(rayCastHit.normal.y) * Mathf.Rad2Deg > stepSlope);
+            //var useUpwards = (rayCastHit.normal != hit.normal) && (Mathf.Acos(rayCastHit.normal.y) * Mathf.Rad2Deg > stepSlope);
 
-            if (useUpwards) {
-                normal += Vector3.up;
-            }
-            else {
-                normal += hit.normal;
-            }
+            //if (useUpwards) {
+            //    normal += Vector3.up;
+            //}
+            //else {
+            //    normal += hit.normal;
+            //}
+
+            normal += rayCastHit.normal;
 
             hitPoint += hit.point;
         }
