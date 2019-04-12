@@ -18,6 +18,7 @@ ModelImporter:
     100024: Cylinder.008
     100026: Cylinder.010
     100028: //RootNode
+    100030: Cube.004
     400000: Cube
     400002: Cube.001
     400004: Cube.003
@@ -33,6 +34,7 @@ ModelImporter:
     400024: Cylinder.008
     400026: Cylinder.010
     400028: //RootNode
+    400030: Cube.004
     2100000: Hammer3
     2100002: Hammer1
     2100004: Hammer2
@@ -40,6 +42,9 @@ ModelImporter:
     2100008: Material.003
     2100010: Material
     2100012: Material.002
+    2100014: Hammer4
+    2100016: Sights
+    2100018: Material.004
     2300000: Cube
     2300002: Cube.001
     2300004: Cube.003
@@ -55,6 +60,7 @@ ModelImporter:
     2300024: Cylinder.008
     2300026: Cylinder.010
     2300028: //RootNode
+    2300030: Cube.004
     3300000: Cube
     3300002: Cube.001
     3300004: Cube.003
@@ -70,6 +76,7 @@ ModelImporter:
     3300024: Cylinder.008
     3300026: Cylinder.010
     3300028: //RootNode
+    3300030: Cube.004
     4300000: Cube.002
     4300002: Cylinder.003
     4300004: Cube.001
@@ -85,6 +92,7 @@ ModelImporter:
     4300024: Cylinder.006
     4300026: Cylinder.005
     4300028: Cylinder.010
+    4300030: Cube.004
     2186277476908879412: ImportLogs
   externalObjects:
   - first:
@@ -105,6 +113,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Hammer4
+    second: {fileID: 2100000, guid: 2f3383dcd5d30d2429629806d5417536, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Material
     second: {fileID: 2100000, guid: cdd99f50d521f234abe28a2e6f69ab8a, type: 2}
   - first:
@@ -122,6 +135,16 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: Material.003
     second: {fileID: 2100000, guid: 6061b1210bd55c74f8290e1e28a9d774, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.004
+    second: {fileID: 2100000, guid: b05db094ae806e6468d3cb1b58aee582, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Sights
+    second: {fileID: 2100000, guid: 480bc584165dcd44b81b3005001342a9, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
