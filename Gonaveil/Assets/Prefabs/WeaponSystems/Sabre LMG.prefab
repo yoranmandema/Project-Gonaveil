@@ -59,6 +59,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e004fef3a5c08a74ea4e8ea0d589a6f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isFiringPrimary: 0
+  isFiringSecondary: 0
+  isReloading: 0
+  weaponName: Sabre LMG
   ammo: 0
   clipSize: 100
   fireRate: 650
@@ -111,13 +115,10 @@ MonoBehaviour:
     type: 3}
   weaponMovementProfile: {fileID: 11400000, guid: fcc571ada86a1d94a9d57434c441c56a,
     type: 2}
-  worldModel: {fileID: 0}
+  worldModel: {fileID: 100012, guid: f09682021a4a5d046a84b20cff9d8ece, type: 3}
   weaponMovement: {fileID: 0}
   camera: {fileID: 0}
   isGrenade: 0
-  isFiringPrimary: 0
-  isFiringSecondary: 0
-  isReloading: 0
 --- !u!1 &8198723429366267019
 GameObject:
   m_ObjectHideFlags: 0

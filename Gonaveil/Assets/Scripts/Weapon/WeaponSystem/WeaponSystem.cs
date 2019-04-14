@@ -6,6 +6,8 @@ public class WeaponSystem : MonoBehaviour {
     [HideInInspector] public bool isFiringSecondary;
     [HideInInspector] public bool isReloading;
 
+    public string weaponName;
+
     public int ammo;
     public int clipSize;
 

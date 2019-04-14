@@ -92,6 +92,7 @@ MonoBehaviour:
   isFiringPrimary: 0
   isFiringSecondary: 0
   isReloading: 0
+  weaponName: Hammer Buster
   ammo: 0
   clipSize: 6
   fireRate: 220
@@ -108,7 +109,7 @@ MonoBehaviour:
     type: 3}
   weaponMovementProfile: {fileID: 11400000, guid: 28e3be145649cfb48b5e1185a45ea519,
     type: 2}
-  worldModel: {fileID: 0}
+  worldModel: {fileID: 100028, guid: b9c2cd85636981d499406608bee29885, type: 3}
   weaponMovement: {fileID: 0}
   camera: {fileID: 0}
   isGrenade: 0

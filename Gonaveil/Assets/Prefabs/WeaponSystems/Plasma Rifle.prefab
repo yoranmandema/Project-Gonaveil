@@ -92,6 +92,7 @@ MonoBehaviour:
   isFiringPrimary: 0
   isFiringSecondary: 0
   isReloading: 0
+  weaponName: Plasma Rifle
   ammo: 0
   clipSize: 25
   fireRate: 600
@@ -126,7 +127,7 @@ MonoBehaviour:
     type: 3}
   weaponMovementProfile: {fileID: 11400000, guid: d990bb4dfaa7bda48b79e62e5599ada3,
     type: 2}
-  worldModel: {fileID: 0}
+  worldModel: {fileID: 100006, guid: ba3b78a6d22a75d4480e59219fca3a4d, type: 3}
   weaponMovement: {fileID: 0}
   camera: {fileID: 0}
   isGrenade: 0

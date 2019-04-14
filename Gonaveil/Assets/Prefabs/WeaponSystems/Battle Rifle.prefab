@@ -59,6 +59,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e004fef3a5c08a74ea4e8ea0d589a6f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isFiringPrimary: 0
+  isFiringSecondary: 0
+  isReloading: 0
+  weaponName: Battle Rifle
   ammo: 0
   clipSize: 30
   fireRate: 800
@@ -93,13 +97,10 @@ MonoBehaviour:
     type: 3}
   weaponMovementProfile: {fileID: 11400000, guid: d990bb4dfaa7bda48b79e62e5599ada3,
     type: 2}
-  worldModel: {fileID: 0}
+  worldModel: {fileID: 100000, guid: d47fa717f850eef4392b3a1013465fb2, type: 3}
   weaponMovement: {fileID: 0}
   camera: {fileID: 0}
   isGrenade: 0
-  isFiringPrimary: 0
-  isFiringSecondary: 0
-  isReloading: 0
 --- !u!1 &8391214908463622520
 GameObject:
   m_ObjectHideFlags: 0

@@ -53,8 +53,22 @@ public class WeaponInventory : MonoBehaviour {
         }
     }
 
+    public void AddWeapon (Transform weapon) {
+        weapon.SetParent(weaponHolder);
+        weapon.localPosition = Vector3.zero;
+        weapon.localRotation = Quaternion.identity;
+
+        CheckCurrentWeapons();
+
+        DisableWeapons();
+
+        if (HasAnyWeapons) {
+            CycleWeapon(1); // Set weapon to first available.
+        }
+    }
+
     // Gets called when the player changes weapons by scrolling.
-    private void CycleWeapon(int delta) {
+    public void CycleWeapon(int delta) {
         // Don't cycle if we don't have any weapons.
         if (!HasAnyWeapons) return;
 
@@ -81,7 +95,7 @@ public class WeaponInventory : MonoBehaviour {
     }
 
     // Returns whether the specified slot is available.
-    private bool IsSlotAvailable(int slot) {
+    public bool IsSlotAvailable(int slot) {
         switch (slot) {
             case 0:
                 return primary == null;
@@ -95,7 +109,7 @@ public class WeaponInventory : MonoBehaviour {
         }
     }
 
-    void SetWeapon() {
+    public void SetWeapon() {
         if (!HasAnyWeapons) return;
 
         DisableWeapons();
@@ -135,7 +149,7 @@ public class WeaponInventory : MonoBehaviour {
         if (grenade) grenade.SetActive(false);
     }
 
-    private void CheckCurrentWeapons () {
+    public void CheckCurrentWeapons () {
         if (weaponHolder.childCount >= 1) primary = weaponHolder.GetChild(0)?.gameObject;
         if (weaponHolder.childCount >= 2) secondary = weaponHolder.GetChild(1)?.gameObject;
         if (weaponHolder.childCount >= 3) grenade = weaponHolder.GetChild(2)?.gameObject;
