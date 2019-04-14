@@ -74792,7 +74792,7 @@ Transform:
   - {fileID: 871899585}
   - {fileID: 707900094}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1479909216
 MonoBehaviour:
@@ -86011,7 +86011,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &1896829870
 Mesh:
@@ -88964,7 +88964,7 @@ Transform:
   - {fileID: 102251390}
   - {fileID: 1956508593}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2022092946
 PrefabInstance:
@@ -92755,6 +92755,75 @@ Transform:
   m_Father: {fileID: 1525287332}
   m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2142204941804035306
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8389469693903491952, guid: 8788dcba5a96ecb4091ba5afecdebd98,
+        type: 3}
+      propertyPath: m_Name
+      value: Plasma Rifle
+      objectReference: {fileID: 0}
+    - target: {fileID: 6341010205232937686, guid: 8788dcba5a96ecb4091ba5afecdebd98,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 68.34856
+      objectReference: {fileID: 0}
+    - target: {fileID: 6341010205232937686, guid: 8788dcba5a96ecb4091ba5afecdebd98,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 13.2563
+      objectReference: {fileID: 0}
+    - target: {fileID: 6341010205232937686, guid: 8788dcba5a96ecb4091ba5afecdebd98,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 8.479242
+      objectReference: {fileID: 0}
+    - target: {fileID: 6341010205232937686, guid: 8788dcba5a96ecb4091ba5afecdebd98,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6341010205232937686, guid: 8788dcba5a96ecb4091ba5afecdebd98,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6341010205232937686, guid: 8788dcba5a96ecb4091ba5afecdebd98,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6341010205232937686, guid: 8788dcba5a96ecb4091ba5afecdebd98,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6341010205232937686, guid: 8788dcba5a96ecb4091ba5afecdebd98,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6341010205232937686, guid: 8788dcba5a96ecb4091ba5afecdebd98,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6341010205232937686, guid: 8788dcba5a96ecb4091ba5afecdebd98,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6341010205232937686, guid: 8788dcba5a96ecb4091ba5afecdebd98,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8788dcba5a96ecb4091ba5afecdebd98, type: 3}
 --- !u!1001 &3353052467614862682
 PrefabInstance:
   m_ObjectHideFlags: 0
