@@ -31,7 +31,7 @@ public class HammerBusterWeapon : WeaponSystem {
         if (ammo == 0) yield return null;
 
         var i = burstCount;
-        var fireTime = 1 / (fireRate / 60);
+        var fireTime = 1 / (burstFireRate / 60);
 
         while (i > 0 && ConsumeAmmo()) {
             FireLine();

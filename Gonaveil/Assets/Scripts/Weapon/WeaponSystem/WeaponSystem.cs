@@ -2,6 +2,10 @@
 using UnityEngine;
 
 public class WeaponSystem : MonoBehaviour {
+    [HideInInspector] public bool isFiringPrimary;
+    [HideInInspector] public bool isFiringSecondary;
+    [HideInInspector] public bool isReloading;
+
     public int ammo;
     public int clipSize;
 
@@ -24,10 +28,6 @@ public class WeaponSystem : MonoBehaviour {
     protected WeaponModelData weaponModelData;
     protected float accuracyTime;
     protected float accuracy;
-
-    [HideInInspector] public bool isFiringPrimary;
-    [HideInInspector] public bool isFiringSecondary;
-    [HideInInspector] public bool isReloading;
 
     public void Enable() {
         camera = transform.root.GetComponentInChildren<Camera>().transform;
