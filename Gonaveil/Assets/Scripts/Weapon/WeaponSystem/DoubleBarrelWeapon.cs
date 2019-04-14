@@ -36,6 +36,10 @@ public class DoubleBarrelWeapon : WeaponSystem {
             playerMovement.AddForce(
                 direction * hookForce * dotVelocity + Vector3.up * 5f
                 );
+
+            if (dotVelocity <= 0) {
+                isUsingGrapplingHook = false;
+            }
         }
     }
 
