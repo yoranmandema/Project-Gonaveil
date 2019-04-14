@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class DroppedWeapon : MonoBehaviour {
+public class DroppedWeapon : MonoBehaviour, IPickup {
 
     public GameObject weapon;
     public float rotationSpeed = 1f;
@@ -21,9 +21,12 @@ public class DroppedWeapon : MonoBehaviour {
     }
 
     void OnTriggerEnter(Collider collider) {
-        if (weapon == null) return;
-
         var player = collider.gameObject.transform.root.gameObject;
+
+        Pickup(player);
+    }
+
+    private void Pickup (GameObject player) {
         var inventory = player.GetComponent<WeaponInventory>();
         WeaponSystem inventoryWeaponSystem = null;
 
@@ -44,5 +47,11 @@ public class DroppedWeapon : MonoBehaviour {
 
             Destroy(gameObject);
         }
+    }
+
+    public void OnPickup (PlayerInteract playerInteract) {
+        var player = playerInteract.gameObject.transform.root.gameObject;
+
+        Pickup(player);
     }
 }
