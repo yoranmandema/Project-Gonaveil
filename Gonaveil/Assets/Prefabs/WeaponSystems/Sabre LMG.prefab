@@ -78,8 +78,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.96284866
-      value: 4.19924
+      time: 0.6749306
+      value: 2.7037568
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -87,14 +87,14 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 2.112895
-      value: 2.188413
-      inSlope: -0.8677435
-      outSlope: -0.8677435
+      time: 1.2799945
+      value: 1.3069645
+      inSlope: -1.061695
+      outSlope: -1.061695
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.42455912
-      outWeight: 0
+      outWeight: 0.044591907
     - serializedVersion: 3
       time: 5.6657543
       value: 0.513857
@@ -158,6 +158,34 @@ PrefabInstance:
     - target: {fileID: 100012, guid: f09682021a4a5d046a84b20cff9d8ece, type: 3}
       propertyPath: m_Name
       value: SabreLMG
+      objectReference: {fileID: 0}
+    - target: {fileID: 100012, guid: f09682021a4a5d046a84b20cff9d8ece, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f09682021a4a5d046a84b20cff9d8ece, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: f09682021a4a5d046a84b20cff9d8ece, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: f09682021a4a5d046a84b20cff9d8ece, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: f09682021a4a5d046a84b20cff9d8ece, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: f09682021a4a5d046a84b20cff9d8ece, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100010, guid: f09682021a4a5d046a84b20cff9d8ece, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 400012, guid: f09682021a4a5d046a84b20cff9d8ece, type: 3}
       propertyPath: m_LocalPosition.x

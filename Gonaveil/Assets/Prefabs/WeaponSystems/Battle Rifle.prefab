@@ -65,17 +65,6 @@ MonoBehaviour:
   autoReload: 1
   reloadTime: 1
   hasSecondary: 1
-  weaponMovementProfile: {fileID: 11400000, guid: d990bb4dfaa7bda48b79e62e5599ada3,
-    type: 2}
-  worldModel: {fileID: 0}
-  weaponMovement: {fileID: 0}
-  camera: {fileID: 0}
-  isGrenade: 0
-  isFiringPrimary: 0
-  isFiringSecondary: 0
-  isReloading: 0
-  projectile: {fileID: 4846615784228082546, guid: e7cf5f436ac463144989ba4cb199fe24,
-    type: 3}
   accuracyCurve:
     serializedVersion: 2
     m_Curve:
@@ -100,6 +89,17 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  projectile: {fileID: 4846615784228082546, guid: e7cf5f436ac463144989ba4cb199fe24,
+    type: 3}
+  weaponMovementProfile: {fileID: 11400000, guid: d990bb4dfaa7bda48b79e62e5599ada3,
+    type: 2}
+  worldModel: {fileID: 0}
+  weaponMovement: {fileID: 0}
+  camera: {fileID: 0}
+  isGrenade: 0
+  isFiringPrimary: 0
+  isFiringSecondary: 0
+  isReloading: 0
 --- !u!1 &8391214908463622520
 GameObject:
   m_ObjectHideFlags: 0

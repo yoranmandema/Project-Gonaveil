@@ -103,6 +103,10 @@ public class WeaponSystem : MonoBehaviour {
             if (ammo > 0) {
                 ammo -= 1;
 
+                if (autoReload && ammo == 0) {
+                    OnStartReload();
+                }
+
                 return true;
             }
             else {

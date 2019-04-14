@@ -111,8 +111,6 @@ public class WeaponInventory : MonoBehaviour {
 
         index = -1;
 
-        print(HasAnyWeapons);
-
         if (HasAnyWeapons) {
             CycleWeapon(1); // Set weapon to first available.
         }
