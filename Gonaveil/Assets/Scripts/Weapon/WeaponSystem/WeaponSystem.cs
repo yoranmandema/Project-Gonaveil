@@ -12,6 +12,7 @@ public class WeaponSystem : MonoBehaviour {
 
     public bool hasSecondary = true;
 
+    public AnimationCurve accuracyCurve;
     public GameObject projectile;
     public WeaponMovementProfile weaponMovementProfile;
     public GameObject worldModel;
@@ -21,12 +22,19 @@ public class WeaponSystem : MonoBehaviour {
 
     protected float lastFireTime;
     protected WeaponModelData weaponModelData;
+    protected float accuracyTime;
+    protected float accuracy;
 
     [HideInInspector] public bool isFiringPrimary;
     [HideInInspector] public bool isFiringSecondary;
     [HideInInspector] public bool isReloading;
 
     public void Enable() {
+        camera = transform.root.GetComponentInChildren<Camera>().transform;
+
+        if (camera == null) Debug.LogError("No camera found on weapon holder!");
+
+        weaponMovement = transform.parent.GetComponent<WeaponMovement>();
         weaponMovement.profile = weaponMovementProfile;
     }
 
@@ -41,6 +49,15 @@ public class WeaponSystem : MonoBehaviour {
     }
 
     void Update() {
+
+        if (accuracyCurve.length > 0) {
+            var accuracyCurveEnd = accuracyCurve[accuracyCurve.length - 1].time;
+
+            accuracyTime = Mathf.Clamp(accuracyTime + Time.deltaTime * (isFiringPrimary ? 1 : -1), 0, accuracyCurveEnd);
+
+            accuracy = accuracyCurve.Evaluate(accuracyTime);
+        }
+
         if (InputManager.GetButtonDown("Fire1") && !isFiringPrimary && !isReloading) {
             OnStartPrimary();
 
