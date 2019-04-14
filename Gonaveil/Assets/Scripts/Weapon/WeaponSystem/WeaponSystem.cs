@@ -38,10 +38,14 @@ public class WeaponSystem : MonoBehaviour {
 
         weaponMovement = transform.parent.GetComponent<WeaponMovement>();
         weaponMovement.profile = weaponMovementProfile;
+
+        OnEnable();
     }
 
     public void Disable() {
         isFiringPrimary = isFiringSecondary = false;
+
+        OnDisable();
     }
 
     void Start() {
@@ -88,6 +92,9 @@ public class WeaponSystem : MonoBehaviour {
 
         OnUpdate();
     }
+
+    public virtual void OnEnable() {  }
+    public virtual void OnDisable() { }
 
     public virtual void OnStart() {
         Disable();

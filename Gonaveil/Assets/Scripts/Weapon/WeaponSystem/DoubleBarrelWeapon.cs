@@ -15,9 +15,7 @@ public class DoubleBarrelWeapon : WeaponSystem {
     private Vector3 hookPivot;
     private PlayerMovement playerMovement;
 
-    public override void OnStart() {
-        base.OnStart();
-
+    public override void OnEnable() {
         playerMovement = GetComponentInParent<PlayerMovement>();
     }
 

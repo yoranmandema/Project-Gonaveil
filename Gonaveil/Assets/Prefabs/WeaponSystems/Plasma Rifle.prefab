@@ -125,7 +125,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   projectile: {fileID: 4846615784228082546, guid: e7cf5f436ac463144989ba4cb199fe24,
     type: 3}
-  weaponMovementProfile: {fileID: 11400000, guid: d990bb4dfaa7bda48b79e62e5599ada3,
+  weaponMovementProfile: {fileID: 11400000, guid: 9324222546368a646ac353a6efa02015,
     type: 2}
   worldModel: {fileID: 100006, guid: ba3b78a6d22a75d4480e59219fca3a4d, type: 3}
   weaponMovement: {fileID: 0}
