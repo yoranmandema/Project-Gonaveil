@@ -59,6 +59,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df7f4aa095b05b04c95fde368b6617b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ammo: 0
+  clipSize: 2
+  fireRate: 400
+  autoReload: 1
+  reloadTime: 1
+  hasSecondary: 1
   weaponMovementProfile: {fileID: 11400000, guid: 12b44c43f1717254f9ab37d48d78e369,
     type: 2}
   worldModel: {fileID: 0}
@@ -69,12 +75,11 @@ MonoBehaviour:
   isFiringSecondary: 0
   projectile: {fileID: 4846615784228082546, guid: e7cf5f436ac463144989ba4cb199fe24,
     type: 3}
-  spread: 3
-  fireRate: 400
+  spread: 5
   pellets: 20
   hookDamping: 0.25
-  hookForce: 25
-  hookVelocity: 3
+  hookForce: 50
+  hookVelocity: 15
   maxHookDistance: 25
   hookMask:
     serializedVersion: 2
@@ -176,19 +181,19 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 33e803482c05c75409b2ac98d08a312d, type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: 33e803482c05c75409b2ac98d08a312d, type: 3}
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
-    - target: {fileID: 100004, guid: 33e803482c05c75409b2ac98d08a312d, type: 3}
+    - target: {fileID: 100000, guid: 33e803482c05c75409b2ac98d08a312d, type: 3}
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 100006, guid: 33e803482c05c75409b2ac98d08a312d, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 33e803482c05c75409b2ac98d08a312d, type: 3}
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}

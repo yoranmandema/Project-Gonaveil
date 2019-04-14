@@ -1,12 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class DoubleBarrelWeapon : WeaponSystem {
 
-    public GameObject projectile;
     public float spread = 3f;
-    public float fireRate = 400f;
     public int pellets = 20;
 
     public float hookDamping = 0.25f;
@@ -15,13 +11,12 @@ public class DoubleBarrelWeapon : WeaponSystem {
     public float maxHookDistance = 10f;
     public LayerMask hookMask;
 
-    private float lastFireTime;
     private bool isUsingGrapplingHook;
     private Vector3 hookPivot;
     private PlayerMovement playerMovement;
 
     public override void OnStart() {
-        Disable();
+        base.OnStart();
 
         playerMovement = GetComponentInParent<PlayerMovement>();
     }
@@ -44,26 +39,13 @@ public class DoubleBarrelWeapon : WeaponSystem {
     }
 
     public override void OnStartPrimary() {
-        var fireTime = 1 / (fireRate / 60);
+        if (ConsumeFireSample()) {
+            if (!ConsumeAmmo()) return;
 
-        if ((Time.realtimeSinceStartup - lastFireTime) > fireTime) {
             weaponMovement.DoRecoil();
 
-            lastFireTime = Time.realtimeSinceStartup;
-
             for (var i = 0; i < pellets; i++) {
-                //create bullet
-                var projectileObject = Instantiate(projectile, camera.position, camera.rotation) as GameObject;
-
-                var spreadVector = CalculateSpreadVector(spread);
-
-                var projectileComponent = projectileObject.GetComponent<Projectile>();
-
-                projectileObject.transform.rotation = Quaternion.LookRotation(spreadVector);
-                projectileComponent.barrel = weaponModelData.barrel;
-                projectileComponent.instigator = transform.root.gameObject;
-                projectileComponent.weaponSystem = this;
-                projectileComponent.Fire();
+                FireProjectile(spread);
             }
         }
     }
