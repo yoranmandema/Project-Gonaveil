@@ -6566,75 +6566,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 531434888}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &103664350
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 100028, guid: b9c2cd85636981d499406608bee29885, type: 3}
-      propertyPath: m_Name
-      value: HammerBuster
-      objectReference: {fileID: 0}
-    - target: {fileID: 400028, guid: b9c2cd85636981d499406608bee29885, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 46.430893
-      objectReference: {fileID: 0}
-    - target: {fileID: 400028, guid: b9c2cd85636981d499406608bee29885, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.8531885
-      objectReference: {fileID: 0}
-    - target: {fileID: 400028, guid: b9c2cd85636981d499406608bee29885, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 16.778305
-      objectReference: {fileID: 0}
-    - target: {fileID: 400028, guid: b9c2cd85636981d499406608bee29885, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 400028, guid: b9c2cd85636981d499406608bee29885, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400028, guid: b9c2cd85636981d499406608bee29885, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400028, guid: b9c2cd85636981d499406608bee29885, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071067
-      objectReference: {fileID: 0}
-    - target: {fileID: 400028, guid: b9c2cd85636981d499406608bee29885, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 400028, guid: b9c2cd85636981d499406608bee29885, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400028, guid: b9c2cd85636981d499406608bee29885, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400028, guid: b9c2cd85636981d499406608bee29885, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400028, guid: b9c2cd85636981d499406608bee29885, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 400028, guid: b9c2cd85636981d499406608bee29885, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 400028, guid: b9c2cd85636981d499406608bee29885, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b9c2cd85636981d499406608bee29885, type: 3}
 --- !u!4 &108190142 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6166008508936151175, guid: 274b054c2fa65a448934e073f22ada01,
@@ -23200,7 +23131,7 @@ PrefabInstance:
         type: 3}
       propertyPath: weaponPrefab
       value: 
-      objectReference: {fileID: 7889961728042130609, guid: ca500af0c009cbf40ad3c019c5294c0d,
+      objectReference: {fileID: 3498492182869634366, guid: c7b57ad0e94bd71418907c06b981803a,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a32abb8f898d9844b44f24eeab7ead1, type: 3}
@@ -35612,7 +35543,7 @@ PrefabInstance:
         type: 3}
       propertyPath: weaponPrefab
       value: 
-      objectReference: {fileID: 5209984929163130827, guid: 9ea28963fa6350b40a424f2800800104,
+      objectReference: {fileID: 4729562952375212812, guid: 35d400814e3e44a49993899087a389cb,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a32abb8f898d9844b44f24eeab7ead1, type: 3}
@@ -41626,6 +41557,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Weapon Spawn Pad (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1011579383291633285, guid: 8a32abb8f898d9844b44f24eeab7ead1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4188896774388573669, guid: 8a32abb8f898d9844b44f24eeab7ead1,
         type: 3}
@@ -51407,6 +51343,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Weapon Spawn Pad (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1011579383291633285, guid: 8a32abb8f898d9844b44f24eeab7ead1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4188896774388573669, guid: 8a32abb8f898d9844b44f24eeab7ead1,
         type: 3}
@@ -74861,7 +74802,7 @@ Transform:
   - {fileID: 871899585}
   - {fileID: 707900094}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1479909216
 MonoBehaviour:
@@ -80045,7 +79986,7 @@ PrefabInstance:
         type: 3}
       propertyPath: weaponPrefab
       value: 
-      objectReference: {fileID: 6342696842891776904, guid: 8c03ae22980abfd4c91ea22fcde7bf5b,
+      objectReference: {fileID: 2520277119495599680, guid: 7c41589a635186946802910dd86c9014,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a32abb8f898d9844b44f24eeab7ead1, type: 3}
@@ -86080,7 +86021,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &1896829870
 Mesh:
@@ -88189,6 +88130,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Weapon Spawn Pad (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1011579383291633285, guid: 8a32abb8f898d9844b44f24eeab7ead1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4188896774388573669, guid: 8a32abb8f898d9844b44f24eeab7ead1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -88253,7 +88199,7 @@ PrefabInstance:
         type: 3}
       propertyPath: weaponPrefab
       value: 
-      objectReference: {fileID: 2783222280255535913, guid: 9ba8532be31ca0f4a9d295f4aab488af,
+      objectReference: {fileID: 1896688869767332270, guid: cd080b8fd15b63f41b8098cc34ce2f6e,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a32abb8f898d9844b44f24eeab7ead1, type: 3}
@@ -88727,7 +88673,7 @@ PrefabInstance:
         type: 3}
       propertyPath: weaponPrefab
       value: 
-      objectReference: {fileID: 5228108675203581823, guid: 241c6b1bf8d7bef47833d821de48c9dd,
+      objectReference: {fileID: 4514703114147464617, guid: 2a63cdd4398d9a04e819dd3bc7a34c1c,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a32abb8f898d9844b44f24eeab7ead1, type: 3}
@@ -89033,7 +88979,7 @@ Transform:
   - {fileID: 102251390}
   - {fileID: 1956508593}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2022092946
 PrefabInstance:
@@ -92362,6 +92308,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Weapon Spawn Pad (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 1011579383291633285, guid: 8a32abb8f898d9844b44f24eeab7ead1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4188896774388573669, guid: 8a32abb8f898d9844b44f24eeab7ead1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -93112,6 +93063,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Weapon Spawn Pad
       objectReference: {fileID: 0}
+    - target: {fileID: 1011579383291633285, guid: 8a32abb8f898d9844b44f24eeab7ead1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4188896774388573669, guid: 8a32abb8f898d9844b44f24eeab7ead1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -93261,6 +93217,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Dropped Hammer Buster
+      objectReference: {fileID: 0}
+    - target: {fileID: 1896688869767332270, guid: cd080b8fd15b63f41b8098cc34ce2f6e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8233693735036429894, guid: cd080b8fd15b63f41b8098cc34ce2f6e,
         type: 3}
