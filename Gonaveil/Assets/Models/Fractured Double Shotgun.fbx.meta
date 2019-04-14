@@ -10,6 +10,8 @@ ModelImporter:
     100008: //RootNode
     100010: Cube.001
     100012: Text
+    100014: Cube.002
+    100016: Cylinder.003
     400000: Cube
     400002: Cylinder
     400004: Cylinder.001
@@ -17,6 +19,8 @@ ModelImporter:
     400008: //RootNode
     400010: Cube.001
     400012: Text
+    400014: Cube.002
+    400016: Cylinder.003
     2100000: Hammer3
     2100002: Hammer2
     2100004: Hammer1
@@ -30,6 +34,8 @@ ModelImporter:
     2300008: //RootNode
     2300010: Cube.001
     2300012: Text
+    2300014: Cube.002
+    2300016: Cylinder.003
     3300000: Cube
     3300002: Cylinder
     3300004: Cylinder.001
@@ -37,12 +43,16 @@ ModelImporter:
     3300008: //RootNode
     3300010: Cube.001
     3300012: Text
+    3300014: Cube.002
+    3300016: Cylinder.003
     4300000: Cube.001
     4300002: Cylinder
     4300004: Cube
     4300006: Cylinder.001
     4300008: Cylinder.002
     4300010: Text
+    4300012: Cylinder.003
+    4300014: Cube.002
   externalObjects:
   - first:
       type: UnityEngine:Material
