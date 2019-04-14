@@ -9,6 +9,8 @@ public class DroppedWeapon : MonoBehaviour, IPickup {
     private WeaponSystem weaponComponent;
 
     void Start() {
+        if (worldModel) Destroy(worldModel);
+
         weapon.SetActive(false);
 
         weaponComponent = weapon.GetComponent<WeaponSystem>();
@@ -26,7 +28,7 @@ public class DroppedWeapon : MonoBehaviour, IPickup {
         Pickup(player);
     }
 
-    private void Pickup (GameObject player) {
+    private void Pickup (GameObject player, bool replace = false) {
         var inventory = player.GetComponent<WeaponInventory>();
         WeaponSystem inventoryWeaponSystem = null;
 
@@ -47,11 +49,24 @@ public class DroppedWeapon : MonoBehaviour, IPickup {
 
             Destroy(gameObject);
         }
+        else if (replace) {
+            var weaponTransform = weapon.transform;
+
+            weapon = inventory.CurrentWeapon;
+
+            weapon.transform.SetParent(transform);
+            weapon.transform.localPosition = Vector3.zero;
+            weapon.transform.localRotation = Quaternion.identity;
+
+            inventory.AddWeapon(weaponTransform);
+
+            Start();
+        }
     }
 
     public void OnPickup (PlayerInteract playerInteract) {
         var player = playerInteract.gameObject.transform.root.gameObject;
 
-        Pickup(player);
+        Pickup(player, true);
     }
 }
