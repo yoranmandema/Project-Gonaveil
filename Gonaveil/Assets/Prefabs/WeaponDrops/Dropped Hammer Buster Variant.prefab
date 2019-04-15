@@ -67,6 +67,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7819369518644430513, guid: b6d2b14ea42f2e346b09623ba5be37d4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7819369518644430543, guid: b6d2b14ea42f2e346b09623ba5be37d4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7819369518644430541, guid: b6d2b14ea42f2e346b09623ba5be37d4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7819369518644430539, guid: b6d2b14ea42f2e346b09623ba5be37d4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6d2b14ea42f2e346b09623ba5be37d4, type: 3}
 --- !u!1 &4147947426952354381 stripped
@@ -85,7 +105,7 @@ PrefabInstance:
     - target: {fileID: 2452486047863580972, guid: 5ae8d59ef685a0345989ea227cb38e7c,
         type: 3}
       propertyPath: m_Name
-      value: Dropped Hammer Buster
+      value: Dropped Hammer Buster Variant
       objectReference: {fileID: 0}
     - target: {fileID: 5339417274235047620, guid: 5ae8d59ef685a0345989ea227cb38e7c,
         type: 3}

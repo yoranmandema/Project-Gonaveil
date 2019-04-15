@@ -34,4 +34,4 @@ MonoBehaviour:
   wiggleForce: 3
   wiggleDamping: 17
   jumpAmount: 1
-  offset: {x: 0.19, y: -0.17, z: 0.66}
+  offset: {x: 0.19, y: -0.17, z: 0.34}
