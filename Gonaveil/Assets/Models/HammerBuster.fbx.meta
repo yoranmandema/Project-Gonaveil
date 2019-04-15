@@ -19,6 +19,9 @@ ModelImporter:
     100026: Cylinder.010
     100028: //RootNode
     100030: Cube.004
+    100032: Cube.002
+    100034: Cube.005
+    100036: DELETETHIS
     400000: Cube
     400002: Cube.001
     400004: Cube.003
@@ -35,6 +38,9 @@ ModelImporter:
     400026: Cylinder.010
     400028: //RootNode
     400030: Cube.004
+    400032: Cube.002
+    400034: Cube.005
+    400036: DELETETHIS
     2100000: Hammer3
     2100002: Hammer1
     2100004: Hammer2
@@ -61,6 +67,9 @@ ModelImporter:
     2300026: Cylinder.010
     2300028: //RootNode
     2300030: Cube.004
+    2300032: Cube.002
+    2300034: Cube.005
+    2300036: DELETETHIS
     3300000: Cube
     3300002: Cube.001
     3300004: Cube.003
@@ -77,6 +86,9 @@ ModelImporter:
     3300026: Cylinder.010
     3300028: //RootNode
     3300030: Cube.004
+    3300032: Cube.002
+    3300034: Cube.005
+    3300036: DELETETHIS
     4300000: Cube.002
     4300002: Cylinder.003
     4300004: Cube.001
@@ -93,6 +105,9 @@ ModelImporter:
     4300026: Cylinder.005
     4300028: Cylinder.010
     4300030: Cube.004
+    4300032: HammerBuster
+    4300034: Cube.005
+    4300036: DELETETHIS
     2186277476908879412: ImportLogs
   externalObjects:
   - first:
@@ -175,7 +190,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 11
+    globalScale: 0.11
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1

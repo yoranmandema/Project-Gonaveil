@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.164853, g: 0.07568507, b: 0.0899948, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7550,7 +7550,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh10336
+  m_Name: pb_Mesh20356
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -93048,6 +93048,81 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3759729805403127416, guid: 2a63cdd4398d9a04e819dd3bc7a34c1c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8991549010375442882, guid: 2a63cdd4398d9a04e819dd3bc7a34c1c,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8991549010375442882, guid: 2a63cdd4398d9a04e819dd3bc7a34c1c,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8991549010375442882, guid: 2a63cdd4398d9a04e819dd3bc7a34c1c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 625209105169642062, guid: 2a63cdd4398d9a04e819dd3bc7a34c1c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8991549010375744994, guid: 2a63cdd4398d9a04e819dd3bc7a34c1c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8991549010375745000, guid: 2a63cdd4398d9a04e819dd3bc7a34c1c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8991549010375744996, guid: 2a63cdd4398d9a04e819dd3bc7a34c1c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8991549010375744998, guid: 2a63cdd4398d9a04e819dd3bc7a34c1c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8991549010375745004, guid: 2a63cdd4398d9a04e819dd3bc7a34c1c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8991549010375745006, guid: 2a63cdd4398d9a04e819dd3bc7a34c1c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8991549010375745018, guid: 2a63cdd4398d9a04e819dd3bc7a34c1c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8991549010375744992, guid: 2a63cdd4398d9a04e819dd3bc7a34c1c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8991549010375745022, guid: 2a63cdd4398d9a04e819dd3bc7a34c1c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8991549010375745016, guid: 2a63cdd4398d9a04e819dd3bc7a34c1c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a63cdd4398d9a04e819dd3bc7a34c1c, type: 3}
