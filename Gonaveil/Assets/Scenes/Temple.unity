@@ -7534,7 +7534,9 @@ PrefabInstance:
       propertyPath: antialiasingMode
       value: 3
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1534258969, guid: 908a70b9af8bb4e4bb3951e11a6b614a, type: 3}
+    - {fileID: 381157137, guid: 908a70b9af8bb4e4bb3951e11a6b614a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 908a70b9af8bb4e4bb3951e11a6b614a, type: 3}
 --- !u!43 &186870810
 Mesh:
@@ -24053,7 +24055,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 635909600}
-  - component: {fileID: 635909601}
   m_Layer: 8
   m_Name: Post Processing
   m_TagString: Untagged
@@ -24075,23 +24076,6 @@ Transform:
   m_Father: {fileID: 130599196}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &635909601
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 635909599}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sharedProfile: {fileID: 11400000, guid: a913c2f8a8dfe934f97893479d5296dc, type: 2}
-  isGlobal: 1
-  blendDistance: 0
-  weight: 1
-  priority: 0
 --- !u!1 &637333323
 GameObject:
   m_ObjectHideFlags: 0
