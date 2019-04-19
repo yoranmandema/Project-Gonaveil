@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
@@ -39,7 +38,6 @@ public partial class PlayerMovement : MonoBehaviour {
 
     public float flipTime = 0.25f;
 
-    public bool isFlipped;
     public bool isGrounded;
     public bool isInAir;
     public bool isSurfing;
@@ -52,22 +50,16 @@ public partial class PlayerMovement : MonoBehaviour {
     private Vector3 groundNormal;
     private Vector3 groundPoint;
     private Vector3 desiredMovement;
-    private Vector3 flipAxis;
-    private Rigidbody rb;
-    private LayerMask groundMask;
-    //private float maxAirVelocity;
+    private bool wasGrounded;
     private float appliedCrouchHeight = 2f;
     private float crouchLerp = 1f;
     private float desiredCrouchLerp = 1f;
+    private bool isOnSlope;
 
     private bool canJump = true;
     private bool canJumpCooldown = true;
     private bool queuedJump;
-    private bool wasGrounded;
-    private bool wasSurfing;
-    private bool wasInAir;
 
-    private bool isEndingFlip;
     private bool canApplyFriction;
     private float frictionMul;
 
@@ -78,14 +70,8 @@ public partial class PlayerMovement : MonoBehaviour {
     private float GroundSlope => Mathf.Acos(Vector3.Dot(groundNormal, Vector3.up)) * Mathf.Rad2Deg;
 
     private void Start() {
-        rb = GetComponent<Rigidbody>();
         characterController = GetComponent<CharacterController>();
         weaponMovement = GetComponentInChildren<WeaponMovement>();
-
-        groundMask = ((LayerMask)gameObject.layer).GetReverseLayerMask();
-        groundMask ^= 1 << gameObject.layer;
-
-        groundMask ^= 1 << LayerMask.NameToLayer("Ignore Raycast");
     }
 
     private bool WantsJumpInput() {
@@ -105,142 +91,13 @@ public partial class PlayerMovement : MonoBehaviour {
         canJumpCooldown = true;
     }
 
-    private IEnumerator FlipStart() {
-        isFlipped = true;
-
-        flipAxis = transform.right;
-        var flipStep = 0f;
-
-        while (flipStep < 1) {
-            flipStep += Time.deltaTime / flipTime;
-
-            transform.RotateAround(transform.TransformPoint(characterController.center), flipAxis, 180 * Time.deltaTime / flipTime);
-
-            yield return new WaitForEndOfFrame();
-        }
-
-        var forwardRelativeToSurfaceNormal = Vector3.Cross(transform.right, -Vector3.up);
-        var targetRotation = Quaternion.LookRotation(forwardRelativeToSurfaceNormal, -Vector3.up);
-
-        transform.rotation = targetRotation;
-    }
-
-    private IEnumerator FlipEnd() {
-        if (!isFlipped) yield break;
-        if (isEndingFlip) yield break;
-
-        isEndingFlip = true;
-        var flipStep = 0f;
-
-        while (flipStep < 1) {
-            flipStep += Time.deltaTime / flipTime;
-
-            transform.RotateAround(transform.TransformPoint(characterController.center), flipAxis, 180 * Time.deltaTime / flipTime);
-
-            yield return new WaitForEndOfFrame();
-        }
-
-        var forwardRelativeToSurfaceNormal = Vector3.Cross(transform.right, Vector3.up);
-        var targetRotation = Quaternion.LookRotation(forwardRelativeToSurfaceNormal, Vector3.up);
-
-        transform.rotation = targetRotation;
-
-        isFlipped = false;
-        isEndingFlip = false;
-    }
-
-    private void GroundCheck() {
-        if (wasInAir && !isInAir) {
-            StartCoroutine(FlipEnd());
-        }
-
-        wasSurfing = isSurfing;
-        wasGrounded = isGrounded;
-        wasInAir = isInAir;
-
-        isGrounded = characterController.isGrounded;
-        isSurfing = false;
-
-        var castPosition = transform.position + transform.up * characterController.radius;
-        var castDirection = -transform.up;
-
-        if (transform.up.y < 0) {
-            castPosition = transform.position + transform.up * (characterController.height - characterController.radius);
-            castDirection = transform.up;
-        }
-
-        var groundHits = Physics.SphereCastAll(
-            castPosition,
-            characterController.radius,
-            castDirection,
-            0.1f,
-            groundMask
-            );
-
-        var normal = Vector3.zero;
-        var hitPoint = Vector3.zero;
-
-        foreach (var hit in groundHits) {
-            var rayCast = Physics.Raycast(hit.point + hit.normal * 0.01f, -hit.normal, out RaycastHit rayCastHit, 0.02f, groundMask);
-
-            //var useUpwards = (rayCastHit.normal != hit.normal) && (Mathf.Acos(rayCastHit.normal.y) * Mathf.Rad2Deg > stepSlope);
-
-            //if (useUpwards) {
-            //    normal += Vector3.up;
-            //}
-            //else {
-            //    normal += hit.normal;
-            //}
-
-            normal += rayCastHit.normal;
-
-            hitPoint += hit.point;
-        }
-
-        if (groundHits.Length > 0) {
-            normal /= (groundHits.Length);
-            normal = normal.normalized;
-        }
-        else {
-            normal = Vector3.up;
-        }
-
-        hitPoint /= (groundHits.Length);
-
-        groundNormal = normal;
-        groundPoint = hitPoint;
-
-        if (!isGrounded && groundHits.Length > 0) {
-            if (GroundSlope <= surfSlope) {
-                isGrounded = true;
-            }
-        }
-
-        if (!wasGrounded && isGrounded) {
-            weaponMovement.Impulse(
-                new Vector3(0, -2, 0),
-                new Vector2(-100, 0)
-                );
-        }
-
-        if (GroundSlope > surfSlope) {
-            isSurfing = true;
-            isGrounded = false;
-        }
-
-        isInAir = !isGrounded && !isSurfing;
-
-        if (wasGrounded && !isGrounded) {
-            frictionMul = 0;
-        }
-
-        if (wasSurfing) StartCoroutine(JumpCooldown());
+    void OnControllerColliderHit(ControllerColliderHit hit) {
+        groundNormal = hit.normal;
     }
 
     void Update() {
-        GroundCheck();
-
         OnScreenDebug.Print($"Vel: {velocity.SetY(0).magnitude}");
+        OnScreenDebug.Print($"{characterController.isGrounded}");
 
         if (Input.GetButtonDown("Crouch") && velocity.magnitude > slideVelocityThreshold) {
             isSliding = true;
@@ -253,6 +110,7 @@ public partial class PlayerMovement : MonoBehaviour {
             isSliding = false;
         }
 
+        velocity.y -= 0.1f;
         characterController.Move(velocity * Time.deltaTime);
 
         // Prevent the input velocity from getting bigger than what the real velocity is.
@@ -263,20 +121,32 @@ public partial class PlayerMovement : MonoBehaviour {
 
         desiredMovement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
 
-        if (isSurfing) {
-            SurfMovement();
-        }
-        else if (isSliding && !isInAir) {
-            SlideMovement();
-        }
-        else if (isGrounded) {
-            GroundMovement();
+        isOnSlope = characterController.isGrounded && (GroundSlope > surfSlope);
+
+        isGrounded = characterController.isGrounded && !isOnSlope;
+
+        if (isGrounded) {
+            if (isSliding) {
+                SlideMovement();
+            }
+            else {
+                GroundMovement();
+            }
         }
         else {
             AirMovement();
         }
 
         CrouchMovement();
+
+        if (wasGrounded != isGrounded && isGrounded) {
+            OnEnterGrounded();
+        }
+        else if (wasGrounded != isGrounded && !isGrounded) {
+            OnEnterAir();
+        }
+
+        wasGrounded = characterController.isGrounded;
     }
 
     private void SlideMovement() {
@@ -333,21 +203,15 @@ public partial class PlayerMovement : MonoBehaviour {
         }
     }
 
+    private void OnEnterGrounded() {
+        StartCoroutine(DisableFrictionForFrame());
+    }
+    private void OnEnterAir() {
+        frictionMul = 0f;
+    }
+
     private void GroundMovement() {
-        if (!wasGrounded) {
-            characterController.slopeLimit = surfSlope;
-
-            StartCoroutine(DisableFrictionForFrame());
-        }
-
         frictionMul = Mathf.Min(frictionMul + Time.deltaTime / frictionTime, 1);
-
-        var moveVector = TransformedMovement;
-
-        // Use projected movement input when moving down a sloped surface to prevent bouncing.
-        //if (ProjectedMovement.y < 0) {
-        moveVector = ProjectedMovement;
-        //}
 
         var maxVel = isCrouching && !isSliding ? crouchVelocity : maxVelocity;
 
@@ -366,22 +230,22 @@ public partial class PlayerMovement : MonoBehaviour {
     private IEnumerator DisableFrictionForFrame() {
         canApplyFriction = false;
 
-        yield return new WaitForSeconds(Time.fixedDeltaTime);
+        yield return new WaitForSeconds(Time.deltaTime * 3f);
 
         canApplyFriction = true;
     }
 
-    private void SurfMovement() {
-        if (!wasSurfing) {
-            velocity = Vector3.ProjectOnPlane(velocity, groundNormal);
+    private void AirMovement() {
+        if (queueJumping && Input.GetButtonDown("Jump")) queuedJump = true;
 
-            characterController.slopeLimit = 90f;
-        }
+        DoAcceleration(transform.TransformDirection(desiredMovement), airAcceleration, maxAirVelocity);
 
         var upwards = Vector3.Dot(groundNormal, Vector3.up);
         var downVector = Vector3.ProjectOnPlane(Vector3.down, groundNormal); // Vector going down the ramp.
 
-        DoAcceleration(transform.TransformDirection(desiredMovement), surfAcceleration, maxAirVelocity);
+        if (GroundSlope < surfSlope) {
+            downVector = Vector3.down;
+        }
 
         // Air drag / friction.
         velocity -= velocity * airDrag * Time.deltaTime;
@@ -393,35 +257,8 @@ public partial class PlayerMovement : MonoBehaviour {
         velocity += downVector * -Physics.gravity.y * upwards * Time.deltaTime;
     }
 
-    private void AirMovement() {
-        if (!wasInAir) {
-            characterController.slopeLimit = 90f;
-        }
-
-        if (queueJumping && isInAir && Input.GetButtonDown("Jump")) queuedJump = true;
-
-        DoAcceleration(transform.TransformDirection(desiredMovement), airAcceleration, maxAirVelocity);
-
-        // Air drag.
-        velocity -= velocity * airDrag * Time.deltaTime;
-
-        // Faster fall velocity.
-        if (velocity.y > -fallMaxSpeedUp) velocity += Vector3.up * Physics.gravity.y * (fallSpeedMultiplier - 1) * Time.deltaTime;
-
-        // Gravity.
-        velocity += Physics.gravity * Time.deltaTime;
-
-        if (Input.GetButtonDown("Flip")) StartCoroutine(FlipStart());
-        if (Input.GetButtonUp("Flip") && isFlipped) StartCoroutine(FlipEnd());
-    }
-
     private void DoAcceleration(Vector3 wishDirection, float maxAccel, float maxVel) {
         var velocityDelta = GetAcceleration(wishDirection, maxAccel, maxVel);
-
-        //var downVector = Vector3.ProjectOnPlane(Vector3.down, groundNormal); // Vector going down the ramp.
-        //var groundDot = 1 - (Vector3.Dot(velocityDelta.normalized, -downVector) + 1) / 2;
-
-        //velocityDelta *= groundDot;
 
         velocity += velocityDelta;
     }
