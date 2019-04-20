@@ -2044,6 +2044,8 @@ MonoBehaviour:
   secondary: {fileID: 0}
   grenade: {fileID: 0}
   weaponHolder: {fileID: 2917357309090321875}
+  droppedWeaponPrefab: {fileID: 2452486047863580972, guid: 5ae8d59ef685a0345989ea227cb38e7c,
+    type: 3}
 --- !u!1 &1352563272540711737
 GameObject:
   m_ObjectHideFlags: 0
@@ -2904,7 +2906,7 @@ GameObject:
   - component: {fileID: 849614184970690636}
   m_Layer: 2
   m_Name: PickupCapsule
-  m_TagString: Untagged
+  m_TagString: PickupCapsule
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

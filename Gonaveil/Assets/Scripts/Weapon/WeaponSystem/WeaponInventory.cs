@@ -7,6 +7,7 @@ public class WeaponInventory : MonoBehaviour {
     public GameObject secondary;
     public GameObject grenade;
     public Transform weaponHolder;
+    public GameObject droppedWeaponPrefab;
 
     private int index;
 
@@ -137,6 +138,24 @@ public class WeaponInventory : MonoBehaviour {
         else if (InputManager.GetAxis("Mouse ScrollWheel") < 0) {
             CycleWeapon(-1);
         }
+        else if (InputManager.GetButtonDown("Drop Weapon")) {
+            DropWeapon();
+        }
+    }
+
+    private void DropWeapon () {
+        if (CurrentWeapon == null) return;
+
+        var cam = CurrentWeapon.GetComponent<WeaponSystem>().camera;
+
+        var drop = Instantiate(droppedWeaponPrefab, cam.position, Quaternion.identity);
+
+        drop.GetComponent<Rigidbody>().velocity += GetComponent<PlayerMovement>().velocity/3f + cam.forward * 7f;
+
+        drop.GetComponent<DroppedWeapon>().SetWeapon(CurrentWeapon);
+        drop.GetComponent<DroppedWeapon>().Initiate(gameObject);
+
+        CurrentWeapon = null;
     }
 
     private GameObject GetCurrentWeapon () {
