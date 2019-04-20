@@ -2514,7 +2514,6 @@ GameObject:
   - component: {fileID: 2917357310790119125}
   - component: {fileID: 2917357310790119128}
   - component: {fileID: 2917357310790119130}
-  - component: {fileID: 296051193}
   - component: {fileID: 1617481820}
   m_Layer: 10
   m_Name: FPCamera
@@ -2578,7 +2577,7 @@ Camera:
   m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
+  m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
 --- !u!114 &2917357310790119130
@@ -2675,20 +2674,6 @@ MonoBehaviour:
       enableFptlForForwardOpaque: 0
       enableBigTilePrepass: 0
       isFptlEnabled: 0
---- !u!114 &296051193
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2917357310790119124}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 575d8208da70a9045a41626fce67b0ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerObject: {fileID: 1352563271953662213}
-  currentWeapon: {fileID: 0}
 --- !u!114 &1617481820
 MonoBehaviour:
   m_ObjectHideFlags: 0
