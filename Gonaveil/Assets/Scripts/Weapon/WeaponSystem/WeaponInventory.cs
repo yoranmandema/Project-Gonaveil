@@ -233,6 +233,7 @@ public class WeaponInventory : MonoBehaviour {
 
         var drop = Instantiate(droppedWeaponPrefab, cam.position, Quaternion.identity);
 
+        drop.transform.rotation = Quaternion.LookRotation(cam.forward.SetY(0));
         drop.GetComponent<Rigidbody>().velocity += GetComponent<PlayerMovement>().velocity / 3f + cam.forward * 7f;
         drop.GetComponent<DroppedWeapon>().SetWeapon(CurrentWeapon);
         drop.GetComponent<DroppedWeapon>().Initiate(gameObject);
