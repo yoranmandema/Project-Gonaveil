@@ -46,11 +46,12 @@ public class DroppedWeapon : MonoBehaviour, IPickup {
     private void Pickup (GameObject player, bool replace = false) {
         var inventory = player.GetComponent<WeaponInventory>();
         WeaponSystem inventoryWeaponSystem = null;
+        WeaponSystem droppedWeaponSystem = weapon.GetComponent<WeaponSystem>();
 
         if (inventory.CurrentWeapon != null) inventoryWeaponSystem = inventory.CurrentWeapon.GetComponent<WeaponSystem>();
 
         if (inventoryWeaponSystem == null) {
-            inventory.AddWeapon(weapon.transform);
+            inventory.AddWeapon(droppedWeaponSystem);
 
             Destroy(gameObject);
         }
@@ -60,18 +61,16 @@ public class DroppedWeapon : MonoBehaviour, IPickup {
             Destroy(gameObject);
         }
         else if (inventory.IsSlotAvailable(0) || inventory.IsSlotAvailable(1)) {
-            inventory.AddWeapon(weapon.transform);
+            inventory.AddWeapon(droppedWeaponSystem);
 
             Destroy(gameObject);
         }
         else if (replace) {
-            var weaponTransform = weapon.transform;
-
             SetWeapon(inventory.CurrentWeapon);
-
-            inventory.AddWeapon(weaponTransform);
-
             Initiate(inventory.gameObject);
+
+            inventory.RemoveWeapon(inventory.CurrentWeapon.GetComponent<WeaponSystem>());
+            inventory.AddWeapon(droppedWeaponSystem);
         }
     }
 
