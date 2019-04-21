@@ -1,35 +1,9 @@
 fileFormatVersion: 2
-guid: 66ebe6770459df9429410019914e341c
+guid: 4cffc561e9e4d444da4c1c930bee783d
 ModelImporter:
-  serializedVersion: 23
-  fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2100000: No Name
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Reactor
-    7400000: Reactor|Battery|Battery|BatteryAction|Battery|BatteryAction
-    7400002: Reactor|Battery|Battery|Cylinder.001Action|Battery|Cylinder.001Action
-    7400004: Reactor|Battery|Battery|Vent CoverAction|Battery|Vent CoverAction
-    7400006: Reactor|Cylinder.001|Cylinder.001|BatteryAction|Cylinder.001|BatteryAct
-    7400008: Reactor|Cylinder.001|Cylinder.001|Cylinder.001Action|Cylinder.001|Cylin
-    7400010: Reactor|Cylinder.001|Cylinder.001|Vent CoverAction|Cylinder.001|Vent
-      Co
-    7400012: Reactor|Reactor|Reactor|BatteryAction|Reactor|BatteryAction
-    7400014: Reactor|Reactor|Reactor|Cylinder.001Action|Reactor|Cylinder.001Action
-    7400016: Reactor|Reactor|Reactor|Vent CoverAction|Reactor|Vent CoverAction
-    7400018: Reactor|Vent Cover|Vent Cover|BatteryAction|Vent Cover|BatteryAction
-    7400020: Reactor|Vent Cover|Vent Cover|Cylinder.001Action|Vent Cover|Cylinder.00
-    7400022: Reactor|Vent Cover|Vent Cover|Vent CoverAction|Vent Cover|Vent CoverAct
-    9500000: //RootNode
-    2186277476908879412: ImportLogs
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: No Name
-    second: {fileID: 2100000, guid: 0142d00d009435c438924c64660bae99, type: 2}
+  serializedVersion: 25
+  internalIDToNameTable: []
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
@@ -57,7 +31,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     extraUserProperties: []
     clipAnimations: []
-    isReadable: 1
+    isReadable: 0
   meshes:
     lODScreenPercentages: []
     globalScale: 1
@@ -71,18 +45,19 @@ ModelImporter:
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 0.01
-    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -91,10 +66,11 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -104,12 +80,13 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

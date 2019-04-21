@@ -1,80 +1,224 @@
 fileFormatVersion: 2
 guid: ba3b78a6d22a75d4480e59219fca3a4d
 ModelImporter:
-  serializedVersion: 23
-  fileIDToRecycleName:
-    100000: Battery
-    100002: Cylinder.001
-    100004: Gun
-    100006: //RootNode
-    100008: Reactor
-    100010: Rivets
-    100012: Text
-    100014: Vent Cover
-    100016: Vents
-    400000: Battery
-    400002: Cylinder.001
-    400004: Gun
-    400006: //RootNode
-    400008: Reactor
-    400010: Rivets
-    400012: Text
-    400014: Vent Cover
-    400016: Vents
-    2100000: Plasma Prime
-    2100002: Plasma Tri,
-    2100004: Plasma Second
-    2100006: Plasma Glow
-    2100008: Plasma Rubber
-    2100010: Sights
-    2100012: Plasma Second.001
-    2100014: No Name
-    2300000: Battery
-    2300002: Cylinder.001
-    2300004: Gun
-    2300006: Reactor
-    2300008: Rivets
-    2300010: Text
-    2300012: Vent Cover
-    2300014: Vents
-    3300000: Battery
-    3300002: Cylinder.001
-    3300004: Gun
-    3300006: Reactor
-    3300008: Rivets
-    3300010: Text
-    3300012: Vent Cover
-    3300014: Vents
-    4300000: Gun
-    4300002: Vent Cover
-    4300004: Battery
-    4300006: Vents
-    4300008: Reactor
-    4300010: Rivets
-    4300012: Cylinder.001
-    4300014: Text
-    7400000: Vent Cover|BatteryAction
-    7400002: Vent Cover|Cylinder.001Action
-    7400004: Vent Cover|TextAction
-    7400006: Vent Cover|Vent CoverAction
-    7400008: Battery|BatteryAction
-    7400010: Battery|Cylinder.001Action
-    7400012: Battery|TextAction
-    7400014: Battery|Vent CoverAction
-    7400016: Reactor|BatteryAction
-    7400018: Reactor|Cylinder.001Action
-    7400020: Reactor|TextAction
-    7400022: Reactor|Vent CoverAction
-    7400024: Cylinder.001|BatteryAction
-    7400026: Cylinder.001|Cylinder.001Action
-    7400028: Cylinder.001|TextAction
-    7400030: Cylinder.001|Vent CoverAction
-    7400032: Text|BatteryAction
-    7400034: Text|Cylinder.001Action
-    7400036: Text|TextAction
-    7400038: Text|Vent CoverAction
-    9500000: //RootNode
-    2186277476908879412: ImportLogs
+  serializedVersion: 25
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: Battery
+  - first:
+      1: 100002
+    second: Cylinder.001
+  - first:
+      1: 100004
+    second: Gun
+  - first:
+      1: 100006
+    second: //RootNode
+  - first:
+      1: 100008
+    second: Reactor
+  - first:
+      1: 100010
+    second: Rivets
+  - first:
+      1: 100012
+    second: Text
+  - first:
+      1: 100014
+    second: Vent Cover
+  - first:
+      1: 100016
+    second: Vents
+  - first:
+      4: 400000
+    second: Battery
+  - first:
+      4: 400002
+    second: Cylinder.001
+  - first:
+      4: 400004
+    second: Gun
+  - first:
+      4: 400006
+    second: //RootNode
+  - first:
+      4: 400008
+    second: Reactor
+  - first:
+      4: 400010
+    second: Rivets
+  - first:
+      4: 400012
+    second: Text
+  - first:
+      4: 400014
+    second: Vent Cover
+  - first:
+      4: 400016
+    second: Vents
+  - first:
+      21: 2100000
+    second: Plasma Prime
+  - first:
+      21: 2100002
+    second: Plasma Tri,
+  - first:
+      21: 2100004
+    second: Plasma Second
+  - first:
+      21: 2100006
+    second: Plasma Glow
+  - first:
+      21: 2100008
+    second: Plasma Rubber
+  - first:
+      21: 2100010
+    second: Sights
+  - first:
+      21: 2100012
+    second: Plasma Second.001
+  - first:
+      21: 2100014
+    second: No Name
+  - first:
+      23: 2300000
+    second: Battery
+  - first:
+      23: 2300002
+    second: Cylinder.001
+  - first:
+      23: 2300004
+    second: Gun
+  - first:
+      23: 2300006
+    second: Reactor
+  - first:
+      23: 2300008
+    second: Rivets
+  - first:
+      23: 2300010
+    second: Text
+  - first:
+      23: 2300012
+    second: Vent Cover
+  - first:
+      23: 2300014
+    second: Vents
+  - first:
+      33: 3300000
+    second: Battery
+  - first:
+      33: 3300002
+    second: Cylinder.001
+  - first:
+      33: 3300004
+    second: Gun
+  - first:
+      33: 3300006
+    second: Reactor
+  - first:
+      33: 3300008
+    second: Rivets
+  - first:
+      33: 3300010
+    second: Text
+  - first:
+      33: 3300012
+    second: Vent Cover
+  - first:
+      33: 3300014
+    second: Vents
+  - first:
+      43: 4300000
+    second: Gun
+  - first:
+      43: 4300002
+    second: Vent Cover
+  - first:
+      43: 4300004
+    second: Battery
+  - first:
+      43: 4300006
+    second: Vents
+  - first:
+      43: 4300008
+    second: Reactor
+  - first:
+      43: 4300010
+    second: Rivets
+  - first:
+      43: 4300012
+    second: Cylinder.001
+  - first:
+      43: 4300014
+    second: Text
+  - first:
+      74: 7400000
+    second: Vent Cover|BatteryAction
+  - first:
+      74: 7400002
+    second: Vent Cover|Cylinder.001Action
+  - first:
+      74: 7400004
+    second: Vent Cover|TextAction
+  - first:
+      74: 7400006
+    second: Vent Cover|Vent CoverAction
+  - first:
+      74: 7400008
+    second: Battery|BatteryAction
+  - first:
+      74: 7400010
+    second: Battery|Cylinder.001Action
+  - first:
+      74: 7400012
+    second: Battery|TextAction
+  - first:
+      74: 7400014
+    second: Battery|Vent CoverAction
+  - first:
+      74: 7400016
+    second: Reactor|BatteryAction
+  - first:
+      74: 7400018
+    second: Reactor|Cylinder.001Action
+  - first:
+      74: 7400020
+    second: Reactor|TextAction
+  - first:
+      74: 7400022
+    second: Reactor|Vent CoverAction
+  - first:
+      74: 7400024
+    second: Cylinder.001|BatteryAction
+  - first:
+      74: 7400026
+    second: Cylinder.001|Cylinder.001Action
+  - first:
+      74: 7400028
+    second: Cylinder.001|TextAction
+  - first:
+      74: 7400030
+    second: Cylinder.001|Vent CoverAction
+  - first:
+      74: 7400032
+    second: Text|BatteryAction
+  - first:
+      74: 7400034
+    second: Text|Cylinder.001Action
+  - first:
+      74: 7400036
+    second: Text|TextAction
+  - first:
+      74: 7400038
+    second: Text|Vent CoverAction
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      41386430: 2186277476908879412
+    second: ImportLogs
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -142,7 +286,587 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Vent Cover|BatteryAction
+      takeName: Vent Cover|BatteryAction
+      internalID: 7400000
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Vent Cover|Cylinder.001Action
+      takeName: Vent Cover|Cylinder.001Action
+      internalID: 7400002
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Vent Cover|TextAction
+      takeName: Vent Cover|TextAction
+      internalID: 7400004
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Vent Cover|Vent CoverAction
+      takeName: Vent Cover|Vent CoverAction
+      internalID: 7400006
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Battery|BatteryAction
+      takeName: Battery|BatteryAction
+      internalID: 7400008
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Battery|Cylinder.001Action
+      takeName: Battery|Cylinder.001Action
+      internalID: 7400010
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Battery|TextAction
+      takeName: Battery|TextAction
+      internalID: 7400012
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Battery|Vent CoverAction
+      takeName: Battery|Vent CoverAction
+      internalID: 7400014
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Reactor|BatteryAction
+      takeName: Reactor|BatteryAction
+      internalID: 7400016
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Reactor|Cylinder.001Action
+      takeName: Reactor|Cylinder.001Action
+      internalID: 7400018
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Reactor|TextAction
+      takeName: Reactor|TextAction
+      internalID: 7400020
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Reactor|Vent CoverAction
+      takeName: Reactor|Vent CoverAction
+      internalID: 7400022
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Cylinder.001|BatteryAction
+      takeName: Cylinder.001|BatteryAction
+      internalID: 7400024
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Cylinder.001|Cylinder.001Action
+      takeName: Cylinder.001|Cylinder.001Action
+      internalID: 7400026
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Cylinder.001|TextAction
+      takeName: Cylinder.001|TextAction
+      internalID: 7400028
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Cylinder.001|Vent CoverAction
+      takeName: Cylinder.001|Vent CoverAction
+      internalID: 7400030
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Text|BatteryAction
+      takeName: Text|BatteryAction
+      internalID: 7400032
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Text|Cylinder.001Action
+      takeName: Text|Cylinder.001Action
+      internalID: 7400034
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Text|TextAction
+      takeName: Text|TextAction
+      internalID: 7400036
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Text|Vent CoverAction
+      takeName: Text|Vent CoverAction
+      internalID: 7400038
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -157,18 +881,19 @@ ModelImporter:
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 0.06
-    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -177,10 +902,11 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
-  importAnimation: 1
+  referencedClips: []
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -190,6 +916,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 0.06
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
