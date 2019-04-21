@@ -139,6 +139,7 @@ public class WeaponInventory : MonoBehaviour {
         weapon.SetActive(true);
         weapon.GetComponent<WeaponSystem>().Enable();
     }
+
     private void DisableWeapon(GameObject weapon) {
         if (weapon == null) return;
 
@@ -241,10 +242,6 @@ public class WeaponInventory : MonoBehaviour {
         RemoveWeapon(weaponSystem);
     }
 
-    private GameObject GetCurrentWeapon() {
-        return index == 0 ? primary : secondary;
-    }
-
     public void DisableWeapons() {
         if (primary) {
             DisableWeapon(primary);
@@ -260,16 +257,20 @@ public class WeaponInventory : MonoBehaviour {
     }
 
     public void CheckCurrentWeapons() {
-        if (weaponHolder.childCount >= 1) {
-            primary = weaponHolder.GetChild(0)?.gameObject;
-        }
+        foreach (Transform child in weaponHolder) {
+            var weaponSystem = child.GetComponent<WeaponSystem>();
 
-        if (weaponHolder.childCount >= 2) {
-            secondary = weaponHolder.GetChild(1)?.gameObject;
-        }
+            if (weaponSystem.isGrenade && grenade == null) {
+                grenade = child.gameObject;
+            }
+            else if (primary == null) {
+                primary = child.gameObject;
+            }
+            else if (secondary == null) {
+                secondary = child.gameObject;
+            }
 
-        if (weaponHolder.childCount >= 3) {
-            grenade = weaponHolder.GetChild(2)?.gameObject;
+            if (primary && secondary && grenade) break;
         }
     }
 }
