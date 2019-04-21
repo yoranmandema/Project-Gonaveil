@@ -12,13 +12,10 @@ public class HammerBusterWeapon : WeaponSystem {
 
     private float lastBurstTime;
 
-    public override void OnStartPrimary() {
-        if (ConsumeFireSample()) {
-            if (!ConsumeAmmo()) return;
-
-            FireLine();
-        }
+    public override void OnFire() {
+        FireLine();
     }
+
     public override void OnStartSecondary() {
         if ((Time.timeSinceLevelLoad - lastBurstTime) > burstFireCooldown) {
             lastBurstTime = Time.timeSinceLevelLoad;
@@ -33,8 +30,9 @@ public class HammerBusterWeapon : WeaponSystem {
         var i = burstCount;
         var fireTime = 1 / (burstFireRate / 60);
 
-        while (i > 0 && ConsumeAmmo()) {
+        while (i > 0 && ammo > 0) {
             FireLine();
+            ConsumeAmmo();
 
             yield return new WaitForSeconds(fireTime);
 

@@ -96,8 +96,11 @@ MonoBehaviour:
   ammo: 0
   clipSize: 6
   fireRate: 220
+  burst: 1
+  forceBurst: 0
   autoReload: 1
   reloadTime: 1
+  queueFiring: 0
   hasSecondary: 1
   accuracyCurve:
     serializedVersion: 2
@@ -134,26 +137,6 @@ PrefabInstance:
       value: HammerBuster
       objectReference: {fileID: 0}
     - target: {fileID: 100028, guid: b9c2cd85636981d499406608bee29885, type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: b9c2cd85636981d499406608bee29885, type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: b9c2cd85636981d499406608bee29885, type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 100004, guid: b9c2cd85636981d499406608bee29885, type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 100006, guid: b9c2cd85636981d499406608bee29885, type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 100014, guid: b9c2cd85636981d499406608bee29885, type: 3}
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
@@ -213,7 +196,15 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 100008, guid: b9c2cd85636981d499406608bee29885, type: 3}
+    - target: {fileID: 100002, guid: b9c2cd85636981d499406608bee29885, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: b9c2cd85636981d499406608bee29885, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100014, guid: b9c2cd85636981d499406608bee29885, type: 3}
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
@@ -222,14 +213,6 @@ PrefabInstance:
       value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 100012, guid: b9c2cd85636981d499406608bee29885, type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 100024, guid: b9c2cd85636981d499406608bee29885, type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 100026, guid: b9c2cd85636981d499406608bee29885, type: 3}
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
@@ -246,6 +229,26 @@ PrefabInstance:
       value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 100022, guid: b9c2cd85636981d499406608bee29885, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100024, guid: b9c2cd85636981d499406608bee29885, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100026, guid: b9c2cd85636981d499406608bee29885, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: b9c2cd85636981d499406608bee29885, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: b9c2cd85636981d499406608bee29885, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: b9c2cd85636981d499406608bee29885, type: 3}
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}

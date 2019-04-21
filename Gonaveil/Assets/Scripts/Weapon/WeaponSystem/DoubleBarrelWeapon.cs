@@ -37,15 +37,15 @@ public class DoubleBarrelWeapon : WeaponSystem {
     }
 
     public override void OnStartPrimary() {
-        if (ConsumeFireSample()) {
-            if (!ConsumeAmmo()) return;
+        //if (ConsumeFireSample()) {
+        //    if (!ConsumeAmmo()) return;
 
-            weaponMovement.DoRecoil();
+        //    weaponMovement.DoRecoil();
 
-            for (var i = 0; i < pellets; i++) {
-                FireProjectile(spread);
-            }
-        }
+        //    for (var i = 0; i < pellets; i++) {
+        //        FireProjectile(spread);
+        //    }
+        //}
     }
 
     public override void OnStartSecondary() {

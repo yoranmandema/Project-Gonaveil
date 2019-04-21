@@ -12,9 +12,15 @@ public class WeaponSystem : MonoBehaviour {
     public int clipSize;
 
     public float fireRate = 800;
+    public int burst = 0;
+    public bool forceBurst = false;
+
+    public bool allowQueueFire = true;
 
     public bool autoReload = true;
     public float reloadTime;
+
+    public bool queueFiring = false;
 
     public bool hasSecondary = true;
 
@@ -30,11 +36,16 @@ public class WeaponSystem : MonoBehaviour {
     protected WeaponModelData weaponModelData;
     protected float accuracyTime;
     protected float accuracy;
+    protected int burstNum;
+    protected bool isBursting;
+    protected bool queuedFire;
 
     public void Enable() {
         camera = transform.root.GetComponentInChildren<Camera>().transform;
 
-        if (camera == null) Debug.LogError("No camera found on weapon holder!");
+        if (camera == null) {
+            Debug.LogError("No camera found on weapon holder!");
+        }
 
         weaponMovement = transform.parent.GetComponent<WeaponMovement>();
         weaponMovement.profile = weaponMovementProfile;
@@ -48,13 +59,13 @@ public class WeaponSystem : MonoBehaviour {
         OnDisable();
     }
 
-    void Start() {
+    private void Start() {
         weaponModelData = GetComponent<WeaponModelData>();
 
         OnStart();
     }
 
-    void Update() {
+    private void Update() {
 
         if (accuracyCurve.length > 0) {
             var accuracyCurveEnd = accuracyCurve[accuracyCurve.length - 1].time;
@@ -67,12 +78,18 @@ public class WeaponSystem : MonoBehaviour {
         if (InputManager.GetButtonDown("Fire1") && !isFiringPrimary && !isReloading) {
             OnStartPrimary();
 
+            Fire();
+
             isFiringPrimary = true;
+
+            if (allowQueueFire) queuedFire = true;
+
+            isBursting = true;
         }
         else if (InputManager.GetButtonUp("Fire1") && isFiringPrimary) {
             OnEndPrimary();
 
-            isFiringPrimary = false;
+            StopFire();
         }
 
         if (InputManager.GetButtonDown("Fire2") && !isFiringSecondary && hasSecondary) {
@@ -90,10 +107,22 @@ public class WeaponSystem : MonoBehaviour {
             OnStartReload();
         }
 
+        if ((burstNum < burst || burst == 0) && (isFiringPrimary || (isBursting && forceBurst))) {
+            Fire();
+        }
+
         OnUpdate();
     }
 
-    public virtual void OnEnable() {  }
+    private void StopFire () {
+        isFiringPrimary = false;
+
+        burstNum = 0;
+
+        if (!forceBurst) isBursting = false;
+    }
+
+    public virtual void OnEnable() { }
     public virtual void OnDisable() { }
 
     public virtual void OnStart() {
@@ -104,42 +133,45 @@ public class WeaponSystem : MonoBehaviour {
     public virtual void OnUpdate() { }
 
     public virtual void OnStartReload() {
+        StopFire();
+
         StartCoroutine(ReloadCoroutine());
     }
 
-    protected bool ConsumeAmmo() {
-        if (clipSize != -1) {
-            if (ammo > 0) {
-                ammo -= 1;
-
-                if (autoReload && ammo == 0) {
-                    OnStartReload();
-                }
-
-                return true;
-            }
-            else {
-                if (autoReload) {
-                    OnStartReload();
-                }
-
-                return false;
-            }
+    protected void ConsumeAmmo() {
+        if (ammo > 0) {
+            ammo -= 1;
         }
-
-        return true;
+        
+        if (autoReload && ammo == 0) {
+            OnStartReload();
+        }
     }
 
-    protected bool ConsumeFireSample() {
-        var fireTime = 1 / (fireRate / 60);
+    protected void ConsumeFireSample() {
+        lastFireTime = Time.realtimeSinceStartup;
+    }
 
-        if ((Time.realtimeSinceStartup - lastFireTime) > fireTime) {
-            lastFireTime = Time.realtimeSinceStartup;
+    protected bool CheckFireTime () {
+        return (Time.realtimeSinceStartup - lastFireTime) > (1 / (fireRate / 60));
+    }
 
-            return true;
+    private void Fire () {
+        if (ammo == 0) return;
+        if (!CheckFireTime()) return;
+
+        queuedFire = false;
+
+        burstNum++;
+
+        if (burstNum == burst - 1) { 
+            isBursting = false;
         }
 
-        return false;
+        ConsumeFireSample();
+        ConsumeAmmo();
+
+        OnFire();
     }
 
     public virtual void OnEndReload() {
@@ -151,6 +183,8 @@ public class WeaponSystem : MonoBehaviour {
 
     public virtual void OnStartSecondary() { }
     public virtual void OnEndSecondary() { }
+
+    public virtual void OnFire() { }
 
     // Utility functions
 
