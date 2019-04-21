@@ -66,8 +66,12 @@ MonoBehaviour:
   ammo: 0
   clipSize: 2
   fireRate: 400
+  burst: 1
+  forceBurst: 0
+  allowQueueFire: 1
   autoReload: 1
   reloadTime: 1
+  queueFiring: 0
   hasSecondary: 1
   accuracyCurve:
     serializedVersion: 2
@@ -141,7 +145,7 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
-    - target: {fileID: 100012, guid: 33e803482c05c75409b2ac98d08a312d, type: 3}
+    - target: {fileID: 100020, guid: 33e803482c05c75409b2ac98d08a312d, type: 3}
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
@@ -193,7 +197,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 33e803482c05c75409b2ac98d08a312d, type: 3}
+    - target: {fileID: 100018, guid: 33e803482c05c75409b2ac98d08a312d, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 33e803482c05c75409b2ac98d08a312d, type: 3}
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
@@ -201,7 +209,7 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
-    - target: {fileID: 100004, guid: 33e803482c05c75409b2ac98d08a312d, type: 3}
+    - target: {fileID: 100012, guid: 33e803482c05c75409b2ac98d08a312d, type: 3}
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
@@ -213,11 +221,7 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
-    - target: {fileID: 100020, guid: 33e803482c05c75409b2ac98d08a312d, type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 100018, guid: 33e803482c05c75409b2ac98d08a312d, type: 3}
+    - target: {fileID: 100000, guid: 33e803482c05c75409b2ac98d08a312d, type: 3}
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
