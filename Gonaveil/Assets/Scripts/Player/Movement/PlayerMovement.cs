@@ -3,6 +3,8 @@ using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
 public partial class PlayerMovement : MonoBehaviour {
+    public bool allowInput = true;
+
     public Transform cameraTransform;
     public float cameraHeight = 1.8f;
 
@@ -99,15 +101,17 @@ public partial class PlayerMovement : MonoBehaviour {
         OnScreenDebug.Print($"Vel: {velocity.SetY(0).magnitude}");
         OnScreenDebug.Print($"{characterController.isGrounded}");
 
-        if (Input.GetButtonDown("Crouch") && velocity.magnitude > slideVelocityThreshold) {
-            isSliding = true;
+        if (allowInput) {
+            if (Input.GetButtonDown("Crouch") && velocity.magnitude > slideVelocityThreshold) {
+                isSliding = true;
 
-            if (isGrounded) {
-                velocity *= slideBoost;
+                if (isGrounded) {
+                    velocity *= slideBoost;
+                }
             }
-        }
-        else if (Input.GetButtonUp("Crouch") && isSliding) {
-            isSliding = false;
+            else if (Input.GetButtonUp("Crouch") && isSliding) {
+                isSliding = false;
+            }
         }
 
         velocity.y -= 0.1f;
@@ -119,7 +123,7 @@ public partial class PlayerMovement : MonoBehaviour {
             velocity = characterController.velocity;
         }
 
-        desiredMovement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
+        desiredMovement = allowInput ? new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized : Vector3.zero;
 
         isOnSlope = characterController.isGrounded && (GroundSlope > surfSlope);
 
@@ -160,7 +164,7 @@ public partial class PlayerMovement : MonoBehaviour {
     }
 
     private void CrouchMovement() {
-        isCrouching = Input.GetButton("Crouch");
+        isCrouching = Input.GetButton("Crouch") && allowInput;
 
         desiredCrouchLerp = isCrouching ? 0 : 1f;
 

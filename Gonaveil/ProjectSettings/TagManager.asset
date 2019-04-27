@@ -6,6 +6,7 @@ TagManager:
   tags:
   - ItemWeapon
   - PickupCapsule
+  - PlayerSpawn
   layers:
   - Default
   - TransparentFX
