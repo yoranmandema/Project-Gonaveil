@@ -27,7 +27,7 @@ public class DoubleBarrelWeapon : WeaponSystem {
             var dotVelocity = Vector3.Dot(camera.forward, direction);
 
             playerMovement.AddForce(
-                direction * hookForce * dotVelocity + Vector3.up * 5f
+                direction * hookForce * dotVelocity + Vector3.up * 2f
                 );
 
             if (dotVelocity <= 0) {

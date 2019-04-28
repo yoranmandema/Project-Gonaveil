@@ -5,7 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/GeometryTest.unity
-    guid: 581a04cad48325447907b50602710902
+    path: Assets/Scenes/gothic.unity
+    guid: be6a5508683fc124b930b96cc5ab51db
   m_configObjects: {}
