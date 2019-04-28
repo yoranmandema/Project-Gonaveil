@@ -160,6 +160,9 @@ public partial class PlayerMovement : MonoBehaviour {
         // Gravity.
         velocity += downVector * -Physics.gravity.y * upwards * Time.deltaTime;
 
+        // Faster fall velocity.
+        if (velocity.y > -fallMaxSpeedUp) velocity += downVector * -Physics.gravity.y * (fallSpeedMultiplier - 1) * Time.deltaTime;
+
         JumpMovement();
     }
 
