@@ -1,5 +1,4 @@
 ﻿
-#if UnityEditor 
 using UnityEngine;
 using System.Collections;
 using UnityEditor;
@@ -26,4 +25,3 @@ public class ConnectionInspector : Editor
         }
     }
 }
-#endif
