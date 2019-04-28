@@ -17,8 +17,10 @@ public class JumpPad : MonoBehaviour {
 
     private IEnumerator ApplyForce (PlayerMovement playerMovement) {
         var relativeHeight = 0f;
+        var timeTaken = 0f;
 
-        while (relativeHeight < 1) {
+        while (relativeHeight < 1 && timeTaken < time) {
+            timeTaken += Time.deltaTime;
             relativeHeight = (playerMovement.transform.position.y - transform.position.y) / height;
 
             playerMovement.velocity = playerMovement.velocity.SetY((1 / time * height) * Mathf.Pow(Mathf.Max(1 - relativeHeight,0.01f), 0.5f));
