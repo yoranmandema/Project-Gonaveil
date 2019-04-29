@@ -6,6 +6,7 @@ public class DoubleBarrelWeapon : WeaponSystem {
     public float spread = 3f;
     public int pellets = 20;
 
+    public float hookDisconnectDistance = 0.25f;
     public float hookJump = 1f;
     public float hookUpForce = 50f;
     public float hookAccel = 100f;
@@ -35,7 +36,7 @@ public class DoubleBarrelWeapon : WeaponSystem {
 
             var isInLineOfSight = Physics.Raycast(camera.position, direction, out RaycastHit hit, maxHookDistance, hookMask);
 
-            if ((hit.point - hookPivot).magnitude > 0.1f) isInLineOfSight = false;
+            if ((hit.point - hookPivot).magnitude > hookDisconnectDistance) isInLineOfSight = false;
 
             if (dotVelocity <= 0 || !isInLineOfSight) {
                 isUsingGrapplingHook = false;

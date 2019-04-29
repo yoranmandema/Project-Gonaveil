@@ -1990,7 +1990,7 @@ MonoBehaviour:
   airDrag: 0
   maxAirVelocity: 1
   fallSpeedMultiplier: 3
-  fallMaxSpeedUp: 10
+  fallMaxSpeedUp: 25
   jumpHeight: 3
   jumpLateralSpeedMultiplier: 1
   autoJumping: 0
@@ -2063,6 +2063,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   respawnTime: 3
   health: 100
+  isRespawning: 0
 --- !u!1 &1352563272540711737
 GameObject:
   m_ObjectHideFlags: 0
@@ -2274,6 +2275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af3ee2b3a4ca2584183316bd5c830df5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WeaponHolder: {fileID: 0}
   rotationMultiplier: 15
   debugAmplitude: 1
   debugFrequency: 10
