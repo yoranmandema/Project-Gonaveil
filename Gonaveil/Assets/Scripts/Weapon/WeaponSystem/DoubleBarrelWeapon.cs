@@ -2,14 +2,17 @@
 
 public class DoubleBarrelWeapon : WeaponSystem {
 
+    public float range = 25f;
     public float spread = 3f;
     public int pellets = 20;
 
-    public float hookDamping = 0.25f;
-    public float hookForce = 100f;
+    public float hookJump = 1f;
+    public float hookUpForce = 50f;
+    public float hookAccel = 100f;
     public float hookVelocity = 3f;
     public float maxHookDistance = 10f;
     public LayerMask hookMask;
+    public GameObject impactDebug;
 
     private bool isUsingGrapplingHook;
     private Vector3 hookPivot;
@@ -23,14 +26,18 @@ public class DoubleBarrelWeapon : WeaponSystem {
         base.OnUpdate();
 
         if (isUsingGrapplingHook) {
-            var direction = (hookPivot - playerMovement.transform.position).normalized;
+            var direction = (hookPivot - camera.position).normalized;
             var dotVelocity = Vector3.Dot(camera.forward, direction);
 
-            playerMovement.AddForce(
-                direction * hookForce * dotVelocity + Vector3.up * 2f
-                );
+            playerMovement.DoAcceleration(direction, hookAccel ,hookVelocity);
 
-            if (dotVelocity <= 0) {
+            playerMovement.AddForce(Vector3.up * hookUpForce);
+
+            var isInLineOfSight = Physics.Raycast(camera.position, direction, out RaycastHit hit, maxHookDistance, hookMask);
+
+            if ((hit.point - hookPivot).magnitude > 0.1f) isInLineOfSight = false;
+
+            if (dotVelocity <= 0 || !isInLineOfSight) {
                 isUsingGrapplingHook = false;
             }
         }
@@ -40,7 +47,11 @@ public class DoubleBarrelWeapon : WeaponSystem {
         weaponMovement.DoRecoil();
 
         for (var i = 0; i < pellets; i++) {
-            FireProjectile(spread);
+            var lineCast = FireLine(out RaycastHit hitResult, spread, range);
+
+            if (lineCast) {
+                Instantiate(impactDebug, hitResult.point, Quaternion.LookRotation(hitResult.normal));
+            }
         }
     }
 
@@ -51,7 +62,7 @@ public class DoubleBarrelWeapon : WeaponSystem {
             hookPivot = hit.point;
 
             if (playerMovement.isGrounded)
-                playerMovement.AddForce(Vector3.up * 1000f);
+                playerMovement.AddForce(Vector3.up * hookJump);
         }
     }
 

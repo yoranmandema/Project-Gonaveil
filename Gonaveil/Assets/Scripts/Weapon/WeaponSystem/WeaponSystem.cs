@@ -26,6 +26,7 @@ public class WeaponSystem : MonoBehaviour {
 
     public AnimationCurve accuracyCurve;
     public GameObject projectile;
+    public LayerMask lineCastMask;
     public WeaponMovementProfile weaponMovementProfile;
     public GameObject worldModel;
     public WeaponMovement weaponMovement;
@@ -213,6 +214,12 @@ public class WeaponSystem : MonoBehaviour {
         projectileComponent.instigator = transform.root.gameObject;
         projectileComponent.weaponSystem = this;
         projectileComponent.Fire();
+    }
+
+    protected bool FireLine(out RaycastHit hitResult, float spread = 0, float maxRange = Mathf.Infinity) {
+        var spreadVector = CalculateSpreadVector(spread);
+
+        return Physics.Raycast(camera.position, spreadVector, out hitResult, maxRange, lineCastMask);
     }
 
     protected virtual IEnumerator ReloadCoroutine() {

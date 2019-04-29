@@ -264,7 +264,7 @@ public partial class PlayerMovement : MonoBehaviour {
         velocity += downVector * -Physics.gravity.y * upwards * Time.deltaTime;
     }
 
-    private void DoAcceleration(Vector3 wishDirection, float maxAccel, float maxVel) {
+    public void DoAcceleration(Vector3 wishDirection, float maxAccel, float maxVel) {
         var velocityDelta = GetAcceleration(wishDirection, maxAccel, maxVel);
 
         velocity += velocityDelta;

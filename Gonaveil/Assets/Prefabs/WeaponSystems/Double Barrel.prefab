@@ -81,21 +81,28 @@ MonoBehaviour:
     m_RotationOrder: 4
   projectile: {fileID: 4846615784228082546, guid: e7cf5f436ac463144989ba4cb199fe24,
     type: 3}
+  lineCastMask:
+    serializedVersion: 2
+    m_Bits: 1
   weaponMovementProfile: {fileID: 11400000, guid: 12b44c43f1717254f9ab37d48d78e369,
     type: 2}
   worldModel: {fileID: 100008, guid: 33e803482c05c75409b2ac98d08a312d, type: 3}
   weaponMovement: {fileID: 0}
   camera: {fileID: 0}
   isGrenade: 0
+  range: 40
   spread: 5
   pellets: 20
-  hookDamping: 0.25
-  hookForce: 50
+  hookJump: 500
+  hookUpForce: 18
+  hookAccel: 50
   hookVelocity: 15
   maxHookDistance: 25
   hookMask:
     serializedVersion: 2
     m_Bits: 1
+  impactDebug: {fileID: 3377271070747912948, guid: 5b634f2c54a76ad49840f1e67d6c980d,
+    type: 3}
 --- !u!1 &7988380558650769479
 GameObject:
   m_ObjectHideFlags: 0
