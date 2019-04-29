@@ -68,7 +68,7 @@ public partial class PlayerMovement : MonoBehaviour {
     private WeaponMovement weaponMovement;
 
     private Vector3 TransformedMovement => transform.TransformDirection(desiredMovement);
-    private Vector3 ProjectedMovement => Vector3.ProjectOnPlane(TransformedMovement, groundNormal).normalized;
+    private Vector3 ProjectedMovement => Vector3.ProjectOnPlane(TransformedMovement, groundNormal);
     private float GroundSlope => Mathf.Acos(Vector3.Dot(groundNormal, Vector3.up)) * Mathf.Rad2Deg;
 
     private void Start() {
@@ -111,10 +111,11 @@ public partial class PlayerMovement : MonoBehaviour {
             }
             else if (Input.GetButtonUp("Crouch") && isSliding) {
                 isSliding = false;
-            }
+           }
         }
 
-        velocity.y -= 0.1f;
+        velocity -= groundNormal * 0.05f;
+
         characterController.Move(velocity * Time.deltaTime);
 
         // Prevent the input velocity from getting bigger than what the real velocity is.
@@ -150,7 +151,7 @@ public partial class PlayerMovement : MonoBehaviour {
             OnEnterAir();
         }
 
-        wasGrounded = characterController.isGrounded;
+        wasGrounded = isGrounded;
     }
 
     private void SlideMovement() {
@@ -229,7 +230,11 @@ public partial class PlayerMovement : MonoBehaviour {
             velocity *= Mathf.Max(speed - drop, 0) / speed; // Scale the velocity based on friction.
         }
 
-        DoAcceleration(transform.TransformDirection(desiredMovement), acceleration, maxVel);
+        //velocity -= groundNormal * 10f;
+
+        DoAcceleration(ProjectedMovement.y > 0 ? TransformedMovement / Vector3.Dot(groundNormal, Vector3.up) : ProjectedMovement, acceleration, maxVel);
+
+        Debug.DrawLine(transform.position, transform.position + groundNormal, Color.red, 25f);
 
         JumpMovement();
     }
