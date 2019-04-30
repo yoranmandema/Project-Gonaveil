@@ -57,6 +57,9 @@ public partial class PlayerMovement : MonoBehaviour {
     private float crouchLerp = 1f;
     private float desiredCrouchLerp = 1f;
     private bool isOnSlope;
+    private bool sweepDidHit;
+    private bool sweepHit;
+    private float sweepDistance;
 
     private bool canJump = true;
     private bool canJumpCooldown = true;
@@ -66,6 +69,7 @@ public partial class PlayerMovement : MonoBehaviour {
     private float frictionMul;
 
     private WeaponMovement weaponMovement;
+    private Rigidbody rb;
 
     private Vector3 TransformedMovement => transform.TransformDirection(desiredMovement);
     private Vector3 ProjectedMovement => Vector3.ProjectOnPlane(TransformedMovement, groundNormal);
@@ -74,6 +78,7 @@ public partial class PlayerMovement : MonoBehaviour {
     private void Start() {
         characterController = GetComponent<CharacterController>();
         weaponMovement = GetComponentInChildren<WeaponMovement>();
+        rb = GetComponent<Rigidbody>();
     }
 
     private bool WantsJumpInput() {
@@ -97,9 +102,39 @@ public partial class PlayerMovement : MonoBehaviour {
         groundNormal = hit.normal;
     }
 
+    void OnSweepExit(RaycastHit hit) {
+        if (hit.distance < 0.25f && canJumpCooldown) {
+            velocity = velocity.SetY((characterController.skinWidth - hit.distance) / Time.deltaTime);
+        }
+    }
+
+    void GroundCheck () {
+        sweepHit = rb.SweepTest(transform.up * -1f, out RaycastHit hit, characterController.skinWidth + 0.5f);
+
+        if (sweepHit) {
+            groundNormal = hit.normal;
+
+            sweepDistance = hit.distance;
+        }
+
+        if (sweepDistance > (characterController.skinWidth + 0.02f)) {
+            sweepHit = false;
+        }
+
+        if (sweepDidHit && !sweepHit) OnSweepExit(hit);
+
+        if (!sweepDidHit) {
+            sweepDistance = 0f;
+            groundNormal = Vector3.up;
+        }
+
+        sweepDidHit = sweepHit;
+    }
+
     void Update() {
         OnScreenDebug.Print($"Vel: {velocity.SetY(0).magnitude}");
-        OnScreenDebug.Print($"{characterController.isGrounded}");
+        OnScreenDebug.Print($"grounded: {isGrounded}");
+        OnScreenDebug.Print($"sweep: {sweepHit}");
 
         if (allowInput) {
             if (Input.GetButtonDown("Crouch") && velocity.magnitude > slideVelocityThreshold) {
@@ -114,21 +149,21 @@ public partial class PlayerMovement : MonoBehaviour {
            }
         }
 
-        velocity -= groundNormal * 0.05f;
+        GroundCheck();
+
+        if (sweepHit) velocity += Vector3.up * (characterController.skinWidth - sweepDistance);
 
         characterController.Move(velocity * Time.deltaTime);
 
         // Prevent the input velocity from getting bigger than what the real velocity is.
         // This prevents the player from shooting off in a certain direction when losing contact.
-        if (velocity.magnitude > characterController.velocity.magnitude) {
-            velocity = characterController.velocity;
-        }
+        if (velocity.magnitude > characterController.velocity.magnitude) velocity = characterController.velocity;
 
         desiredMovement = allowInput ? new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized : Vector3.zero;
 
-        isOnSlope = characterController.isGrounded && (GroundSlope > surfSlope);
+        isOnSlope = sweepHit && (GroundSlope > surfSlope);
 
-        isGrounded = characterController.isGrounded && !isOnSlope;
+        isGrounded = sweepHit && !isOnSlope;
 
         if (isGrounded) {
             if (isSliding) {
@@ -182,7 +217,7 @@ public partial class PlayerMovement : MonoBehaviour {
         cameraTransform.localPosition = Vector3.up * (cameraHeight * crouchLerp + crouchCameraHeight * (1 - crouchLerp));
 
         // Sort of enables crouch jumping.
-        if (isInAir) {
+        if (!isGrounded) {
             characterController.Move(Vector3.up * -(desiredCrouchLerp - crouchLerp) * Time.deltaTime / crouchTime * 2f);
         }
     }
@@ -230,11 +265,7 @@ public partial class PlayerMovement : MonoBehaviour {
             velocity *= Mathf.Max(speed - drop, 0) / speed; // Scale the velocity based on friction.
         }
 
-        //velocity -= groundNormal * 10f;
-
-        DoAcceleration(ProjectedMovement.y > 0 ? TransformedMovement / Vector3.Dot(groundNormal, Vector3.up) : ProjectedMovement, acceleration, maxVel);
-
-        Debug.DrawLine(transform.position, transform.position + groundNormal, Color.red, 25f);
+        DoAcceleration(ProjectedMovement, acceleration, maxVel);
 
         JumpMovement();
     }
