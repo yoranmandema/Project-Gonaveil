@@ -1922,9 +1922,11 @@ GameObject:
   - component: {fileID: 1352563271953662208}
   - component: {fileID: 1352563271953662211}
   - component: {fileID: 4097230799405380432}
+  - component: {fileID: 4649547807189538386}
   - component: {fileID: 1352563271953662212}
   - component: {fileID: 6887160529574026558}
   - component: {fileID: 1241152303}
+  - component: {fileID: 329316499384794751}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -1973,7 +1975,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1352563271953662213}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3b345c101ae6d5347828fa6524a09e64, type: 3}
   m_Name: 
@@ -2012,6 +2014,41 @@ MonoBehaviour:
   isCrouching: 0
   isSliding: 0
   velocity: {x: 0, y: 0, z: 0}
+--- !u!114 &4649547807189538386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1352563271953662213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cad839ea6f69024f8224066b68ada57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraTransform: {fileID: 1352563272540711684}
+  height: 1.8
+  cameraHeight: 1.8
+  crouchCameraHeight: 0.9
+  crouchHeight: 1
+  crouchTime: 0.5
+  crouchVelocity: 6
+  groundDistanceThreshold: 0.01
+  maxVelocity: 12
+  acceleration: 100
+  friction: 8
+  slopeAngle: 45
+  fallMaxSpeedUp: 10
+  airDrag: 0.1
+  airAcceleration: 25
+  jumpHeight: 2
+  fallSpeedMultiplier: 2
+  velocity: {x: 0, y: 0, z: 0}
+  wishJump: 0
+  rigidbody: {fileID: 0}
+  isCrouching: 0
+  grounded: 0
+  groundedNormal: {x: 0, y: 1, z: 0}
 --- !u!143 &1352563271953662212
 CharacterController:
   m_ObjectHideFlags: 0
@@ -2064,6 +2101,20 @@ MonoBehaviour:
   respawnTime: 3
   health: 100
   isRespawning: 0
+--- !u!136 &329316499384794751
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1352563271953662213}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1352563272540711737
 GameObject:
   m_ObjectHideFlags: 0
