@@ -34,7 +34,8 @@ public partial class PlayerController : MonoBehaviour
     public MovementState movementState;
     public Rigidbody rigidbody;
     public bool isCrouching;
-    public bool grounded;
+    public bool isGrounded;
+    public bool isSliding;
     public Vector3 groundedNormal = Vector3.up;
 
     private CharacterController characterController;
@@ -86,7 +87,7 @@ public partial class PlayerController : MonoBehaviour
             groundedNormal = hit.normal;
         }
 
-        grounded =
+        isGrounded =
             sweep &&
             hit.distance < (characterController.skinWidth + groundDistanceThreshold) &&
             groundedNormal.y > Mathf.Sin(characterController.slopeLimit);
@@ -107,7 +108,7 @@ public partial class PlayerController : MonoBehaviour
         cameraTransform.localPosition = Vector3.up * (cameraHeight * crouchLerp + crouchCameraHeight * (1 - crouchLerp));
 
         // Sort of enables crouch jumping.
-        if (!grounded) {
+        if (!isGrounded) {
             characterController.Move(Vector3.up * -(desiredCrouchLerp - crouchLerp) * Time.deltaTime / crouchTime * height);
         }
     }

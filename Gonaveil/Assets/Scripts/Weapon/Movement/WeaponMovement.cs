@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponMovement : MonoBehaviour {
-    public PlayerMovement playerMovement;
+    public PlayerController playerMovement;
     public WeaponMovementProfile profile;
 
     private float bobbingLerp = 1f;

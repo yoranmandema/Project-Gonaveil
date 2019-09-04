@@ -8,7 +8,7 @@ public class PlayerCamera : MonoBehaviour {
     public float velocityRollSmoothing = 0.5f;
     public float velocityRollMultiplier = 0.25f;
     public float maxVelocityRoll = 4f;
-    public PlayerMovement playerMovement;
+    public PlayerController playerMovement;
 
     float mouseY;
     float roll;

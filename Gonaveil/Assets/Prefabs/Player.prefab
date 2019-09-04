@@ -1910,7 +1910,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b66ecc595d3271c45ab6fa39f1af275c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMovement: {fileID: 4097230799405380432}
+  playerMovement: {fileID: 4649547807189538386}
 --- !u!1 &1352563271953662213
 GameObject:
   m_ObjectHideFlags: 0
@@ -1921,7 +1921,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1352563271953662208}
   - component: {fileID: 1352563271953662211}
-  - component: {fileID: 4097230799405380432}
   - component: {fileID: 4649547807189538386}
   - component: {fileID: 1352563271953662212}
   - component: {fileID: 6887160529574026558}
@@ -1968,52 +1967,6 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 3
---- !u!114 &4097230799405380432
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1352563271953662213}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b345c101ae6d5347828fa6524a09e64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  allowInput: 1
-  cameraTransform: {fileID: 1352563272540711684}
-  cameraHeight: 1.8
-  maxVelocity: 12
-  acceleration: 250
-  friction: 15
-  frictionTime: 0.1
-  stepSlope: 85
-  airAcceleration: 150
-  airDrag: 0
-  maxAirVelocity: 1
-  fallSpeedMultiplier: 3
-  fallMaxSpeedUp: 25
-  jumpHeight: 3
-  jumpLateralSpeedMultiplier: 1
-  autoJumping: 0
-  queueJumping: 1
-  jumpCooldown: 0.25
-  upHillJumpBoost: 1
-  surfSlope: 45
-  surfAcceleration: 150
-  crouchHeight: 1
-  crouchTime: 0.1
-  crouchVelocity: 6
-  crouchCameraHeight: 0.9
-  slideBoost: 1.25
-  slideVelocityThreshold: 10
-  flipTime: 0.25
-  isGrounded: 0
-  isInAir: 0
-  isSurfing: 0
-  isCrouching: 0
-  isSliding: 0
-  velocity: {x: 0, y: 0, z: 0}
 --- !u!114 &4649547807189538386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2047,7 +2000,8 @@ MonoBehaviour:
   wishJump: 0
   rigidbody: {fileID: 0}
   isCrouching: 0
-  grounded: 0
+  isGrounded: 0
+  isSliding: 0
   groundedNormal: {x: 0, y: 1, z: 0}
 --- !u!143 &1352563271953662212
 CharacterController:
@@ -2313,7 +2267,7 @@ MonoBehaviour:
   velocityRollSmoothing: 0.1
   velocityRollMultiplier: 0.4
   maxVelocityRoll: 4
-  playerMovement: {fileID: 4097230799405380432}
+  playerMovement: {fileID: 4649547807189538386}
 --- !u!114 &1149725359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2499,7 +2453,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53c79ef96c287014e8bbf546ef3945bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMovement: {fileID: 4097230799405380432}
+  playerMovement: {fileID: 0}
   profile: {fileID: 0}
 --- !u!114 &1815053613353290408
 MonoBehaviour:

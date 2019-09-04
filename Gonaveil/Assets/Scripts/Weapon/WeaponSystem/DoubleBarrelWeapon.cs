@@ -17,10 +17,10 @@ public class DoubleBarrelWeapon : WeaponSystem {
 
     private bool isUsingGrapplingHook;
     private Vector3 hookPivot;
-    private PlayerMovement playerMovement;
+    private PlayerController playerMovement;
 
     public override void OnEnable() {
-        playerMovement = GetComponentInParent<PlayerMovement>();
+        playerMovement = GetComponentInParent<PlayerController>();
     }
 
     public override void OnUpdate() {

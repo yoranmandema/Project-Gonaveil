@@ -21,7 +21,7 @@ public partial class PlayerController : MonoBehaviour {
 
             var rayCast = Physics.Raycast(_movement.transform.position, Vector3.down, out RaycastHit hit, _movement.characterController.height / 2 + _movement.characterController.skinWidth + 1f);
 
-            if (!_movement.grounded) _movement.SetState(new AirState(_movement));
+            if (!_movement.isGrounded) _movement.SetState(new AirState(_movement));
 
             _movement.characterController.Move(Vector3.down * hit.distance);
 

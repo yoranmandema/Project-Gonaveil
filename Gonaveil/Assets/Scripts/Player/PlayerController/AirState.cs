@@ -18,7 +18,7 @@ public partial class PlayerController : MonoBehaviour {
         }
 
         public override void OnStateUpdate() {
-            if (_movement.grounded && (Time.timeSinceLevelLoad - enterTime) > 0.1f) _movement.SetState(new GroundedState(_movement));
+            if (_movement.isGrounded && (Time.timeSinceLevelLoad - enterTime) > 0.1f) _movement.SetState(new GroundedState(_movement));
 
             _movement.ApplyFriction(_movement.airDrag);
 
