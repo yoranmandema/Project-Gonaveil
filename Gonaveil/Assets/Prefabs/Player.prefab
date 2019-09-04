@@ -1984,18 +1984,18 @@ MonoBehaviour:
   cameraHeight: 1.8
   crouchCameraHeight: 0.9
   crouchHeight: 1
-  crouchTime: 0.5
+  crouchTime: 0.15
   crouchVelocity: 6
-  groundDistanceThreshold: 0.01
-  maxVelocity: 12
-  acceleration: 100
+  groundDistanceThreshold: 0.1
+  maxVelocity: 20
+  acceleration: 150
   friction: 8
   slopeAngle: 45
   fallMaxSpeedUp: 10
   airDrag: 0.1
   airAcceleration: 25
   jumpHeight: 2
-  fallSpeedMultiplier: 2
+  fallSpeedMultiplier: 4
   velocity: {x: 0, y: 0, z: 0}
   wishJump: 0
   rigidbody: {fileID: 0}
@@ -2014,9 +2014,9 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2
+  m_Height: 1.8
   m_Radius: 0.5
-  m_SlopeLimit: 85
+  m_SlopeLimit: 45
   m_StepOffset: 0.5
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
@@ -2066,9 +2066,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 1
+  m_Height: 1.8
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &1352563272540711737
 GameObject:
   m_ObjectHideFlags: 0

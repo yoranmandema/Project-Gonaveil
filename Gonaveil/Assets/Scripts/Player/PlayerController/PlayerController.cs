@@ -90,7 +90,7 @@ public partial class PlayerController : MonoBehaviour
         isGrounded =
             sweep &&
             hit.distance < (characterController.skinWidth + groundDistanceThreshold) &&
-            groundedNormal.y > Mathf.Sin(characterController.slopeLimit);
+            Mathf.Acos(groundedNormal.y) * Mathf.Rad2Deg < characterController.slopeLimit;
     }
 
     private void CrouchMovement() {
