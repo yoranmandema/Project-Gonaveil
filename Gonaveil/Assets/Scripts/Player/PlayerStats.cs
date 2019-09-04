@@ -11,10 +11,10 @@ public class PlayerStats : MonoBehaviour {
 
     public bool isRespawning = false;
 
-    private PlayerMovement playerMovement;
+    private PlayerController playerMovement;
 
     private void Start () {
-        playerMovement = GetComponent<PlayerMovement>();
+        playerMovement = GetComponent<PlayerController>();
     }
 
     private void Update () {
@@ -32,7 +32,7 @@ public class PlayerStats : MonoBehaviour {
     }
 
     public void Die () {
-        playerMovement.allowInput = false;
+        //playerMovement.allowInput = false;
         isRespawning = true;
 
         StartCoroutine(RespawnTimer());
@@ -42,7 +42,7 @@ public class PlayerStats : MonoBehaviour {
         health = 100;
         isRespawning = false;
 
-        playerMovement.allowInput = true;
+        //playerMovement.allowInput = true;
 
         var spawns = GameObject.FindGameObjectsWithTag("PlayerSpawn");
 

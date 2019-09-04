@@ -2453,7 +2453,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53c79ef96c287014e8bbf546ef3945bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMovement: {fileID: 0}
+  playerMovement: {fileID: 4649547807189538386}
   profile: {fileID: 0}
 --- !u!114 &1815053613353290408
 MonoBehaviour:
