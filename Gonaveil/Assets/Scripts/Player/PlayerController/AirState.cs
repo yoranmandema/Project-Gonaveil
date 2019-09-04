@@ -25,12 +25,14 @@ public partial class PlayerController : MonoBehaviour {
             var downVector = Vector3.down;
 
             // Project gravity direction on the slope we're hitting.
-            if (_movement.groundedNormal.y < Mathf.Sin(_movement.slopeAngle)) downVector = Vector3.ProjectOnPlane(Vector3.down, _movement.groundedNormal);
+            if (_movement.groundedNormal.y < Mathf.Sin(_movement.slopeAngle) && _movement.groundSweep) downVector = Vector3.ProjectOnPlane(Vector3.down, _movement.groundedNormal);
 
             Debug.DrawLine(_movement.transform.position, _movement.transform.position + downVector);
 
             // Faster fall velocity.
-            if (_movement.velocity.y > -_movement.fallMaxSpeedUp) _movement.velocity += downVector * -Physics.gravity.y * (_movement.fallSpeedMultiplier - 1) * Time.deltaTime;
+            if (_movement.velocity.y > -_movement.fallMaxSpeedUp) {
+                _movement.velocity += downVector * -Physics.gravity.y * (_movement.fallSpeedMultiplier - 1) * Time.deltaTime;
+            }
 
             // Apply Gravity.
             _movement.velocity += Vector3.down * -Physics.gravity.y * Time.deltaTime;

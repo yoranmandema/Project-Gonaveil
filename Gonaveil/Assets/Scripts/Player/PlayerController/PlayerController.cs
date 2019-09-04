@@ -36,6 +36,7 @@ public partial class PlayerController : MonoBehaviour
     public bool isCrouching;
     public bool isGrounded;
     public bool isSliding;
+    public bool groundSweep;
     public Vector3 groundedNormal = Vector3.up;
 
     private CharacterController characterController;
@@ -77,18 +78,18 @@ public partial class PlayerController : MonoBehaviour
 
         // Prevent the input velocity from getting bigger than what the real velocity is.
         // This prevents the player from shooting off in a certain direction when losing contact.
-        if (velocity.magnitude > characterController.velocity.magnitude) velocity = characterController.velocity;
+        //if (velocity.magnitude > characterController.velocity.magnitude) velocity = characterController.velocity;
     }
 
     public void CheckGround() {
-        var sweep = rigidbody.SweepTest(Vector3.down, out RaycastHit hit, 1f, QueryTriggerInteraction.Ignore);
+        groundSweep = rigidbody.SweepTest(Vector3.down, out RaycastHit hit, 1f, QueryTriggerInteraction.Ignore);
 
-        if (sweep) {
+        if (groundSweep) {
             groundedNormal = hit.normal;
         }
 
         isGrounded =
-            sweep &&
+            groundSweep &&
             hit.distance < (characterController.skinWidth + groundDistanceThreshold) &&
             Mathf.Acos(groundedNormal.y) * Mathf.Rad2Deg < characterController.slopeLimit;
     }
