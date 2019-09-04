@@ -98,9 +98,9 @@ public partial class PlayerMovement : MonoBehaviour {
         canJumpCooldown = true;
     }
 
-    void OnControllerColliderHit(ControllerColliderHit hit) {
-        groundNormal = hit.normal;
-    }
+    //void OnControllerColliderHit(ControllerColliderHit hit) {
+    //    groundNormal = hit.normal;
+    //}
 
     void OnSweepExit(RaycastHit hit) {
         if (hit.distance < 0.25f && canJumpCooldown) {
@@ -131,10 +131,19 @@ public partial class PlayerMovement : MonoBehaviour {
         sweepDidHit = sweepHit;
     }
 
+    private Vector3 ProjectVector (Vector3 direction, Vector3 normal) {
+        var cross = Vector3.Cross(direction, normal);
+        var rotation = Quaternion.AngleAxis(90f, normal) * cross;
+
+        return direction.SetY(normal.y).normalized;
+    }
+
     void Update() {
         OnScreenDebug.Print($"Vel: {velocity.SetY(0).magnitude}");
         OnScreenDebug.Print($"grounded: {isGrounded}");
         OnScreenDebug.Print($"sweep: {sweepHit}");
+
+        Debug.DrawLine(transform.position, transform.position + ProjectVector(transform.forward, groundNormal), Color.red);
 
         if (allowInput) {
             if (Input.GetButtonDown("Crouch") && velocity.magnitude > slideVelocityThreshold) {
